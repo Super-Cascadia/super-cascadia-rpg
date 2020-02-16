@@ -5,7 +5,7 @@
   "author": "wintermuted <jameson.nyeholt@gmail.com>",
   "homepage": "https://github.com/wintermuted/super-cascadia-rpg#readme",
   "license": "ISC",
-  "main": "lib/api.js",
+  "main": "lib/api.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,9 +18,20 @@
     "url": "git+https://github.com/wintermuted/super-cascadia-rpg.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "start": "node lib/api.js",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json --watch"
   },
   "bugs": {
     "url": "https://github.com/wintermuted/super-cascadia-rpg/issues"
+  },
+  "dependencies": {
+    "@hapi/hapi": "18.4.1",
+    "@types/hapi__hapi": "^19.0.1",
+    "eslint": "^6.8.0",
+    "hapi-postgres-connection": "^6.5.1",
+    "lodash": "^4.17.15",
+    "typescript": "^3.7.5"
   }
 }
