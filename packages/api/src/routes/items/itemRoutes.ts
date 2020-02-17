@@ -1,17 +1,21 @@
 import {Request, ResponseToolkit, Server} from "@hapi/hapi";
-import { ItemType, Item } from 'src/model/item/itemModel';
-import {cheese} from '../../model/item/fixtures/itemModelFixtures';
+import { ItemType, Item } from 'src/model/items/itemModel';
+import {cheese, ironSword, ironBracers} from '../../model/items/fixtures/itemModelFixtures';
 
 export const itemRoutes = (server: Server) => {
     server.route({
         method: 'GET',
-        path: '/itemRoutes',
+        path: '/items',
         handler: (request: Request, reply: ResponseToolkit): Item[] => {
             console.log('hello world!');
 
+            const itemType = request.query.itemType;
+
             return [
-                cheese
+                cheese,
+                ironSword,
+                ironBracers
             ];
         }
     });
-}
+};
