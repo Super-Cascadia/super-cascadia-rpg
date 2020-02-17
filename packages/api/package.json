@@ -21,10 +21,10 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "start": "DATABASE_URL=postgres://postgres:@localhost/super-cascadia-rpg node build/src/index.js",
+    "start": "node build/src/server.js",
     "build": "npm run build:clean && tsc -p tsconfig.json",
     "build:clean": "rm -rf build",
-    "build:watch": "npm run build:clean && npm run build && tsc -p tsconfig.json --watch"
+    "build:watch": "npm run build && tsc -p tsconfig.json --watch"
   },
   "bugs": {
     "url": "https://github.com/wintermuted/super-cascadia-rpg/issues"
