@@ -1,16 +1,8 @@
-import {Request, ResponseToolkit, Server} from "@hapi/hapi";
+import {Server} from "@hapi/hapi";
 import {itemRoutes} from "./items/itemRoutes";
+import {helloWorldRoutes} from "./hello-world/helloWorld";
 
 export const registerRoutes = (server: Server) => {
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: (request: Request, reply: ResponseToolkit) => {
-            console.log('hello world!');
-
-            return 'Hello World!';
-        }
-    });
-
-    itemRoutes(server)
+    helloWorldRoutes(server);
+    itemRoutes(server);
 };
