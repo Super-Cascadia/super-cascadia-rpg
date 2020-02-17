@@ -5,13 +5,15 @@
   "author": "wintermuted <jameson.nyeholt@gmail.com>",
   "homepage": "https://github.com/wintermuted/super-cascadia-rpg#readme",
   "license": "ISC",
-  "main": "lib/api.ts",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
   "directories": {
     "lib": "lib",
+    "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -19,9 +21,10 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "start": "node lib/api.js",
-    "build": "tsc -p tsconfig.json",
-    "build:watch": "tsc -p tsconfig.json --watch"
+    "start": "DATABASE_URL=postgres://postgres:@localhost/super-cascadia-rpg node build/src/index.js",
+    "build": "npm run build:clean && tsc -p tsconfig.json",
+    "build:clean": "rm -rf build",
+    "build:watch": "npm run build:clean && npm run build && tsc -p tsconfig.json --watch"
   },
   "bugs": {
     "url": "https://github.com/wintermuted/super-cascadia-rpg/issues"

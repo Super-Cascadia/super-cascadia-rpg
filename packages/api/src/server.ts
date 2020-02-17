@@ -1,11 +1,14 @@
 'use strict';
 
 import { Request, Server, ResponseToolkit } from '@hapi/hapi';
+// import hapi_postgres_connection from 'hapi-postgres-connection';
 
-const init = async () => {
+export const init = async () => {
     const server = new Server({
-        port: 3000
+        port: 3000,
     });
+
+    // await server.register({ plugin: hapi_postgres_connection }, {});
 
     server.route({
         method: 'GET',
@@ -23,5 +26,3 @@ const init = async () => {
 
     await server.start();
 };
-
-init();
