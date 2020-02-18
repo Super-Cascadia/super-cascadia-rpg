@@ -1,6 +1,6 @@
-import {Armor, ArmorType, Item, ItemType, Weapon, WeaponType} from "../itemModel";
+import {Armor, ArmorType, ItemModel, ItemType, Weapon, WeaponType} from "../itemModel";
 
-export const cheese: Item = {
+export const cheese: ItemModel = {
     id: 1,
     name: 'Cheese',
     value: 123,

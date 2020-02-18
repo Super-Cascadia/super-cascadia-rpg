@@ -6,7 +6,7 @@ export enum ItemType {
     KEY_ITEM,
 }
 
-export interface Item {
+export interface ItemModel {
     id: number;
     name: string;
     value: number;
@@ -42,22 +42,22 @@ export enum KeyItemType {
     TECHNOLOGY,
 }
 
-export interface Weapon extends Item {
+export interface Weapon extends ItemModel {
     type: ItemType.WEAPON;
     weaponType: WeaponType;
 }
 
-export interface Armor extends Item {
+export interface Armor extends ItemModel {
     type: ItemType.ARMOR;
     armorType: ArmorType;
 }
 
-export interface Accessory extends Item {
+export interface Accessory extends ItemModel {
     type: ItemType.ACCESSORY;
     accessoryType: AccessoryType;
 }
 
-export interface KeyItem extends Item {
+export interface KeyItem extends ItemModel {
     type: ItemType.KEY_ITEM;
     keyItemType: KeyItemType;
 }

@@ -23,14 +23,16 @@
     "test": "echo \"Error: run tests from root\" && exit 1",
     "start": "node build/src/server.js",
     "build": "npm run build:clean && tsc -p tsconfig.json",
+    "build:prod": "tsc -p tsconfig.json",
     "build:clean": "rm -rf build",
-    "build:watch": "npm run build && tsc -p tsconfig.json --watch"
+    "build:watch": "npm run build && npm run build:prod -- --watch"
   },
   "bugs": {
     "url": "https://github.com/wintermuted/super-cascadia-rpg/issues"
   },
   "dependencies": {
     "@hapi/hapi": "18.4.1",
+    "@super-cascadia-rpg/db": "^0.0.1",
     "@types/hapi__hapi": "^19.0.1",
     "@types/node": "^13.7.1",
     "eslint": "^6.8.0",
@@ -39,5 +41,8 @@
     "pg": "^7.18.1",
     "typeorm": "^0.2.22",
     "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149"
   }
 }

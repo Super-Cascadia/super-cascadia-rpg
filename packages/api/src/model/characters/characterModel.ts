@@ -1,4 +1,4 @@
-import { Item } from '../items/itemModel';
+import { ItemModel } from '../items/itemModel';
 import { CharacterClass } from '../characterClass/characterClassModel';
 
 export interface CharacterSkills {
@@ -15,12 +15,12 @@ export interface CharacterAttributes {
 }
 
 export interface CharacterEquipment {
-    hand: Item;
-    head: Item;
-    chest: Item;
-    arms: Item;
-    legs: Item;
-    feet: Item;
+    hand: ItemModel;
+    head: ItemModel;
+    chest: ItemModel;
+    arms: ItemModel;
+    legs: ItemModel;
+    feet: ItemModel;
 }
 
 export interface Character {
@@ -33,5 +33,5 @@ export interface Character {
     skills: CharacterSkills[]
     attributes: CharacterAttributes;
     equipment: CharacterEquipment;
-    items: Item[];
+    items: ItemModel[];
 }

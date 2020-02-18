@@ -2,6 +2,8 @@
    "name": "@super-cascadia-rpg/db",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
+   "main": "build/src/index.js",
+   "types": "build/src/index.d.ts",
    "devDependencies": {
       "ts-node": "3.3.0",
       "@types/node": "^8.0.29",
@@ -13,6 +15,10 @@
       "pg": "^7.3.0"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node build/src/index.js -p tsconfig.json",
+      "build": "npm run build:clean && npm run build:prod",
+      "build:clean": "rm -rf build",
+      "build:prod": "tsc -p tsconfig.json",
+      "build:watch": "npm run build:clean && npm run build:prod -- --watch"
    }
 }

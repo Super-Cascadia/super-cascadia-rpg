@@ -1,6 +1,6 @@
 import {Character} from "../characterModel";
 import {freeLancer} from "../../characterClass/fixture/characterClassModelFixtures";
-import { Item } from 'src/model/items/itemModel';
+import { ItemModel } from 'src/model/items/itemModel';
 
 export const crono: Character = {
     id: 1,
@@ -17,12 +17,12 @@ export const crono: Character = {
         stamina: 0
     },
     equipment: {
-        head: {} as Item,
-        hand: {} as Item,
-        chest: {} as Item,
-        arms: {} as Item,
-        legs: {} as Item,
-        feet: {} as Item,
+        head: {} as ItemModel,
+        hand: {} as ItemModel,
+        chest: {} as ItemModel,
+        arms: {} as ItemModel,
+        legs: {} as ItemModel,
+        feet: {} as ItemModel,
     },
     items: []
 };

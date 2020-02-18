@@ -1,0 +1,24 @@
+{
+   "type": "postgres",
+   "host": "localhost",
+   "port": 5432,
+   "username": "jnyeholt",
+   "password": "password",
+   "database": "super-cascadia-rpg",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "build/src/db/entity/**/*.js"
+   ],
+   "migrations": [
+      "build/src/migration/**/*.js"
+   ],
+   "subscribers": [
+      "build/src/subscriber/**/*.js"
+   ],
+   "cli": {
+      "entitiesDir": "build/src/entity",
+      "migrationsDir": "build/src/migration",
+      "subscribersDir": "build/src/subscriber"
+   }
+}

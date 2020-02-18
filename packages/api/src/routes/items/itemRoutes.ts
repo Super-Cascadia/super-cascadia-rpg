@@ -1,21 +1,26 @@
 import {Request, ResponseToolkit, Server} from "@hapi/hapi";
-import { ItemType, Item } from 'src/model/items/itemModel';
-import {cheese, ironSword, ironBracers} from '../../model/items/fixtures/itemModelFixtures';
+import {Connection} from "typeorm";
+import {ItemModel} from '../../model/items/itemModel';
+import { map } from 'lodash'
+import { Item } from '../../db/entity/Item';
 
-export const itemRoutes = (server: Server) => {
+export const itemRoutes = (server: Server, connection: Connection) => {
     server.route({
         method: 'GET',
         path: '/items',
-        handler: (request: Request, reply: ResponseToolkit): Item[] => {
-            console.log('hello world!');
+        handler: async (request: Request, reply: ResponseToolkit): Promise<ItemModel[]> => {
+            let items = await connection.manager.find(Item);
 
-            const itemType = request.query.itemType;
+            const itemModels: ItemModel[] = map(items, (item: Item) => {
+                return {
+                    id: item.id,
+                    name: item.name,
+                    description: item.description,
+                    type: item.type
+                } as ItemModel
+            });
 
-            return [
-                cheese,
-                ironSword,
-                ironBracers
-            ];
+            return Promise.resolve(itemModels);
         }
     });
 };
