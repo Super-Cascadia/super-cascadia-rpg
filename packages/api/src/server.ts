@@ -12,7 +12,7 @@ async function getDatabaseConnection() {
 
 export const init = async () => {
     const server = new Server({
-        port: 3000,
+        port: 5000,
     });
 
     const connection = await getDatabaseConnection();
