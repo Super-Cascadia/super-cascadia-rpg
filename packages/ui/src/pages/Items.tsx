@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {ItemModel} from "../../../api/src/model/items/itemModel";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Table from "react-bootstrap/Table";
 
 interface data {
     items: ItemModel[]
@@ -7,18 +11,39 @@ interface data {
 
 type useStateValues = [data, (data: any) => void];
 
-function getItems(data: data) {
-    if (!data.items) {
+function getItemRows(items: ItemModel[]) {
+    return items.map(item => {
+        return (
+            <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.description}</td>
+                <td>{item.type}</td>
+            </tr>
+        )
+    });
+}
+
+function getItemTable(items: ItemModel[]) {
+    if (!items) {
         return null;
     }
 
-    return (<ul>
-        {data.items.map(item => (
-            <li key={item.id}>
-                <a href={item.id.toString()}>{item.name}</a>
-            </li>
-        ))}
-    </ul>);
+    return (
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+            {getItemRows(items)}
+            </tbody>
+        </Table>
+    );
 }
 
 export default function Items() {
@@ -39,9 +64,13 @@ export default function Items() {
     }, []);
 
     return (
-        <div>
-            <h1>Items</h1>
-            {getItems(data)}
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <h1>Items</h1>
+                    {getItemTable(data.items)}
+                </Col>
+            </Row>
+        </Container>
     )
 }
