@@ -5,15 +5,16 @@
   "author": "wintermuted <jameson.nyeholt@gmail.com>",
   "homepage": "https://github.com/wintermuted/super-cascadia-rpg#readme",
   "license": "ISC",
-  "main": "build/src/index.js",
-  "types": "build/src/index.d.ts",
+  "types": "build/src/interfaces.d.ts",
+  "main": "build/src/interfaces.d.ts",
   "directories": {
-    "lib": "lib",
+    "build": "build",
     "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "src"
+    "src",
+    "build"
   ],
   "repository": {
     "type": "git",
@@ -25,7 +26,7 @@
     "build": "npm run build:clean && tsc -p tsconfig.json",
     "build:prod": "tsc -p tsconfig.json",
     "build:clean": "rm -rf build",
-    "build:watch": "npm run build && npm run build:prod -- --watch"
+    "build:watch": "npm run build:clean && npm run build:prod -- --watch"
   },
   "bugs": {
     "url": "https://github.com/wintermuted/super-cascadia-rpg/issues"

@@ -1,12 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
-
-export enum ItemType {
-    FOOD,
-    WEAPON,
-    ARMOR,
-    ACCESSORY,
-    KEY_ITEM,
-}
+import { ItemType } from './interfaces/items';
 
 @Entity()
 export class Item {

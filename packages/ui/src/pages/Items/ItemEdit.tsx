@@ -5,8 +5,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 import { useParams } from 'react-router-dom';
 import fetchItemDataHook from '../../hooks/api/fetchItemDataHook';
+import { getItemTypeNameById } from '../../util/itemType';
 
 interface ItemEditState {
     item: ItemModel
@@ -19,14 +21,14 @@ export default function ItemEdit() {
     const { id } = useParams();
     const [data, setData]: ItemsStateHook = useState({ item: {} as ItemModel });
     const { item } = data;
-    const itemType = item?.type?.toString()
+    const itemTypeName = getItemTypeNameById(item?.type);
 
     // @ts-ignore
     useEffect(fetchItemDataHook(id, setData), {});
 
-
     return (
         <Container>
+            <br/>
             <Card>
                 <Card.Header>{item.name}</Card.Header>
                 <Card.Body>
@@ -63,10 +65,15 @@ export default function ItemEdit() {
                             Type
                             </Form.Label>
                             <Col sm="10">
-                            <Form.Control plaintext readOnly placeholder={itemType} />
+                            <Form.Control plaintext readOnly placeholder={itemTypeName} />
                             </Col>
                         </Form.Group>
                     </Form>
+                    <Card.Footer className="text-muted">
+                        <Button variant="primary" size="sm">
+                            Edit Item        
+                        </Button>
+                    </Card.Footer>
                 </Card.Body>
             </Card>
             
