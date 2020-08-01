@@ -19,9 +19,11 @@ export default function ItemEdit() {
     const { id } = useParams();
     const [data, setData]: ItemsStateHook = useState({ item: {} as ItemModel });
     const { item } = data;
+    const itemType = item?.type?.toString()
 
     // @ts-ignore
     useEffect(fetchItemDataHook(id, setData), {});
+
 
     return (
         <Container>
@@ -53,6 +55,15 @@ export default function ItemEdit() {
                             </Form.Label>
                             <Col sm="10">
                             <Form.Control plaintext readOnly placeholder={item.description} />
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="formType">
+                            <Form.Label column sm="2">
+                            Type
+                            </Form.Label>
+                            <Col sm="10">
+                            <Form.Control plaintext readOnly placeholder={itemType} />
                             </Col>
                         </Form.Group>
                     </Form>
