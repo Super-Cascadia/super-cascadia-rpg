@@ -14,38 +14,32 @@ export default function ItemCreate() {
                 <Card.Header>Create a new Item</Card.Header>
                 <Card.Body>
                     <Form>
-                        <Form.Group as={Row} controlId="formName">
-                            <Form.Label column sm="2">
+                        <Form.Group controlId="formName">
+                            <Form.Label>
                                 Name
                             </Form.Label>
-                            <Col sm="10">
-                              <Form.Control plaintext />
+                              <Form.Control />
                               <Form.Text className="text-muted">
                                 The name of the item.
                               </Form.Text>
-                            </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="formDescription">
-                            <Form.Label column sm="2">
+                        <Form.Group controlId="formDescription">
+                            <Form.Label>
                             Description
                             </Form.Label>
-                            <Col sm="10">
-                              <Form.Control plaintext />
+                              <Form.Control />
                               <Form.Text className="text-muted">
                                 a description of the item
                               </Form.Text>
-                            </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="formType">
-                            <Form.Label column sm="2">
-                            Type
+                        <Form.Group controlId="formType">
+                            <Form.Label>
+                            Item Type
                             </Form.Label>
-                            <Col sm="10">
                             <Form>
                               <Form.Group controlId="form.itemType">
-                                <Form.Label>Custom select</Form.Label>
                                 <Form.Control as="select" custom>
                                   <option>Food</option>
                                   <option>Weapon</option>
@@ -55,7 +49,6 @@ export default function ItemCreate() {
                                 </Form.Control>
                               </Form.Group>
                             </Form>
-                            </Col>
                         </Form.Group>
                     </Form>
                 </Card.Body>
