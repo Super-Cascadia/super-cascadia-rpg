@@ -6,11 +6,10 @@ import React from "react";
 interface Props {
   show: boolean;
   selectedItem: ItemModel;
-  handleClose: () => void;
-  handleShow: (id: number) => void;
+  handleClose: (id?: number) => void;
 }
 
-export function ItemModal({ show, handleClose, selectedItem }: Props) {
+export function DeleteItemModal({ show, handleClose, selectedItem }: Props) {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -23,10 +22,10 @@ export function ItemModal({ show, handleClose, selectedItem }: Props) {
         permanent.
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={() => handleClose(undefined)}>
           Close
         </Button>
-        <Button variant="danger" onClick={handleClose}>
+        <Button variant="danger" onClick={() => handleClose(selectedItem.id)}>
           Delete Item
         </Button>
       </Modal.Footer>

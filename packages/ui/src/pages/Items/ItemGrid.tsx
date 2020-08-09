@@ -5,30 +5,40 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import fetchItemsDataHook from "../../hooks/api/items/fetchItemsDataHook";
 import { Link } from "react-router-dom";
-import { ItemModal } from "../../components/modals/ItemModals";
+import { DeleteItemModal } from "../../components/modals/ItemModals";
 import { ItemTable } from "../../components/tables/ItemTable";
+import deleteItem from "../../api/items/deleteItem";
 
 interface ItemGridDataState {
   items: ItemModel[];
 }
 
+type SelectedItemState = number | null;
+
 export default function ItemGrid() {
   const [data, setData] = useState<ItemGridDataState>({
     items: [] as ItemModel[],
   });
-  const [show, setShow] = useState(false);
-  const [selectedItemId, setSelectedItem] = useState<number | undefined>(
-    undefined
+  const [showDeleteItemModal, setDeleteItemModalVisibility] = useState<boolean>(
+    false
   );
+  const [selectedItemId, setSelectedItem] = useState<SelectedItemState>(null);
   const selectedItem = data?.items.find((item) => item.id === selectedItemId);
+  const fetchItems = fetchItemsDataHook(setData);
 
   // @ts-ignore
-  useEffect(fetchItemsDataHook(setData), []);
+  useEffect(fetchItems, []);
 
-  const handleClose = () => setShow(false);
-  const handleShow = (id: number) => {
+  const handleCloseDeleteModal = (id?: number) => {
+    if (id) {
+      console.log("delete the item!", id);
+      deleteItem(id).then(fetchItems);
+    }
+    setDeleteItemModalVisibility(false);
+  };
+  const handleShowDeleteModal = (id: number) => {
     setSelectedItem(id);
-    setShow(true);
+    setDeleteItemModalVisibility(true);
   };
 
   return (
@@ -45,7 +55,7 @@ export default function ItemGrid() {
             </Link>
           </Card.Header>
           <Card.Body>
-            <ItemTable items={data.items} handleShow={handleShow} />
+            <ItemTable items={data.items} handleShow={handleShowDeleteModal} />
           </Card.Body>
           <Card.Footer className="text-muted">
             {data.items.length} items
@@ -53,11 +63,10 @@ export default function ItemGrid() {
         </Card>
       </Container>
       {selectedItem ? (
-        <ItemModal
-          handleClose={handleClose}
-          handleShow={handleShow}
+        <DeleteItemModal
+          handleClose={handleCloseDeleteModal}
           selectedItem={selectedItem}
-          show={show}
+          show={showDeleteItemModal}
         />
       ) : null}
     </div>
