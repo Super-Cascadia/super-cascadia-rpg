@@ -20,11 +20,14 @@ export default function Routes() {
                     <Route path="/home">
                         <Home />
                     </Route>
+                    <Route path="/characters">
+                        <Characters />
+                    </Route>
                     <Route path="/items/create">
                         <ItemCreate />
                     </Route>
-                    <Route path="/characters">
-                        <Characters />
+                    <Route path="/items/:id/edit">
+                        <ItemEdit />
                     </Route>
                     <Route path="/items/:id">
                         <ItemEdit />

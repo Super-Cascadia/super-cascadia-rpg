@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, SyntheticEvent} from "react";
 import {ItemModel} from "../../../../api/src/model/items/itemModel";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useParams } from 'react-router-dom';
-import fetchItemDataHook from '../../hooks/api/fetchItemDataHook';
+import fetchItemDataHook from '../../hooks/api/items/fetchItemDataHook';
 import { getItemTypeNameById } from '../../util/itemType';
 
 interface ItemEditState {
@@ -22,61 +20,75 @@ export default function ItemEdit() {
     const [data, setData]: ItemsStateHook = useState({ item: {} as ItemModel });
     const { item } = data;
     const itemTypeName = getItemTypeNameById(item?.type);
+    const [formState, updateFormState] = useState(data);
+
 
     // @ts-ignore
     useEffect(fetchItemDataHook(id, setData), {});
+
+    const handleFormChange = (event: SyntheticEvent) => {
+        const { id, value } = event?.target as HTMLInputElement;
+  
+        const newState = {
+          ...formState,
+          [id]: value
+        }
+  
+        updateFormState(newState)
+      };
 
     return (
         <Container>
             <br/>
             <Card>
+            <Form>
                 <Card.Header>{item.name}</Card.Header>
                 <Card.Body>
-                    <Form>
-                        <Form.Group as={Row} controlId="formId">
-                            <Form.Label column sm="2">
+                        <Form.Group controlId="formId">
+                            <Form.Label>
                                 ID
                             </Form.Label>
-                            <Col sm="10">
-                            <Form.Control plaintext readOnly defaultValue={item.id} />
-                            </Col>
+                            <Form.Control defaultValue={item.id} />
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="formName">
-                            <Form.Label column sm="2">
+                        <Form.Group controlId="formName">
+                            <Form.Label>
                                 Name
                             </Form.Label>
-                            <Col sm="10">
-                            <Form.Control plaintext readOnly defaultValue={item.name} />
-                            </Col>
+
+                            <Form.Control defaultValue={item.name} />
+
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="formDescription">
-                            <Form.Label column sm="2">
+                        <Form.Group controlId="formDescription">
+                            <Form.Label>
                             Description
                             </Form.Label>
-                            <Col sm="10">
-                            <Form.Control plaintext readOnly placeholder={item.description} />
-                            </Col>
+                            <Form.Control placeholder={item.description} />
+
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="formType">
-                            <Form.Label column sm="2">
-                            Type
+                        <Form.Group controlId="type" onChange={(e: SyntheticEvent) => handleFormChange(e)}>
+                            <Form.Label>
+                            Item Type
                             </Form.Label>
-                            <Col sm="10">
-                            <Form.Control plaintext readOnly placeholder={itemTypeName} />
-                            </Col>
+                            <Form.Control as="select" custom>
+                              <option>Food</option>
+                              <option>Weapon</option>
+                              <option>Accessory</option>
+                              <option>Key Item</option>
+                              <option>Armor</option>
+                            </Form.Control>
                         </Form.Group>
-                    </Form>
-                    <Card.Footer className="text-muted">
-                        <Button variant="primary" size="sm">
-                            Edit Item        
+                    
+                </Card.Body>
+                <Card.Footer className="text-muted">
+                        <Button variant="primary" type="submit" size="sm">
+                           Submit        
                         </Button>
                     </Card.Footer>
-                </Card.Body>
+                </Form>
             </Card>
-            
         </Container>
     )
 }
