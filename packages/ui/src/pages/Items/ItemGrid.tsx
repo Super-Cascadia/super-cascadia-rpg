@@ -5,9 +5,13 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import fetchItemsDataHook from "../../hooks/api/items/fetchItemsDataHook";
 import { Link } from "react-router-dom";
-import { DeleteItemModal } from "../../components/modals/ItemModals";
+import {
+  DeleteItemModal,
+  DuplicateItemModal,
+} from "../../components/modals/ItemModals";
 import { ItemTable } from "../../components/tables/ItemTable";
 import deleteItem from "../../api/items/deleteItem";
+import duplicateItem from "../../api/items/duplicateItem";
 
 interface ItemGridDataState {
   items: ItemModel[];
@@ -22,6 +26,9 @@ export default function ItemGrid() {
   const [showDeleteItemModal, setDeleteItemModalVisibility] = useState<boolean>(
     false
   );
+  const [showDuplicateItemModal, setDuplicateItemModalVisibility] = useState<
+    boolean
+  >(false);
   const [selectedItemId, setSelectedItem] = useState<SelectedItemState>(null);
   const selectedItem = data?.items.find((item) => item.id === selectedItemId);
   const fetchItems = fetchItemsDataHook(setData);
@@ -41,6 +48,19 @@ export default function ItemGrid() {
     setDeleteItemModalVisibility(true);
   };
 
+  const handleShowDuplicateModal = (id: number) => {
+    setSelectedItem(id);
+    setDuplicateItemModalVisibility(true);
+  };
+
+  const handleCloseDuplicateModal = (id?: number) => {
+    if (id) {
+      console.log("duplicate the item!", id);
+      duplicateItem(id).then(fetchItems);
+    }
+    setDuplicateItemModalVisibility(false);
+  };
+
   return (
     <div>
       <Container>
@@ -55,7 +75,11 @@ export default function ItemGrid() {
             </Link>
           </Card.Header>
           <Card.Body>
-            <ItemTable items={data.items} handleShow={handleShowDeleteModal} />
+            <ItemTable
+              items={data.items}
+              handleShow={handleShowDeleteModal}
+              handleDuplicate={handleShowDuplicateModal}
+            />
           </Card.Body>
           <Card.Footer className="text-muted">
             {data.items.length} items
@@ -67,6 +91,13 @@ export default function ItemGrid() {
           handleClose={handleCloseDeleteModal}
           selectedItem={selectedItem}
           show={showDeleteItemModal}
+        />
+      ) : null}
+      {selectedItem ? (
+        <DuplicateItemModal
+          handleClose={handleCloseDuplicateModal}
+          selectedItem={selectedItem}
+          show={showDuplicateItemModal}
         />
       ) : null}
     </div>

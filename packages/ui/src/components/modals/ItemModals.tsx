@@ -32,3 +32,26 @@ export function DeleteItemModal({ show, handleClose, selectedItem }: Props) {
     </Modal>
   );
 }
+
+export function DuplicateItemModal({ show, handleClose, selectedItem }: Props) {
+  return (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          Duplicate {selectedItem.name} ({selectedItem.id}) ?
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Please confirm that you would like to duplicate this item.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => handleClose(undefined)}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={() => handleClose(selectedItem.id)}>
+          Duplicate Item
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}

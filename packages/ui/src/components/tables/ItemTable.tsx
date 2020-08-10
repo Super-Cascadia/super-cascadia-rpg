@@ -6,7 +6,11 @@ import { isEmpty } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
 
-function ItemRows(items: ItemModel[], handleShow: (id: number) => void) {
+function ItemRows(
+  items: ItemModel[],
+  handleShow: (id: number) => void,
+  handleDuplicate: (id: number) => void
+) {
   return items.map((item) => {
     const itemTypeName = getItemTypeNameById(item?.type);
 
@@ -22,11 +26,13 @@ function ItemRows(items: ItemModel[], handleShow: (id: number) => void) {
               Edit
             </Button>
           </Link>
-          <Link to={`/items/${item.id}`}>
-            <Button size="sm" variant="secondary">
-              Copy
-            </Button>
-          </Link>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => handleDuplicate(item.id)}
+          >
+            Copy
+          </Button>
           <Button
             size="sm"
             variant="danger"
@@ -43,9 +49,10 @@ function ItemRows(items: ItemModel[], handleShow: (id: number) => void) {
 interface Props {
   items: ItemModel[];
   handleShow: (id: number) => void;
+  handleDuplicate: (id: number) => void;
 }
 
-export function ItemTable({ items, handleShow }: Props) {
+export function ItemTable({ items, handleShow, handleDuplicate }: Props) {
   if (isEmpty(items)) {
     return null;
   }
@@ -61,7 +68,7 @@ export function ItemTable({ items, handleShow }: Props) {
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>{ItemRows(items, handleShow)}</tbody>
+      <tbody>{ItemRows(items, handleShow, handleDuplicate)}</tbody>
     </Table>
   );
 }
