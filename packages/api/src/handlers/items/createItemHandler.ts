@@ -1,28 +1,25 @@
 import { Item } from "../../db/entity/Item";
-import { getItemById } from "./getItemsHandler";
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 
 async function createNewItem(
   connection: Connection,
-  item: Item
+  request: Request
 ): Promise<InsertResult> {
-  console.log("item", item);
+  console.log("item", request.payload);
 
-  return connection.manager.insert(Item, item);
+  return connection.manager.insert(Item, request.payload as Item);
 }
 
 const createItemHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
-): Promise<Item | undefined | string> => {
+): Promise<InsertResult> => {
+  console.info("create item handler");
   try {
-    if (request.params.id) {
-      return getItemById(connection, request.params.id);
-    } else {
-      return Promise.resolve(`doesn't exist`);
-    }
+    console.info("create new item", request.payload);
+    return createNewItem(connection, request);
   } catch (e) {
     console.error("error", e);
     return Promise.resolve(e);
