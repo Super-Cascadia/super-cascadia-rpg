@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../api/items/createItem";
+import { useHistory } from "react-router-dom";
 
 const initialFormState = {
   name: "",
@@ -14,13 +15,14 @@ const initialFormState = {
 
 export default function ItemCreate() {
   const [formState, updateFormState] = useState(initialFormState);
+  const history = useHistory();
 
   const handleFormChange = (event: SyntheticEvent) => {
     const { id, value } = event?.target as HTMLInputElement;
 
     const newState = {
       ...formState,
-      [id]: value,
+      [id]: id === "type" ? parseInt(value, 10) : value,
     };
 
     updateFormState(newState);
@@ -35,7 +37,8 @@ export default function ItemCreate() {
     event.stopPropagation();
 
     createItem(formState).then(() => {
-      return updateFormState(initialFormState);
+      updateFormState(initialFormState);
+      history.push("/items");
     });
   };
 
@@ -74,11 +77,11 @@ export default function ItemCreate() {
             >
               <Form.Label>Item Type</Form.Label>
               <Form.Control as="select" custom>
-                <option>Food</option>
-                <option>Weapon</option>
-                <option>Accessory</option>
-                <option>Key Item</option>
-                <option>Armor</option>
+                <option value={ItemType.FOOD}>Food</option>
+                <option value={ItemType.WEAPON}>Weapon</option>
+                <option value={ItemType.ACCESSORY}>Accessory</option>
+                <option value={ItemType.KEY_ITEM}>Key Item</option>
+                <option value={ItemType.ARMOR}>Armor</option>
               </Form.Control>
             </Form.Group>
           </Card.Body>

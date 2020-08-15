@@ -1,10 +1,11 @@
 import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
 import { getItemTypeNameById } from "../../util/itemType";
-import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";
 import { isEmpty } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 function ItemRows(
   items: ItemModel[],
@@ -21,25 +22,34 @@ function ItemRows(
         <td>{item.description}</td>
         <td>{itemTypeName}</td>
         <td>
-          <Link to={`/items/${item.id}/edit`}>
-            <Button size="sm" variant="primary">
-              Edit
+          <ButtonGroup aria-label="Basic example">
+            <LinkContainer to={`/items/${item.id}/edit`}>
+              <Button size="sm" variant="primary">
+                Edit
+              </Button>
+            </LinkContainer>
+            <LinkContainer to={`/items/${item.id}/view`}>
+              <Button size="sm" variant="secondary">
+                View
+              </Button>
+            </LinkContainer>
+          </ButtonGroup>
+          <ButtonGroup aria-label="Basic example">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={() => handleDuplicate(item.id)}
+            >
+              Copy
             </Button>
-          </Link>
-          <Button
-            size="sm"
-            variant="secondary"
-            onClick={() => handleDuplicate(item.id)}
-          >
-            Copy
-          </Button>
-          <Button
-            size="sm"
-            variant="danger"
-            onClick={() => handleShow(item.id)}
-          >
-            Delete
-          </Button>
+            <Button
+              size="sm"
+              variant="danger"
+              onClick={() => handleShow(item.id)}
+            >
+              Delete
+            </Button>
+          </ButtonGroup>
         </td>
       </tr>
     );
@@ -58,7 +68,7 @@ export function ItemTable({ items, handleShow, handleDuplicate }: Props) {
   }
 
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" variant="dark" responsive>
       <thead>
         <tr>
           <th>ID</th>
