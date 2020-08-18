@@ -12,6 +12,10 @@ import {
 import { ItemTable } from "../../components/tables/ItemTable";
 import deleteItem from "../../api/items/deleteItem";
 import duplicateItem from "../../api/items/duplicateItem";
+import { isEmpty } from "lodash";
+import Spinner from "react-bootstrap/Spinner";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 interface ItemGridDataState {
   items: ItemModel[];
@@ -47,12 +51,10 @@ export default function ItemGrid() {
     setSelectedItem(id);
     setDeleteItemModalVisibility(true);
   };
-
   const handleShowDuplicateModal = (id: number) => {
     setSelectedItem(id);
     setDuplicateItemModalVisibility(true);
   };
-
   const handleCloseDuplicateModal = (id?: number) => {
     if (id) {
       console.log("duplicate the item!", id);
@@ -61,18 +63,43 @@ export default function ItemGrid() {
     setDuplicateItemModalVisibility(false);
   };
 
+  if (isEmpty(data.items)) {
+    return (
+      <Container>
+        <Card>
+          <Card.Header>
+            <h1>Items</h1>
+          </Card.Header>
+          <Card.Body>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </Card.Body>
+        </Card>
+      </Container>
+    );
+  }
+
   return (
     <div>
       <Container>
         <br />
         <Card>
           <Card.Header>
-            <h1>Items</h1>
-            <Link to={`/items/create`}>
-              <Button variant="primary" size="sm">
-                Create Item
-              </Button>
-            </Link>
+            <Container>
+              <Row>
+                <Col sm="10">
+                  <h1>Items</h1>
+                </Col>
+                <Col sm="2">
+                  <Link to={`/items/create`}>
+                    <Button variant="primary" size="sm">
+                      Create Item
+                    </Button>
+                  </Link>
+                </Col>
+              </Row>
+            </Container>
           </Card.Header>
           <Card.Body>
             <ItemTable

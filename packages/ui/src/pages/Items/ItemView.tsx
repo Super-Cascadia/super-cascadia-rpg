@@ -6,9 +6,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { getItemTypeNameById } from "../../util/itemType";
+import { isEmpty } from "lodash";
+import Spinner from "react-bootstrap/Spinner";
+import { LinkContainer } from "react-router-bootstrap";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 interface ItemEditState {
   item: ItemModel;
@@ -25,11 +29,35 @@ export default function ItemView() {
   // @ts-ignore
   useEffect(fetchItemDataHook(id, setData), {});
 
+  if (isEmpty(item)) {
+    return (
+      <Container>
+        <Card>
+          <Card.Header>
+            <h1>Item Edit</h1>
+          </Card.Header>
+          <Card.Body>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </Card.Body>
+        </Card>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <br />
+      <Breadcrumb>
+        <Breadcrumb.Item href="/items">Items</Breadcrumb.Item>
+        <Breadcrumb.Item active>{id}</Breadcrumb.Item>
+        <Breadcrumb.Item>View</Breadcrumb.Item>
+      </Breadcrumb>
       <Card>
-        <Card.Header>{item.name}</Card.Header>
+        <Card.Header>
+          <h1>{item.name}</h1>
+        </Card.Header>
         <Card.Body>
           <Form>
             <Form.Group as={Row} controlId="formId">
@@ -37,7 +65,7 @@ export default function ItemView() {
                 ID
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={item.id} />
+                <Form.Control readOnly defaultValue={item.id} />
               </Col>
             </Form.Group>
 
@@ -46,7 +74,7 @@ export default function ItemView() {
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext readOnly defaultValue={item.name} />
+                <Form.Control readOnly defaultValue={item.name} />
               </Col>
             </Form.Group>
 
@@ -55,11 +83,7 @@ export default function ItemView() {
                 Description
               </Form.Label>
               <Col sm="10">
-                <Form.Control
-                  plaintext
-                  readOnly
-                  placeholder={item.description}
-                />
+                <Form.Control readOnly value={item.description} />
               </Col>
             </Form.Group>
 
@@ -68,16 +92,16 @@ export default function ItemView() {
                 Type
               </Form.Label>
               <Col sm="10">
-                <Form.Control plaintext readOnly placeholder={itemTypeName} />
+                <Form.Control readOnly placeholder={itemTypeName} />
               </Col>
             </Form.Group>
           </Form>
           <Card.Footer className="text-muted">
-            <Link to={`/items/${item.id}/edit`}>
+            <LinkContainer to={`/items/${item.id}/edit`}>
               <Button size="sm" variant="primary">
                 Edit
               </Button>
-            </Link>
+            </LinkContainer>
           </Card.Footer>
         </Card.Body>
       </Card>

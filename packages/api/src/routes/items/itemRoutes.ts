@@ -4,6 +4,7 @@ import { Item } from "../../db/entity/Item";
 import { getItemsHandler } from "../../handlers/items/getItemsHandler";
 import createItemHandler from "../../handlers/items/createItemHandler";
 import duplicateItemHandler from "../../handlers/items/duplicateItemHandler";
+import updateItemHandler from "../../handlers/items/updateItemHandler";
 
 async function deleteItemById(
   connection: Connection,
@@ -55,9 +56,19 @@ function duplicateItem(server: Server, connection: Connection) {
   });
 }
 
+function updateItem(server: Server, connection: Connection) {
+  server.route({
+    method: "PUT",
+    path: "/items/{id}",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      updateItemHandler(connection, request, reply),
+  });
+}
+
 export const itemRoutes = (server: Server, connection: Connection) => {
   getItems(server, connection);
   createItem(server, connection);
   deleteItem(server, connection);
   duplicateItem(server, connection);
+  updateItem(server, connection);
 };
