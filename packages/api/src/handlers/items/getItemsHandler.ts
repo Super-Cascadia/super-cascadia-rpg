@@ -1,4 +1,4 @@
-import { Request, ResponseToolkit } from "@hapi/hapi";
+import { Request, RequestQuery, ResponseToolkit } from "@hapi/hapi";
 import { ItemModel } from "../../model/items/itemModel";
 import { Item } from "../../db/entity/Item";
 import { Connection } from "typeorm/index";
@@ -15,8 +15,22 @@ function mapItemtoItemModel(items: Item[]): ItemModel[] {
   });
 }
 
-async function getAllItems(connection: Connection): Promise<ItemModel[]> {
-  const items = await connection.manager.find(Item);
+async function findItems(connection: Connection, query: RequestQuery) {
+  if (query.type) {
+    return connection.manager.find(Item, {
+      where: { type: query.type },
+    });
+  }
+  return connection.manager.find(Item);
+}
+
+async function getAllItems(
+  connection: Connection,
+  request: Request
+): Promise<ItemModel[]> {
+  const foo = request.query;
+  console.log("queryParams", foo);
+  const items = await findItems(connection, foo);
 
   return mapItemtoItemModel(items);
 }
@@ -49,7 +63,7 @@ export const getItemsHandler = async (
       return item;
     } else {
       console.info("GET all items", request.params);
-      return getAllItems(connection);
+      return getAllItems(connection, request);
     }
   } catch (e) {
     console.error("error", e);

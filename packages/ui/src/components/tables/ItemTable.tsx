@@ -6,6 +6,7 @@ import { isEmpty } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Badge from "react-bootstrap/Badge";
 
 function ItemRows(
   items: ItemModel[],
@@ -17,7 +18,9 @@ function ItemRows(
 
     return (
       <tr key={item.id}>
-        <td>{item.id}</td>
+        <td>
+          <Badge variant="secondary">{item.id}</Badge>
+        </td>
         <td>{item.name}</td>
         <td>{item.description}</td>
         <td>{itemTypeName}</td>
@@ -68,7 +71,7 @@ export function ItemTable({ items, handleShow, handleDuplicate }: Props) {
   }
 
   return (
-    <Table striped bordered hover size="sm" responsive>
+    <Table striped hover size="sm" responsive>
       <thead>
         <tr>
           <th>ID</th>
