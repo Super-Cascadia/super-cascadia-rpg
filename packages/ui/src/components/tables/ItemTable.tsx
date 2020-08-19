@@ -68,7 +68,7 @@ export function ItemTable({ items, handleShow, handleDuplicate }: Props) {
   }
 
   return (
-    <Table striped bordered hover size="sm" variant="dark" responsive>
+    <Table striped bordered hover size="sm" responsive>
       <thead>
         <tr>
           <th>ID</th>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
+import { ItemModel } from "@super-cascadia-rpg/api";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -10,9 +10,9 @@ import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { getItemTypeNameById } from "../../util/itemType";
 import { isEmpty } from "lodash";
-import Spinner from "react-bootstrap/Spinner";
 import { LinkContainer } from "react-router-bootstrap";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
+import Loading from "../../components/Loading";
 
 interface ItemEditState {
   item: ItemModel;
@@ -30,20 +30,7 @@ export default function ItemView() {
   useEffect(fetchItemDataHook(id, setData), {});
 
   if (isEmpty(item)) {
-    return (
-      <Container>
-        <Card>
-          <Card.Header>
-            <h1>Item Edit</h1>
-          </Card.Header>
-          <Card.Body>
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          </Card.Body>
-        </Card>
-      </Container>
-    );
+    return <Loading title="Item View" />;
   }
 
   return (
@@ -92,7 +79,13 @@ export default function ItemView() {
                 Type
               </Form.Label>
               <Col sm="10">
-                <Form.Control readOnly placeholder={itemTypeName} />
+                <Form.Control as="select" readOnly value={itemTypeName}>
+                  <option value={0}>Food</option>
+                  <option value={1}>Weapon</option>
+                  <option value={2}>Accessory</option>
+                  <option value={3}>Key Item</option>
+                  <option value={4}>Armor</option>
+                </Form.Control>
               </Col>
             </Form.Group>
           </Form>

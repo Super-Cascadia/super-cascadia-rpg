@@ -1,10 +1,4 @@
-export enum ItemType {
-  FOOD,
-  WEAPON,
-  ARMOR,
-  ACCESSORY,
-  KEY_ITEM,
-}
+import { ItemType } from "../../db/entity/interfaces/items";
 
 export interface ItemModel {
   id: number;

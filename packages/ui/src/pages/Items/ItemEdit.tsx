@@ -6,15 +6,14 @@ import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { toNumber, isEmpty } from "lodash";
-import Spinner from "react-bootstrap/Spinner";
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
 import { toString } from "lodash";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { LinkContainer } from "react-router-bootstrap";
 import updateItem from "../../api/items/updateItem";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { Item } from "@super-cascadia-rpg/api/build/src/db/entity/Item";
+import { Item } from "@super-cascadia-rpg/api";
+import Loading from "../../components/Loading";
 
 export default function ItemEdit() {
   const { id: itemId } = useParams<{ id: string }>();
@@ -56,20 +55,7 @@ export default function ItemEdit() {
   console.log(data);
 
   if (isEmpty(item)) {
-    return (
-      <Container>
-        <Card>
-          <Card.Header>
-            <h1>Item View</h1>
-          </Card.Header>
-          <Card.Body>
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          </Card.Body>
-        </Card>
-      </Container>
-    );
+    return <Loading title="Item Edit" />;
   }
 
   return (
@@ -130,12 +116,12 @@ export default function ItemEdit() {
                 Item Type
               </Form.Label>
               <Col sm="10">
-                <Form.Control as="select" custom defaultValue={item.type}>
-                  <option>Food</option>
-                  <option>Weapon</option>
-                  <option>Accessory</option>
-                  <option>Key Item</option>
-                  <option>Armor</option>
+                <Form.Control as="select" custom value={toString(item.type)}>
+                  <option value={0}>Food</option>
+                  <option value={1}>Weapon</option>
+                  <option value={2}>Armor</option>
+                  <option value={3}>Accessory</option>
+                  <option value={4}>Key Item</option>
                 </Form.Control>
               </Col>
             </Form.Group>

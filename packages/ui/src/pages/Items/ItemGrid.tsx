@@ -13,9 +13,9 @@ import { ItemTable } from "../../components/tables/ItemTable";
 import deleteItem from "../../api/items/deleteItem";
 import duplicateItem from "../../api/items/duplicateItem";
 import { isEmpty } from "lodash";
-import Spinner from "react-bootstrap/Spinner";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Loading from "../../components/Loading";
 
 interface ItemGridDataState {
   items: ItemModel[];
@@ -64,20 +64,7 @@ export default function ItemGrid() {
   };
 
   if (isEmpty(data.items)) {
-    return (
-      <Container>
-        <Card>
-          <Card.Header>
-            <h1>Items</h1>
-          </Card.Header>
-          <Card.Body>
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          </Card.Body>
-        </Card>
-      </Container>
-    );
+    return <Loading title="Item View" />;
   }
 
   return (

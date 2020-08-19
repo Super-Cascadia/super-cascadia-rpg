@@ -1,11 +1,5 @@
-import {
-  Armor,
-  ArmorType,
-  ItemModel,
-  ItemType,
-  Weapon,
-  WeaponType,
-} from "../itemModel";
+import { Armor, ArmorType, ItemModel, Weapon, WeaponType } from "../itemModel";
+import { ItemType } from "../../../db/entity/interfaces/items";
 
 export const cheese: ItemModel = {
   id: 1,
