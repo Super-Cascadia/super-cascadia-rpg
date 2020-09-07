@@ -1,4 +1,4 @@
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
+import { ItemModel } from "@super-cascadia-rpg/api";
 import { getItemTypeNameById } from "../../util/itemType";
 import { LinkContainer } from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";

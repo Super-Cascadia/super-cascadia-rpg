@@ -1,4 +1,4 @@
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
+import { ItemModel } from "@super-cascadia-rpg/api";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React from "react";
