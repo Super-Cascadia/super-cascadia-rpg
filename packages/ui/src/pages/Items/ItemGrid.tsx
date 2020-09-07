@@ -73,7 +73,6 @@ export default function ItemGrid() {
     }
     setDuplicateItemModalVisibility(false);
   };
-
   const handleTabChange = (tabId: ITEM_GRID_TABS) => {
     setData({
       ...data,
@@ -108,7 +107,7 @@ export default function ItemGrid() {
           </Card.Header>
           <Card.Body>
             <Tabs
-              defaultActiveKey="all"
+              defaultActiveKey={ITEM_GRID_TABS.ALL}
               id="uncontrolled-tab-example"
               onSelect={(k: string) => handleTabChange(k as ITEM_GRID_TABS)}
             >
