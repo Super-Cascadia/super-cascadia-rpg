@@ -26,10 +26,12 @@ interface ItemGridDataState {
 
 type SelectedItemState = number | null;
 
-enum ITEM_GRID_TABS {
+export enum ITEM_GRID_TABS {
   ALL = "ALL",
+  WEAPON = "WEAPON",
   FOOD = "FOOD",
   ARMOR = "ARMOR",
+  ACCESSORY = "ACCESSORY",
   KEY_ITEM = "KEY_ITEM",
 }
 
@@ -46,7 +48,7 @@ export default function ItemGrid() {
   >(false);
   const [selectedItemId, setSelectedItem] = useState<SelectedItemState>(null);
   const selectedItem = data?.items.find((item) => item.id === selectedItemId);
-  const fetchItems = fetchItemsDataHook(setData);
+  const fetchItems = fetchItemsDataHook(data.tabView, setData);
 
   // @ts-ignore
   useEffect(fetchItems, []);
