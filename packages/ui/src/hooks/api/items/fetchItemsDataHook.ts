@@ -1,4 +1,4 @@
-import { ITEM_GRID_TABS } from "../../../pages/Items/ItemGrid";
+import { ITEM_GRID_TABS } from "../../../pages/Items/ItemGrid/ItemGrid";
 import { ItemType } from "@super-cascadia-rpg/api";
 
 export function getItemTypeID(type: ITEM_GRID_TABS): ItemType {
@@ -20,7 +20,7 @@ export function getItemTypeID(type: ITEM_GRID_TABS): ItemType {
 
 export default function getEffect(
   type: ITEM_GRID_TABS,
-  setData: (data: any) => void
+  setItemsState: (data: any) => void
 ) {
   return () => {
     async function fetchData() {
@@ -31,9 +31,7 @@ export default function getEffect(
       const response = await fetch(requestUrl);
       const items = await response.json();
 
-      setData({
-        items,
-      });
+      setItemsState(items);
     }
 
     fetchData();

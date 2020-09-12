@@ -3,28 +3,21 @@ import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemMod
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import fetchItemsDataHook from "../../hooks/api/items/fetchItemsDataHook";
+import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
 import { Link } from "react-router-dom";
 import {
   DeleteItemModal,
   DuplicateItemModal,
-} from "../../components/modals/ItemModals";
-import { ItemTable } from "../../components/tables/ItemTable";
-import deleteItem from "../../api/items/deleteItem";
-import duplicateItem from "../../api/items/duplicateItem";
+} from "../../../components/modals/ItemModals";
+import { ItemTable } from "../../../components/tables/ItemTable";
+import deleteItem from "../../../api/items/deleteItem";
+import duplicateItem from "../../../api/items/duplicateItem";
 import { isEmpty } from "lodash";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Loading from "../../components/Loading";
-
-interface ItemGridDataState {
-  items: ItemModel[];
-  tabView: ITEM_GRID_TABS;
-}
-
-type SelectedItemState = number | null;
+import Loading from "../../../components/Loading";
 
 export enum ITEM_GRID_TABS {
   ALL = "ALL",
@@ -36,53 +29,49 @@ export enum ITEM_GRID_TABS {
 }
 
 export default function ItemGrid() {
-  const [data, setData] = useState<ItemGridDataState>({
-    items: [] as ItemModel[],
-    tabView: ITEM_GRID_TABS.ALL,
-  });
+  const [tabView, setTabViewState] = useState<ITEM_GRID_TABS>(
+    ITEM_GRID_TABS.ALL
+  );
+  const [itemData, setItemData] = useState<ItemModel[]>([] as ItemModel[]);
   const [showDeleteItemModal, setDeleteItemModalVisibility] = useState<boolean>(
     false
   );
   const [showDuplicateItemModal, setDuplicateItemModalVisibility] = useState<
     boolean
   >(false);
-  const [selectedItemId, setSelectedItem] = useState<SelectedItemState>(null);
-  const selectedItem = data?.items.find((item) => item.id === selectedItemId);
-  const fetchItems = fetchItemsDataHook(data.tabView, setData);
+  const [selectedItemId, setSelectedItemId] = useState<number | null>(null);
+  const selectedItem = itemData?.find((item) => item.id === selectedItemId);
+  const fetchItems = fetchItemsDataHook(tabView, setItemData);
 
   // @ts-ignore
   useEffect(fetchItems, []);
 
   const handleCloseDeleteModal = (id?: number) => {
     if (id) {
-      console.log("delete the item!", id);
       deleteItem(id).then(fetchItems);
     }
     setDeleteItemModalVisibility(false);
   };
   const handleShowDeleteModal = (id: number) => {
-    setSelectedItem(id);
+    setSelectedItemId(id);
     setDeleteItemModalVisibility(true);
   };
   const handleShowDuplicateModal = (id: number) => {
-    setSelectedItem(id);
+    setSelectedItemId(id);
     setDuplicateItemModalVisibility(true);
   };
   const handleCloseDuplicateModal = (id?: number) => {
     if (id) {
-      console.log("duplicate the item!", id);
-      duplicateItem(id).then(fetchItems);
+      duplicateItem(id).then(() => fetchItemsDataHook(tabView, setItemData)());
     }
     setDuplicateItemModalVisibility(false);
   };
   const handleTabChange = (tabId: ITEM_GRID_TABS) => {
-    setData({
-      ...data,
-      tabView: tabId,
-    });
+    setTabViewState(tabId);
+    fetchItemsDataHook(tabId, setItemData)();
   };
 
-  if (isEmpty(data.items)) {
+  if (isEmpty(itemData)) {
     return <Loading title="Item View" />;
   }
 
@@ -116,23 +105,31 @@ export default function ItemGrid() {
               <Tab eventKey={ITEM_GRID_TABS.ALL} title="All">
                 <br />
                 <ItemTable
-                  items={data.items}
+                  items={itemData}
                   handleShow={handleShowDeleteModal}
                   handleDuplicate={handleShowDuplicateModal}
                 />
               </Tab>
-              <Tab eventKey="food" title="Food">
+              <Tab eventKey={ITEM_GRID_TABS.FOOD} title="Food">
                 <br />
                 <ItemTable
-                  items={data.items}
+                  items={itemData}
                   handleShow={handleShowDeleteModal}
                   handleDuplicate={handleShowDuplicateModal}
                 />
               </Tab>
-              <Tab eventKey="key_items" title="Key Items">
+              <Tab eventKey={ITEM_GRID_TABS.KEY_ITEM} title="Key Items">
                 <br />
                 <ItemTable
-                  items={data.items}
+                  items={itemData}
+                  handleShow={handleShowDeleteModal}
+                  handleDuplicate={handleShowDuplicateModal}
+                />
+              </Tab>
+              <Tab eventKey={ITEM_GRID_TABS.ARMOR} title="Armor">
+                <br />
+                <ItemTable
+                  items={itemData}
                   handleShow={handleShowDeleteModal}
                   handleDuplicate={handleShowDuplicateModal}
                 />
@@ -140,7 +137,7 @@ export default function ItemGrid() {
             </Tabs>
           </Card.Body>
           <Card.Footer className="text-muted">
-            {data.items.length} items
+            {itemData.length} items
           </Card.Footer>
         </Card>
       </Container>
