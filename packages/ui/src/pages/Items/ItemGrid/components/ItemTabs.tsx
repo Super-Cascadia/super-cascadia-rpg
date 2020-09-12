@@ -6,13 +6,36 @@ import { ITEM_GRID_TABS } from "../ItemGrid";
 import { ItemModel } from "@super-cascadia-rpg/api";
 
 interface Props {
+  isLoading: boolean;
+  defaultActiveTab: ITEM_GRID_TABS;
   handleTabChange: (tabId: ITEM_GRID_TABS) => void;
   itemData: ItemModel[];
   handleShowDeleteModal: (itemId: number) => void;
   handleShowDuplicateModal: (itemId: number) => void;
 }
 
+function getItemTable(
+  isLoading: boolean,
+  itemData: ItemModel[],
+  handleShowDeleteModal: (itemId: number) => void,
+  handleShowDuplicateModal: (itemId: number) => void
+) {
+  return (
+    <>
+      <br />
+      <ItemTable
+        isLoading={isLoading}
+        items={itemData}
+        handleShow={handleShowDeleteModal}
+        handleDuplicate={handleShowDuplicateModal}
+      />
+    </>
+  );
+}
+
 function ItemTabs({
+  isLoading,
+  defaultActiveTab,
   handleTabChange,
   itemData,
   handleShowDeleteModal,
@@ -20,41 +43,57 @@ function ItemTabs({
 }: Props) {
   return (
     <Tabs
-      defaultActiveKey={ITEM_GRID_TABS.ALL}
+      defaultActiveKey={defaultActiveTab}
       id="uncontrolled-tab-example"
       onSelect={(k: string) => handleTabChange(k as ITEM_GRID_TABS)}
     >
       <Tab eventKey={ITEM_GRID_TABS.ALL} title="All">
-        <br />
-        <ItemTable
-          items={itemData}
-          handleShow={handleShowDeleteModal}
-          handleDuplicate={handleShowDuplicateModal}
-        />
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
       </Tab>
       <Tab eventKey={ITEM_GRID_TABS.FOOD} title="Food">
-        <br />
-        <ItemTable
-          items={itemData}
-          handleShow={handleShowDeleteModal}
-          handleDuplicate={handleShowDuplicateModal}
-        />
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
       </Tab>
       <Tab eventKey={ITEM_GRID_TABS.KEY_ITEM} title="Key Items">
-        <br />
-        <ItemTable
-          items={itemData}
-          handleShow={handleShowDeleteModal}
-          handleDuplicate={handleShowDuplicateModal}
-        />
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
       </Tab>
       <Tab eventKey={ITEM_GRID_TABS.ARMOR} title="Armor">
-        <br />
-        <ItemTable
-          items={itemData}
-          handleShow={handleShowDeleteModal}
-          handleDuplicate={handleShowDuplicateModal}
-        />
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
+      </Tab>
+      <Tab eventKey={ITEM_GRID_TABS.WEAPON} title="Weapon">
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
+      </Tab>
+      <Tab eventKey={ITEM_GRID_TABS.ACCESSORY} title="Accessory">
+        {getItemTable(
+          isLoading,
+          itemData,
+          handleShowDeleteModal,
+          handleShowDuplicateModal
+        )}
       </Tab>
     </Tabs>
   );

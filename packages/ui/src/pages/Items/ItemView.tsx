@@ -30,7 +30,7 @@ export default function ItemView() {
   useEffect(fetchItemDataHook(id, setData), {});
 
   if (isEmpty(item)) {
-    return <Loading title="Item View" />;
+    return <Loading />;
   }
 
   return (

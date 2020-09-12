@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import React from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Badge from "react-bootstrap/Badge";
+import Loading from "../Loading";
 
 function ItemRows(
   items: ItemModel[],
@@ -60,14 +61,24 @@ function ItemRows(
 }
 
 interface Props {
+  isLoading: boolean;
   items: ItemModel[];
   handleShow: (id: number) => void;
   handleDuplicate: (id: number) => void;
 }
 
-export function ItemTable({ items, handleShow, handleDuplicate }: Props) {
+export function ItemTable({
+  items,
+  handleShow,
+  handleDuplicate,
+  isLoading,
+}: Props) {
+  if (isLoading) {
+    return <Loading />;
+  }
+
   if (isEmpty(items)) {
-    return null;
+    return <span>There are no items, you should create some.</span>;
   }
 
   return (

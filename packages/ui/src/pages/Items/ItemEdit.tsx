@@ -55,7 +55,7 @@ export default function ItemEdit() {
   console.log(data);
 
   if (isEmpty(item)) {
-    return <Loading title="Item Edit" />;
+    return <Loading />;
   }
 
   return (
