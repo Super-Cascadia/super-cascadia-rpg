@@ -9,15 +9,13 @@ import {
   DeleteItemModal,
   DuplicateItemModal,
 } from "../../../components/modals/ItemModals";
-import { ItemTable } from "../../../components/tables/ItemTable";
 import deleteItem from "../../../api/items/deleteItem";
 import duplicateItem from "../../../api/items/duplicateItem";
 import { isEmpty } from "lodash";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 import Loading from "../../../components/Loading";
+import ItemTabs from "./components/ItemTabs";
 
 export enum ITEM_GRID_TABS {
   ALL = "ALL",
@@ -97,44 +95,12 @@ export default function ItemGrid() {
             </Container>
           </Card.Header>
           <Card.Body>
-            <Tabs
-              defaultActiveKey={ITEM_GRID_TABS.ALL}
-              id="uncontrolled-tab-example"
-              onSelect={(k: string) => handleTabChange(k as ITEM_GRID_TABS)}
-            >
-              <Tab eventKey={ITEM_GRID_TABS.ALL} title="All">
-                <br />
-                <ItemTable
-                  items={itemData}
-                  handleShow={handleShowDeleteModal}
-                  handleDuplicate={handleShowDuplicateModal}
-                />
-              </Tab>
-              <Tab eventKey={ITEM_GRID_TABS.FOOD} title="Food">
-                <br />
-                <ItemTable
-                  items={itemData}
-                  handleShow={handleShowDeleteModal}
-                  handleDuplicate={handleShowDuplicateModal}
-                />
-              </Tab>
-              <Tab eventKey={ITEM_GRID_TABS.KEY_ITEM} title="Key Items">
-                <br />
-                <ItemTable
-                  items={itemData}
-                  handleShow={handleShowDeleteModal}
-                  handleDuplicate={handleShowDuplicateModal}
-                />
-              </Tab>
-              <Tab eventKey={ITEM_GRID_TABS.ARMOR} title="Armor">
-                <br />
-                <ItemTable
-                  items={itemData}
-                  handleShow={handleShowDeleteModal}
-                  handleDuplicate={handleShowDuplicateModal}
-                />
-              </Tab>
-            </Tabs>
+            <ItemTabs
+              handleTabChange={handleTabChange}
+              itemData={itemData}
+              handleShowDeleteModal={handleShowDeleteModal}
+              handleShowDuplicateModal={handleShowDuplicateModal}
+            />
           </Card.Body>
           <Card.Footer className="text-muted">
             {itemData.length} items
