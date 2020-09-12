@@ -16,6 +16,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Loading from "../../../components/Loading";
 import ItemTabs from "./components/ItemTabs";
+import ItemGridModals from "./components/ItemGridModals";
 
 export enum ITEM_GRID_TABS {
   ALL = "ALL",
@@ -107,20 +108,13 @@ export default function ItemGrid() {
           </Card.Footer>
         </Card>
       </Container>
-      {selectedItem ? (
-        <DeleteItemModal
-          handleClose={handleCloseDeleteModal}
-          selectedItem={selectedItem}
-          show={showDeleteItemModal}
-        />
-      ) : null}
-      {selectedItem ? (
-        <DuplicateItemModal
-          handleClose={handleCloseDuplicateModal}
-          selectedItem={selectedItem}
-          show={showDuplicateItemModal}
-        />
-      ) : null}
+      <ItemGridModals
+        selectedItem={selectedItem}
+        handleCloseDeleteModal={handleCloseDeleteModal}
+        showDeleteItemModal={showDeleteItemModal}
+        handleCloseDuplicateModal={handleCloseDuplicateModal}
+        showDuplicateItemModal={showDuplicateItemModal}
+      />
     </div>
   );
 }
