@@ -9,7 +9,7 @@ import React, { ReactElement } from "react";
 interface Props {
   title: string;
   gridItemCount: number;
-  children: ReactElement;
+  children?: ReactElement;
   createLink: string;
 }
 

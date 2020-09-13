@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import Characters from "../pages/Characters";
+import Characters from "../pages/characters/CharacterGrid";
 import ItemGrid from "../pages/Items/ItemGrid/ItemGrid";
 import ItemEdit from "../pages/Items/ItemEdit";
 import TopNavigation from "../components/TopNavigation";
