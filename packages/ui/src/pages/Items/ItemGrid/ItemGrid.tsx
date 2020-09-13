@@ -6,8 +6,8 @@ import deleteItem from "../../../api/items/deleteItem";
 import duplicateItem from "../../../api/items/duplicateItem";
 import { find } from "lodash";
 import ItemTabs from "./components/ItemTabs";
-import ItemGridModals from "./components/ItemGridModals";
 import GridPageWrapper from "../../../components/GridPageWrapper";
+import ItemGridModals from "./components/modals/ItemGridModals";
 
 export enum ITEM_GRID_TABS {
   ALL = "ALL",

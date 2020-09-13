@@ -1,9 +1,6 @@
-import {
-  DeleteItemModal,
-  DuplicateItemModal,
-} from "../../../../components/modals/ItemModals";
 import React from "react";
 import { ItemModel } from "@super-cascadia-rpg/api";
+import { DeleteItemModal, DuplicateItemModal } from "./ItemModals";
 
 interface Props {
   selectedItem: ItemModel | undefined;
