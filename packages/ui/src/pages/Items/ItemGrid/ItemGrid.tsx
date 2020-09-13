@@ -12,6 +12,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ItemTabs from "./components/ItemTabs";
 import ItemGridModals from "./components/ItemGridModals";
+import GridPageWrapper from "../../../components/GridPageWrapper";
 
 export enum ITEM_GRID_TABS {
   ALL = "ALL",
@@ -102,40 +103,20 @@ export default function ItemGrid() {
 
   return (
     <div>
-      <Container>
-        <br />
-        <Card>
-          <Card.Header>
-            <Container>
-              <Row>
-                <Col sm="10">
-                  <h1>Items</h1>
-                </Col>
-                <Col sm="2">
-                  <Link to={`/items/create`}>
-                    <Button variant="primary" size="sm">
-                      Create Item
-                    </Button>
-                  </Link>
-                </Col>
-              </Row>
-            </Container>
-          </Card.Header>
-          <Card.Body>
-            <ItemTabs
-              isLoading={isLoading}
-              defaultActiveTab={initialTabViewState}
-              handleTabChange={handleTabChange}
-              itemData={itemData}
-              handleShowDeleteModal={handleShowDeleteModal}
-              handleShowDuplicateModal={handleShowDuplicateModal}
-            />
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            {itemData.length} items
-          </Card.Footer>
-        </Card>
-      </Container>
+      <GridPageWrapper
+        title={"Items"}
+        gridItemCount={itemData.length}
+        createLink={`/items/create`}
+      >
+        <ItemTabs
+          isLoading={isLoading}
+          defaultActiveTab={initialTabViewState}
+          handleTabChange={handleTabChange}
+          itemData={itemData}
+          handleShowDeleteModal={handleShowDeleteModal}
+          handleShowDuplicateModal={handleShowDuplicateModal}
+        />
+      </GridPageWrapper>
       <ItemGridModals
         selectedItem={selectedItem}
         handleCloseDeleteModal={handleCloseDeleteModal}
