@@ -4,6 +4,9 @@ import React from "react";
 import Loading from "../../../../components/Loading";
 import Badge from "react-bootstrap/Badge";
 import { CharacterModel } from "@super-cascadia-rpg/api";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { LinkContainer } from "react-router-bootstrap";
+import Button from "react-bootstrap/Button";
 
 interface Props {
   characters: CharacterModel[];
@@ -19,6 +22,20 @@ function CharacterRows(characters: CharacterModel[]) {
         </td>
         <td>{character.name}</td>
         <td>{character.description}</td>
+        <td>
+          <ButtonGroup aria-label="Character View and Edit Action Buttons">
+            <LinkContainer to={`/characters/${character.id}/edit`}>
+              <Button size="sm" variant="primary">
+                Edit
+              </Button>
+            </LinkContainer>
+            <LinkContainer to={`/characters/${character.id}/view`}>
+              <Button size="sm" variant="secondary">
+                View
+              </Button>
+            </LinkContainer>
+          </ButtonGroup>
+        </td>
       </tr>
     );
   });
@@ -40,6 +57,7 @@ export function CharactersTable({ characters, isLoading }: Props) {
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>{CharacterRows(characters)}</tbody>

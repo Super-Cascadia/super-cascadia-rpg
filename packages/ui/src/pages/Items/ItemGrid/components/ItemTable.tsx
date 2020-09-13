@@ -26,7 +26,7 @@ function ItemRows(
         <td>{item.description}</td>
         <td>{itemTypeName}</td>
         <td>
-          <ButtonGroup aria-label="Basic example">
+          <ButtonGroup aria-label="Item View and Edit Action Buttons">
             <LinkContainer to={`/items/${item.id}/edit`}>
               <Button size="sm" variant="primary">
                 Edit
@@ -38,7 +38,7 @@ function ItemRows(
               </Button>
             </LinkContainer>
           </ButtonGroup>
-          <ButtonGroup aria-label="Basic example">
+          <ButtonGroup aria-label="Item Copy and Delete Action Buttons">
             <Button
               size="sm"
               variant="secondary"
