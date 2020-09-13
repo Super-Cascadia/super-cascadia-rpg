@@ -24,7 +24,9 @@ export default function DetailPageWrapper({
     <Container>
       <br />
       <Breadcrumb>
-        <Breadcrumb.Item href="/items">{capitalize(routeName)}</Breadcrumb.Item>
+        <Breadcrumb.Item href={`/${routeName}`}>
+          {capitalize(routeName)}
+        </Breadcrumb.Item>
         <Breadcrumb.Item active>{objectId}</Breadcrumb.Item>
         <Breadcrumb.Item>View</Breadcrumb.Item>
       </Breadcrumb>
