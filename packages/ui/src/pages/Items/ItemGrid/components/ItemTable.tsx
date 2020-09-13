@@ -1,5 +1,4 @@
 import { ItemModel } from "@super-cascadia-rpg/api";
-import { getItemTypeNameById } from "../../util/itemType";
 import { LinkContainer } from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";
 import { isEmpty } from "lodash";
@@ -7,7 +6,8 @@ import Table from "react-bootstrap/Table";
 import React from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Badge from "react-bootstrap/Badge";
-import Loading from "../Loading";
+import { getItemTypeNameById } from "../../../../util/itemType";
+import Loading from "../../../../components/Loading";
 
 function ItemRows(
   items: ItemModel[],

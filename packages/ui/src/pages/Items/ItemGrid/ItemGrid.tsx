@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import deleteItem from "../../../api/items/deleteItem";
 import duplicateItem from "../../../api/items/duplicateItem";
 import { find } from "lodash";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import ItemTabs from "./components/ItemTabs";
 import ItemGridModals from "./components/ItemGridModals";
 import GridPageWrapper from "../../../components/GridPageWrapper";

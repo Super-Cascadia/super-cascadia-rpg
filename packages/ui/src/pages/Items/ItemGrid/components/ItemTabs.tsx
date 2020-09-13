@@ -1,9 +1,9 @@
 import Tab from "react-bootstrap/Tab";
-import { ItemTable } from "../../../../components/tables/ItemTable";
 import Tabs from "react-bootstrap/Tabs";
 import React from "react";
 import { ITEM_GRID_TABS } from "../ItemGrid";
 import { ItemModel } from "@super-cascadia-rpg/api";
+import { ItemTable } from "./ItemTable";
 
 interface Props {
   isLoading: boolean;
