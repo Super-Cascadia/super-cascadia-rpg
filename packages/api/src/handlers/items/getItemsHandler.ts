@@ -47,13 +47,8 @@ export const getItemsHandler = async (
   request: Request,
   reply: ResponseToolkit
 ): Promise<ItemModel[] | Item | undefined | string> => {
-  console.info("GET Items", request.params);
-
   try {
-    console.info("GET Items", request.params);
     if (request.params.id) {
-      console.info("GET single item", request.params);
-
       const item = await getItemById(connection, request.params.id);
 
       if (!item) {
@@ -66,7 +61,6 @@ export const getItemsHandler = async (
       return getAllItems(connection, request);
     }
   } catch (e) {
-    console.error("error", e);
     return Promise.resolve(e);
   }
 };

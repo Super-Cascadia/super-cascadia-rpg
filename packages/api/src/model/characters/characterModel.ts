@@ -1,5 +1,8 @@
 import { ItemModel } from "../items/itemModel";
-import { CharacterClass } from "../characterClass/characterClassModel";
+import {
+  CharacterClass,
+  CharacterClassId,
+} from "../characterClass/characterClassModel";
 
 export interface CharacterSkills {
   id: 1;
@@ -38,6 +41,8 @@ export interface Character extends CharacterModel {
 
 export interface CharacterModel {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   description: string;
+  primaryClass: CharacterClassId;
 }

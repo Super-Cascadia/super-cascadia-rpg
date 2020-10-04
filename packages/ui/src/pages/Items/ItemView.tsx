@@ -10,12 +10,6 @@ import { isEmpty, toNumber } from "lodash";
 import Loading from "../../components/Loading";
 import DetailPageWrapper from "../../components/DetailPageWrapper";
 
-interface ItemEditState {
-  item: ItemModel;
-}
-
-type ItemsStateHook = [ItemEditState, (data: any) => void];
-
 function ItemViewForm({ item }: { item: ItemModel }) {
   const itemTypeName = getItemTypeNameById(item?.type);
 
@@ -65,6 +59,12 @@ function ItemViewForm({ item }: { item: ItemModel }) {
     </>
   );
 }
+
+interface ItemEditState {
+  item: ItemModel;
+}
+
+type ItemsStateHook = [ItemEditState, (data: any) => void];
 
 export default function ItemView() {
   const { id } = useParams();

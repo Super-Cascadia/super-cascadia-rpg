@@ -20,7 +20,7 @@ function CharacterRows(characters: CharacterModel[]) {
         <td>
           <Badge variant="secondary">{character.id}</Badge>
         </td>
-        <td>{character.name}</td>
+        <td>{character.firstName}</td>
         <td>{character.description}</td>
         <td>
           <ButtonGroup aria-label="Character View and Edit Action Buttons">
