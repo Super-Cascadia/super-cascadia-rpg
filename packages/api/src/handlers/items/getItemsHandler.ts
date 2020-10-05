@@ -1,28 +1,9 @@
-import { Request, RequestQuery, ResponseToolkit } from "@hapi/hapi";
+import { Request, ResponseToolkit } from "@hapi/hapi";
 import { ItemModel } from "../../model/items/itemModel";
 import { Item } from "../../db/entity/Item";
 import { Connection } from "typeorm/index";
-import { map } from "lodash";
-
-function mapItemtoItemModel(items: Item[]): ItemModel[] {
-  return map(items, (item: Item) => {
-    return {
-      id: item.id,
-      name: item.name,
-      description: item.description,
-      type: item.type,
-    } as ItemModel;
-  });
-}
-
-async function findItems(connection: Connection, query: RequestQuery) {
-  if (query.type) {
-    return connection.manager.find(Item, {
-      where: { type: query.type },
-    });
-  }
-  return connection.manager.find(Item);
-}
+import { mapItemToItemModel } from "../../utils/mappings/items";
+import { findItems, getItemById } from "../../db/selectors/items";
 
 async function getAllItems(
   connection: Connection,
@@ -32,14 +13,7 @@ async function getAllItems(
   console.log("queryParams", foo);
   const items = await findItems(connection, foo);
 
-  return mapItemtoItemModel(items);
-}
-
-export async function getItemById(
-  connection: Connection,
-  id: string
-): Promise<Item | undefined> {
-  return connection.manager.findOne(Item, id);
+  return mapItemToItemModel(items);
 }
 
 export const getItemsHandler = async (

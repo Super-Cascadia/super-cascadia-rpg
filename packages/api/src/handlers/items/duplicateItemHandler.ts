@@ -1,9 +1,9 @@
 import { Item } from "../../db/entity/Item";
-import { getItemById } from "./getItemsHandler";
 import { Connection } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { ItemCreateModel, ItemModel } from "../../model/items/itemModel";
 import { omit } from "lodash";
+import { getItemById } from "../../db/selectors/items";
 
 async function duplicateItemById(
   connection: Connection,
