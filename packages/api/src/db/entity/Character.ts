@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { CharacterClassId } from "../../model/characterClass/characterClassModel";
+import { CharacterAttributes } from "./CharacterAttributes";
 
 @Entity()
 export class Character {
@@ -17,4 +18,11 @@ export class Character {
 
   @Column()
   primaryClass!: CharacterClassId;
+
+  @OneToOne(
+    (type) => CharacterAttributes,
+    (characterAttributes) => characterAttributes.character
+  )
+  // @ts-ignore
+  characterAttributes: CharacterAttributes;
 }
