@@ -6,7 +6,7 @@ import { getCharactersHandler } from "../../handlers/characters/getCharactersHan
 function getCharacters(server: Server, connection: Connection) {
   server.route({
     method: "GET",
-    path: "/characters{id?}/{details*}",
+    path: "/characters/{id?}",
     handler: (request: Request, reply: ResponseToolkit) => {
       return getCharactersHandler(connection, request, reply);
     },
