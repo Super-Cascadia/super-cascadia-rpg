@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DetailPageWrapper from "../../components/DetailPageWrapper";
 import { useParams } from "react-router-dom";
 import { isEmpty, toNumber } from "lodash";
-import {CharacterModel, ItemModel} from "@super-cascadia-rpg/api";
+import {CharacterModel} from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import Form from "react-bootstrap/Form";
