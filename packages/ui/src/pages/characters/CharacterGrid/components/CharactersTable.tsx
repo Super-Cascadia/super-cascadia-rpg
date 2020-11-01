@@ -7,6 +7,7 @@ import { CharacterModel } from "@super-cascadia-rpg/api";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { LinkContainer } from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";
+import { getCharacterTypeById } from "../../../../util/characterClass";
 
 interface Props {
   characters: CharacterModel[];
@@ -15,6 +16,8 @@ interface Props {
 
 function CharacterRows(characters: CharacterModel[]) {
   return characters.map((character: CharacterModel) => {
+    const classTypeName = getCharacterTypeById(character.primaryClass);
+
     return (
       <tr key={character.id}>
         <td>
@@ -22,6 +25,7 @@ function CharacterRows(characters: CharacterModel[]) {
         </td>
         <td>{character.firstName}</td>
         <td>{character.description}</td>
+        <td>{classTypeName}</td>
         <td>
           <ButtonGroup aria-label="Character View and Edit Action Buttons">
             <LinkContainer to={`/characters/${character.id}/edit`}>
@@ -57,6 +61,7 @@ export function CharactersTable({ characters, isLoading }: Props) {
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
+            <th>Primary Class</th>
           <th>Actions</th>
         </tr>
       </thead>

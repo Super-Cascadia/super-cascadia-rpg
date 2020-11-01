@@ -8,6 +8,7 @@ import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDat
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import {getCharacterTypeById} from "../../util/characterClass";
 
 interface characterEditState {
   character: CharacterModel;
@@ -16,6 +17,8 @@ interface characterEditState {
 type CharacterStateHook = [characterEditState, (data: any) => void];
 
 function CharacterViewForm({ character }: { character: CharacterModel }) {
+  const classTypeName = getCharacterTypeById(character.primaryClass);
+
   return (
       <>
         <Form.Group as={Row} controlId="formId">
@@ -51,6 +54,22 @@ function CharacterViewForm({ character }: { character: CharacterModel }) {
           </Form.Label>
           <Col sm="10">
             <Form.Control readOnly value={character.description} />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} controlId="formType">
+          <Form.Label column sm="2">
+            Primary Class
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control as="select" readOnly value={classTypeName}>
+              <option value={0}>Freelancer</option>
+              <option value={1}>Rogue</option>
+              <option value={2}>Warrior</option>
+              <option value={3}>Mage</option>
+              <option value={4}>Druid</option>
+              <option value={5}>Sorcerer</option>
+            </Form.Control>
           </Col>
         </Form.Group>
       </>

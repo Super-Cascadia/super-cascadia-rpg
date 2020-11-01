@@ -1,7 +1,8 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 import { Connection } from "typeorm";
-import createCharacterHandler from "../../handlers/characters/createCharacterHandler";
 import { getCharactersHandler } from "../../handlers/characters/getCharactersHandler";
+import updateItemHandler from "../../handlers/items/updateItemHandler";
+import updateCharacterHandler from "../../handlers/characters/updateCharacterHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -18,11 +19,21 @@ function createCharacter(server: Server, connection: Connection) {
     method: "POST",
     path: "/characters",
     handler: async (request: Request, reply: ResponseToolkit) =>
-      createCharacterHandler(connection, request, reply),
+      updateCharacterHandler(connection, request, reply),
+  });
+}
+
+function updateCharacter(server: Server, connection: Connection) {
+  server.route({
+    method: "PUT",
+    path: "/characters/{id}",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+        updateItemHandler(connection, request, reply),
   });
 }
 
 export const characterRoutes = (server: Server, connection: Connection) => {
   getCharacters(server, connection);
   createCharacter(server, connection);
+  updateCharacter(server, connection);
 };

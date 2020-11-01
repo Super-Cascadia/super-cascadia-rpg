@@ -14,6 +14,7 @@ import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import {Character} from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
+import {getCharacterTypeById} from "../../util/characterClass";
 
 export default function CharacterEdit() {
     const { id: characterId } = useParams<{ id: string }>();
@@ -28,7 +29,7 @@ export default function CharacterEdit() {
             ...data,
             character: {
                 ...data.character,
-                [id]: id === "type" ? parseInt(value, 10) : value,
+                [id]: id === "primaryClass" ? parseInt(value, 10) : value,
             },
         };
 
@@ -58,6 +59,8 @@ export default function CharacterEdit() {
         return <Loading />;
     }
 
+    const classTypeName = getCharacterTypeById(character.primaryClass);
+
     return (
         <Container>
             <br />
@@ -69,7 +72,7 @@ export default function CharacterEdit() {
             <Card>
                 <Form onSubmit={handleSubmit}>
                     <Card.Header>
-                        <h1>{character.name}</h1>
+                        <h1>{`${character.firstName} ${character.lastName}`}</h1>
                     </Card.Header>
                     <Card.Body>
                         <Form.Group as={Row} controlId="formId">
@@ -81,7 +84,7 @@ export default function CharacterEdit() {
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="name">
+                        <Form.Group as={Row} controlId="firstName">
                             <Form.Label column sm="2">
                                 First Name
                             </Form.Label>
@@ -94,7 +97,7 @@ export default function CharacterEdit() {
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} controlId="name">
+                        <Form.Group as={Row} controlId="lastName">
                             <Form.Label column sm="2">
                                 Last Name
                             </Form.Label>
@@ -117,6 +120,22 @@ export default function CharacterEdit() {
                                     value={character.description}
                                     onChange={(e: SyntheticEvent) => handleFormChange(e)}
                                 />
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} controlId="primaryClass" onChange={(e: SyntheticEvent) => handleFormChange(e)}>
+                            <Form.Label column sm="2">
+                                Primary Class
+                            </Form.Label>
+                            <Col sm="10">
+                                <Form.Control as="select" value={toString(character.primaryClass)}>>
+                                    <option value={0}>Freelancer</option>
+                                    <option value={1}>Rogue</option>
+                                    <option value={2}>Warrior</option>
+                                    <option value={3}>Mage</option>
+                                    <option value={4}>Druid</option>
+                                    <option value={5}>Sorcerer</option>
+                                </Form.Control>
                             </Col>
                         </Form.Group>
 
