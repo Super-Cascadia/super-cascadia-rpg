@@ -24,6 +24,7 @@ function CharacterRows(characters: CharacterModel[]) {
           <Badge variant="secondary">{character.id}</Badge>
         </td>
         <td>{character.firstName}</td>
+        <td>{character.lastName}</td>
         <td>{character.description}</td>
         <td>{classTypeName}</td>
         <td>
@@ -59,9 +60,10 @@ export function CharactersTable({ characters, isLoading }: Props) {
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Description</th>
-            <th>Primary Class</th>
+          <th>Primary Class</th>
           <th>Actions</th>
         </tr>
       </thead>

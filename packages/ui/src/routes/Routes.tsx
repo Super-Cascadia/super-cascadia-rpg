@@ -9,6 +9,7 @@ import ItemView from "../pages/Items/ItemView";
 import CharacterGrid from "../pages/characters/CharacterGrid/CharacterGrid";
 import CharacterView from "../pages/characters/CharacterView";
 import CharacterEdit from "../pages/characters/CharacterEdit";
+import CharacterCreate from "../pages/characters/CharacterCreate";
 
 export default function Routes() {
   return (
@@ -16,6 +17,9 @@ export default function Routes() {
       <div>
         <TopNavigation />
         <Switch>
+          <Route path="/characters/create">
+            <CharacterCreate />
+          </Route>
           <Route path="/characters/:id/edit">
             <CharacterEdit />
           </Route>

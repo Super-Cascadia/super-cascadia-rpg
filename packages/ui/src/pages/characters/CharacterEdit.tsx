@@ -14,7 +14,6 @@ import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import {Character} from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
-import {getCharacterTypeById} from "../../util/characterClass";
 
 export default function CharacterEdit() {
     const { id: characterId } = useParams<{ id: string }>();
@@ -59,7 +58,7 @@ export default function CharacterEdit() {
         return <Loading />;
     }
 
-    const classTypeName = getCharacterTypeById(character.primaryClass);
+    const primaryClassString = toString(character.primaryClass);
 
     return (
         <Container>
@@ -128,7 +127,7 @@ export default function CharacterEdit() {
                                 Primary Class
                             </Form.Label>
                             <Col sm="10">
-                                <Form.Control as="select" value={toString(character.primaryClass)}>>
+                                <Form.Control as="select" value={primaryClassString}>
                                     <option value={0}>Freelancer</option>
                                     <option value={1}>Rogue</option>
                                     <option value={2}>Warrior</option>

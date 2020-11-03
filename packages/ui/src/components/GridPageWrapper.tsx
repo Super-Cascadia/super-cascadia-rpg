@@ -32,7 +32,7 @@ export default function GridPageWrapper({
               <Col sm="2">
                 <Link to={createLink}>
                   <Button variant="primary" size="sm">
-                    Create Item
+                    Create {title}
                   </Button>
                 </Link>
               </Col>

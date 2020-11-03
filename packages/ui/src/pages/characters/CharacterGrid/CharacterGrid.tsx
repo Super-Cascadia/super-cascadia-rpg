@@ -17,7 +17,7 @@ export default function CharacterGrid() {
       <GridPageWrapper
         title={"Characters"}
         gridItemCount={0}
-        createLink={`/character/create`}
+        createLink={`/characters/create`}
       >
         <CharactersTable isLoading={false} characters={characterData} />
       </GridPageWrapper>

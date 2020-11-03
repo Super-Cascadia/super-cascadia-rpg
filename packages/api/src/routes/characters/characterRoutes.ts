@@ -1,7 +1,7 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 import { Connection } from "typeorm";
 import { getCharactersHandler } from "../../handlers/characters/getCharactersHandler";
-import updateItemHandler from "../../handlers/items/updateItemHandler";
+import createCharacterHandler from "../../handlers/characters/createCharacterHandler";
 import updateCharacterHandler from "../../handlers/characters/updateCharacterHandler";
 
 function getCharacters(server: Server, connection: Connection) {
@@ -19,7 +19,7 @@ function createCharacter(server: Server, connection: Connection) {
     method: "POST",
     path: "/characters",
     handler: async (request: Request, reply: ResponseToolkit) =>
-      updateCharacterHandler(connection, request, reply),
+      createCharacterHandler(connection, request, reply),
   });
 }
 
@@ -28,7 +28,7 @@ function updateCharacter(server: Server, connection: Connection) {
     method: "PUT",
     path: "/characters/{id}",
     handler: async (request: Request, reply: ResponseToolkit) =>
-        updateItemHandler(connection, request, reply),
+        updateCharacterHandler(connection, request, reply),
   });
 }
 
