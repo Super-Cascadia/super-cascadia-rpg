@@ -51,7 +51,7 @@ export default function CharacterGrid() {
                 gridItemCount={0}
                 createLink={`/characters/create`}
             >
-                <CharactersTable isLoading={false} characters={characterData}
+                <CharactersTable isLoading={isLoading} characters={characterData}
                                  handleShowDeleteModal={handleShowDeleteModal}
                                  handleShowDuplicateModal={handleShowDuplicateModal}/>
             </GridPageWrapper>
