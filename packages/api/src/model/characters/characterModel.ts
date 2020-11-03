@@ -39,8 +39,15 @@ export interface Character extends CharacterModel {
   items: ItemModel[];
 }
 
-export interface CharacterModel {
+export interface CharacterModel extends CharacterCreateModel {
   id: number;
+  firstName: string;
+  lastName: string;
+  description: string;
+  primaryClass: CharacterClassId;
+}
+
+export interface CharacterCreateModel {
   firstName: string;
   lastName: string;
   description: string;

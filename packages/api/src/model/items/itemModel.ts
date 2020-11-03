@@ -1,6 +1,6 @@
 import { ItemType } from "../../db/entity/interfaces/items";
 
-export interface ItemModel {
+export interface ItemModel extends ItemCreateModel {
   id: number;
   name: string;
   description: string;
