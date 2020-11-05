@@ -1,21 +1,16 @@
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import React, { ReactElement, SyntheticEvent } from "react";
 import Button from "react-bootstrap/Button";
-import { LinkContainer } from "react-router-bootstrap";
 
 interface Props {
   name: string;
-  routeName: string;
   children?: ReactElement;
   handleSubmit: (event: SyntheticEvent) => void;
 }
 
 export const ObjectCreatePageWrapper = ({
-  routeName,
   name,
   children,
   handleSubmit,

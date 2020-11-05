@@ -72,7 +72,6 @@ export default function ItemCreate() {
   return (
     <ObjectCreatePageWrapper
       name={"Create new Item"}
-      routeName={"items"}
       handleSubmit={handleSubmit}
     >
       <ItemCreateForm handleFormChange={handleFormChange} />
