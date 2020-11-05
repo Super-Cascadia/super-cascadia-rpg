@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { capitalize } from "lodash";
 import Form from "react-bootstrap/Form";
+import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
 
 interface Props {
   objectId: number;
@@ -14,7 +15,7 @@ interface Props {
   children?: ReactElement;
 }
 
-export default function DetailPageWrapper({
+export default function ObjectDetailViewPageWrapper({
   routeName,
   objectId,
   name,
@@ -23,13 +24,7 @@ export default function DetailPageWrapper({
   return (
     <Container>
       <br />
-      <Breadcrumb>
-        <Breadcrumb.Item href={`/${routeName}`}>
-          {capitalize(routeName)}
-        </Breadcrumb.Item>
-        <Breadcrumb.Item active>{objectId}</Breadcrumb.Item>
-        <Breadcrumb.Item>View</Breadcrumb.Item>
-      </Breadcrumb>
+      <ObjectDetailBreadCrumb routeName={routeName} objectId={objectId} />
       <Card>
         <Card.Header>
           <h1>{name}</h1>

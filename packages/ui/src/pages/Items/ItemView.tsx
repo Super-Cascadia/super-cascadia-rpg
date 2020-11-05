@@ -8,7 +8,7 @@ import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { getItemTypeNameById } from "../../util/itemType";
 import { isEmpty, toNumber } from "lodash";
 import Loading from "../../components/Loading";
-import DetailPageWrapper from "../../components/DetailPageWrapper";
+import ObjectDetailViewPageWrapper from "../../components/ObjectDetailViewPageWrapper";
 
 function ItemViewForm({ item }: { item: ItemModel }) {
   const itemTypeName = getItemTypeNameById(item?.type);
@@ -79,12 +79,12 @@ export default function ItemView() {
   }
 
   return (
-    <DetailPageWrapper
+    <ObjectDetailViewPageWrapper
       objectId={toNumber(id)}
       name={item.name}
       routeName={"items"}
     >
       <ItemViewForm item={item} />
-    </DetailPageWrapper>
+    </ObjectDetailViewPageWrapper>
   );
 }
