@@ -1,12 +1,11 @@
 import React, { SyntheticEvent, useState } from "react";
-import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import createCharacter from "../../api/characters/createCharacter";
 import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
+import { SelectInput } from "../../components/forms/SelectInput";
+import { primaryClassOptions } from "./constants";
 
 const initialFormState = {
   name: "",
@@ -40,25 +39,15 @@ function CreateCharacterForm({
         inputDescription={"a description of the character"}
       />
 
-      <Form.Group as={Row} controlId="primaryClass" onChange={handleFormChange}>
-        <Form.Label column sm="2">
-          Primary Class
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control as="select">
-            <option value={0}>Freelancer</option>
-            <option value={1}>Rogue</option>
-            <option value={2}>Warrior</option>
-            <option value={3}>Mage</option>
-            <option value={4}>Druid</option>
-            <option value={5}>Sorcerer</option>
-          </Form.Control>
-          <Form.Text className="text-muted">
-            The Primary class of the character. Determines key attributes and
-            modifiers.
-          </Form.Text>
-        </Col>
-      </Form.Group>
+      <SelectInput
+        onChange={handleFormChange}
+        label={"Primary Class"}
+        id={"primaryClass"}
+        options={primaryClassOptions}
+        inputDescription={
+          "The Primary class of the character. Determines key attributes and modifiers."
+        }
+      />
     </>
   );
 }
