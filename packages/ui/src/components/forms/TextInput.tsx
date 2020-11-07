@@ -3,12 +3,12 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-type Props = {
+interface Props {
   label: string;
   id: string;
   inputDescription?: string;
   onChange: (e: React.SyntheticEvent) => void;
-};
+}
 
 export function TextInput({ onChange, id, label, inputDescription }: Props) {
   return (
