@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import createCharacter from "../../api/characters/createCharacter";
 import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
+import { TextInput } from "../../components/forms/TextInput";
 
 const initialFormState = {
   name: "",
@@ -13,42 +14,31 @@ const initialFormState = {
   type: CharacterClassId.FREELANCER,
 };
 
-function NewComponent({
+function CreateCharacterForm({
   handleFormChange,
 }: {
   handleFormChange: (e: React.SyntheticEvent) => void;
 }) {
   return (
     <>
-      <Form.Group as={Row} controlId="firstName">
-        <Form.Label column sm="2">
-          First Name
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control as="input" onChange={handleFormChange} />
-        </Col>
-      </Form.Group>
+      <TextInput
+        onChange={handleFormChange}
+        label={"First Name"}
+        id={"firstName"}
+      />
 
-      <Form.Group as={Row} controlId="lastName">
-        <Form.Label column sm="2">
-          Last Name
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control as="input" onChange={handleFormChange} />
-        </Col>
-      </Form.Group>
+      <TextInput
+        onChange={handleFormChange}
+        label={"Last Name"}
+        id={"lastName"}
+      />
 
-      <Form.Group as={Row} controlId="description">
-        <Form.Label column sm="2">
-          Description
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control onChange={handleFormChange} />
-          <Form.Text className="text-muted">
-            a description of the character
-          </Form.Text>
-        </Col>
-      </Form.Group>
+      <TextInput
+        onChange={handleFormChange}
+        label={"Description"}
+        id={"description"}
+        inputDescription={"a description of the character"}
+      />
 
       <Form.Group as={Row} controlId="primaryClass" onChange={handleFormChange}>
         <Form.Label column sm="2">
@@ -103,7 +93,7 @@ export default function CharacterCreate() {
       name={"Create new Character"}
       handleSubmit={handleSubmit}
     >
-      <NewComponent handleFormChange={handleFormChange} />
+      <CreateCharacterForm handleFormChange={handleFormChange} />
     </ObjectCreatePageWrapper>
   );
 }
