@@ -10,6 +10,9 @@ import updateItem from "../../api/items/updateItem";
 import { Item } from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
 import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
+import { TextInput } from "../../components/forms/TextInput";
+import { itemTypeOptions } from "./constants";
+import { SelectInput } from "../../components/forms/SelectInput";
 
 function ItemEditForm({
   item,
@@ -20,59 +23,32 @@ function ItemEditForm({
 }) {
   return (
     <>
-      <Form.Group as={Row} controlId="formId">
-        <Form.Label column sm="2">
-          ID
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control readOnly as="input" value={toString(item.id)} />
-        </Col>
-      </Form.Group>
+      <TextInput label="ID" id="id" readOnly defaultValue={item.id} />
 
-      <Form.Group as={Row} controlId="name">
-        <Form.Label column sm="2">
-          Name
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control
-            as="input"
-            value={item.name}
-            onChange={(e: SyntheticEvent) => handleFormChange(e)}
-          />
-        </Col>
-      </Form.Group>
+      <TextInput
+        label="Name"
+        id="name"
+        value={item.name}
+        onChange={handleFormChange}
+        inputDescription="The name of the item."
+      />
 
-      <Form.Group as={Row} controlId="description">
-        <Form.Label column sm="2">
-          Description
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control
-            as="input"
-            value={item.description}
-            onChange={(e: SyntheticEvent) => handleFormChange(e)}
-          />
-        </Col>
-      </Form.Group>
+      <TextInput
+        label={"Description"}
+        id={"description"}
+        inputDescription="a description of the item"
+        value={item.description}
+        onChange={handleFormChange}
+      />
 
-      <Form.Group
-        as={Row}
-        controlId="type"
-        onChange={(e: SyntheticEvent) => handleFormChange(e)}
-      >
-        <Form.Label column sm="2">
-          Item Type
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control as="select" custom value={toString(item.type)}>
-            <option value={0}>Food</option>
-            <option value={1}>Weapon</option>
-            <option value={2}>Armor</option>
-            <option value={3}>Accessory</option>
-            <option value={4}>Key Item</option>
-          </Form.Control>
-        </Col>
-      </Form.Group>
+      <SelectInput
+        onChange={handleFormChange}
+        label="Item Type"
+        id="type"
+        options={itemTypeOptions}
+        value={toString(item.type)}
+        inputDescription="The classification of the item."
+      />
     </>
   );
 }
