@@ -8,7 +8,9 @@ import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDat
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { getCharacterTypeById } from "../../util/characterClass";
+import { TextInput } from "../../components/forms/TextInput";
+import { SelectInput } from "../../components/forms/SelectInput";
+import { primaryClassOptions } from "./constants";
 
 interface characterEditState {
   character: CharacterModel;
@@ -17,8 +19,6 @@ interface characterEditState {
 type CharacterStateHook = [characterEditState, (data: any) => void];
 
 function CharacterViewForm({ character }: { character: CharacterModel }) {
-  const classTypeName = getCharacterTypeById(character.primaryClass);
-
   return (
     <>
       <Form.Group as={Row} controlId="id">
@@ -30,52 +30,38 @@ function CharacterViewForm({ character }: { character: CharacterModel }) {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} controlId="firstName">
-        <Form.Label column sm="2">
-          First Name
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control readOnly defaultValue={character.firstName} />
-        </Col>
-      </Form.Group>
+      <TextInput
+        label="First Name"
+        id="firstName"
+        readOnly
+        defaultValue={character.firstName}
+      />
 
-      <Form.Group as={Row} controlId="lastName">
-        <Form.Label column sm="2">
-          Last Name
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control readOnly defaultValue={character.lastName} />
-        </Col>
-      </Form.Group>
+      <TextInput
+        label={"Last Name"}
+        id={"lastName"}
+        readOnly
+        defaultValue={character.lastName}
+      />
 
-      <Form.Group as={Row} controlId="description">
-        <Form.Label column sm="2">
-          Description
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control readOnly value={character.description} />
-        </Col>
-      </Form.Group>
+      <TextInput
+        label={"Description"}
+        id={"description"}
+        inputDescription={"a description of the character"}
+        readOnly
+        defaultValue={character.description}
+      />
 
-      <Form.Group as={Row} controlId="primaryClass">
-        <Form.Label column sm="2">
-          Primary Class
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control
-            as="select"
-            readOnly
-            value={toString(character.primaryClass)}
-          >
-            <option value={0}>Freelancer</option>
-            <option value={1}>Rogue</option>
-            <option value={2}>Warrior</option>
-            <option value={3}>Mage</option>
-            <option value={4}>Druid</option>
-            <option value={5}>Sorcerer</option>
-          </Form.Control>
-        </Col>
-      </Form.Group>
+      <SelectInput
+        label={"Primary Class"}
+        id={"primaryClass"}
+        options={primaryClassOptions}
+        readOnly
+        defaultValue={toString(character.primaryClass)}
+        inputDescription={
+          "The Primary class of the character. Determines key attributes and modifiers."
+        }
+      />
     </>
   );
 }

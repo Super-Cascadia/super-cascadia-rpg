@@ -13,8 +13,10 @@ interface Props {
   label: string;
   id: string;
   inputDescription?: string;
-  onChange: (e: React.SyntheticEvent) => void;
+  onChange?: (e: React.SyntheticEvent) => void;
   options: SelectOption[];
+  readOnly?: boolean;
+  defaultValue?: string;
 }
 
 export function SelectInput({
@@ -23,6 +25,8 @@ export function SelectInput({
   id,
   inputDescription,
   options,
+  readOnly,
+  defaultValue,
 }: Props) {
   return (
     <Form.Group as={Row} controlId={id} onChange={onChange}>
@@ -30,7 +34,11 @@ export function SelectInput({
         {label}
       </Form.Label>
       <Col sm="10">
-        <Form.Control as="select">
+        <Form.Control
+          as="select"
+          readOnly={readOnly}
+          defaultValue={defaultValue}
+        >
           {map(options, (option) => {
             return <option value={option.id}>{option.label}</option>;
           })}

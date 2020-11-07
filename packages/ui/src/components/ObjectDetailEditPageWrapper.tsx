@@ -43,7 +43,7 @@ export const ObjectDetailEditPageWrapper = ({
                 </Col>
                 <Col sm="10" />
                 <Col sm="1">
-                  <LinkContainer to={`/items/${objectId}/view`}>
+                  <LinkContainer to={`/${routeName}/${objectId}/view`}>
                     <Button variant="secondary" type="submit" size="sm">
                       Cancel
                     </Button>

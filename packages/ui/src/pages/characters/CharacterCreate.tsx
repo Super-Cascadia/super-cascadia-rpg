@@ -8,9 +8,9 @@ import { SelectInput } from "../../components/forms/SelectInput";
 import { primaryClassOptions } from "./constants";
 
 const initialFormState = {
-  name: "",
-  description: "",
-  type: CharacterClassId.FREELANCER,
+  firstName: "",
+  lastName: "",
+  primaryClass: CharacterClassId.FREELANCER,
 };
 
 function CreateCharacterForm({
@@ -61,7 +61,7 @@ export default function CharacterCreate() {
 
     const newState = {
       ...formState,
-      [id]: id === "type" ? parseInt(value, 10) : value,
+      [id]: id === "primaryClass" ? parseInt(value, 10) : value,
     };
 
     updateFormState(newState);

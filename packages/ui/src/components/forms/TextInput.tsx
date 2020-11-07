@@ -7,17 +7,31 @@ interface Props {
   label: string;
   id: string;
   inputDescription?: string;
-  onChange: (e: React.SyntheticEvent) => void;
+  onChange?: (e: React.SyntheticEvent) => void;
+  readOnly?: boolean;
+  defaultValue?: string | number;
 }
 
-export function TextInput({ onChange, id, label, inputDescription }: Props) {
+export function TextInput({
+  onChange,
+  id,
+  label,
+  inputDescription,
+  readOnly = false,
+  defaultValue,
+}: Props) {
   return (
     <Form.Group as={Row} controlId={id}>
       <Form.Label column sm="2">
         {label}
       </Form.Label>
       <Col sm="10">
-        <Form.Control as="input" onChange={onChange} />
+        <Form.Control
+          as="input"
+          readOnly={readOnly}
+          defaultValue={defaultValue}
+          onChange={onChange}
+        />
         {inputDescription && (
           <Form.Text className="text-muted">{inputDescription}</Form.Text>
         )}
