@@ -9,6 +9,7 @@ interface Props {
   inputDescription?: string;
   onChange?: (e: React.SyntheticEvent) => void;
   readOnly?: boolean;
+  value?: string;
   defaultValue?: string | number;
 }
 
@@ -19,6 +20,7 @@ export function TextInput({
   inputDescription,
   readOnly = false,
   defaultValue,
+  value,
 }: Props) {
   return (
     <Form.Group as={Row} controlId={id}>
@@ -29,6 +31,7 @@ export function TextInput({
         <Form.Control
           as="input"
           readOnly={readOnly}
+          value={value}
           defaultValue={defaultValue}
           onChange={onChange}
         />

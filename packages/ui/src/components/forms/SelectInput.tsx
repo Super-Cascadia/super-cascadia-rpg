@@ -17,6 +17,7 @@ interface Props {
   options: SelectOption[];
   readOnly?: boolean;
   defaultValue?: string;
+  value?: string;
 }
 
 export function SelectInput({
@@ -27,6 +28,7 @@ export function SelectInput({
   options,
   readOnly,
   defaultValue,
+  value,
 }: Props) {
   return (
     <Form.Group as={Row} controlId={id} onChange={onChange}>
@@ -37,6 +39,7 @@ export function SelectInput({
         <Form.Control
           as="select"
           readOnly={readOnly}
+          value={value}
           defaultValue={defaultValue}
         >
           {map(options, (option) => {

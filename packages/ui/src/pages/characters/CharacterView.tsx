@@ -5,30 +5,20 @@ import { isEmpty, toNumber, toString } from "lodash";
 import { CharacterModel } from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { TextInput } from "../../components/forms/TextInput";
 import { SelectInput } from "../../components/forms/SelectInput";
 import { primaryClassOptions } from "./constants";
 
-interface characterEditState {
+interface CharacterEditState {
   character: CharacterModel;
 }
 
-type CharacterStateHook = [characterEditState, (data: any) => void];
+type CharacterStateHook = [CharacterEditState, (data: any) => void];
 
 function CharacterViewForm({ character }: { character: CharacterModel }) {
   return (
     <>
-      <Form.Group as={Row} controlId="id">
-        <Form.Label column sm="2">
-          ID
-        </Form.Label>
-        <Col sm="10">
-          <Form.Control readOnly defaultValue={character.id} />
-        </Col>
-      </Form.Group>
+      <TextInput label="ID" id="id" readOnly defaultValue={character.id} />
 
       <TextInput
         label="First Name"

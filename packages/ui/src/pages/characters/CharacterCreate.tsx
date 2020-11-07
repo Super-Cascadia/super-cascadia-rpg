@@ -10,6 +10,7 @@ import { primaryClassOptions } from "./constants";
 const initialFormState = {
   firstName: "",
   lastName: "",
+  description: "",
   primaryClass: CharacterClassId.FREELANCER,
 };
 
