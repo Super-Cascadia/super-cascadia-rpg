@@ -30,6 +30,7 @@ export function TextInput({
       <Col sm="10">
         <Form.Control
           as="input"
+          plaintext={readOnly}
           readOnly={readOnly}
           value={value}
           defaultValue={defaultValue}
