@@ -37,6 +37,7 @@ function ItemViewForm({ item }: { item: ItemModel }) {
       />
 
       <SelectInput
+        readOnly
         label="Item Type"
         id="type"
         options={itemTypeOptions}

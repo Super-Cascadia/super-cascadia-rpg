@@ -40,6 +40,7 @@ export function SelectInput({
           as="select"
           readOnly={readOnly}
           value={value}
+          disabled={readOnly}
           defaultValue={defaultValue}
         >
           {map(options, (option) => {
