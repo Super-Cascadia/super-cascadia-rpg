@@ -23,31 +23,25 @@ function CreateCharacterForm({
     <>
       <TextInput
         onChange={handleFormChange}
-        label={"First Name"}
+        label="First Name"
         id={"firstName"}
       />
 
-      <TextInput
-        onChange={handleFormChange}
-        label={"Last Name"}
-        id={"lastName"}
-      />
+      <TextInput onChange={handleFormChange} label="Last Name" id="lastName" />
 
       <TextInput
         onChange={handleFormChange}
-        label={"Description"}
-        id={"description"}
-        inputDescription={"a description of the character"}
+        label="Description"
+        id="description"
+        inputDescription="a description of the character"
       />
 
       <SelectInput
         onChange={handleFormChange}
-        label={"Primary Class"}
-        id={"primaryClass"}
+        label="Primary Class"
+        id="primaryClass"
         options={primaryClassOptions}
-        inputDescription={
-          "The Primary class of the character. Determines key attributes and modifiers."
-        }
+        inputDescription="The Primary class of the character. Determines key attributes and modifiers."
       />
     </>
   );

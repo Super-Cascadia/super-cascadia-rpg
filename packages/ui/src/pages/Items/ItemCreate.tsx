@@ -1,9 +1,11 @@
 import React, { SyntheticEvent, useState } from "react";
-import Form from "react-bootstrap/Form";
 import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../api/items/createItem";
 import { useHistory } from "react-router-dom";
 import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
+import { TextInput } from "../../components/forms/TextInput";
+import { SelectInput } from "../../components/forms/SelectInput";
+import { itemTypeOptions } from "./constants";
 
 const initialFormState = {
   name: "",
@@ -18,28 +20,27 @@ function ItemCreateForm({
 }) {
   return (
     <>
-      <Form.Group controlId="name">
-        <Form.Label>Name</Form.Label>
-        <Form.Control onChange={handleFormChange} />
-        <Form.Text className="text-muted">The name of the item.</Form.Text>
-      </Form.Group>
+      <TextInput
+        label="Name"
+        id="name"
+        onChange={handleFormChange}
+        inputDescription="The name of the item."
+      />
 
-      <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
-        <Form.Control onChange={handleFormChange} />
-        <Form.Text className="text-muted">a description of the item</Form.Text>
-      </Form.Group>
+      <TextInput
+        label={"Description"}
+        id={"description"}
+        inputDescription="a description of the item"
+        onChange={handleFormChange}
+      />
 
-      <Form.Group controlId="type" onChange={handleFormChange}>
-        <Form.Label>Item Type</Form.Label>
-        <Form.Control as="select" custom>
-          <option value={ItemType.FOOD}>Food</option>
-          <option value={ItemType.WEAPON}>Weapon</option>
-          <option value={ItemType.ACCESSORY}>Accessory</option>
-          <option value={ItemType.KEY_ITEM}>Key Item</option>
-          <option value={ItemType.ARMOR}>Armor</option>
-        </Form.Control>
-      </Form.Group>
+      <SelectInput
+        onChange={handleFormChange}
+        label="Item Type"
+        id="type"
+        options={itemTypeOptions}
+        inputDescription="The classification of the item."
+      />
     </>
   );
 }

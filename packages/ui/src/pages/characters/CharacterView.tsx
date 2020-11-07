@@ -28,29 +28,27 @@ function CharacterViewForm({ character }: { character: CharacterModel }) {
       />
 
       <TextInput
-        label={"Last Name"}
-        id={"lastName"}
+        label="Last Name"
+        id="lastName"
         readOnly
         defaultValue={character.lastName}
       />
 
       <TextInput
-        label={"Description"}
-        id={"description"}
-        inputDescription={"a description of the character"}
+        label="Description"
+        id="description"
+        inputDescription="a description of the character"
         readOnly
         defaultValue={character.description}
       />
 
       <SelectInput
-        label={"Primary Class"}
-        id={"primaryClass"}
+        label="Primary Class"
+        id="primaryClass"
         options={primaryClassOptions}
         readOnly
         defaultValue={toString(character.primaryClass)}
-        inputDescription={
-          "The Primary class of the character. Determines key attributes and modifiers."
-        }
+        inputDescription="The Primary class of the character. Determines key attributes and modifiers."
       />
     </>
   );
