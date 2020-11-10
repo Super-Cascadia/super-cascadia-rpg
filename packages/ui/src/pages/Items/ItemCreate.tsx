@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React from "react";
 import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../api/items/createItem";
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,13 @@ import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrappe
 import { TextInput } from "../../components/forms/TextInput";
 import { SelectInput } from "../../components/forms/SelectInput";
 import { itemTypeOptions } from "./constants";
-import { Formik, FormikHelpers } from "formik";
+import {
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+  FormikTouched,
+  FormikValues,
+} from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 
@@ -20,6 +26,12 @@ const schema = yup.object({
   type: yup.string().required(),
 });
 
+interface Values {
+  name: string;
+  type: number;
+  description: string;
+}
+
 function ItemCreateForm({
   handleFormChange,
   values,
@@ -27,9 +39,9 @@ function ItemCreateForm({
   errors,
 }: {
   handleFormChange: (event: React.SyntheticEvent) => void;
-  values: any;
-  touched: any;
-  errors: any;
+  values: FormikValues;
+  touched: FormikTouched<Values>;
+  errors: FormikErrors<Values>;
 }) {
   return (
     <>
@@ -68,7 +80,10 @@ function ItemCreateForm({
 export default function ItemCreate() {
   const history = useHistory();
 
-  const handleFormSubmit = (values: {}, actions: FormikHelpers<any>) => {
+  const handleFormSubmit = (
+    values: FormikValues,
+    actions: FormikHelpers<any>
+  ) => {
     createItem(values).then(() => {
       actions.setSubmitting(false);
       history.push("/items");
@@ -81,15 +96,7 @@ export default function ItemCreate() {
       onSubmit={handleFormSubmit}
       initialValues={initialFormState}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        touched,
-        isValid,
-        errors,
-      }) => {
+      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
         console.log(values, touched, errors, isValid);
 
         return (
