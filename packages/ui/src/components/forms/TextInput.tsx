@@ -11,6 +11,8 @@ interface Props {
   readOnly?: boolean;
   value?: string;
   defaultValue?: string | number;
+  touched?: boolean;
+  errors?: string;
 }
 
 export function TextInput({
@@ -21,6 +23,8 @@ export function TextInput({
   readOnly = false,
   defaultValue,
   value,
+  touched,
+  errors,
 }: Props) {
   return (
     <Form.Group as={Row} controlId={id}>
@@ -35,10 +39,15 @@ export function TextInput({
           value={value}
           defaultValue={defaultValue}
           onChange={onChange}
+          isInvalid={touched && !!errors}
+          isValid={touched && !errors}
         />
-        {inputDescription && (
-          <Form.Text className="text-muted">{inputDescription}</Form.Text>
+        {errors && (
+          <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
         )}
+        {/*{inputDescription && (*/}
+        {/*  <Form.Text className="text-muted">{inputDescription}</Form.Text>*/}
+        {/*)}*/}
       </Col>
     </Form.Group>
   );
