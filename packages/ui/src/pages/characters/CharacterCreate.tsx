@@ -6,18 +6,33 @@ import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrappe
 import { TextInput } from "../../components/forms/TextInput";
 import { SelectInput } from "../../components/forms/SelectInput";
 import { primaryClassOptions } from "./constants";
+import {
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+  FormikTouched,
+  FormikValues,
+} from "formik";
+import * as yup from "yup";
+import Form from "react-bootstrap/Form";
 
-const initialFormState = {
-  firstName: "",
-  lastName: "",
-  description: "",
-  primaryClass: CharacterClassId.FREELANCER,
-};
+interface Values {
+  firstName: string;
+  lastName: string;
+  description: string;
+  primaryClass: number;
+}
 
 function CreateCharacterForm({
   handleFormChange,
+  values,
+  touched,
+  errors,
 }: {
-  handleFormChange: (e: React.SyntheticEvent) => void;
+  handleFormChange: (event: React.SyntheticEvent) => void;
+  values: FormikValues;
+  touched: FormikTouched<Values>;
+  errors: FormikErrors<Values>;
 }) {
   return (
     <>
@@ -25,14 +40,27 @@ function CreateCharacterForm({
         onChange={handleFormChange}
         label="First Name"
         id={"firstName"}
+        value={values.firstName}
+        touched={touched.firstName}
+        errors={errors.firstName}
       />
 
-      <TextInput onChange={handleFormChange} label="Last Name" id="lastName" />
+      <TextInput
+        onChange={handleFormChange}
+        label="Last Name"
+        id="lastName"
+        value={values.lastName}
+        touched={touched.lastName}
+        errors={errors.lastName}
+      />
 
       <TextInput
         onChange={handleFormChange}
         label="Description"
         id="description"
+        value={values.description}
+        touched={touched.description}
+        errors={errors.description}
         inputDescription="a description of the character"
       />
 
@@ -41,6 +69,7 @@ function CreateCharacterForm({
         label="Primary Class"
         id="primaryClass"
         options={primaryClassOptions}
+        value={values.primaryClass}
         inputDescription="The Primary class of the character. Determines key attributes and modifiers."
       />
     </>
@@ -48,36 +77,52 @@ function CreateCharacterForm({
 }
 
 export default function CharacterCreate() {
-  const [formState, updateFormState] = useState(initialFormState);
   const history = useHistory();
 
-  const handleFormChange = (event: SyntheticEvent) => {
-    const { id, value } = event?.target as HTMLInputElement;
-
-    const newState = {
-      ...formState,
-      [id]: id === "primaryClass" ? parseInt(value, 10) : value,
-    };
-
-    updateFormState(newState);
-  };
-
-  const handleSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    createCharacter(formState).then(() => {
-      updateFormState(initialFormState);
+  const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
+    createCharacter(values).then(() => {
+      actions.setSubmitting(false);
       history.push("/characters");
     });
   };
 
+  const initialFormState = {
+    firstName: "",
+    lastName: "",
+    description: "",
+    primaryClass: CharacterClassId.FREELANCER,
+  };
+
+  const schema = yup.object({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    description: yup.string().required(),
+    primaryClass: yup.string().required(),
+  });
+
   return (
-    <ObjectCreatePageWrapper
-      name={"Create new Character"}
-      handleSubmit={handleSubmit}
+    <Formik
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      initialValues={initialFormState}
     >
-      <CreateCharacterForm handleFormChange={handleFormChange} />
-    </ObjectCreatePageWrapper>
+      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
+        return (
+          <Form onSubmit={handleSubmit} noValidate>
+            <ObjectCreatePageWrapper
+              name={"Create new Character"}
+              isValid={isValid}
+            >
+              <CreateCharacterForm
+                handleFormChange={handleChange}
+                values={values}
+                touched={touched}
+                errors={errors}
+              />
+            </ObjectCreatePageWrapper>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
