@@ -24,7 +24,11 @@ export default function ObjectDetailViewPageWrapper({
   return (
     <Container>
       <br />
-      <ObjectDetailBreadCrumb routeName={routeName} objectId={objectId} />
+      <ObjectDetailBreadCrumb
+        routeName={routeName}
+        objectId={objectId}
+        detailPageName={"View"}
+      />
       <Card>
         <Card.Header>
           <h1>{name}</h1>

@@ -1,10 +1,7 @@
 import React, { useEffect, useState, SyntheticEvent } from "react";
-import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
 import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { Character } from "@super-cascadia-rpg/api";

@@ -24,7 +24,11 @@ export const ObjectDetailEditPageWrapper = ({
   return (
     <Container>
       <br />
-      <ObjectDetailBreadCrumb routeName={routeName} objectId={objectId} />
+      <ObjectDetailBreadCrumb
+        routeName={routeName}
+        objectId={objectId}
+        detailPageName={"Edit"}
+      />
       <Card>
         <Card.Header>
           <h1>{name}</h1>
