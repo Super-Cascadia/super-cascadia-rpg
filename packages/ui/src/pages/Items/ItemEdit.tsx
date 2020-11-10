@@ -7,47 +7,70 @@ import { toString } from "lodash";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import updateItem from "../../api/items/updateItem";
-import { Item } from "@super-cascadia-rpg/api";
+import { Item, ItemType } from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
 import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";
+import {
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+  FormikTouched,
+  FormikValues,
+} from "formik";
+import * as yup from "yup";
+
+interface Values {
+  id: number;
+  name: string;
+  description: string;
+  type: number;
+}
 
 function ItemEditForm({
-  item,
   handleFormChange,
+  values,
+  touched,
+  errors,
 }: {
-  item: Item;
   handleFormChange: (event: React.SyntheticEvent) => void;
+  values: FormikValues;
+  touched: FormikTouched<Values>;
+  errors: FormikErrors<Values>;
 }) {
   return (
     <>
-      <TextInput label="ID" id="id" readOnly defaultValue={item.id} />
+      <TextInput label="ID" id="id" readOnly defaultValue={values.id} />
 
       <TextInput
         label="Name"
         id="name"
-        value={item.name}
-        onChange={handleFormChange}
         inputDescription="The name of the item."
+        onChange={handleFormChange}
+        value={values.name}
+        touched={touched.name}
+        errors={errors.name}
       />
 
       <TextInput
         label={"Description"}
         id={"description"}
         inputDescription="a description of the item"
-        value={item.description}
         onChange={handleFormChange}
+        value={values.description}
+        touched={touched.description}
+        errors={errors.description}
       />
 
       <SelectInput
         onChange={handleFormChange}
         label="Item Type"
         id="type"
-        options={itemTypeOptions}
-        value={toString(item.type)}
         inputDescription="The classification of the item."
+        options={itemTypeOptions}
+        value={toString(values.type)}
       />
     </>
   );
@@ -59,26 +82,8 @@ export default function ItemEdit() {
   const [data, setData] = useState({ item: {} as Item });
   const { item } = data;
 
-  const handleFormChange = (event: SyntheticEvent) => {
-    const { id, value } = event?.target as HTMLInputElement;
-
-    const newState = {
-      ...data,
-      item: {
-        ...data.item,
-        [id]: id === "type" ? parseInt(value, 10) : value,
-      },
-    };
-
-    setData(newState);
-  };
-
-  const handleSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    updateItem(data.item).then(() => {
-      setData(data);
+  const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
+    updateItem(values as Item).then(() => {
       fetchItemDataHook(id, setData);
     });
   };
@@ -90,14 +95,44 @@ export default function ItemEdit() {
     return <Loading />;
   }
 
+  const initialFormState = {
+    id: data.item.id,
+    name: data.item.name,
+    description: data.item.description,
+    type: data.item.type,
+  };
+
+  const schema = yup.object({
+    id: yup.number(),
+    name: yup.string().required(),
+    description: yup.string().required(),
+    type: yup.string().required(),
+  });
+
   return (
-    <ObjectDetailEditPageWrapper
-      objectId={item.id}
-      name={item.name}
-      routeName={"items"}
-      handleSubmit={handleSubmit}
+    <Formik
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      initialValues={initialFormState}
     >
-      <ItemEditForm item={item} handleFormChange={handleFormChange} />
-    </ObjectDetailEditPageWrapper>
+      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
+        return (
+          <Form onSubmit={handleSubmit} noValidate>
+            <ObjectDetailEditPageWrapper
+              objectId={values.id}
+              name={data.item.name}
+              routeName={"items"}
+            >
+              <ItemEditForm
+                handleFormChange={handleChange}
+                values={values}
+                touched={touched}
+                errors={errors}
+              />
+            </ObjectDetailEditPageWrapper>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
