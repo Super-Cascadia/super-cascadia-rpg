@@ -13,6 +13,7 @@ interface Props {
   routeName: string;
   children?: ReactElement;
   handleSubmit?: (event: SyntheticEvent) => void;
+  dirty?: boolean;
 }
 
 export const ObjectDetailEditPageWrapper = ({
@@ -20,6 +21,7 @@ export const ObjectDetailEditPageWrapper = ({
   objectId,
   name,
   children,
+  dirty,
 }: Props) => {
   return (
     <Container>
@@ -38,7 +40,12 @@ export const ObjectDetailEditPageWrapper = ({
           <Container>
             <Row>
               <Col sm="1">
-                <Button variant="primary" type="submit" size="sm">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  size="sm"
+                  disabled={!dirty}
+                >
                   Submit
                 </Button>
               </Col>

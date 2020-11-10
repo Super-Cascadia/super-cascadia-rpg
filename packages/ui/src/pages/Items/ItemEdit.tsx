@@ -21,6 +21,7 @@ import {
   FormikValues,
 } from "formik";
 import * as yup from "yup";
+import { getItem } from "../../api/items/getItem";
 
 interface Values {
   id: number;
@@ -83,8 +84,15 @@ export default function ItemEdit() {
   const { item } = data;
 
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
+    actions.setSubmitting(true);
     updateItem(values as Item).then(() => {
-      fetchItemDataHook(id, setData);
+      getItem(id).then((updatedItem) => {
+        actions.setSubmitting(false);
+        setData({ item: updatedItem });
+        actions.resetForm({
+          values: updatedItem,
+        });
+      });
     });
   };
 
@@ -115,13 +123,24 @@ export default function ItemEdit() {
       onSubmit={handleSubmit}
       initialValues={initialFormState}
     >
-      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
+      {({
+        handleSubmit,
+        dirty,
+        handleChange,
+        values,
+        touched,
+        isValid,
+        errors,
+        initialTouched,
+      }) => {
+        console.log("initialTouched", initialTouched, touched, dirty);
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <ObjectDetailEditPageWrapper
               objectId={values.id}
               name={data.item.name}
               routeName={"items"}
+              dirty={dirty}
             >
               <ItemEditForm
                 handleFormChange={handleChange}
