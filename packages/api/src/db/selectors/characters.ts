@@ -16,8 +16,8 @@ export async function getCharacterById(
 export async function getCharacterAttributes(
   connection: Connection,
   id: string
-): Promise<CharacterAttributes | CharacterAttributes[]> {
-  return connection.manager.find<CharacterAttributes>(CharacterAttributes, {
+): Promise<CharacterAttributes | undefined> {
+  return connection.manager.findOne<CharacterAttributes>(CharacterAttributes, {
     where: { characterId: id },
   });
 }
