@@ -1,13 +1,13 @@
-import {Connection} from "typeorm";
-import {Character} from "../entity/Character";
+import { Connection } from "typeorm";
+import { Character } from "../entity/Character";
 
 export async function findCharacters(connection: Connection) {
-    return connection.manager.find(Character);
+  return connection.manager.find(Character);
 }
 
 export async function getCharacterById(
-    connection: Connection,
-    id: string
+  connection: Connection,
+  id: string
 ): Promise<Character | undefined> {
-    return connection.manager.findOne(Character, id);
+  return connection.manager.findOne<Character>(Character, id);
 }

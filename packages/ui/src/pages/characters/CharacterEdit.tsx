@@ -4,7 +4,7 @@ import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
 import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
-import { Character } from "@super-cascadia-rpg/api";
+import { CharacterModel } from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
 import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
@@ -96,7 +96,7 @@ function CharacterEditForm({
 export default function CharacterEdit() {
   const { id: characterId } = useParams<{ id: string }>();
   const id = toNumber(characterId);
-  const [data, setData] = useState({ character: {} as Character });
+  const [data, setData] = useState({ character: {} as CharacterModel });
   const { character } = data;
 
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {

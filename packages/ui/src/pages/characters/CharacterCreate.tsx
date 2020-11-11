@@ -110,7 +110,7 @@ export default function CharacterCreate() {
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <ObjectCreatePageWrapper
-              name={"Create new Character"}
+              name={"Create new CharacterWithAttributes"}
               dirty={dirty}
             >
               <CreateCharacterForm

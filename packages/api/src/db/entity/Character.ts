@@ -19,10 +19,10 @@ export class Character {
   @Column()
   primaryClass!: CharacterClassId;
 
-  // @OneToOne(
-  //   (type) => CharacterAttributes,
-  //   (characterAttributes) => characterAttributes.character
-  // )
-  // // @ts-ignore
-  // characterAttributes: CharacterAttributes;
+  @OneToOne(
+    (type) => CharacterAttributes,
+    (characterAttributes) => characterAttributes.character
+  )
+  // @ts-ignore
+  characterAttributes: CharacterAttributes;
 }

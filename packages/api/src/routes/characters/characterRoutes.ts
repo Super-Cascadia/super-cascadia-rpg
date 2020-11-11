@@ -4,7 +4,8 @@ import { getCharactersHandler } from "../../handlers/characters/getCharactersHan
 import createCharacterHandler from "../../handlers/characters/createCharacterHandler";
 import updateCharacterHandler from "../../handlers/characters/updateCharacterHandler";
 import duplicateCharacterHandler from "../../handlers/characters/duplicateCharacterHandler";
-import {deleteCharacterHandler} from "../../handlers/characters/deleteCharacterHandler";
+import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacterHandler";
+import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -24,13 +25,21 @@ function createCharacter(server: Server, connection: Connection) {
       createCharacterHandler(connection, request, reply),
   });
 }
+function createCharacterAttributes(server: Server, connection: Connection) {
+  server.route({
+    method: "POST",
+    path: "/characters/{id}/attributes",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      createCharacterAttributesHandler(connection, request),
+  });
+}
 
 function updateCharacter(server: Server, connection: Connection) {
   server.route({
     method: "PUT",
     path: "/characters/{id}",
     handler: async (request: Request, reply: ResponseToolkit) =>
-        updateCharacterHandler(connection, request, reply),
+      updateCharacterHandler(connection, request, reply),
   });
 }
 
@@ -38,7 +47,8 @@ function deleteCharacter(server: Server, connection: Connection) {
   server.route({
     method: "DELETE",
     path: "/characters/{id}",
-    handler: async (request: Request, reply: ResponseToolkit): Promise<{}> => deleteCharacterHandler(connection, request, reply),
+    handler: async (request: Request, reply: ResponseToolkit): Promise<{}> =>
+      deleteCharacterHandler(connection, request, reply),
   });
 }
 
@@ -47,7 +57,7 @@ function duplicateCharacter(server: Server, connection: Connection) {
     method: "POST",
     path: "/characters/{id}/duplicate",
     handler: async (request: Request, reply: ResponseToolkit) =>
-        duplicateCharacterHandler(connection, request, reply),
+      duplicateCharacterHandler(connection, request, reply),
   });
 }
 
@@ -55,6 +65,7 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   getCharacters(server, connection);
   createCharacter(server, connection);
   updateCharacter(server, connection);
-  duplicateCharacter(server, connection)
-  deleteCharacter(server, connection)
+  duplicateCharacter(server, connection);
+  deleteCharacter(server, connection);
+  createCharacterAttributes(server, connection);
 };

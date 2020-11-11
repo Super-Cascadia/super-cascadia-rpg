@@ -10,13 +10,6 @@ export interface CharacterSkills {
   description: string;
 }
 
-export interface CharacterAttributes {
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  stamina: number;
-}
-
 export interface CharacterEquipment {
   hand: ItemModel;
   head: ItemModel;
@@ -26,17 +19,21 @@ export interface CharacterEquipment {
   feet: ItemModel;
 }
 
-export interface Character extends CharacterModel {
+export interface CharacterAttributes {
+  strength: number;
+  dexterity: number;
+  vitality: number;
+  intelligence: number;
+  mind: number;
+  piety: number;
+}
+
+export interface CharacterWithAttributes extends CharacterModel {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   description: string;
-  level: number;
-  experience: number;
-  class: CharacterClass;
-  skills: CharacterSkills[];
-  attributes: CharacterAttributes;
-  equipment: CharacterEquipment;
-  items: ItemModel[];
+  attributes: CharacterAttributes[];
 }
 
 export interface CharacterModel extends CharacterCreateModel {

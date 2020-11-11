@@ -1,7 +1,6 @@
 import { Connection } from "typeorm";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { CharacterModel } from "../../model/characters/characterModel";
-import { Character } from "../../db/entity/Character";
 import { mapCharacterToCharacterModel } from "../../utils/mappings/characters";
 import {
   findCharacters,
@@ -21,7 +20,7 @@ export const getCharactersHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
-): Promise<CharacterModel[] | Character | undefined | string> => {
+): Promise<CharacterModel[] | CharacterModel | undefined | string> => {
   try {
     console.info("GET characters", request.params);
 
@@ -34,7 +33,7 @@ export const getCharactersHandler = async (
         return "item not found";
       }
 
-      return item;
+      return item as CharacterModel;
     } else {
       console.info("GET all characters", request.params);
       return getAllCharacters(connection, request);
