@@ -1,9 +1,17 @@
 import { getCharacter } from "../../../api/characters/getCharacter";
 
-export default function getEffect(id: number, setData: (data: any) => void) {
+interface Options {
+  id: number;
+  includeAttributes?: boolean;
+}
+
+export default function getEffect(
+  { id, includeAttributes }: Options,
+  setData: (data: any) => void
+) {
   return () => {
     async function fetchData(id: number) {
-      const character = await getCharacter(id);
+      const character = await getCharacter(id, includeAttributes);
 
       setData({
         character,

@@ -62,8 +62,14 @@ export default function CharacterView() {
 
   const { character } = data;
 
-  // @ts-ignore
-  useEffect(fetchCharacterDataHook(id, setData), {});
+  useEffect(
+    fetchCharacterDataHook(
+      { id: toNumber(id), includeAttributes: true },
+      setData
+    ),
+    // @ts-ignore
+    {}
+  );
 
   if (isEmpty(character)) {
     return <Loading />;

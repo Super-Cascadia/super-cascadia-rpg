@@ -113,7 +113,7 @@ export default function CharacterEdit() {
   };
 
   // @ts-ignore
-  useEffect(fetchCharacterDataHook(id, setData), {});
+  useEffect(fetchCharacterDataHook({ id: id, includeAttributes: setData }), {});
 
   if (isEmpty(character)) {
     return <Loading />;
