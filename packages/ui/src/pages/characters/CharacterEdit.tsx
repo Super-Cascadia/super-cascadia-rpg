@@ -20,7 +20,6 @@ import {
 import * as yup from "yup";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import Form from "react-bootstrap/Form";
-import { getItem } from "../../api/items/getItem";
 import { getCharacter } from "../../api/characters/getCharacter";
 
 interface Values {
