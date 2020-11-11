@@ -6,6 +6,8 @@ import updateCharacterHandler from "../../handlers/characters/updateCharacterHan
 import duplicateCharacterHandler from "../../handlers/characters/duplicateCharacterHandler";
 import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacterHandler";
 import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
+import { getCharacterAttributesHandler } from "../../handlers/characterAttributes/getCharacterAttributesHandler";
+import { getAttributesForCharacterHandler } from "../../handlers/characters/getAttributesForCharacterHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -25,12 +27,22 @@ function createCharacter(server: Server, connection: Connection) {
       createCharacterHandler(connection, request, reply),
   });
 }
+
 function createCharacterAttributes(server: Server, connection: Connection) {
   server.route({
     method: "POST",
     path: "/characters/{id}/attributes",
     handler: async (request: Request, reply: ResponseToolkit) =>
       createCharacterAttributesHandler(connection, request),
+  });
+}
+
+function getCharacterAttributes(server: Server, connection: Connection) {
+  server.route({
+    method: "GET",
+    path: "/characters/{id}/attributes",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      getAttributesForCharacterHandler(connection, request),
   });
 }
 
@@ -68,4 +80,5 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   duplicateCharacter(server, connection);
   deleteCharacter(server, connection);
   createCharacterAttributes(server, connection);
+  getCharacterAttributes(server, connection);
 };

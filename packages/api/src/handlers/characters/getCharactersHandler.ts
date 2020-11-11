@@ -20,13 +20,9 @@ export const getCharactersHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
-): Promise<CharacterModel[] | CharacterModel | undefined | string> => {
+): Promise<CharacterModel[] | CharacterModel | string> => {
   try {
-    console.info("GET characters", request.params);
-
     if (request.params.id) {
-      console.info("GET specific character", request.params.id);
-
       const item = await getCharacterById(connection, request.params.id);
 
       if (!item) {
@@ -35,7 +31,6 @@ export const getCharactersHandler = async (
 
       return item as CharacterModel;
     } else {
-      console.info("GET all characters", request.params);
       return getAllCharacters(connection, request);
     }
   } catch (e) {
