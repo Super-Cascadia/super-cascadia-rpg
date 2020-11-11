@@ -112,8 +112,11 @@ export default function CharacterEdit() {
     });
   };
 
-  // @ts-ignore
-  useEffect(fetchCharacterDataHook({ id: id, includeAttributes: setData }), {});
+  useEffect(
+    fetchCharacterDataHook({ id: id, includeAttributes: true }, setData),
+    // @ts-ignore
+    {}
+  );
 
   if (isEmpty(character)) {
     return <Loading />;
