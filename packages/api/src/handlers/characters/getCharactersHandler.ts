@@ -23,7 +23,11 @@ export const getCharactersHandler = async (
 ): Promise<CharacterModel[] | CharacterModel | string> => {
   try {
     if (request.params.id) {
-      const item = await getCharacterById(connection, request.params.id);
+      const item = await getCharacterById(
+        connection,
+        request.params.id,
+        request.query
+      );
 
       if (!item) {
         return "item not found";

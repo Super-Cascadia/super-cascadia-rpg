@@ -9,9 +9,7 @@ async function getAllItems(
   connection: Connection,
   request: Request
 ): Promise<ItemModel[]> {
-  const foo = request.query;
-  console.log("queryParams", foo);
-  const items = await findItems(connection, foo);
+  const items = await findItems(connection, request.query);
 
   return mapItemToItemModel(items);
 }

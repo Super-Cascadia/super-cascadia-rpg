@@ -6,7 +6,6 @@ import updateCharacterHandler from "../../handlers/characters/updateCharacterHan
 import duplicateCharacterHandler from "../../handlers/characters/duplicateCharacterHandler";
 import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacterHandler";
 import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
-import { getCharacterAttributesHandler } from "../../handlers/characterAttributes/getCharacterAttributesHandler";
 import { getAttributesForCharacterHandler } from "../../handlers/characters/getAttributesForCharacterHandler";
 
 function getCharacters(server: Server, connection: Connection) {
