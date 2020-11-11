@@ -33,7 +33,7 @@ export interface CharacterWithAttributes extends CharacterModel {
   firstName: string;
   lastName: string;
   description: string;
-  attributes: CharacterAttributes[];
+  characterAttributes: CharacterAttributes;
 }
 
 export interface CharacterModel extends CharacterCreateModel {
