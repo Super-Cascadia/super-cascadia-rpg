@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import React, { ReactElement, SyntheticEvent } from "react";
+import React, { ReactElement } from "react";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
 import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
@@ -12,7 +12,6 @@ interface Props {
   name: string;
   routeName: string;
   children?: ReactElement;
-  handleSubmit?: (event: SyntheticEvent) => void;
   dirty?: boolean;
 }
 

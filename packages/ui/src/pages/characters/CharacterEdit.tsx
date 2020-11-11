@@ -10,15 +10,38 @@ import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPa
 import { TextInput } from "../../components/forms/TextInput";
 import { primaryClassOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";
+import {
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+  FormikTouched,
+  FormikValues,
+} from "formik";
+import * as yup from "yup";
+import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
+import Form from "react-bootstrap/Form";
+import { getItem } from "../../api/items/getItem";
+import { getCharacter } from "../../api/characters/getCharacter";
+
+interface Values {
+  firstName: string;
+  lastName: string;
+  description: string;
+  primaryClass: number;
+}
 
 function CharacterEditForm({
-  character,
   handleFormChange,
+  values,
+  touched,
+  errors,
 }: {
-  character: Character;
   handleFormChange: (event: React.SyntheticEvent) => void;
+  values: FormikValues;
+  touched: FormikTouched<Values>;
+  errors: FormikErrors<Values>;
 }) {
-  const primaryClassString = toString(character.primaryClass);
+  const primaryClassString = toString(values.primaryClass);
 
   return (
     <>
@@ -26,20 +49,24 @@ function CharacterEditForm({
         label="ID"
         id="id"
         readOnly
-        defaultValue={toString(character.id)}
+        defaultValue={toString(values.id)}
       />
 
       <TextInput
         label="First Name"
         id="firstName"
-        value={character.firstName}
+        value={values.firstName}
+        touched={touched.firstName}
+        errors={errors.firstName}
         onChange={(e: SyntheticEvent) => handleFormChange(e)}
       />
 
       <TextInput
         label={"Last Name"}
         id={"lastName"}
-        value={character.lastName}
+        value={values.lastName}
+        touched={touched.lastName}
+        errors={errors.lastName}
         onChange={(e: SyntheticEvent) => handleFormChange(e)}
       />
 
@@ -47,7 +74,9 @@ function CharacterEditForm({
         label={"Description"}
         id={"description"}
         inputDescription={"a description of the character"}
-        value={character.description}
+        value={values.description}
+        touched={touched.description}
+        errors={errors.description}
         onChange={(e: SyntheticEvent) => handleFormChange(e)}
       />
 
@@ -71,27 +100,16 @@ export default function CharacterEdit() {
   const [data, setData] = useState({ character: {} as Character });
   const { character } = data;
 
-  const handleFormChange = (event: SyntheticEvent) => {
-    const { id, value } = event?.target as HTMLInputElement;
-
-    const newState = {
-      ...data,
-      character: {
-        ...data.character,
-        [id]: id === "primaryClass" ? parseInt(value, 10) : value,
-      },
-    };
-
-    setData(newState);
-  };
-
-  const handleSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-
+  const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
+    actions.setSubmitting(true);
     updateCharacter(data.character).then(() => {
-      setData(data);
-      fetchCharacterDataHook(id, setData);
+      getCharacter(id).then((updatedCharacter) => {
+        actions.setSubmitting(false);
+        setData({ character: updatedCharacter });
+        actions.resetForm({
+          values: updatedCharacter,
+        });
+      });
     });
   };
 
@@ -102,17 +120,47 @@ export default function CharacterEdit() {
     return <Loading />;
   }
 
+  const initialFormState = {
+    id: data.character.id,
+    firstName: data.character.firstName,
+    lastName: data.character.lastName,
+    description: data.character.description,
+    primaryClass: CharacterClassId.FREELANCER,
+  };
+
+  const schema = yup.object({
+    id: yup.number(),
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    description: yup.string().required(),
+    primaryClass: yup.string().required(),
+  });
+
   return (
-    <ObjectDetailEditPageWrapper
-      objectId={character.id}
-      name={`${character.firstName} ${character.lastName}`}
-      routeName={"characters"}
-      handleSubmit={handleSubmit}
+    <Formik
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      initialValues={initialFormState}
     >
-      <CharacterEditForm
-        character={character}
-        handleFormChange={handleFormChange}
-      />
-    </ObjectDetailEditPageWrapper>
+      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+        return (
+          <Form onSubmit={handleSubmit} noValidate>
+            <ObjectDetailEditPageWrapper
+              objectId={character.id}
+              name={`${character.firstName} ${character.lastName}`}
+              routeName={"characters"}
+              dirty={dirty}
+            >
+              <CharacterEditForm
+                handleFormChange={handleChange}
+                values={values}
+                touched={touched}
+                errors={errors}
+              />
+            </ObjectDetailEditPageWrapper>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }

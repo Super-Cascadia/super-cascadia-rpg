@@ -123,17 +123,7 @@ export default function ItemEdit() {
       onSubmit={handleSubmit}
       initialValues={initialFormState}
     >
-      {({
-        handleSubmit,
-        dirty,
-        handleChange,
-        values,
-        touched,
-        isValid,
-        errors,
-        initialTouched,
-      }) => {
-        console.log("initialTouched", initialTouched, touched, dirty);
+      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <ObjectDetailEditPageWrapper
