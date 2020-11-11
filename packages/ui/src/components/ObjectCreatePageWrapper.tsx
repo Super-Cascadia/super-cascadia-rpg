@@ -8,10 +8,10 @@ interface Props {
   name: string;
   children?: ReactElement;
   handleSubmit?: (event: SyntheticEvent) => void;
-  isValid?: boolean;
+  dirty: boolean;
 }
 
-export const ObjectCreatePageWrapper = ({ name, children, isValid }: Props) => {
+export const ObjectCreatePageWrapper = ({ name, children, dirty }: Props) => {
   return (
     <Container>
       <br />
@@ -22,12 +22,7 @@ export const ObjectCreatePageWrapper = ({ name, children, isValid }: Props) => {
         <Card.Body>{children}</Card.Body>
         <Card.Footer className="text-muted">
           <Form.Group role="form">
-            <Button
-              variant="primary"
-              size="sm"
-              type="submit"
-              disabled={!isValid}
-            >
+            <Button variant="primary" size="sm" type="submit" disabled={!dirty}>
               Submit
             </Button>
           </Form.Group>

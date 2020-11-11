@@ -16,16 +16,6 @@ import {
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 
-const initialFormState = {
-  type: ItemType.FOOD,
-};
-
-const schema = yup.object({
-  name: yup.string().required(),
-  description: yup.string().required(),
-  type: yup.string().required(),
-});
-
 interface Values {
   name: string;
   type: number;
@@ -48,19 +38,19 @@ function ItemCreateForm({
       <TextInput
         label="Name"
         id="name"
+        inputDescription="The name of the item."
         onChange={handleFormChange}
         value={values.name}
-        inputDescription="The name of the item."
         touched={touched.name}
         errors={errors.name}
       />
 
       <TextInput
         label={"Description"}
-        id={"description"}
-        value={values.description}
+        id="description"
         inputDescription="a description of the item"
         onChange={handleFormChange}
+        value={values.description}
         touched={touched.description}
         errors={errors.description}
       />
@@ -90,18 +80,28 @@ export default function ItemCreate() {
     });
   };
 
+  const initialFormState = {
+    name: "",
+    description: "",
+    type: ItemType.FOOD,
+  };
+
+  const schema = yup.object({
+    name: yup.string().min(1).required(),
+    description: yup.string().min(1).required(),
+    type: yup.string().required(),
+  });
+
   return (
     <Formik
       validationSchema={schema}
       onSubmit={handleFormSubmit}
       initialValues={initialFormState}
     >
-      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
-        console.log(values, touched, errors, isValid);
-
+      {({ handleSubmit, handleChange, values, touched, dirty, errors }) => {
         return (
           <Form onSubmit={handleSubmit} noValidate>
-            <ObjectCreatePageWrapper name={"Create new Item"} isValid={isValid}>
+            <ObjectCreatePageWrapper name={"Create new Item"} dirty={dirty}>
               <ItemCreateForm
                 handleFormChange={handleChange}
                 values={values}

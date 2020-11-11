@@ -37,40 +37,40 @@ function CreateCharacterForm({
   return (
     <>
       <TextInput
-        onChange={handleFormChange}
         label="First Name"
-        id={"firstName"}
+        id="firstName"
+        onChange={handleFormChange}
         value={values.firstName}
         touched={touched.firstName}
         errors={errors.firstName}
       />
 
       <TextInput
-        onChange={handleFormChange}
         label="Last Name"
         id="lastName"
+        onChange={handleFormChange}
         value={values.lastName}
         touched={touched.lastName}
         errors={errors.lastName}
       />
 
       <TextInput
-        onChange={handleFormChange}
         label="Description"
         id="description"
+        inputDescription="a description of the character"
+        onChange={handleFormChange}
         value={values.description}
         touched={touched.description}
         errors={errors.description}
-        inputDescription="a description of the character"
       />
 
       <SelectInput
-        onChange={handleFormChange}
         label="Primary Class"
         id="primaryClass"
+        inputDescription="The Primary class of the character. Determines key attributes and modifiers."
+        onChange={handleFormChange}
         options={primaryClassOptions}
         value={values.primaryClass}
-        inputDescription="The Primary class of the character. Determines key attributes and modifiers."
       />
     </>
   );
@@ -106,12 +106,12 @@ export default function CharacterCreate() {
       onSubmit={handleSubmit}
       initialValues={initialFormState}
     >
-      {({ handleSubmit, handleChange, values, touched, isValid, errors }) => {
+      {({ handleSubmit, handleChange, values, touched, dirty, errors }) => {
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <ObjectCreatePageWrapper
               name={"Create new Character"}
-              isValid={isValid}
+              dirty={dirty}
             >
               <CreateCharacterForm
                 handleFormChange={handleChange}
