@@ -30,13 +30,9 @@ export default function ObjectDetailViewPageWrapper({
         />
       </Container>
       <Container>
-        <Navbar expand="lg" variant="light" bg="light">
-          <Navbar.Brand href="#">
-            <h1>
-              {name} ({objectId})
-            </h1>
-          </Navbar.Brand>
-        </Navbar>
+        <h1>
+          {name} ({objectId})
+        </h1>
       </Container>
       <Container>{children}</Container>
       <Container>

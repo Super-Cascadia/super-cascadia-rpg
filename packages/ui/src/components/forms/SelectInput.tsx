@@ -31,24 +31,20 @@ export function SelectInput({
   value,
 }: Props) {
   return (
-    <Form.Group as={Row} controlId={id} onChange={onChange}>
-      <Form.Label column sm="2">
-        {label}
-      </Form.Label>
-      <Col sm="10">
-        <Form.Control
-          as="select"
-          readOnly={readOnly}
-          value={value}
-          disabled={readOnly}
-          defaultValue={defaultValue}
-        >
-          {map(options, (option) => {
-            return <option value={option.id}>{option.label}</option>;
-          })}
-        </Form.Control>
-        <Form.Text className="text-muted">{inputDescription}</Form.Text>
-      </Col>
+    <Form.Group as={Col} controlId={id} onChange={onChange}>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control
+        as="select"
+        readOnly={readOnly}
+        value={value}
+        disabled={readOnly}
+        defaultValue={defaultValue}
+      >
+        {map(options, (option) => {
+          return <option value={option.id}>{option.label}</option>;
+        })}
+      </Form.Control>
+      <Form.Text className="text-muted">{inputDescription}</Form.Text>
     </Form.Group>
   );
 }
