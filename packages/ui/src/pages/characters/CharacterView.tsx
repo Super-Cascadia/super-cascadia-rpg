@@ -8,7 +8,9 @@ import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDat
 import { TextInput } from "../../components/forms/TextInput";
 import { SelectInput } from "../../components/forms/SelectInput";
 import { primaryClassOptions } from "./constants";
-import { CharacterAttributeInput } from "../../components/forms/CharacterAttributeInput";
+import Form from "react-bootstrap/Form";
+import { CharacterAttributesPanel } from "./components/CharacterAttributesPanel";
+import Card from "react-bootstrap/Card";
 
 interface CharacterEditState {
   character: CharacterWithAttributes;
@@ -22,76 +24,53 @@ function CharacterViewForm({
   character: CharacterWithAttributes;
 }) {
   return (
-    <>
-      <TextInput label="ID" id="id" readOnly defaultValue={character.id} />
+    <Form>
+      <Card>
+        <Card.Header>Profile</Card.Header>
+        <Card.Body>
+          <Form.Row>
+            <TextInput
+              label="First Name"
+              id="firstName"
+              readOnly
+              defaultValue={character.firstName}
+            />
 
-      <TextInput
-        label="First Name"
-        id="firstName"
-        readOnly
-        defaultValue={character.firstName}
-      />
+            <TextInput
+              label="Last Name"
+              id="lastName"
+              readOnly
+              defaultValue={character.lastName}
+            />
+          </Form.Row>
 
-      <TextInput
-        label="Last Name"
-        id="lastName"
-        readOnly
-        defaultValue={character.lastName}
-      />
+          <Form.Row>
+            <TextInput
+              label="Description"
+              id="description"
+              inputDescription="a description of the character"
+              readOnly
+              defaultValue={character.description}
+            />
+          </Form.Row>
 
-      <TextInput
-        label="Description"
-        id="description"
-        inputDescription="a description of the character"
-        readOnly
-        defaultValue={character.description}
+          <Form.Row>
+            <SelectInput
+              label="Primary Class"
+              id="primaryClass"
+              options={primaryClassOptions}
+              readOnly
+              defaultValue={toString(character.primaryClass)}
+              inputDescription="The Primary class of the character. Determines key attributes and modifiers."
+            />
+          </Form.Row>
+        </Card.Body>
+      </Card>
+      <br />
+      <CharacterAttributesPanel
+        characterAttributes={character.characterAttributes}
       />
-
-      <SelectInput
-        label="Primary Class"
-        id="primaryClass"
-        options={primaryClassOptions}
-        readOnly
-        defaultValue={toString(character.primaryClass)}
-        inputDescription="The Primary class of the character. Determines key attributes and modifiers."
-      />
-
-      <CharacterAttributeInput
-        id="strength"
-        label="Strength"
-        defaultValue={character.characterAttributes.strength}
-      />
-
-      <CharacterAttributeInput
-        id="dexterity"
-        label="Dexterity"
-        defaultValue={character.characterAttributes.dexterity}
-      />
-
-      <CharacterAttributeInput
-        id="vitality"
-        label="Vitality"
-        defaultValue={character.characterAttributes.vitality}
-      />
-
-      <CharacterAttributeInput
-        id="intelligence"
-        label="Intelligence"
-        defaultValue={character.characterAttributes.intelligence}
-      />
-
-      <CharacterAttributeInput
-        id="mind"
-        label="Mind"
-        defaultValue={character.characterAttributes.mind}
-      />
-
-      <CharacterAttributeInput
-        id="piety"
-        label="Piety"
-        defaultValue={character.characterAttributes.piety}
-      />
-    </>
+    </Form>
   );
 }
 

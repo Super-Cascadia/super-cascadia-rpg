@@ -1,6 +1,5 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 interface Props {
@@ -27,28 +26,23 @@ export function TextInput({
   errors,
 }: Props) {
   return (
-    <Form.Group as={Row} controlId={id}>
-      <Form.Label column sm="2">
-        {label}
-      </Form.Label>
-      <Col sm="10">
-        <Form.Control
-          as="input"
-          plaintext={readOnly}
-          readOnly={readOnly}
-          value={value}
-          defaultValue={defaultValue}
-          onChange={onChange}
-          isInvalid={touched && !!errors}
-          isValid={touched && !errors}
-        />
-        {errors && (
-          <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
-        )}
-        {/*{inputDescription && (*/}
-        {/*  <Form.Text className="text-muted">{inputDescription}</Form.Text>*/}
-        {/*)}*/}
-      </Col>
+    <Form.Group as={Col} controlId={id}>
+      <Form.Label>{label}</Form.Label>
+      <Form.Control
+        as="input"
+        readOnly={readOnly}
+        value={value}
+        defaultValue={defaultValue}
+        onChange={onChange}
+        isInvalid={touched && !!errors}
+        isValid={touched && !errors}
+      />
+      {errors && (
+        <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+      )}
+      {/*{inputDescription && (*/}
+      {/*  <Form.Text className="text-muted">{inputDescription}</Form.Text>*/}
+      {/*)}*/}
     </Form.Group>
   );
 }

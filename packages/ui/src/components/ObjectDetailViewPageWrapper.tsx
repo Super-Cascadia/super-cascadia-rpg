@@ -1,12 +1,10 @@
 import React, { ReactElement } from "react";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { capitalize } from "lodash";
 import Form from "react-bootstrap/Form";
 import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
+import Navbar from "react-bootstrap/Navbar";
 
 interface Props {
   objectId: number;
@@ -22,28 +20,32 @@ export default function ObjectDetailViewPageWrapper({
   children,
 }: Props) {
   return (
-    <Container>
+    <div>
       <br />
-      <ObjectDetailBreadCrumb
-        routeName={routeName}
-        objectId={objectId}
-        detailPageName={"View"}
-      />
-      <Card>
-        <Card.Header>
-          <h1>{name}</h1>
-        </Card.Header>
-        <Card.Body>
-          <Form>{children}</Form>
-          <Card.Footer className="text-muted">
-            <LinkContainer to={`/${routeName}/${objectId}/edit`}>
-              <Button size="sm" variant="primary">
-                Edit
-              </Button>
-            </LinkContainer>
-          </Card.Footer>
-        </Card.Body>
-      </Card>
-    </Container>
+      <Container>
+        <ObjectDetailBreadCrumb
+          routeName={routeName}
+          objectId={objectId}
+          detailPageName={"View"}
+        />
+      </Container>
+      <Container>
+        <Navbar expand="lg" variant="light" bg="light">
+          <Navbar.Brand href="#">
+            <h1>
+              {name} ({objectId})
+            </h1>
+          </Navbar.Brand>
+        </Navbar>
+      </Container>
+      <Container>{children}</Container>
+      <Container>
+        <LinkContainer to={`/${routeName}/${objectId}/edit`}>
+          <Button size="sm" variant="primary">
+            Edit
+          </Button>
+        </LinkContainer>
+      </Container>
+    </div>
   );
 }
