@@ -1,11 +1,13 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { CharacterAttributes } from "@super-cascadia-rpg/api";
 import Form from "react-bootstrap/Form";
 import { CharacterAttributeInput } from "../../../components/forms/CharacterAttributeInput";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
+import updateCharacterAttributes from "../../../api/characterAttributes/updateCharacterAttributes";
+import { toString } from "lodash";
 
 interface Props {
   show: boolean;
@@ -19,7 +21,14 @@ export default function CharacterAttributesModal({
   characterAttributes,
 }: Props) {
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
-    actions.setSubmitting(true);
+    updateCharacterAttributes(
+      characterAttributes.id,
+      values as CharacterAttributes
+    ).then(() => {
+      actions.setSubmitting(true);
+      actions.resetForm();
+      handleClose();
+    });
   };
 
   const initialFormState = {
@@ -41,77 +50,77 @@ export default function CharacterAttributesModal({
   });
 
   return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Character Attributes</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Formik
-          validationSchema={schema}
-          onSubmit={handleSubmit}
-          initialValues={initialFormState}
-        >
-          {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
-            return (
+    <Formik
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      initialValues={initialFormState}
+    >
+      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+        return (
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Character Attributes</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
               <Form onSubmit={handleSubmit}>
                 <CharacterAttributeInput
                   id="strength"
                   label="Strength"
-                  defaultValue={values.strength}
-                  handleChange={handleChange}
+                  value={toString(values.strength)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The physical strength of your character."
                 />
 
                 <CharacterAttributeInput
                   id="dexterity"
                   label="Dexterity"
-                  defaultValue={values.dexterity}
-                  handleChange={handleChange}
+                  value={toString(values.dexterity)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The reaction speed of your character."
                 />
                 <CharacterAttributeInput
                   id="vitality"
                   label="Vitality"
-                  defaultValue={values.vitality}
-                  handleChange={handleChange}
+                  value={toString(values.vitality)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The hardiness of your character."
                 />
 
                 <CharacterAttributeInput
                   id="intelligence"
                   label="Intelligence"
-                  defaultValue={values.intelligence}
-                  handleChange={handleChange}
+                  value={toString(values.intelligence)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The intellect of your character."
                 />
                 <CharacterAttributeInput
                   id="mind"
                   label="Mind"
-                  defaultValue={values.mind}
-                  handleChange={handleChange}
+                  value={toString(values.mind)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The strength of your character's resolve"
                 />
 
                 <CharacterAttributeInput
                   id="piety"
                   label="Piety"
-                  defaultValue={values.piety}
-                  handleChange={handleChange}
+                  value={toString(values.piety)}
+                  onChange={(e: SyntheticEvent) => handleChange(e)}
                   description="The power of your character's faith in a higher power."
                 />
               </Form>
-            );
-          }}
-        </Formik>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => handleClose()}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={() => handleClose()}>
-          Save
-        </Button>
-      </Modal.Footer>
-    </Modal>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => handleClose()}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={() => handleSubmit()}>
+                Save
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        );
+      }}
+    </Formik>
   );
 }

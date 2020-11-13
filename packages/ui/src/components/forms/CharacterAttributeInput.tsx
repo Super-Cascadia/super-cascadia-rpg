@@ -1,5 +1,4 @@
-import React, { SyntheticEvent } from "react";
-import FormControl from "react-bootstrap/FormControl";
+import React from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -10,7 +9,8 @@ interface Props {
   label: string;
   description?: string;
   readOnly?: boolean;
-  handleChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (event: React.SyntheticEvent) => void;
+  value?: string;
 }
 
 export function CharacterAttributeInput({
@@ -19,20 +19,23 @@ export function CharacterAttributeInput({
   id,
   description,
   readOnly = false,
-  handleChange,
+  onChange,
+  value,
 }: Props) {
   return (
-    <Form.Group as={Col}>
+    <Form.Group as={Col} controlId={id}>
       <InputGroup size="sm">
         <InputGroup.Prepend>
-          <InputGroup.Text id={id}>{label}</InputGroup.Text>
+          <InputGroup.Text>{label}</InputGroup.Text>
         </InputGroup.Prepend>
-        <FormControl
+        <Form.Control
+          as="input"
+          value={value}
           readOnly={readOnly}
           defaultValue={defaultValue}
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
-          onChange={handleChange}
+          onChange={onChange}
         />
       </InputGroup>
       {description && (

@@ -20,6 +20,7 @@ export interface CharacterEquipment {
 }
 
 export interface CharacterAttributes {
+  id: number;
   strength: number;
   dexterity: number;
   vitality: number;
