@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Col from "react-bootstrap/Col";
@@ -10,6 +10,7 @@ interface Props {
   label: string;
   description?: string;
   readOnly?: boolean;
+  handleChange?: (event: React.SyntheticEvent) => void;
 }
 
 export function CharacterAttributeInput({
@@ -18,6 +19,7 @@ export function CharacterAttributeInput({
   id,
   description,
   readOnly = false,
+  handleChange,
 }: Props) {
   return (
     <Form.Group as={Col}>
@@ -30,6 +32,7 @@ export function CharacterAttributeInput({
           defaultValue={defaultValue}
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
+          onChange={handleChange}
         />
       </InputGroup>
       {description && (
