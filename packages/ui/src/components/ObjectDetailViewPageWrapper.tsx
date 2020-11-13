@@ -2,9 +2,7 @@ import React, { ReactElement } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
-import Form from "react-bootstrap/Form";
 import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
-import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
