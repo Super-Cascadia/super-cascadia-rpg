@@ -100,6 +100,7 @@ function CharacterEditForm({
 
       <br />
       <CharacterAttributesPanel
+        id={character.id}
         characterAttributes={character.characterAttributes}
         onRefresh={onRefresh}
       />

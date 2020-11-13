@@ -72,13 +72,17 @@ export function CharacterAttributesForm({
   );
 }
 
+interface Props {
+  characterAttributes: CharacterAttributes;
+  onRefresh: () => void;
+  id: number;
+}
+
 export function CharacterAttributesPanel({
   characterAttributes,
   onRefresh,
-}: {
-  characterAttributes: CharacterAttributes;
-  onRefresh: () => void;
-}) {
+  id,
+}: Props) {
   const [showAttributesModal, setModalViz] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -105,11 +109,14 @@ export function CharacterAttributesPanel({
           <CharacterAttributesForm characterAttributes={characterAttributes} />
         </Card.Body>
       </Card>
-      <CharacterAttributesModal
-        show={showAttributesModal}
-        characterAttributes={characterAttributes}
-        handleClose={handleClose}
-      />
+      {showAttributesModal && (
+        <CharacterAttributesModal
+          id={id}
+          show={showAttributesModal}
+          characterAttributes={characterAttributes}
+          handleClose={handleClose}
+        />
+      )}
     </div>
   );
 }

@@ -13,12 +13,7 @@ import { CharacterAttributesPanel } from "./components/CharacterAttributesPanel"
 import Card from "react-bootstrap/Card";
 import { getCharacterById } from "@super-cascadia-rpg/api/build/src/db/selectors/characters";
 import { getCharacter } from "../../api/characters/getCharacter";
-
-interface CharacterEditState {
-  character: CharacterWithAttributes;
-}
-
-type CharacterStateHook = [CharacterEditState, (data: any) => void];
+import { CharacterStateHook } from "../../hooks/store/characterStateHooks";
 
 function CharacterViewForm({
   character,
@@ -72,6 +67,7 @@ function CharacterViewForm({
       </Card>
       <br />
       <CharacterAttributesPanel
+        id={character.id}
         onRefresh={onRefresh}
         characterAttributes={character.characterAttributes}
       />
