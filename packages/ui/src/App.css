@@ -1,0 +1,7 @@
+.card .card-header h3 {
+    margin-bottom: 0px;
+}
+
+.card .card-header .card-controls button {
+    float: left;
+}

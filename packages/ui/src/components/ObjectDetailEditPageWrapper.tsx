@@ -5,6 +5,7 @@ import React, { ReactElement } from "react";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
 import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
+import Card from "react-bootstrap/Card";
 
 interface Props {
   objectId: number;
@@ -43,21 +44,28 @@ export const ObjectDetailEditPageWrapper = ({
       </Container>
       <Container>{children}</Container>
       <Container>
-        <Row>
-          <Col sm="1">
-            <Button variant="primary" type="submit" size="sm" disabled={!dirty}>
-              Submit
-            </Button>
-          </Col>
-          <Col sm="10" />
-          <Col sm="1">
-            <LinkContainer to={`/${routeName}/${objectId}/view`}>
-              <Button variant="secondary" type="submit" size="sm">
-                Cancel
+        <Card>
+          <Row>
+            <Col sm="1">
+              <Button
+                variant="primary"
+                type="submit"
+                size="sm"
+                disabled={!dirty}
+              >
+                Submit
               </Button>
-            </LinkContainer>
-          </Col>
-        </Row>
+            </Col>
+            <Col sm="10" />
+            <Col sm="1">
+              <LinkContainer to={`/${routeName}/${objectId}/view`}>
+                <Button variant="secondary" type="submit" size="sm">
+                  Cancel
+                </Button>
+              </LinkContainer>
+            </Col>
+          </Row>
+        </Card>
       </Container>
     </div>
   );

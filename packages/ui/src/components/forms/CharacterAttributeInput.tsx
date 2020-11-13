@@ -9,6 +9,7 @@ interface Props {
   defaultValue?: string | number;
   label: string;
   description?: string;
+  readOnly?: boolean;
 }
 
 export function CharacterAttributeInput({
@@ -16,6 +17,7 @@ export function CharacterAttributeInput({
   label,
   id,
   description,
+  readOnly = false,
 }: Props) {
   return (
     <Form.Group as={Col}>
@@ -24,7 +26,7 @@ export function CharacterAttributeInput({
           <InputGroup.Text id={id}>{label}</InputGroup.Text>
         </InputGroup.Prepend>
         <FormControl
-          readOnly
+          readOnly={readOnly}
           defaultValue={defaultValue}
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
