@@ -3,7 +3,6 @@ import { CharacterAttributeInput } from "../../../components/forms/CharacterAttr
 import React from "react";
 import { CharacterAttributes } from "@super-cascadia-rpg/api";
 import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 
 export function CharacterAttributesPanel({
   characterAttributes,
