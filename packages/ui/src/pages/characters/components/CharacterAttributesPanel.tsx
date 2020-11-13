@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import CharacterAttributesModal from "./CharacterAttributesModal";
+import { toString } from "lodash";
 
 export function CharacterAttributesForm({
   characterAttributes,
@@ -20,7 +21,7 @@ export function CharacterAttributesForm({
           id="strength"
           label="Strength"
           readOnly={true}
-          defaultValue={characterAttributes.strength}
+          value={toString(characterAttributes.strength)}
           description="The physical strength of your character."
         />
 
@@ -28,7 +29,7 @@ export function CharacterAttributesForm({
           id="dexterity"
           label="Dexterity"
           readOnly={true}
-          defaultValue={characterAttributes.dexterity}
+          value={toString(characterAttributes.dexterity)}
           description="The reaction speed of your character."
         />
       </Form.Row>
@@ -37,7 +38,7 @@ export function CharacterAttributesForm({
           id="vitality"
           label="Vitality"
           readOnly={true}
-          defaultValue={characterAttributes.vitality}
+          value={toString(characterAttributes.vitality)}
           description="The hardiness of your character."
         />
 
@@ -45,7 +46,7 @@ export function CharacterAttributesForm({
           id="intelligence"
           label="Intelligence"
           readOnly={true}
-          defaultValue={characterAttributes.intelligence}
+          value={toString(characterAttributes.intelligence)}
           description="The intellect of your character."
         />
       </Form.Row>
@@ -55,7 +56,7 @@ export function CharacterAttributesForm({
           id="mind"
           label="Mind"
           readOnly={true}
-          defaultValue={characterAttributes.mind}
+          value={toString(characterAttributes.mind)}
           description="The strength of your character's resolve"
         />
 
@@ -63,7 +64,7 @@ export function CharacterAttributesForm({
           id="piety"
           label="Piety"
           readOnly={true}
-          defaultValue={characterAttributes.piety}
+          value={toString(characterAttributes.piety)}
           description="The power of your character's faith in a higher power."
         />
       </Form.Row>
@@ -73,10 +74,17 @@ export function CharacterAttributesForm({
 
 export function CharacterAttributesPanel({
   characterAttributes,
+  onRefresh,
 }: {
   characterAttributes: CharacterAttributes;
+  onRefresh: () => void;
 }) {
   const [showAttributesModal, setModalViz] = useState<boolean>(false);
+
+  const handleClose = () => {
+    setModalViz(false);
+    onRefresh();
+  };
 
   return (
     <div>
@@ -100,7 +108,7 @@ export function CharacterAttributesPanel({
       <CharacterAttributesModal
         show={showAttributesModal}
         characterAttributes={characterAttributes}
-        handleClose={() => setModalViz(false)}
+        handleClose={handleClose}
       />
     </div>
   );

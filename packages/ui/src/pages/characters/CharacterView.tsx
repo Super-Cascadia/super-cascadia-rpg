@@ -11,6 +11,8 @@ import { primaryClassOptions } from "./constants";
 import Form from "react-bootstrap/Form";
 import { CharacterAttributesPanel } from "./components/CharacterAttributesPanel";
 import Card from "react-bootstrap/Card";
+import { getCharacterById } from "@super-cascadia-rpg/api/build/src/db/selectors/characters";
+import { getCharacter } from "../../api/characters/getCharacter";
 
 interface CharacterEditState {
   character: CharacterWithAttributes;
@@ -20,8 +22,10 @@ type CharacterStateHook = [CharacterEditState, (data: any) => void];
 
 function CharacterViewForm({
   character,
+  onRefresh,
 }: {
   character: CharacterWithAttributes;
+  onRefresh: () => void;
 }) {
   return (
     <Form>
@@ -68,6 +72,7 @@ function CharacterViewForm({
       </Card>
       <br />
       <CharacterAttributesPanel
+        onRefresh={onRefresh}
         characterAttributes={character.characterAttributes}
       />
     </Form>
@@ -91,6 +96,14 @@ export default function CharacterView() {
     {}
   );
 
+  const reloadData = () => {
+    getCharacter(toNumber(id), true).then((data) => {
+      setData({
+        character: data,
+      });
+    });
+  };
+
   if (isEmpty(character)) {
     return <Loading />;
   }
@@ -101,7 +114,7 @@ export default function CharacterView() {
       name={`${character.firstName} ${character.lastName}`}
       routeName={"characters"}
     >
-      <CharacterViewForm character={character} />
+      <CharacterViewForm character={character} onRefresh={reloadData} />
     </ObjectDetailViewPageWrapper>
   );
 }

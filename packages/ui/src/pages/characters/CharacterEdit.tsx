@@ -37,12 +37,14 @@ function CharacterEditForm({
   touched,
   errors,
   character,
+  onRefresh,
 }: {
   handleFormChange: (event: React.SyntheticEvent) => void;
   values: FormikValues;
   touched: FormikTouched<Values>;
   errors: FormikErrors<Values>;
   character: CharacterWithAttributes;
+  onRefresh: () => void;
 }) {
   const primaryClassString = toString(values.primaryClass);
 
@@ -99,6 +101,7 @@ function CharacterEditForm({
       <br />
       <CharacterAttributesPanel
         characterAttributes={character.characterAttributes}
+        onRefresh={onRefresh}
       />
     </div>
   );
@@ -130,6 +133,12 @@ export default function CharacterEdit() {
     // @ts-ignore
     {}
   );
+
+  const reloadData = () => {
+    getCharacter(toNumber(id), true).then((data) => {
+      setData(data);
+    });
+  };
 
   if (isEmpty(character)) {
     return <Loading />;
@@ -172,6 +181,7 @@ export default function CharacterEdit() {
                 touched={touched}
                 errors={errors}
                 character={character}
+                onRefresh={reloadData}
               />
             </ObjectDetailEditPageWrapper>
           </Form>
