@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  OneToMany,
+} from "typeorm";
 import { CharacterClassId } from "../../model/characterClass/characterClassModel";
 import { CharacterAttributes } from "./CharacterAttributes";
+import { CharacterInventory } from "./CharacterInventory";
 
 @Entity()
 export class Character {
@@ -25,4 +32,11 @@ export class Character {
   )
   // @ts-ignore
   characterAttributes: CharacterAttributes;
+
+  @OneToMany(
+    () => CharacterInventory,
+    (characterInventory) => characterInventory.character
+  )
+  // @ts-ignore
+  items: CharacterInventory[];
 }
