@@ -7,6 +7,7 @@ import duplicateCharacterHandler from "../../handlers/characters/duplicateCharac
 import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacterHandler";
 import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
 import { getAttributesForCharacterHandler } from "../../handlers/characters/getAttributesForCharacterHandler";
+import { createCharacterInventoryHandler } from "../../handlers/characterInventory/createCharacterInventoryHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -72,12 +73,25 @@ function duplicateCharacter(server: Server, connection: Connection) {
   });
 }
 
+function createCharacterInventory(server: Server, connection: Connection) {
+  server.route({
+    method: "POST",
+    path: "/characters/{id}/inventory",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      createCharacterInventoryHandler(connection, request),
+  });
+}
+
 export const characterRoutes = (server: Server, connection: Connection) => {
+  // Primary Object
   getCharacters(server, connection);
   createCharacter(server, connection);
   updateCharacter(server, connection);
   duplicateCharacter(server, connection);
   deleteCharacter(server, connection);
+  // Attributes
   createCharacterAttributes(server, connection);
   getCharacterAttributes(server, connection);
+  //  Inventory
+  createCharacterInventory(server, connection);
 };
