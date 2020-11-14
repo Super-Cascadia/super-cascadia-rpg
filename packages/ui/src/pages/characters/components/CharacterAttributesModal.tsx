@@ -41,6 +41,7 @@ function CharacterAttributesForm({
   touched,
   handleChange,
 }: AttributesFormProps) {
+  console.log(errors);
   return (
     <>
       <CharacterAttributeInput
@@ -185,7 +186,7 @@ export default function CharacterAttributesModal({
               </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => handleClose()}>
+              <Button variant="secondary" onClick={() => handleSubmit()}>
                 Close
               </Button>
               <Button

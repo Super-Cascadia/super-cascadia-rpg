@@ -43,10 +43,10 @@ export function CharacterAttributeInput({
           isInvalid={touched && !!errors}
           isValid={touched && !errors}
         />
+        {errors && (
+          <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+        )}
       </InputGroup>
-      {errors && (
-        <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
-      )}
       {description && (
         <Form.Text className="text-muted">{description}</Form.Text>
       )}
