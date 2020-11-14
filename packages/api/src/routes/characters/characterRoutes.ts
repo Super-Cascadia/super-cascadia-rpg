@@ -8,6 +8,7 @@ import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacte
 import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
 import { getAttributesForCharacterHandler } from "../../handlers/characters/getAttributesForCharacterHandler";
 import { createCharacterInventoryHandler } from "../../handlers/characterInventory/createCharacterInventoryHandler";
+import { getCharacterInventoryHandler } from "../../handlers/characterInventory/getCharacterInventoryHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -82,6 +83,15 @@ function createCharacterInventory(server: Server, connection: Connection) {
   });
 }
 
+function getCharacterInventory(server: Server, connection: Connection) {
+  server.route({
+    method: "GET",
+    path: "/characters/{id}/inventory",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      getCharacterInventoryHandler(connection, request),
+  });
+}
+
 export const characterRoutes = (server: Server, connection: Connection) => {
   // Primary Object
   getCharacters(server, connection);
@@ -94,4 +104,5 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   getCharacterAttributes(server, connection);
   //  Inventory
   createCharacterInventory(server, connection);
+  getCharacterInventory(server, connection);
 };
