@@ -8,12 +8,12 @@ import { getItemById } from "../../db/selectors/items";
 async function duplicateItemById(
   connection: Connection,
   id: string
-): Promise<ItemModel> {
+): Promise<Item> {
   return getItemById(connection, id).then((itemToDuplicate) => {
     const newItemBody = omit<ItemCreateModel>(itemToDuplicate, id);
     const newItem = connection.manager.insert(Item, newItemBody);
     // @ts-ignore
-    return newItem as ItemModel;
+    return newItem as Item;
   });
 }
 
