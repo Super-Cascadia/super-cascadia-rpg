@@ -11,6 +11,8 @@ interface Props {
   readOnly?: boolean;
   onChange?: (event: React.SyntheticEvent) => void;
   value?: string;
+  touched?: boolean;
+  errors?: string;
 }
 
 export function CharacterAttributeInput({
@@ -21,6 +23,8 @@ export function CharacterAttributeInput({
   readOnly = false,
   onChange,
   value,
+  errors,
+  touched,
 }: Props) {
   return (
     <Form.Group as={Col} controlId={id}>
@@ -36,8 +40,13 @@ export function CharacterAttributeInput({
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
           onChange={onChange}
+          isInvalid={touched && !!errors}
+          isValid={touched && !errors}
         />
       </InputGroup>
+      {errors && (
+        <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+      )}
       {description && (
         <Form.Text className="text-muted">{description}</Form.Text>
       )}
