@@ -11,33 +11,10 @@ import { CharacterInventoryStateHook } from "../../../hooks/store/characterState
 import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetchCharacterInventoryDataHook";
 import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../util/itemType";
+import CharacterInventoryTable from "../components/CharacterInventorTable";
 
 interface Props {
   character: CharacterWithAttributes;
-}
-
-function CharacterInventoryRow({
-  inventoryItem,
-}: {
-  inventoryItem: CharacterInventory;
-}) {
-  const itemTypeName = getItemTypeNameById(inventoryItem.item.type);
-
-  return (
-    <tr>
-      <td>
-        <Badge variant="primary">{inventoryItem.id}</Badge>
-      </td>
-      <td>
-        <Badge variant="secondary">{inventoryItem.item.id}</Badge>
-      </td>
-      <td>{inventoryItem.item.name}</td>
-      <td>
-        <Badge variant="info">{itemTypeName}</Badge>
-      </td>
-      <td>{inventoryItem.item.description}</td>
-    </tr>
-  );
 }
 
 export function CharacterInventoryView({ character }: Props) {
@@ -54,24 +31,8 @@ export function CharacterInventoryView({ character }: Props) {
   return (
     <Container>
       <br />
-
       <Row>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Item ID</th>
-              <th>Name</th>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {map(data, (item: CharacterInventory) => (
-              <CharacterInventoryRow inventoryItem={item} />
-            ))}
-          </tbody>
-        </Table>
+        <CharacterInventoryTable characterInventory={data} />
       </Row>
     </Container>
   );
