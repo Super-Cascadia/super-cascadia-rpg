@@ -19,24 +19,38 @@ interface Props {
 }
 
 export function CharacterInventoryView({ character }: Props) {
-  const [data, setData]: CharacterInventoryStateHook = useState(
-    [] as CharacterInventory[]
-  );
+  const [
+    characterInventory,
+    setCharacterInventory,
+  ]: CharacterInventoryStateHook = useState([] as CharacterInventory[]);
 
   useEffect(
-    fetchCharacterInventoryDataHook(toNumber(character.id), setData),
+    fetchCharacterInventoryDataHook(
+      toNumber(character.id),
+      setCharacterInventory
+    ),
     // @ts-ignore
     {}
   );
+
+  const handleDataReload = () => {
+    fetchCharacterInventoryDataHook(
+      toNumber(character.id),
+      setCharacterInventory
+    );
+  };
 
   return (
     <Container>
       <br />
       <Row>
-        <AddCharacterInventory characterId={character.id} />
+        <AddCharacterInventory
+          characterId={character.id}
+          onDataReload={handleDataReload}
+        />
       </Row>
       <Row>
-        <CharacterInventoryTable characterInventory={data} />
+        <CharacterInventoryTable characterInventory={characterInventory} />
       </Row>
     </Container>
   );

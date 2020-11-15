@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Badge from "react-bootstrap/Badge";
 
 interface Props {
   objectId: number;
@@ -33,7 +34,7 @@ export default function ObjectDetailViewPageWrapper({
         <Row>
           <Col xs={11}>
             <h1>
-              {name} ({objectId})
+              {name} - <Badge variant="secondary">{objectId}</Badge>
             </h1>
           </Col>
           <Col xs={1}>

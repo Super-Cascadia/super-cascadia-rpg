@@ -1,4 +1,4 @@
-import { getCharacterAttributes } from "../../../api/characters/getCharacterAttributes";
+import { getCharacterAttributes } from "../../../api/characters/attributes/getCharacterAttributes";
 
 export default function getEffect(id: number, setData: (data: any) => void) {
   return () => {

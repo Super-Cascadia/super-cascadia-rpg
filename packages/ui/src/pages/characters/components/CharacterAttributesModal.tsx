@@ -12,12 +12,12 @@ import {
   FormikValues,
 } from "formik";
 import * as yup from "yup";
-import updateCharacterAttributes from "../../../api/characterAttributes/updateCharacterAttributes";
+import updateCharacterAttributes from "../../../api/characters/attributes/updateCharacterAttributes";
 import { isEmpty, toNumber, toString } from "lodash";
 import { CharacterAttributesStateHook } from "../../../hooks/store/characterStateHooks";
 import fetchCharacterAttributesDataHook from "../../../hooks/api/characters/fetchCharacterAttributesDataHook";
 import Loading from "../../../components/Loading";
-import { getCharacterAttributes } from "../../../api/characters/getCharacterAttributes";
+import { getCharacterAttributes } from "../../../api/characters/attributes/getCharacterAttributes";
 
 interface Values {
   strength: number;

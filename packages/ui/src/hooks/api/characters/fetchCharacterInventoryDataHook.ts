@@ -1,4 +1,4 @@
-import { getCharacterInventory } from "../../../api/characters/getCharacterInventory";
+import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";
 
 export default function getEffect(id: number, setData: (data: any) => void) {
   return () => {
