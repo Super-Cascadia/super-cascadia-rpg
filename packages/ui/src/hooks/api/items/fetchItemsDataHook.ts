@@ -1,5 +1,5 @@
 import { ITEM_GRID_TABS } from "../../../pages/Items/ItemGrid/ItemGrid";
-import { getItemTypeIdByTabName } from "../../../util/itemType";
+import { getItems } from "../../../api/items/getItems";
 
 export default function getEffect(
   type: ITEM_GRID_TABS,
@@ -8,12 +8,7 @@ export default function getEffect(
 ) {
   return () => {
     async function fetchData() {
-      const requestUrl =
-        type === ITEM_GRID_TABS.ALL
-          ? `/items`
-          : `/items?type=${getItemTypeIdByTabName(type)}`;
-      const response = await fetch(requestUrl);
-      const items = await response.json();
+      const items = await getItems(type);
 
       setItemsState(items);
       setLoadingState(false);

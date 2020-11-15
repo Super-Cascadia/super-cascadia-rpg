@@ -12,6 +12,7 @@ import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetch
 import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../util/itemType";
 import CharacterInventoryTable from "../components/CharacterInventoryTable";
+import AddCharacterInventory from "../components/AddCharacterInventory";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -31,6 +32,9 @@ export function CharacterInventoryView({ character }: Props) {
   return (
     <Container>
       <br />
+      <Row>
+        <AddCharacterInventory characterId={character.id} />
+      </Row>
       <Row>
         <CharacterInventoryTable characterInventory={data} />
       </Row>
