@@ -11,7 +11,7 @@ import { CharacterInventoryStateHook } from "../../../hooks/store/characterState
 import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetchCharacterInventoryDataHook";
 import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../util/itemType";
-import CharacterInventoryTable from "../components/CharacterInventorTable";
+import CharacterInventoryTable from "../components/CharacterInventoryTable";
 
 interface Props {
   character: CharacterWithAttributes;
