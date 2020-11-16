@@ -4,13 +4,10 @@ import {
 } from "@super-cascadia-rpg/api";
 import Container from "react-bootstrap/Container";
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import { toNumber, map } from "lodash";
 import { CharacterInventoryStateHook } from "../../../hooks/store/characterStateHooks";
 import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetchCharacterInventoryDataHook";
-import Badge from "react-bootstrap/Badge";
-import { getItemTypeNameById } from "../../../util/itemType";
 import CharacterInventoryTable from "../components/CharacterInventoryTable";
 import AddCharacterInventory from "../components/AddCharacterInventory";
 import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";

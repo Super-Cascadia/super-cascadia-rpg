@@ -5,11 +5,11 @@ import { getItemTypeNameById } from "../../../util/itemType";
 import Badge from "react-bootstrap/Badge";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 
-function CharacterInventoryRow({
-  inventoryItem,
-}: {
+interface InventoryRowProps {
   inventoryItem: CharacterInventory;
-}) {
+}
+
+function CharacterInventoryRow({ inventoryItem }: InventoryRowProps) {
   const itemTypeName = getItemTypeNameById(inventoryItem.item.type);
 
   return (
