@@ -82,7 +82,7 @@ export default function AddCharacterInventory({
 
         return (
           <Form onSubmit={handleSubmit} noValidate>
-            <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Group controlId="itemId">
               <Form.Label>Add Inventory</Form.Label>
               <Row>
                 <Col xs={10}>

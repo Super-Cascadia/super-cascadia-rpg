@@ -13,6 +13,7 @@ import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../util/itemType";
 import CharacterInventoryTable from "../components/CharacterInventoryTable";
 import AddCharacterInventory from "../components/AddCharacterInventory";
+import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -33,11 +34,12 @@ export function CharacterInventoryView({ character }: Props) {
     {}
   );
 
-  const handleDataReload = () => {
-    fetchCharacterInventoryDataHook(
-      toNumber(character.id),
-      setCharacterInventory
+  const handleDataReload = async () => {
+    const characterInventory = await getCharacterInventory(
+      toNumber(character.id)
     );
+
+    setCharacterInventory(characterInventory);
   };
 
   return (

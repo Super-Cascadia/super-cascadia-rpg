@@ -11,11 +11,13 @@ function prepareCharacterInventoryObject(character: Character, item: Item) {
   characterInventory.character = character;
   characterInventory.item = item;
 
+  console.log("characterInventory", characterInventory);
+
   return characterInventory;
 }
 
 interface CreateInventoryRequestBody {
-  id: string;
+  itemId: string;
 }
 
 export const createCharacterInventoryHandler = async (
@@ -25,9 +27,11 @@ export const createCharacterInventoryHandler = async (
   try {
     const payload = request.payload as CreateInventoryRequestBody;
 
+    console.log("request", request.params.id, payload.itemId);
+
     return Promise.all([
       getCharacterById(connection, request.params.id),
-      getItemById(connection, payload.id),
+      getItemById(connection, payload.itemId),
     ]).then(([character, item]) => {
       console.log(character, item);
       if (character && item) {
