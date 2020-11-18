@@ -4,6 +4,7 @@ import React from "react";
 import { getItemTypeNameById } from "../../../util/itemType";
 import Badge from "react-bootstrap/Badge";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
+import Dropdown from "react-bootstrap/Dropdown";
 
 interface InventoryRowProps {
   inventoryItem: CharacterInventory;
@@ -25,6 +26,19 @@ function CharacterInventoryRow({ inventoryItem }: InventoryRowProps) {
         <Badge variant="info">{itemTypeName}</Badge>
       </td>
       <td>{inventoryItem.item.description}</td>
+      <td>
+        <Dropdown>
+          <Dropdown.Toggle variant="secondary" size="sm" id="dropdown-basic">
+            Actions
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </td>
     </tr>
   );
 }
@@ -35,7 +49,7 @@ interface Props {
 
 export default function CharacterInventoryTable({ characterInventory }: Props) {
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover size="sm">
       <thead>
         <tr>
           <th>ID</th>
@@ -43,6 +57,7 @@ export default function CharacterInventoryTable({ characterInventory }: Props) {
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
+          <th>Option</th>
         </tr>
       </thead>
       <tbody>
