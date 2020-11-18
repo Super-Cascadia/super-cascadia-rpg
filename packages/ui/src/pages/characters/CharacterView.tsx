@@ -7,7 +7,7 @@ import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { getCharacter } from "../../api/characters/getCharacter";
 import { CharacterStateHook } from "../../hooks/store/characterStateHooks";
-import { CharacterViewForm } from "./views/CharacterProfile";
+import { CharacterProfile } from "./views/CharacterProfile";
 import { CharacterInventoryView } from "./views/CharacterInventory";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
@@ -75,8 +75,7 @@ export default function CharacterView() {
         <Row>
           <Switch>
             <Route exact path={`${path}/profile`}>
-              <br />
-              <CharacterViewForm character={character} onRefresh={reloadData} />
+              <CharacterProfile character={character} onRefresh={reloadData} />
             </Route>
             <Route exact path={`${path}/inventory`}>
               <CharacterInventoryView character={character} />
