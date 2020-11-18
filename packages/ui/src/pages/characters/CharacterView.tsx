@@ -9,50 +9,12 @@ import { getCharacter } from "../../api/characters/getCharacter";
 import { CharacterStateHook } from "../../hooks/store/characterStateHooks";
 import { CharacterProfile } from "./views/CharacterProfile";
 import { CharacterInventoryView } from "./views/CharacterInventory";
-import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
-import { LinkContainer } from "react-router-bootstrap";
-
-function CharacterSubNav() {
-  const { url, path } = useRouteMatch();
-
-  let activeKey = `${url}/${path}`;
-
-  console.log("active-key", activeKey);
-  return (
-    <Nav
-      fill
-      variant="tabs"
-      defaultActiveKey={`${url}/profile`}
-      activeKey={activeKey}
-    >
-      <Nav.Item>
-        <LinkContainer to={`${url}/profile`}>
-          <Nav.Link href={`${url}/profile`}>Profile</Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to={`${url}/inventory`}>
-          <Nav.Link href={`${url}/inventory`}>Inventory</Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to={`${url}/skills`}>
-          <Nav.Link disabled>Skills</Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to={`${url}/equipment`}>
-          <Nav.Link disabled>Equipment</Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-    </Nav>
-  );
-}
+import CharacterSubNav from "./components/CharacterSubNav";
 
 export default function CharacterView() {
   const { id } = useParams();
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   const [data, setData]: CharacterStateHook = useState({
     character: {} as CharacterWithAttributes,

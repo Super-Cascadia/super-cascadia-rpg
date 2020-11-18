@@ -10,6 +10,21 @@ interface InventoryRowProps {
   inventoryItem: CharacterInventory;
 }
 
+function getActionsDropdown() {
+  return (
+    <Dropdown>
+      <Dropdown.Toggle variant="secondary" size="sm" id="dropdown-basic">
+        Actions
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        <Dropdown.Item href="#/action-1">View Item</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Delete</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
+
 function CharacterInventoryRow({ inventoryItem }: InventoryRowProps) {
   const itemTypeName = getItemTypeNameById(inventoryItem.item.type);
 
@@ -26,19 +41,7 @@ function CharacterInventoryRow({ inventoryItem }: InventoryRowProps) {
         <Badge variant="info">{itemTypeName}</Badge>
       </td>
       <td>{inventoryItem.item.description}</td>
-      <td>
-        <Dropdown>
-          <Dropdown.Toggle variant="secondary" size="sm" id="dropdown-basic">
-            Actions
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </td>
+      <td>{getActionsDropdown()}</td>
     </tr>
   );
 }
