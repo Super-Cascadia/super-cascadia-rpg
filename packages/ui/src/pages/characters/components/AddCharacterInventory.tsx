@@ -7,9 +7,11 @@ import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
 import { Item } from "@super-cascadia-rpg/api";
 import { ITEM_GRID_TABS } from "../../Items/ItemGrid/ItemGrid";
 import { map } from "lodash";
-import { Formik, FormikHelpers, FormikProps, FormikValues } from "formik";
+import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import { addCharacterInventory } from "../../../api/characters/inventory/addCharacterInventor";
+
+const DEFAULT_OPTION_ID = "--";
 
 function ItemSelectControl({
   items,
@@ -20,6 +22,22 @@ function ItemSelectControl({
   selectedItem: string;
   handleChange: (event: React.SyntheticEvent) => void;
 }) {
+  const defaultOption = (
+    <option value={DEFAULT_OPTION_ID} key="default">
+      --
+    </option>
+  );
+
+  const itemOptions = map(items, (item: Item) => {
+    return (
+      <option value={item.id} key={item.id}>
+        {item.id} - {item.name}
+      </option>
+    );
+  });
+
+  const selectOptions = [defaultOption, ...itemOptions];
+
   return (
     <Form.Control
       as="select"
@@ -28,13 +46,7 @@ function ItemSelectControl({
       value={selectedItem}
       id="itemId"
     >
-      {map(items, (item: Item) => {
-        return (
-          <option value={item.id} key={item.id}>
-            {item.id} - {item.name}
-          </option>
-        );
-      })}
+      {selectOptions}
     </Form.Control>
   );
 }
@@ -57,10 +69,15 @@ export default function AddCharacterInventory({
   );
 
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
-    actions.setSubmitting(true);
-    addCharacterInventory(characterId, values.itemId).then((response) => {
-      onDataReload();
-    });
+    console.log(values);
+
+    if (values.itemId !== DEFAULT_OPTION_ID) {
+      actions.setSubmitting(true);
+      addCharacterInventory(characterId, values.itemId).then((response) => {
+        onDataReload();
+        actions.resetForm();
+      });
+    }
   };
 
   const initialFormState = {
@@ -78,8 +95,6 @@ export default function AddCharacterInventory({
       initialValues={initialFormState}
     >
       {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
-        console.log(values);
-
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <Form.Group controlId="itemId">

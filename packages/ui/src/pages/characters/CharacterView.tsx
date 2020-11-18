@@ -7,8 +7,6 @@ import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { getCharacter } from "../../api/characters/getCharacter";
 import { CharacterStateHook } from "../../hooks/store/characterStateHooks";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 import { CharacterViewForm } from "./views/CharacterProfile";
 import { CharacterInventoryView } from "./views/CharacterInventory";
 import Nav from "react-bootstrap/Nav";
