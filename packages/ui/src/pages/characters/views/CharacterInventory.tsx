@@ -12,6 +12,7 @@ import CharacterInventoryTable from "../components/CharacterInventoryTable";
 import AddCharacterInventory from "../components/AddCharacterInventory";
 import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";
 import DeleteCharacterInventoryModal from "../components/modal/DeleteCharacterInventoryModal";
+import deleteCharacterInventory from "../../../api/characters/inventory/deleteCharacterInventory";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -51,7 +52,10 @@ export function CharacterInventoryView({ character }: Props) {
   };
 
   const handleDeleteInventory = (itemId?: number) => {
-    if (!itemId) {
+    if (itemId) {
+      deleteCharacterInventory(character.id, itemId).then(() => {
+        handleDataReload();
+      });
     }
 
     setSelectedItem(null);
