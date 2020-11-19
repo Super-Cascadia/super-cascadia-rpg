@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import CharacterAttributesModal from "./CharacterAttributesModal";
+import CharacterAttributesModal from "./modal/CharacterAttributesModal";
 import { toString } from "lodash";
 
 export function CharacterAttributesForm({

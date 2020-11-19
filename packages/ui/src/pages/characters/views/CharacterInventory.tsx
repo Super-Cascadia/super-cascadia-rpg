@@ -11,6 +11,7 @@ import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetch
 import CharacterInventoryTable from "../components/CharacterInventoryTable";
 import AddCharacterInventory from "../components/AddCharacterInventory";
 import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";
+import DeleteCharacterInventoryModal from "../components/modal/DeleteCharacterInventoryModal";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -21,6 +22,11 @@ export function CharacterInventoryView({ character }: Props) {
     characterInventory,
     setCharacterInventory,
   ]: CharacterInventoryStateHook = useState([] as CharacterInventory[]);
+  const [showDeleteModal, setDeleteModalVisibility] = useState<boolean>(false);
+  const [selectedItemId, setSelectedItem] = useState<number | null>(null);
+  const selectedItem = characterInventory?.find(
+    (inventoryItem: CharacterInventory) => inventoryItem.id === selectedItemId
+  );
 
   useEffect(
     fetchCharacterInventoryDataHook(
@@ -39,8 +45,21 @@ export function CharacterInventoryView({ character }: Props) {
     setCharacterInventory(characterInventory);
   };
 
+  const handleShowDeleteInventoryModal = (item: CharacterInventory) => {
+    setSelectedItem(item.id);
+    setDeleteModalVisibility(true);
+  };
+
+  const handleDeleteInventory = (itemId?: number) => {
+    if (!itemId) {
+    }
+
+    setSelectedItem(null);
+    setDeleteModalVisibility(false);
+  };
+
   return (
-    <Container>
+    <div>
       <br />
       <Row>
         <AddCharacterInventory
@@ -49,8 +68,19 @@ export function CharacterInventoryView({ character }: Props) {
         />
       </Row>
       <Row>
-        <CharacterInventoryTable characterInventory={characterInventory} />
+        <CharacterInventoryTable
+          characterInventory={characterInventory}
+          handleShowDeleteModal={handleShowDeleteInventoryModal}
+        />
       </Row>
-    </Container>
+      {showDeleteModal && selectedItem && (
+        <DeleteCharacterInventoryModal
+          show={showDeleteModal}
+          selectedItem={selectedItem}
+          handleClose={handleDeleteInventory}
+          characterId={character.id}
+        />
+      )}
+    </div>
   );
 }
