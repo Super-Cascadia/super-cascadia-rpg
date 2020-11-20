@@ -53,7 +53,7 @@ export function CharacterInventoryView({ character }: Props) {
 
   const handleDeleteInventory = (itemId?: number) => {
     if (itemId) {
-      deleteCharacterInventory(character.id, itemId).then(() => {
+      deleteCharacterInventory(itemId).then(() => {
         handleDataReload();
       });
     }

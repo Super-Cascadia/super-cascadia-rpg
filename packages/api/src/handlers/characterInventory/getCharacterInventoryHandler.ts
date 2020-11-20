@@ -1,10 +1,5 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
-import {
-  getCharacterAttributesById,
-  getAllCharacterAttributes,
-} from "../../db/selectors/characterAttributes";
 import { CharacterInventory } from "../../db/entity/CharacterInventory";
 import { getCharacterInventory } from "../../db/selectors/characterInventory";
 
