@@ -8,6 +8,7 @@ import {
 import { CharacterClassId } from "../../model/characterClass/characterClassModel";
 import { CharacterAttributes } from "./CharacterAttributes";
 import { CharacterInventory } from "./CharacterInventory";
+import { CharacterEquipment } from "./CharacterEquipment";
 
 @Entity()
 export class Character {
@@ -26,17 +27,18 @@ export class Character {
   @Column()
   primaryClass!: CharacterClassId;
 
-  @OneToOne(
-    (type) => CharacterAttributes,
-    (characterAttributes) => characterAttributes.character
-  )
+  @OneToOne((type) => CharacterAttributes, (attributes) => attributes.character)
   // @ts-ignore
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
+
+  @OneToOne((type) => CharacterEquipment, (inventory) => inventory.character)
+  // @ts-ignore
+  equipment: CharacterEquipment;
 
   @OneToMany(
     () => CharacterInventory,
     (characterInventory) => characterInventory.character
   )
   // @ts-ignore
-  items: CharacterInventory[];
+  inventory: CharacterInventory[];
 }

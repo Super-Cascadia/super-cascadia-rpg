@@ -7,7 +7,7 @@ export class CharacterInventory {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Character, (character) => character.items)
+  @ManyToOne(() => Character, (character) => character.inventory)
   // @ts-ignore
   character: Character;
 
