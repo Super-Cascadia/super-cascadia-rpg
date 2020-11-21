@@ -63,7 +63,7 @@ export function CharacterInventoryView({ character }: Props) {
   };
 
   return (
-    <div>
+    <Container>
       <br />
       <Row>
         <AddCharacterInventory
@@ -85,6 +85,6 @@ export function CharacterInventoryView({ character }: Props) {
           characterId={character.id}
         />
       )}
-    </div>
+    </Container>
   );
 }
