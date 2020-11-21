@@ -1,5 +1,6 @@
 import { Connection } from "typeorm";
 import { CharacterInventory } from "../entity/CharacterInventory";
+import { CharacterAttributes } from "../entity/CharacterAttributes";
 
 export async function getCharacterInventory(
   connection: Connection,
@@ -11,4 +12,11 @@ export async function getCharacterInventory(
     },
     relations: ["item", "character"],
   });
+}
+
+export async function getCharacterInventoryById(
+  connection: Connection,
+  id: string
+): Promise<CharacterInventory | undefined> {
+  return connection.manager.findOne<CharacterInventory>(CharacterInventory, id);
 }

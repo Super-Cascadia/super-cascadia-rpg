@@ -11,8 +11,6 @@ function prepareCharacterInventoryObject(character: Character, item: Item) {
   characterInventory.character = character;
   characterInventory.item = item;
 
-  console.log("characterInventory", characterInventory);
-
   return characterInventory;
 }
 

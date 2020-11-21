@@ -10,6 +10,7 @@ import { getAttributesForCharacterHandler } from "../../handlers/characters/getA
 import { createCharacterInventoryHandler } from "../../handlers/characterInventory/createCharacterInventoryHandler";
 import { getCharacterInventoryHandler } from "../../handlers/characterInventory/getCharacterInventoryHandler";
 import { deleteCharacterInventoryHandler } from "../../handlers/characterInventory/deleteCharacterInventoryHandler";
+import { createCharacterEquipmentHandler } from "../../handlers/characterEquipment/createCharacterEquipmentHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -27,24 +28,6 @@ function createCharacter(server: Server, connection: Connection) {
     path: "/characters",
     handler: async (request: Request, reply: ResponseToolkit) =>
       createCharacterHandler(connection, request, reply),
-  });
-}
-
-function createCharacterAttributes(server: Server, connection: Connection) {
-  server.route({
-    method: "POST",
-    path: "/characters/{id}/attributes",
-    handler: async (request: Request, reply: ResponseToolkit) =>
-      createCharacterAttributesHandler(connection, request),
-  });
-}
-
-function getCharacterAttributes(server: Server, connection: Connection) {
-  server.route({
-    method: "GET",
-    path: "/characters/{id}/attributes",
-    handler: async (request: Request, reply: ResponseToolkit) =>
-      getAttributesForCharacterHandler(connection, request),
   });
 }
 
@@ -75,6 +58,28 @@ function duplicateCharacter(server: Server, connection: Connection) {
   });
 }
 
+// Attributes
+
+function createCharacterAttributes(server: Server, connection: Connection) {
+  server.route({
+    method: "POST",
+    path: "/characters/{id}/attributes",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      createCharacterAttributesHandler(connection, request),
+  });
+}
+
+function getCharacterAttributes(server: Server, connection: Connection) {
+  server.route({
+    method: "GET",
+    path: "/characters/{id}/attributes",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      getAttributesForCharacterHandler(connection, request),
+  });
+}
+
+// Inventory
+
 function createCharacterInventory(server: Server, connection: Connection) {
   server.route({
     method: "POST",
@@ -102,6 +107,17 @@ function deleteCharacterInventory(server: Server, connection: Connection) {
   });
 }
 
+// Equipment
+
+function createCharacterEquipment(server: Server, connection: Connection) {
+  server.route({
+    method: "POST",
+    path: "/characters/{id}/equipment",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      createCharacterEquipmentHandler(connection, request),
+  });
+}
+
 export const characterRoutes = (server: Server, connection: Connection) => {
   // Primary Object
   getCharacters(server, connection);
@@ -116,4 +132,6 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   createCharacterInventory(server, connection);
   getCharacterInventory(server, connection);
   deleteCharacterInventory(server, connection);
+  //  Equipment
+  createCharacterEquipment(server, connection);
 };
