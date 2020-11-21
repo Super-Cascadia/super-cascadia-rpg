@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 export default function TopNavigation() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Navbar.Brand href="/home">Super Cascadia</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
