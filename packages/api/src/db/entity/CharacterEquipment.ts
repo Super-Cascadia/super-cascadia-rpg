@@ -38,7 +38,7 @@ export class CharacterEquipment {
   // @ts-ignore
   arms: CharacterInventory;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory)
   // @ts-ignore
   legs: CharacterInventory;
 

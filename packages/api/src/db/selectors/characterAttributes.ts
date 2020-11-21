@@ -14,3 +14,12 @@ export async function getCharacterAttributesById(
     id
   );
 }
+
+export async function getCharacterAttributes(
+  connection: Connection,
+  id: string
+): Promise<CharacterAttributes | undefined> {
+  return connection.manager.findOne<CharacterAttributes>(CharacterAttributes, {
+    where: { characterId: id },
+  });
+}

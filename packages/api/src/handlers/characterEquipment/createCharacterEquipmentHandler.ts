@@ -40,12 +40,10 @@ export const createCharacterEquipmentHandler = async (
     ]).then(([character, inventoryItem]) => {
       console.log(character, inventoryItem);
       if (character && inventoryItem) {
-        const characterEquipment = prepareEquipmentObjectObject(
-          character,
-          inventoryItem
+        return connection.manager.save(
+          CharacterEquipment,
+          prepareEquipmentObjectObject(character, inventoryItem)
         );
-
-        return connection.manager.save(CharacterEquipment, characterEquipment);
       }
 
       return Promise.resolve(undefined);

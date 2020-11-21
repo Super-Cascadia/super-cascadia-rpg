@@ -11,6 +11,7 @@ import { createCharacterInventoryHandler } from "../../handlers/characterInvento
 import { getCharacterInventoryHandler } from "../../handlers/characterInventory/getCharacterInventoryHandler";
 import { deleteCharacterInventoryHandler } from "../../handlers/characterInventory/deleteCharacterInventoryHandler";
 import { createCharacterEquipmentHandler } from "../../handlers/characterEquipment/createCharacterEquipmentHandler";
+import { getCharacterEquipmentHandler } from "../../handlers/characterEquipment/getCharacterEquipmentHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -118,6 +119,15 @@ function createCharacterEquipment(server: Server, connection: Connection) {
   });
 }
 
+function getCharacterEquipment(server: Server, connection: Connection) {
+  server.route({
+    method: "GET",
+    path: "/characters/{id}/equipment",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      getCharacterEquipmentHandler(connection, request),
+  });
+}
+
 export const characterRoutes = (server: Server, connection: Connection) => {
   // Primary Object
   getCharacters(server, connection);
@@ -134,4 +144,5 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   deleteCharacterInventory(server, connection);
   //  Equipment
   createCharacterEquipment(server, connection);
+  getCharacterEquipment(server, connection);
 };

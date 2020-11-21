@@ -1,6 +1,5 @@
 import { Connection } from "typeorm";
 import { Character } from "../entity/Character";
-import { CharacterAttributes } from "../entity/CharacterAttributes";
 import { RequestQuery } from "@hapi/hapi";
 import { filter, includes, split } from "lodash";
 
@@ -37,13 +36,4 @@ export async function getCharacterById(
   }
 
   return connection.manager.findOne<Character>(Character, id);
-}
-
-export async function getCharacterAttributes(
-  connection: Connection,
-  id: string
-): Promise<CharacterAttributes | undefined> {
-  return connection.manager.findOne<CharacterAttributes>(CharacterAttributes, {
-    where: { characterId: id },
-  });
 }
