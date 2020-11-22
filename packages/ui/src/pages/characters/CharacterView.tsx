@@ -16,6 +16,10 @@ import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import profile from "../../images/profile.jpeg";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function CharacterView() {
   const { id } = useParams();
@@ -71,15 +75,24 @@ export default function CharacterView() {
                     now={80}
                     label={`${80} / 100`}
                   />
-                  <p>Health</p>
+                  <p>
+                    <FontAwesomeIcon icon={faHeart} />
+                    <span>Health</span>
+                  </p>
                   <ProgressBar variant="info" now={100} label={`${10} / 10`} />
-                  <p>Mana</p>
+                  <p>
+                    <FontAwesomeIcon icon={faHandSparkles} />
+                    Mana
+                  </p>
                   <ProgressBar
                     variant="warning"
                     now={40}
                     label={`${40} / 100`}
                   />
-                  <p>Experience</p>
+                  <p>
+                    <FontAwesomeIcon icon={faFlag} />
+                    Experience
+                  </p>
                 </Col>
               </Row>
             </Card.Body>
