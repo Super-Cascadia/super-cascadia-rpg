@@ -5,9 +5,9 @@ import React from "react";
 import { CharacterAttributes } from "@super-cascadia-rpg/api";
 
 export function CharacterAttributesForm({
-  characterAttributes,
+  attributes,
 }: {
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
 }) {
   return (
     <>
@@ -16,7 +16,7 @@ export function CharacterAttributesForm({
           id="strength"
           label="Strength"
           readOnly={true}
-          value={toString(characterAttributes.strength)}
+          value={toString(attributes.strength)}
           description="The physical strength of your character."
         />
 
@@ -24,7 +24,7 @@ export function CharacterAttributesForm({
           id="dexterity"
           label="Dexterity"
           readOnly={true}
-          value={toString(characterAttributes.dexterity)}
+          value={toString(attributes.dexterity)}
           description="The reaction speed of your character."
         />
       </Form.Row>
@@ -33,7 +33,7 @@ export function CharacterAttributesForm({
           id="vitality"
           label="Vitality"
           readOnly={true}
-          value={toString(characterAttributes.vitality)}
+          value={toString(attributes.vitality)}
           description="The hardiness of your character."
         />
 
@@ -41,7 +41,7 @@ export function CharacterAttributesForm({
           id="intelligence"
           label="Intelligence"
           readOnly={true}
-          value={toString(characterAttributes.intelligence)}
+          value={toString(attributes.intelligence)}
           description="The intellect of your character."
         />
       </Form.Row>
@@ -51,7 +51,7 @@ export function CharacterAttributesForm({
           id="mind"
           label="Mind"
           readOnly={true}
-          value={toString(characterAttributes.mind)}
+          value={toString(attributes.mind)}
           description="The strength of your character's resolve"
         />
 
@@ -59,7 +59,7 @@ export function CharacterAttributesForm({
           id="piety"
           label="Piety"
           readOnly={true}
-          value={toString(characterAttributes.piety)}
+          value={toString(attributes.piety)}
           description="The power of your character's faith in a higher power."
         />
       </Form.Row>

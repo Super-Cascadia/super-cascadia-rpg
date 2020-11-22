@@ -15,7 +15,7 @@ import { CharacterAttributesForm } from "../form/CharacterAttributesForm";
 
 interface Props {
   show: boolean;
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
   handleClose: () => void;
   id: number;
 }
@@ -26,9 +26,9 @@ export default function CharacterAttributesModal({
   id,
 }: Props) {
   const [data, setData]: CharacterAttributesStateHook = useState({
-    characterAttributes: {} as CharacterAttributes,
+    attributes: {} as CharacterAttributes,
   });
-  const { characterAttributes } = data;
+  const { attributes } = data;
 
   useEffect(
     fetchCharacterAttributesDataHook(toNumber(id), setData),
@@ -38,7 +38,7 @@ export default function CharacterAttributesModal({
 
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
     updateCharacterAttributes(
-      characterAttributes.id,
+      attributes.id,
       values as CharacterAttributes
     ).then((response) => {
       getCharacterAttributes(id).then((updatedAttributes) => {
@@ -51,17 +51,17 @@ export default function CharacterAttributesModal({
     });
   };
 
-  if (isEmpty(characterAttributes)) {
+  if (isEmpty(attributes)) {
     return <Loading />;
   }
 
   const initialFormState = {
-    strength: data.characterAttributes.strength,
-    dexterity: data.characterAttributes.dexterity,
-    vitality: data.characterAttributes.vitality,
-    intelligence: data.characterAttributes.intelligence,
-    mind: data.characterAttributes.mind,
-    piety: data.characterAttributes.piety,
+    strength: data.attributes.strength,
+    dexterity: data.attributes.dexterity,
+    vitality: data.attributes.vitality,
+    intelligence: data.attributes.intelligence,
+    mind: data.attributes.mind,
+    piety: data.attributes.piety,
   };
 
   const schema = yup.object({

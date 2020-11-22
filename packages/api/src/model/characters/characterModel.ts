@@ -1,23 +1,5 @@
-import { ItemModel } from "../items/itemModel";
-import {
-  CharacterClass,
-  CharacterClassId,
-} from "../characterClass/characterClassModel";
-
-export interface CharacterSkills {
-  id: 1;
-  name: string;
-  description: string;
-}
-
-export interface CharacterEquipment {
-  hand: ItemModel;
-  head: ItemModel;
-  chest: ItemModel;
-  arms: ItemModel;
-  legs: ItemModel;
-  feet: ItemModel;
-}
+import { CharacterClassId } from "../characterClass/characterClassModel";
+import { Character } from "../../db/entity/Character";
 
 export interface CharacterAttributes {
   id: number;
@@ -34,7 +16,7 @@ export interface CharacterWithAttributes extends CharacterModel {
   firstName: string;
   lastName: string;
   description: string;
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
 }
 
 export interface CharacterModel extends CharacterCreateModel {

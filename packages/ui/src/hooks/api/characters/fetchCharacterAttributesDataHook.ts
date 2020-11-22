@@ -3,10 +3,10 @@ import { getCharacterAttributes } from "../../../api/characters/attributes/getCh
 export default function getEffect(id: number, setData: (data: any) => void) {
   return () => {
     async function fetchData(id: number) {
-      const characterAttributes = await getCharacterAttributes(id);
+      const attributes = await getCharacterAttributes(id);
 
       setData({
-        characterAttributes,
+        attributes,
       });
     }
 

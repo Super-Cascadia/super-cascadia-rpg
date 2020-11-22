@@ -66,7 +66,7 @@ export function CharacterProfile({
         <CharacterAttributesPanel
           id={character.id}
           onRefresh={onRefresh}
-          characterAttributes={character.characterAttributes}
+          attributes={character.attributes}
         />
       </Form>
     </Container>

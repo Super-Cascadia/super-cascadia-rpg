@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
-import { getCharacterAttributes } from "../../db/selectors/characters";
+import { getCharacterAttributes } from "../../db/selectors/characterAttributes";
 
 export const getAttributesForCharacterHandler = async (
   connection: Connection,

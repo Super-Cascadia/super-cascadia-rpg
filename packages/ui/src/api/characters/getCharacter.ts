@@ -1,6 +1,6 @@
 function getUrl(id: number, includeAttributes?: boolean) {
   if (includeAttributes) {
-    return `/characters/${id}?details=characterAttributes`;
+    return `/characters/${id}?details=attributes`;
   }
 
   return `/characters/${id}`;

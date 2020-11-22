@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import createCharacter from "../../api/characters/createCharacter";

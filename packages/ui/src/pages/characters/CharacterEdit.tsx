@@ -1,112 +1,17 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toNumber, isEmpty } from "lodash";
-import { toString } from "lodash";
 import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { CharacterWithAttributes } from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
 import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
-import { TextInput } from "../../components/forms/TextInput";
-import { primaryClassOptions } from "./constants";
-import { SelectInput } from "../../components/forms/SelectInput";
-import {
-  Formik,
-  FormikErrors,
-  FormikHelpers,
-  FormikTouched,
-  FormikValues,
-} from "formik";
+import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import { getCharacter } from "../../api/characters/getCharacter";
-import Card from "react-bootstrap/Card";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
-import { CharacterAttributesPanel } from "./components/CharacterAttributesPanel";
-
-interface Values {
-  firstName: string;
-  lastName: string;
-  description: string;
-  primaryClass: number;
-}
-
-function CharacterEditForm({
-  handleFormChange,
-  values,
-  touched,
-  errors,
-  character,
-  onRefresh,
-}: {
-  handleFormChange: (event: React.SyntheticEvent) => void;
-  values: FormikValues;
-  touched: FormikTouched<Values>;
-  errors: FormikErrors<Values>;
-  character: CharacterWithAttributes;
-  onRefresh: () => void;
-}) {
-  const primaryClassString = toString(values.primaryClass);
-
-  return (
-    <div>
-      <Card>
-        <Card.Header>Profile</Card.Header>
-        <Card.Body>
-          <Form.Row>
-            <TextInput
-              label="First Name"
-              id="firstName"
-              value={values.firstName}
-              touched={touched.firstName}
-              errors={errors.firstName}
-              onChange={(e: SyntheticEvent) => handleFormChange(e)}
-            />
-
-            <TextInput
-              label={"Last Name"}
-              id={"lastName"}
-              value={values.lastName}
-              touched={touched.lastName}
-              errors={errors.lastName}
-              onChange={(e: SyntheticEvent) => handleFormChange(e)}
-            />
-          </Form.Row>
-
-          <Form.Row>
-            <TextInput
-              label={"Description"}
-              id={"description"}
-              inputDescription={"a description of the character"}
-              value={values.description}
-              touched={touched.description}
-              errors={errors.description}
-              onChange={(e: SyntheticEvent) => handleFormChange(e)}
-            />
-          </Form.Row>
-
-          <Form.Row>
-            <SelectInput
-              label={"Primary Class"}
-              id={"primaryClass"}
-              options={primaryClassOptions}
-              value={primaryClassString}
-              onChange={(e: SyntheticEvent) => handleFormChange(e)}
-              inputDescription="The Primary class of the character. Determines key attributes and modifiers."
-            />
-          </Form.Row>
-        </Card.Body>
-      </Card>
-
-      <br />
-      <CharacterAttributesPanel
-        id={character.id}
-        characterAttributes={character.characterAttributes}
-        onRefresh={onRefresh}
-      />
-    </div>
-  );
-}
+import CharacterEditForm from "./components/form/CharacterEditForm";
 
 export default function CharacterEdit() {
   const { id: characterId } = useParams<{ id: string }>();

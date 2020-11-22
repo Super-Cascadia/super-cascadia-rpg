@@ -8,11 +8,11 @@ export async function findCharacters(connection: Connection) {
 }
 
 enum CHARACTER_TABLE_RELATIONSHIPS {
-  CHARACTER_ATTRIBUTES = "characterAttributes",
+  ATTRIBUTES = "attributes",
 }
 
 function filterListToLegalRelations(details: string) {
-  const legalDetails = [CHARACTER_TABLE_RELATIONSHIPS.CHARACTER_ATTRIBUTES];
+  const legalDetails = [CHARACTER_TABLE_RELATIONSHIPS.ATTRIBUTES];
   const detailsArray = split(details, ",");
 
   return filter(detailsArray, (item) => {

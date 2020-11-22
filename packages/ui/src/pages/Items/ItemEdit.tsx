@@ -1,13 +1,11 @@
-import React, { useEffect, useState, SyntheticEvent } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import updateItem from "../../api/items/updateItem";
-import { Item, ItemType } from "@super-cascadia-rpg/api";
+import { Item } from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
 import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";

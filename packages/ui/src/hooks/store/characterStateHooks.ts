@@ -11,7 +11,7 @@ export interface CharacterEditState {
 export type CharacterInventoryState = CharacterInventory[];
 
 export interface CharacterAttributesState {
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
 }
 
 export type CharacterStateHook = [CharacterEditState, (data: any) => void];

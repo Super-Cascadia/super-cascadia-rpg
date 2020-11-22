@@ -8,16 +8,12 @@ import CharacterAttributesModal from "./modal/CharacterAttributesModal";
 import { CharacterAttributesForm } from "./form/CharacterAttributesReadOnlyForm";
 
 interface Props {
-  characterAttributes: CharacterAttributes;
+  attributes: CharacterAttributes;
   onRefresh: () => void;
   id: number;
 }
 
-export function CharacterAttributesPanel({
-  characterAttributes,
-  onRefresh,
-  id,
-}: Props) {
+export function CharacterAttributesPanel({ attributes, onRefresh, id }: Props) {
   const [showAttributesModal, setModalViz] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -41,14 +37,14 @@ export function CharacterAttributesPanel({
           </Row>
         </Card.Header>
         <Card.Body>
-          <CharacterAttributesForm characterAttributes={characterAttributes} />
+          <CharacterAttributesForm attributes={attributes} />
         </Card.Body>
       </Card>
       {showAttributesModal && (
         <CharacterAttributesModal
           id={id}
           show={showAttributesModal}
-          characterAttributes={characterAttributes}
+          attributes={attributes}
           handleClose={handleClose}
         />
       )}

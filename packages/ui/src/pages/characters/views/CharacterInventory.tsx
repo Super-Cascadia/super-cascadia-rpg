@@ -5,7 +5,7 @@ import {
 import Container from "react-bootstrap/Container";
 import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
-import { toNumber, map } from "lodash";
+import { toNumber } from "lodash";
 import { CharacterInventoryStateHook } from "../../../hooks/store/characterStateHooks";
 import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetchCharacterInventoryDataHook";
 import CharacterInventoryTable from "../components/CharacterInventoryTable";
