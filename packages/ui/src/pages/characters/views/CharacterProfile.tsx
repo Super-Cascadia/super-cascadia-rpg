@@ -17,9 +17,8 @@ export function CharacterProfile({
   onRefresh: () => void;
 }) {
   return (
-    <Container>
+    <Container fluid>
       <br />
-
       <Form>
         <Card>
           <Card.Header>Profile</Card.Header>

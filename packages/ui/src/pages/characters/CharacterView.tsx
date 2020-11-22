@@ -11,6 +11,11 @@ import { CharacterProfile } from "./views/CharacterProfile";
 import { CharacterInventoryView } from "./views/CharacterInventory";
 import Row from "react-bootstrap/Row";
 import CharacterSubNav from "./components/CharacterSubNav";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import profile from "../../images/profile.jpeg";
 
 export default function CharacterView() {
   const { id } = useParams();
@@ -49,21 +54,56 @@ export default function CharacterView() {
       name={`${character.firstName} ${character.lastName}`}
       routeName={"characters"}
     >
-      <>
-        <Row>
-          <CharacterSubNav />
-        </Row>
-        <Row>
-          <Switch>
-            <Route exact path={`${path}/profile`}>
-              <CharacterProfile character={character} onRefresh={reloadData} />
-            </Route>
-            <Route exact path={`${path}/inventory`}>
-              <CharacterInventoryView character={character} />
-            </Route>
-          </Switch>
-        </Row>
-      </>
+      <Row>
+        <Col lg="2">
+          <Card>
+            <Card.Body>
+              <Row>
+                <Col xs={6} md={4}>
+                  <Image src={profile} rounded width="200" />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <hr />
+                  <ProgressBar
+                    variant="success"
+                    now={80}
+                    label={`${80} / 100`}
+                  />
+                  <p>Health</p>
+                  <ProgressBar variant="info" now={100} label={`${10} / 10`} />
+                  <p>Mana</p>
+                  <ProgressBar
+                    variant="warning"
+                    now={40}
+                    label={`${40} / 100`}
+                  />
+                  <p>Experience</p>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col lg="10">
+          <Row>
+            <CharacterSubNav />
+          </Row>
+          <Row>
+            <Switch>
+              <Route exact path={`${path}/profile`}>
+                <CharacterProfile
+                  character={character}
+                  onRefresh={reloadData}
+                />
+              </Route>
+              <Route exact path={`${path}/inventory`}>
+                <CharacterInventoryView character={character} />
+              </Route>
+            </Switch>
+          </Row>
+        </Col>
+      </Row>
     </ObjectDetailViewPageWrapper>
   );
 }

@@ -21,16 +21,15 @@ export default function ObjectDetailViewPageWrapper({
   children,
 }: Props) {
   return (
-    <div>
-      <br />
-      <Container>
+    <>
+      <Container fluid>
         <ObjectDetailBreadCrumb
           routeName={routeName}
           objectId={objectId}
           detailPageName={"View"}
         />
       </Container>
-      <Container>
+      <Container fluid>
         <Row>
           <Col xs={11}>
             <h1>
@@ -46,7 +45,7 @@ export default function ObjectDetailViewPageWrapper({
           </Col>
         </Row>
       </Container>
-      <Container>{children}</Container>
-    </div>
+      <Container fluid>{children}</Container>
+    </>
   );
 }
