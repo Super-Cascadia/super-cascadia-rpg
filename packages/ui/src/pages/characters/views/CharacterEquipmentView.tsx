@@ -120,6 +120,7 @@ export default function CharacterEquipmentView({ character }: Props) {
           selectedItem={selectedInventory}
           handleClose={handleChangeEquipment}
           equipmentLocation={equipmentLocation}
+          characterId={character.id}
         />
       )}
     </Container>

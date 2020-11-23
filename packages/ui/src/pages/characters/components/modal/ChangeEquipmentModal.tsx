@@ -1,16 +1,46 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Row from "react-bootstrap/Row";
 import EquipmentLocation from "../EquipmentLocation";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import { map, toNumber } from "lodash";
+import {
+  CharacterInventoryState,
+  CharacterInventoryStateHook,
+} from "../../../../hooks/store/characterStateHooks";
+import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fetchCharacterInventoryDataHook";
+
+function SelectEquipmentDropdown({ characterId }: { characterId: number }) {
+  const [inventory, setInventory]: CharacterInventoryStateHook = useState(
+    [] as CharacterInventoryState
+  );
+
+  useEffect(
+    fetchCharacterInventoryDataHook(toNumber(characterId), setInventory),
+    // @ts-ignore
+    {}
+  );
+
+  return (
+    <Form.Group>
+      <Form.Control as="select">
+        {map(inventory, (option) => {
+          return <option value={option.id}>{option.item.name}</option>;
+        })}
+      </Form.Control>
+    </Form.Group>
+  );
+}
 
 interface Props {
   show: boolean;
   handleClose: (item?: CharacterInventory) => void;
   selectedItem: CharacterInventory;
   equipmentLocation: string;
+  characterId: number;
 }
 
 export default function ChangeEquipmentModal({
@@ -18,6 +48,7 @@ export default function ChangeEquipmentModal({
   handleClose,
   selectedItem,
   equipmentLocation,
+  characterId,
 }: Props) {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -41,6 +72,7 @@ export default function ChangeEquipmentModal({
           </Col>
           <Col>
             <h3>New Item</h3>
+            <SelectEquipmentDropdown characterId={characterId} />
           </Col>
         </Row>
       </Modal.Body>

@@ -25,7 +25,7 @@ export default function EquipmentLocation({
         <Card.Body>
           <Button variant="primary">Equip Item</Button>
         </Card.Body>
-        <Card.Footer className="text-muted">{headerTitle}</Card.Footer>
+        <Card.Footer>{headerTitle}</Card.Footer>
       </Card>
     );
   }
@@ -49,7 +49,7 @@ export default function EquipmentLocation({
           </Button>
         )}
       </Card.Body>
-      <Card.Footer className="text-muted">{headerTitle}</Card.Footer>
+      <Card.Footer>{headerTitle}</Card.Footer>
     </Card>
   );
 }
