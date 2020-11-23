@@ -20,6 +20,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export default function CharacterView() {
   const { id } = useParams();
@@ -61,41 +62,25 @@ export default function CharacterView() {
       <Row>
         <Col lg="2">
           <Card>
-            <Card.Body>
-              <Row>
-                <Col xs={6} md={4}>
-                  <Image src={profile} rounded width="200" />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <hr />
-                  <ProgressBar
-                    variant="success"
-                    now={80}
-                    label={`${80} / 100`}
-                  />
-                  <p>
-                    <FontAwesomeIcon icon={faHeart} />
-                    <span>Health</span>
-                  </p>
-                  <ProgressBar variant="info" now={100} label={`${10} / 10`} />
-                  <p>
-                    <FontAwesomeIcon icon={faHandSparkles} />
-                    Mana
-                  </p>
-                  <ProgressBar
-                    variant="warning"
-                    now={40}
-                    label={`${40} / 100`}
-                  />
-                  <p>
-                    <FontAwesomeIcon icon={faFlag} />
-                    Experience
-                  </p>
-                </Col>
-              </Row>
-            </Card.Body>
+            <Card.Img variant="top" src={profile} />
+            <ListGroup variant="flush">
+              <ListGroup.Item>Level 1 Freelancer</ListGroup.Item>
+              <ListGroup.Item>
+                <FontAwesomeIcon icon={faHeart} />
+                <span>Health</span>
+                <ProgressBar variant="success" now={80} label={`${80} / 100`} />
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <FontAwesomeIcon icon={faHandSparkles} />
+                Mana
+                <ProgressBar variant="info" now={100} label={`${10} / 10`} />
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <FontAwesomeIcon icon={faFlag} />
+                Experience
+                <ProgressBar variant="warning" now={40} label={`${40} / 100`} />
+              </ListGroup.Item>
+            </ListGroup>
           </Card>
         </Col>
         <Col lg="10">

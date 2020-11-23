@@ -63,7 +63,7 @@ export function CharacterInventoryView({ character }: Props) {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <br />
       <Row>
         <AddCharacterInventory
