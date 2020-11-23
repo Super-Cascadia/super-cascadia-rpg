@@ -3,7 +3,7 @@ import {
   CharacterWithAttributes,
 } from "@super-cascadia-rpg/api";
 import { CharacterInventory } from "@super-cascadia-rpg/api/build/src/db/entity/CharacterInventory";
-import { CharacterEquipment } from "@super-cascadia-rpg/api/build/src/db/entity/CharacterEquipment";
+import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 
 export interface CharacterEditState {
   character: CharacterWithAttributes;
@@ -16,7 +16,7 @@ export type CharacterInventoryStateHook = [
   (data: any) => void
 ];
 
-export type CharacterEquipmentState = CharacterEquipment;
+export type CharacterEquipmentState = CharacterEquipmentExpanded;
 export type CharacterEquipmentStateHook = [
   CharacterEquipmentState,
   (data: any) => void
