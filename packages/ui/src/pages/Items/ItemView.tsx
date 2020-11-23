@@ -9,6 +9,7 @@ import ObjectDetailViewPageWrapper from "../../components/ObjectDetailViewPageWr
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";
+import StandardIcon from "../characters/components/images/StandardIcon";
 
 function ItemViewForm({ item }: { item: ItemModel }) {
   const itemTypeName = getItemTypeNameById(item?.type);
@@ -41,6 +42,8 @@ function ItemViewForm({ item }: { item: ItemModel }) {
         value={itemTypeName}
         inputDescription="The classification of the item."
       />
+
+      <StandardIcon icon={item.icon} />
     </>
   );
 }

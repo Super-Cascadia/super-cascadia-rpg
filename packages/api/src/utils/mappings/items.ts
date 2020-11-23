@@ -8,6 +8,7 @@ export function mapItemToItemModel(items: Item[]): ItemModel[] {
       id: item.id,
       name: item.name,
       description: item.description,
+      icon: item.icon,
       type: item.type,
     } as ItemModel;
   });

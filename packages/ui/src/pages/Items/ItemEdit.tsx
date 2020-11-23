@@ -63,6 +63,14 @@ function ItemEditForm({
         errors={errors.description}
       />
 
+      <TextInput
+        label={"Icon"}
+        id={"icon"}
+        inputDescription="an icon for the item"
+        onChange={handleFormChange}
+        value={values.icon}
+      />
+
       <SelectInput
         onChange={handleFormChange}
         label="Item Type"
@@ -106,6 +114,7 @@ export default function ItemEdit() {
     name: data.item.name,
     description: data.item.description,
     type: data.item.type,
+    icon: data.item.icon,
   };
 
   const schema = yup.object({
@@ -113,6 +122,7 @@ export default function ItemEdit() {
     name: yup.string().required(),
     description: yup.string().required(),
     type: yup.string().required(),
+    icon: yup.string().required(),
   });
 
   return (

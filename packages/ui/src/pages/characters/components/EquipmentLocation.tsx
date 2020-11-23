@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { isNull, isUndefined } from "lodash";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
+import CardImage from "./images/CardImage";
 
 export default function EquipmentLocation({
   headerTitle,
-  image,
   item,
   changeItem,
 }: {
   headerTitle: string;
   buttonLabel?: string;
-  image: string;
   item: CharacterInventory | null;
   changeItem?: (item: CharacterInventory, equipmentLocation: string) => void;
 }) {
-  const [imagePath, setImage] = useState("");
-
   if (isNull(item) || isUndefined(item)) {
     return (
       <Card style={{ marginBottom: "20px" }} bg="light" text="dark">
-        <Card.Img variant="top" src={imagePath} />
         <Card.Body>
           <Button variant="primary">Equip Item</Button>
         </Card.Body>
@@ -30,13 +26,9 @@ export default function EquipmentLocation({
     );
   }
 
-  import(
-    `../../../images/icons/items/rpg_icons/individual_32x32/${image}`
-  ).then((module) => setImage(module.default));
-
   return (
     <Card style={{ marginBottom: "20px" }} bg="secondary" text="light">
-      <Card.Img variant="top" src={imagePath} />
+      <CardImage image={item.item.icon} />
       <Card.Body>
         <Card.Title>{item.item.name}</Card.Title>
         <Card.Text>{item.item.description}</Card.Text>

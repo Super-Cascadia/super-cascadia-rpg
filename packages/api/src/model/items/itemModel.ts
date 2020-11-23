@@ -1,16 +1,18 @@
-import { ItemType } from "../../db/entity/interfaces/items";
+import { ItemType } from "../../db/entity/interfaces/ItemType";
 
 export interface ItemModel extends ItemCreateModel {
   id: number;
   name: string;
   description: string;
   type: ItemType;
+  icon: string;
 }
 
 export interface ItemCreateModel {
   name: string;
   description: string;
   type: ItemType;
+  icon: string;
 }
 
 export enum WeaponType {

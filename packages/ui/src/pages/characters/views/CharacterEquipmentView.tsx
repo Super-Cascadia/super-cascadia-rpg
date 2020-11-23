@@ -56,7 +56,6 @@ export default function CharacterEquipmentView({ character }: Props) {
         <Col>
           <EquipmentLocation
             headerTitle="Head"
-            image="icon506.png"
             item={equipment.head}
             changeItem={handleShowChangeItemModal}
           />
@@ -67,20 +66,17 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Left Hand"
             item={equipment.leftHand}
-            image="icon506.png"
             changeItem={handleShowChangeItemModal}
           />
         </Col>
         <Col>
           <EquipmentLocation
             headerTitle="Chest"
-            image="icon506.png"
             item={equipment.chest}
             changeItem={handleShowChangeItemModal}
           />
           <EquipmentLocation
             headerTitle="Arms"
-            image="icon506.png"
             item={equipment.arms}
             changeItem={handleShowChangeItemModal}
           />
@@ -89,7 +85,6 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Right Hand"
             item={equipment.rightHand}
-            image="icon506.png"
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -98,7 +93,6 @@ export default function CharacterEquipmentView({ character }: Props) {
         <Col>
           <EquipmentLocation
             headerTitle="Legs"
-            image="icon506.png"
             item={equipment.legs}
             changeItem={handleShowChangeItemModal}
           />
@@ -108,7 +102,6 @@ export default function CharacterEquipmentView({ character }: Props) {
         <Col>
           <EquipmentLocation
             headerTitle="Feet"
-            image="icon506.png"
             item={equipment.feet}
             changeItem={handleShowChangeItemModal}
           />

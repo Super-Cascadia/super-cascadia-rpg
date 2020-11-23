@@ -8,6 +8,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../../util/itemType";
 import Loading from "../../../../components/Loading";
+import StandardIcon from "../../../characters/components/images/StandardIcon";
 
 function ItemRows(
   items: ItemModel[],
@@ -21,6 +22,9 @@ function ItemRows(
       <tr key={item.id}>
         <td>
           <Badge variant="secondary">{item.id}</Badge>
+        </td>
+        <td>
+          <StandardIcon icon={item.icon} />
         </td>
         <td>{item.name}</td>
         <td>{item.description}</td>
@@ -86,6 +90,7 @@ export function ItemTable({
       <thead>
         <tr>
           <th>ID</th>
+          <th>Icon</th>
           <th>Name</th>
           <th>Description</th>
           <th>Type</th>

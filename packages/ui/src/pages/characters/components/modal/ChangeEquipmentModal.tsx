@@ -38,7 +38,6 @@ export default function ChangeEquipmentModal({
             <h3>Current Item</h3>
             <EquipmentLocation
               headerTitle={equipmentLocation}
-              image="icon506.png"
               item={selectedItem}
             />
           </Col>

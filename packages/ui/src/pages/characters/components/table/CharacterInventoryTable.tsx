@@ -5,6 +5,7 @@ import { getItemTypeNameById } from "../../../../util/itemType";
 import Badge from "react-bootstrap/Badge";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Dropdown from "react-bootstrap/Dropdown";
+import StandardIcon from "../images/StandardIcon";
 
 function getActionsDropdown(
   inventoryItem: CharacterInventory,
@@ -46,6 +47,9 @@ function CharacterInventoryRow({
       <td>
         <Badge variant="secondary">{inventoryItem.item.id}</Badge>
       </td>
+      <td>
+        <StandardIcon icon={inventoryItem.item.icon} />
+      </td>
       <td>{inventoryItem.item.name}</td>
       <td>
         <Badge variant="info">{itemTypeName}</Badge>
@@ -71,6 +75,7 @@ export default function CharacterInventoryTable({
         <tr>
           <th>ID</th>
           <th>Item ID</th>
+          <th>Icon</th>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>

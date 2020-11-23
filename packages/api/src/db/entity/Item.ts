@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { ItemType } from "./interfaces/items";
+import { ItemType } from "./interfaces/ItemType";
 import { CharacterInventory } from "./CharacterInventory";
 
 @Entity()
@@ -12,6 +12,9 @@ export class Item {
 
   @Column()
   description!: string;
+
+  @Column()
+  icon!: string;
 
   @Column()
   type!: ItemType;

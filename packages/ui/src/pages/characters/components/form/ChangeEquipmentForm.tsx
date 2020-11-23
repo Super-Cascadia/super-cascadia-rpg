@@ -61,11 +61,7 @@ export function ChangeEquipmentForm({ characterId }: { characterId: number }) {
               handleChange={handleChange}
             />
             {inventoryItem && (
-              <EquipmentLocation
-                headerTitle="Left Hand"
-                image="icon506.png"
-                item={inventoryItem}
-              />
+              <EquipmentLocation headerTitle="Left Hand" item={inventoryItem} />
             )}
           </Form>
         );
