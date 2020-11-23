@@ -2,8 +2,7 @@ import React from "react";
 import { map } from "lodash";
 import Form from "react-bootstrap/Form";
 import { Item } from "@super-cascadia-rpg/api";
-
-export const DEFAULT_OPTION_ID = "--";
+import { DEFAULT_OPTION_ID } from "./constants";
 
 export default function ItemSelectControl({
   items,

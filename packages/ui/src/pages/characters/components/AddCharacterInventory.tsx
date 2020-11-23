@@ -9,7 +9,8 @@ import { ITEM_GRID_TABS } from "../../Items/ItemGrid/ItemGrid";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import { addCharacterInventory } from "../../../api/characters/inventory/addCharacterInventor";
-import ItemSelectControl, { DEFAULT_OPTION_ID } from "./form/ItemSelectControl";
+import ItemSelectControl from "./form/controls/ItemSelectControl";
+import { DEFAULT_OPTION_ID } from "./form/controls/constants";
 
 interface Props {
   characterId: number;

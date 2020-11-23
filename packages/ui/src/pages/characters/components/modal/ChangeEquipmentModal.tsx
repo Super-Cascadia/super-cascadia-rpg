@@ -5,15 +5,19 @@ import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Row from "react-bootstrap/Row";
 import EquipmentLocation from "../EquipmentLocation";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import { map, toNumber } from "lodash";
+import { toNumber } from "lodash";
 import {
   CharacterInventoryState,
   CharacterInventoryStateHook,
 } from "../../../../hooks/store/characterStateHooks";
 import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fetchCharacterInventoryDataHook";
+import InventorySelectControl from "../form/controls/InventorySelectControl";
+import { Formik, FormikHelpers, FormikValues } from "formik";
+import * as yup from "yup";
+import { DEFAULT_OPTION_ID } from "../form/controls/constants";
+import Form from "react-bootstrap/Form";
 
-function SelectEquipmentDropdown({ characterId }: { characterId: number }) {
+function ChangeEquipmentForm({ characterId }: { characterId: number }) {
   const [inventory, setInventory]: CharacterInventoryStateHook = useState(
     [] as CharacterInventoryState
   );
@@ -24,14 +28,40 @@ function SelectEquipmentDropdown({ characterId }: { characterId: number }) {
     {}
   );
 
+  const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
+    console.log(values);
+
+    if (values.itemId !== DEFAULT_OPTION_ID) {
+      actions.setSubmitting(true);
+    }
+  };
+
+  const initialFormState = {
+    itemId: "",
+  };
+
+  const schema = yup.object({
+    itemId: yup.string(),
+  });
+
   return (
-    <Form.Group>
-      <Form.Control as="select">
-        {map(inventory, (option) => {
-          return <option value={option.id}>{option.item.name}</option>;
-        })}
-      </Form.Control>
-    </Form.Group>
+    <Formik
+      validationSchema={schema}
+      onSubmit={handleSubmit}
+      initialValues={initialFormState}
+    >
+      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+        return (
+          <Form onSubmit={handleSubmit} noValidate>
+            <InventorySelectControl
+              inventory={inventory}
+              selectedItem={values.itemId}
+              handleChange={handleChange}
+            />
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
 
@@ -72,7 +102,7 @@ export default function ChangeEquipmentModal({
           </Col>
           <Col>
             <h3>New Item</h3>
-            <SelectEquipmentDropdown characterId={characterId} />
+            <ChangeEquipmentForm characterId={characterId} />
           </Col>
         </Row>
       </Modal.Body>
