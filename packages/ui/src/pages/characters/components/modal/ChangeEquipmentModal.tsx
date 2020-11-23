@@ -1,69 +1,11 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Row from "react-bootstrap/Row";
 import EquipmentLocation from "../EquipmentLocation";
 import Col from "react-bootstrap/Col";
-import { toNumber } from "lodash";
-import {
-  CharacterInventoryState,
-  CharacterInventoryStateHook,
-} from "../../../../hooks/store/characterStateHooks";
-import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fetchCharacterInventoryDataHook";
-import InventorySelectControl from "../form/controls/InventorySelectControl";
-import { Formik, FormikHelpers, FormikValues } from "formik";
-import * as yup from "yup";
-import { DEFAULT_OPTION_ID } from "../form/controls/constants";
-import Form from "react-bootstrap/Form";
-
-function ChangeEquipmentForm({ characterId }: { characterId: number }) {
-  const [inventory, setInventory]: CharacterInventoryStateHook = useState(
-    [] as CharacterInventoryState
-  );
-
-  useEffect(
-    fetchCharacterInventoryDataHook(toNumber(characterId), setInventory),
-    // @ts-ignore
-    {}
-  );
-
-  const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
-    console.log(values);
-
-    if (values.itemId !== DEFAULT_OPTION_ID) {
-      actions.setSubmitting(true);
-    }
-  };
-
-  const initialFormState = {
-    itemId: "",
-  };
-
-  const schema = yup.object({
-    itemId: yup.string(),
-  });
-
-  return (
-    <Formik
-      validationSchema={schema}
-      onSubmit={handleSubmit}
-      initialValues={initialFormState}
-    >
-      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
-        return (
-          <Form onSubmit={handleSubmit} noValidate>
-            <InventorySelectControl
-              inventory={inventory}
-              selectedItem={values.itemId}
-              handleChange={handleChange}
-            />
-          </Form>
-        );
-      }}
-    </Formik>
-  );
-}
+import { ChangeEquipmentForm } from "../form/ChangeEquipmentForm";
 
 interface Props {
   show: boolean;
