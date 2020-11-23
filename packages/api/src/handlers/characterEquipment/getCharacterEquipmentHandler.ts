@@ -24,15 +24,7 @@ async function getCharacterEquipmentDetails(
   equipment: CharacterEquipment
 ) {
   const returnObject: CharacterEquipmentExpanded = {
-    id: equipment.id,
-    character: equipment.character,
-    leftHand: null,
-    rightHand: null,
-    head: null,
-    chest: null,
-    arms: null,
-    legs: null,
-    feet: null,
+    ...equipment,
   };
   const equipmentLocations = omit(equipment, ["id", "character"]);
   const equipmentLocationsWithItems = omitBy(equipmentLocations, isNull);
