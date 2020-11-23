@@ -1,7 +1,7 @@
 import { map } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
-import { getItemTypeNameById } from "../../../util/itemType";
+import { getItemTypeNameById } from "../../../../util/itemType";
 import Badge from "react-bootstrap/Badge";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Dropdown from "react-bootstrap/Dropdown";

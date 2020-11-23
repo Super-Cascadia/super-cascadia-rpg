@@ -22,6 +22,11 @@ export default function CharacterSubNav() {
         </LinkContainer>
       </Nav.Item>
       <Nav.Item>
+        <LinkContainer to={`${url}/equipment`}>
+          <Nav.Link>Equipment</Nav.Link>
+        </LinkContainer>
+      </Nav.Item>
+      <Nav.Item>
         <LinkContainer to={`${url}/inventory`}>
           <Nav.Link href={`${url}/inventory`}>Inventory</Nav.Link>
         </LinkContainer>
@@ -29,11 +34,6 @@ export default function CharacterSubNav() {
       <Nav.Item>
         <LinkContainer to={`${url}/skills`}>
           <Nav.Link disabled>Skills</Nav.Link>
-        </LinkContainer>
-      </Nav.Item>
-      <Nav.Item>
-        <LinkContainer to={`${url}/equipment`}>
-          <Nav.Link disabled>Equipment</Nav.Link>
         </LinkContainer>
       </Nav.Item>
     </Nav>

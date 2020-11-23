@@ -13,7 +13,6 @@ import Row from "react-bootstrap/Row";
 import CharacterSubNav from "./components/CharacterSubNav";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Image from "react-bootstrap/Image";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import profile from "../../images/profile.jpeg";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +20,7 @@ import { faHandSparkles } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ListGroup from "react-bootstrap/ListGroup";
+import CharacterEquipmentView from "./views/CharacterEquipmentView";
 
 export default function CharacterView() {
   const { id } = useParams();
@@ -97,6 +97,9 @@ export default function CharacterView() {
               </Route>
               <Route exact path={`${path}/inventory`}>
                 <CharacterInventoryView character={character} />
+              </Route>
+              <Route exact path={`${path}/equipment`}>
+                <CharacterEquipmentView character={character} />
               </Route>
             </Switch>
           </Row>

@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import { toNumber } from "lodash";
 import { CharacterInventoryStateHook } from "../../../hooks/store/characterStateHooks";
 import fetchCharacterInventoryDataHook from "../../../hooks/api/characters/fetchCharacterInventoryDataHook";
-import CharacterInventoryTable from "../components/CharacterInventoryTable";
+import CharacterInventoryTable from "../components/table/CharacterInventoryTable";
 import AddCharacterInventory from "../components/AddCharacterInventory";
 import { getCharacterInventory } from "../../../api/characters/inventory/getCharacterInventory";
 import DeleteCharacterInventoryModal from "../components/modal/DeleteCharacterInventoryModal";
