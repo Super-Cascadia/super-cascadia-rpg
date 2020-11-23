@@ -4,12 +4,13 @@ import {
 } from "../../../../hooks/store/characterStateHooks";
 import React, { useEffect, useState } from "react";
 import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fetchCharacterInventoryDataHook";
-import { toNumber } from "lodash";
+import { toNumber, find } from "lodash";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import { DEFAULT_OPTION_ID } from "./controls/constants";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import InventorySelectControl from "./controls/InventorySelectControl";
+import EquipmentLocation from "../EquipmentLocation";
 
 export function ChangeEquipmentForm({ characterId }: { characterId: number }) {
   const [inventory, setInventory]: CharacterInventoryStateHook = useState(
@@ -45,6 +46,13 @@ export function ChangeEquipmentForm({ characterId }: { characterId: number }) {
       initialValues={initialFormState}
     >
       {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+        const inventoryItem = find(
+          inventory,
+          (inventoryItem) => inventoryItem.id === toNumber(values.itemId)
+        );
+
+        console.log("inventory item", inventoryItem, inventory, values);
+
         return (
           <Form onSubmit={handleSubmit} noValidate>
             <InventorySelectControl
@@ -52,6 +60,13 @@ export function ChangeEquipmentForm({ characterId }: { characterId: number }) {
               selectedItem={values.itemId}
               handleChange={handleChange}
             />
+            {inventoryItem && (
+              <EquipmentLocation
+                headerTitle="Left Hand"
+                image="icon506.png"
+                item={inventoryItem}
+              />
+            )}
           </Form>
         );
       }}
