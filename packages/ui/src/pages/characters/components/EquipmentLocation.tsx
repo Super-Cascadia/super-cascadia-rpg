@@ -8,11 +8,13 @@ export default function EquipmentLocation({
   headerTitle,
   image,
   item,
+  changeItem,
 }: {
-  headerTitle?: string;
+  headerTitle: string;
   buttonLabel?: string;
   image: string;
   item: CharacterInventory | null;
+  changeItem?: (item: CharacterInventory, equipmentLocation: string) => void;
 }) {
   const [imagePath, setImage] = useState("");
 
@@ -38,7 +40,14 @@ export default function EquipmentLocation({
       <Card.Body>
         <Card.Title>{item.item.name}</Card.Title>
         <Card.Text>{item.item.description}</Card.Text>
-        <Button variant="primary">Change Item</Button>
+        {changeItem && (
+          <Button
+            variant="primary"
+            onClick={() => changeItem(item, headerTitle)}
+          >
+            Change Item
+          </Button>
+        )}
       </Card.Body>
       <Card.Footer className="text-muted">{headerTitle}</Card.Footer>
     </Card>
