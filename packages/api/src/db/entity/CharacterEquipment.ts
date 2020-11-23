@@ -18,7 +18,9 @@ export class CharacterEquipment {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    eager: true,
+  })
   // @ts-ignore
   leftHand: CharacterInventory;
 
@@ -38,7 +40,7 @@ export class CharacterEquipment {
   // @ts-ignore
   arms: CharacterInventory;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
   // @ts-ignore
   legs: CharacterInventory;
 

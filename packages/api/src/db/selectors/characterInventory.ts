@@ -18,5 +18,10 @@ export async function getCharacterInventoryById(
   connection: Connection,
   id: string
 ): Promise<CharacterInventory | undefined> {
-  return connection.manager.findOne<CharacterInventory>(CharacterInventory, id);
+  return connection.manager.findOne<CharacterInventory>(CharacterInventory, {
+    where: {
+      id,
+    },
+    relations: ["item"],
+  });
 }
