@@ -6,27 +6,30 @@ import { CharacterInventory } from "@super-cascadia-rpg/api";
 
 export function ChangeEquipmentForm({
   inventory,
-  itemId,
+  selectedInventoryId,
   handleChange,
 }: {
   inventory: CharacterInventory[];
-  itemId: string;
+  selectedInventoryId: string;
   handleChange: (event: React.SyntheticEvent) => void;
 }) {
-  const inventoryItem = find(
+  const selectedInventoryItem = find(
     inventory,
-    (inventoryItem) => inventoryItem.id === toNumber(itemId)
+    (inventoryItem) => inventoryItem.id === toNumber(selectedInventoryId)
   );
 
   return (
     <>
       <InventorySelectControl
         inventory={inventory}
-        selectedItem={itemId}
+        selectedInventoryId={selectedInventoryId}
         handleChange={handleChange}
       />
-      {inventoryItem && (
-        <EquipmentLocation headerTitle="Left Hand" item={inventoryItem} />
+      {selectedInventoryItem && (
+        <EquipmentLocation
+          headerTitle="Left Hand"
+          item={selectedInventoryItem}
+        />
       )}
     </>
   );

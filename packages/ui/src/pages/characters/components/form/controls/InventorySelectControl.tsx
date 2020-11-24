@@ -7,10 +7,10 @@ import { DEFAULT_OPTION_ID } from "./constants";
 export default function InventorySelectControl({
   inventory,
   handleChange,
-  selectedItem,
+  selectedInventoryId,
 }: {
   inventory: CharacterInventory[];
-  selectedItem: string;
+  selectedInventoryId: string;
   handleChange: (event: React.SyntheticEvent) => void;
 }) {
   const defaultOption = (
@@ -32,13 +32,14 @@ export default function InventorySelectControl({
 
   const selectOptions = [defaultOption, ...inventoryOptions];
 
+  console.log(selectOptions, selectedInventoryId);
   return (
     <Form.Control
       as="select"
       custom
       onChange={handleChange}
-      value={selectedItem}
-      id="itemId"
+      value={selectedInventoryId}
+      id="inventoryId"
     >
       {selectOptions}
     </Form.Control>

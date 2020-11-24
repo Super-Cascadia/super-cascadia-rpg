@@ -12,5 +12,5 @@ export default function CardImage({ image }: { image: string }) {
     `../../../../images/icons/items/rpg_icons/individual_32x32/${image}.png`
   ).then((module) => setImage(module.default));
 
-  return <Card.Img variant="top" src={imagePath} />;
+  return <Card.Img style={{ width: "64px" }} variant="top" src={imagePath} />;
 }

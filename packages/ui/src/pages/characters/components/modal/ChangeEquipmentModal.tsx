@@ -16,6 +16,7 @@ import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fe
 import { toNumber } from "lodash";
 import { DEFAULT_OPTION_ID } from "../form/controls/constants";
 import Form from "react-bootstrap/Form";
+import updateCharacterEquipment from "../../../../api/characters/equipment/updateCharacterEquipment";
 
 interface Props {
   show: boolean;
@@ -45,17 +46,30 @@ export default function ChangeEquipmentModal({
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
     console.log(values);
 
-    if (values.itemId !== DEFAULT_OPTION_ID) {
+    if (values.inventoryId !== DEFAULT_OPTION_ID) {
       actions.setSubmitting(true);
+
+      updateCharacterEquipment(
+        characterId,
+        values.inventoryId,
+        equipmentLocation
+      ).then((response) => {
+        actions.resetForm({
+          values: {
+            inventoryId: "",
+          },
+        });
+        handleClose();
+      });
     }
   };
 
   const initialFormState = {
-    itemId: "",
+    inventoryId: "",
   };
 
   const schema = yup.object({
-    itemId: yup.string(),
+    inventoryId: yup.string(),
   });
 
   return (
@@ -65,8 +79,10 @@ export default function ChangeEquipmentModal({
       initialValues={initialFormState}
     >
       {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+        console.log("values", values);
+
         return (
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
               <Modal.Title>Change Equipment</Modal.Title>
             </Modal.Header>
@@ -77,23 +93,25 @@ export default function ChangeEquipmentModal({
                 </Col>
               </Row>
               <Row>
-                <Col>
+                <Col sm={2} />
+                <Col sm={4}>
                   <h3>Current Item</h3>
                   <EquipmentLocation
                     headerTitle={equipmentLocation}
                     item={selectedItem}
                   />
                 </Col>
-                <Col>
+                <Col sm={4}>
                   <h3>New Item</h3>
                   <Form onSubmit={handleSubmit} noValidate>
                     <ChangeEquipmentForm
                       inventory={inventory}
-                      itemId={values.itemId}
+                      selectedInventoryId={values.inventoryId}
                       handleChange={handleChange}
                     />
                   </Form>
                 </Col>
+                <Col sm={2} />
               </Row>
             </Modal.Body>
             <Modal.Footer>

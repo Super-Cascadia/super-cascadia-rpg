@@ -12,6 +12,8 @@ import Col from "react-bootstrap/Col";
 import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
+import { getCharacter } from "../../../api/characters/getCharacter";
+import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -27,12 +29,17 @@ export default function CharacterEquipmentView({ character }: Props) {
     setSelectedInventory,
   ] = useState<CharacterInventory | null>(null);
   const [equipmentLocation, setEquipmentLocation] = useState<string>("");
+  const characterIdNumber = toNumber(character.id);
 
   useEffect(
-    fetchCharacterEquipmentDataHook(toNumber(character.id), setEquipment),
+    fetchCharacterEquipmentDataHook(characterIdNumber, setEquipment),
     // @ts-ignore
     {}
   );
+
+  const reloadData = () => {
+    getCharacterEquipment(characterIdNumber).then(setEquipment);
+  };
 
   const handleShowChangeItemModal = (
     item: CharacterInventory,
@@ -43,17 +50,18 @@ export default function CharacterEquipmentView({ character }: Props) {
     setChangeItemModalViz(true);
   };
 
-  const handleChangeEquipment = (item?: CharacterInventory) => {
+  const handleCloseEquipmentChangeModal = (item?: CharacterInventory) => {
     setEquipmentLocation("");
     setSelectedInventory(null);
     setChangeItemModalViz(false);
+    reloadData();
   };
 
   return (
     <Container fluid>
       <br />
       <Row>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Head"
             item={equipment.head}
@@ -62,14 +70,14 @@ export default function CharacterEquipmentView({ character }: Props) {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Left Hand"
             item={equipment.leftHand}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Chest"
             item={equipment.chest}
@@ -81,7 +89,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             changeItem={handleShowChangeItemModal}
           />
         </Col>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Right Hand"
             item={equipment.rightHand}
@@ -90,7 +98,7 @@ export default function CharacterEquipmentView({ character }: Props) {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Legs"
             item={equipment.legs}
@@ -99,7 +107,7 @@ export default function CharacterEquipmentView({ character }: Props) {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col lg={2}>
           <EquipmentLocation
             headerTitle="Feet"
             item={equipment.feet}
@@ -111,7 +119,7 @@ export default function CharacterEquipmentView({ character }: Props) {
         <ChangeEquipmentModal
           show={showChangeItemModal}
           selectedItem={selectedInventory}
-          handleClose={handleChangeEquipment}
+          handleClose={handleCloseEquipmentChangeModal}
           equipmentLocation={equipmentLocation}
           characterId={character.id}
         />
