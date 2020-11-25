@@ -40,9 +40,9 @@ export async function getCharacterById(
 
 export async function createNewCharacter(
   connection: Connection,
-  request: Request
+  character: Character
 ): Promise<InsertResult> {
-  return connection.manager.insert(Character, request.payload as Character);
+  return connection.manager.insert(Character, character as Character);
 }
 
 export async function deleteCharacter(

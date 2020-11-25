@@ -3,7 +3,10 @@ import { Request, ResponseToolkit } from "@hapi/hapi";
 import { omit } from "lodash";
 import { Character } from "../../db/entity/Character";
 import { CharacterCreateModel, CharacterModel } from "src/interfaces";
-import { getCharacterById } from "../../db/selectors/characters";
+import {
+  createNewCharacter,
+  getCharacterById,
+} from "../../db/selectors/characters";
 
 async function duplicateCharacterById(
   connection: Connection,
@@ -11,7 +14,7 @@ async function duplicateCharacterById(
 ): Promise<CharacterModel> {
   return getCharacterById(connection, id).then((characterToDuplicate) => {
     const newItemBody = omit<CharacterCreateModel>(characterToDuplicate, id);
-    const newItem = connection.manager.insert(Character, newItemBody);
+    const newItem = createNewCharacter(connection, newItemBody as Character);
     // @ts-ignore
     return newItem as CharacterModel;
   });
