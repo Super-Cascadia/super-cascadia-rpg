@@ -64,17 +64,12 @@ export default function CharacterEquipmentView({ character }: Props) {
     <Container fluid>
       <br />
       <Row>
-        <Col lg={2}>
-          <EquipmentLocation
-            headerTitle="Head"
-            item={equipment.head}
-            equipmentLocation={EQUIPMENT_LOCATIONS.HEAD}
-            changeItem={handleShowChangeItemModal}
-          />
+        <Col>
+          <h2>Weapons</h2>
         </Col>
       </Row>
       <Row>
-        <Col lg={2}>
+        <Col>
           <EquipmentLocation
             headerTitle="Left Hand"
             item={equipment.leftHand}
@@ -82,21 +77,8 @@ export default function CharacterEquipmentView({ character }: Props) {
             changeItem={handleShowChangeItemModal}
           />
         </Col>
-        <Col lg={2}>
-          <EquipmentLocation
-            headerTitle="Chest"
-            item={equipment.chest}
-            equipmentLocation={EQUIPMENT_LOCATIONS.CHEST}
-            changeItem={handleShowChangeItemModal}
-          />
-          <EquipmentLocation
-            headerTitle="Arms"
-            item={equipment.arms}
-            equipmentLocation={EQUIPMENT_LOCATIONS.ARMS}
-            changeItem={handleShowChangeItemModal}
-          />
-        </Col>
-        <Col lg={2}>
+
+        <Col>
           <EquipmentLocation
             headerTitle="Right Hand"
             item={equipment.rightHand}
@@ -106,7 +88,36 @@ export default function CharacterEquipmentView({ character }: Props) {
         </Col>
       </Row>
       <Row>
-        <Col lg={2}>
+        <Col>
+          <h2>Armor</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <EquipmentLocation
+            headerTitle="Head"
+            item={equipment.head}
+            equipmentLocation={EQUIPMENT_LOCATIONS.HEAD}
+            changeItem={handleShowChangeItemModal}
+          />
+        </Col>
+        <Col>
+          <EquipmentLocation
+            headerTitle="Chest"
+            item={equipment.chest}
+            equipmentLocation={EQUIPMENT_LOCATIONS.CHEST}
+            changeItem={handleShowChangeItemModal}
+          />
+        </Col>
+        <Col>
+          <EquipmentLocation
+            headerTitle="Arms"
+            item={equipment.arms}
+            equipmentLocation={EQUIPMENT_LOCATIONS.ARMS}
+            changeItem={handleShowChangeItemModal}
+          />
+        </Col>
+        <Col>
           <EquipmentLocation
             headerTitle="Legs"
             item={equipment.legs}
@@ -114,9 +125,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             changeItem={handleShowChangeItemModal}
           />
         </Col>
-      </Row>
-      <Row>
-        <Col lg={2}>
+        <Col>
           <EquipmentLocation
             headerTitle="Feet"
             item={equipment.feet}
