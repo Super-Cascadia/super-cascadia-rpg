@@ -1,21 +1,8 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { getCharacterById } from "../../db/selectors/characters";
-import { Character } from "../../db/entity/Character";
-import { CharacterInventory } from "../../db/entity/CharacterInventory";
 import { getCharacterInventoryById } from "../../db/selectors/characterInventory";
-import { CharacterEquipment } from "../../db/entity/CharacterEquipment";
-
-function prepareEquipmentObjectObject(
-  character: Character,
-  inventoryItem: CharacterInventory
-) {
-  const characterEquipment = new CharacterEquipment();
-  characterEquipment.character = character;
-  characterEquipment.leftHand = inventoryItem;
-
-  return characterEquipment;
-}
+import { createCharacterEquipment } from "../../db/selectors/characterEquipment";
 
 interface CreateEquipmentRequestBody {
   inventoryId: string;
@@ -40,10 +27,7 @@ export const createCharacterEquipmentHandler = async (
     ]).then(([character, inventoryItem]) => {
       console.log(character, inventoryItem);
       if (character && inventoryItem) {
-        return connection.manager.save(
-          CharacterEquipment,
-          prepareEquipmentObjectObject(character, inventoryItem)
-        );
+        return createCharacterEquipment(connection, character, inventoryItem);
       }
 
       return Promise.resolve(undefined);

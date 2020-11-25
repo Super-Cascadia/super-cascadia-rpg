@@ -1,6 +1,8 @@
 import { Connection, UpdateResult } from "typeorm";
 import { CharacterEquipment } from "../entity/CharacterEquipment";
 import { EQUIPMENT_LOCATIONS } from "../entity/constants";
+import { Character } from "../entity/Character";
+import { CharacterInventory } from "../entity/CharacterInventory";
 
 export async function getCharacterEquipment(
   connection: Connection,
@@ -36,5 +38,27 @@ export async function updateEquipmentLocation(
     equipmentId,
     CharacterEquipment,
     data
+  );
+}
+
+function prepareEquipmentObjectObject(
+  character: Character,
+  inventoryItem: CharacterInventory
+) {
+  const characterEquipment = new CharacterEquipment();
+  characterEquipment.character = character;
+  characterEquipment.leftHand = inventoryItem;
+
+  return characterEquipment;
+}
+
+export async function createCharacterEquipment(
+  connection: Connection,
+  character: Character,
+  inventoryItem: CharacterInventory
+) {
+  return connection.manager.save(
+    CharacterEquipment,
+    prepareEquipmentObjectObject(character, inventoryItem)
   );
 }
