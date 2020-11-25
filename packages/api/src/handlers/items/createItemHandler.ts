@@ -1,18 +1,16 @@
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { createNewItem } from "../../db/selectors/items";
+import { Item } from "../../db/entity/Item";
 
 const createItemHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
 ): Promise<InsertResult> => {
-  console.info("create item handler");
   try {
-    console.info("create new item", request.payload);
-    return createNewItem(connection, request);
+    return createNewItem(connection, request.payload as Item);
   } catch (e) {
-    console.error("error", e);
     return Promise.resolve(e);
   }
 };

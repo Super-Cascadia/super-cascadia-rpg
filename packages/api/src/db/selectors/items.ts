@@ -28,7 +28,7 @@ export async function updateItemById(
 
 export async function createNewItem(
   connection: Connection,
-  request: Request
+  item: Item
 ): Promise<InsertResult> {
-  return connection.manager.insert(Item, request.payload as Item);
+  return connection.manager.insert(Item, item);
 }
