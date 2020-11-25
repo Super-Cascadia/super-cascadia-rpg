@@ -1,18 +1,8 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { getCharacterById } from "../../db/selectors/characters";
-import { Character } from "../../db/entity/Character";
 import { getItemById } from "../../db/selectors/items";
-import { CharacterInventory } from "../../db/entity/CharacterInventory";
-import { Item } from "src/interfaces";
-
-function prepareCharacterInventoryObject(character: Character, item: Item) {
-  const characterInventory = new CharacterInventory();
-  characterInventory.character = character;
-  characterInventory.item = item;
-
-  return characterInventory;
-}
+import { createCharacterInventory } from "../../db/selectors/characterInventory";
 
 interface CreateInventoryRequestBody {
   itemId: string;
@@ -24,21 +14,12 @@ export const createCharacterInventoryHandler = async (
 ): Promise<any> => {
   try {
     const payload = request.payload as CreateInventoryRequestBody;
+    const character = getCharacterById(connection, request.params.id);
+    const item = getItemById(connection, payload.itemId);
 
-    console.log("request", request.params.id, payload.itemId);
-
-    return Promise.all([
-      getCharacterById(connection, request.params.id),
-      getItemById(connection, payload.itemId),
-    ]).then(([character, item]) => {
-      console.log(character, item);
+    return Promise.all([character, item]).then(([character, item]) => {
       if (character && item) {
-        const characterInventory = prepareCharacterInventoryObject(
-          character,
-          item
-        );
-
-        return connection.manager.save(CharacterInventory, characterInventory);
+        return createCharacterInventory(character, item, connection);
       }
 
       return Promise.resolve(undefined);
