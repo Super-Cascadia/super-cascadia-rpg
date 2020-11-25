@@ -44,3 +44,10 @@ export async function createCharacterInventory(
 
   return connection.manager.save(CharacterInventory, characterInventory);
 }
+
+export async function deleteCharacterInventory(
+  connection: Connection,
+  inventoryId: string
+) {
+  return connection.manager.delete(CharacterInventory, inventoryId);
+}
