@@ -44,3 +44,10 @@ export async function createNewCharacter(
 ): Promise<InsertResult> {
   return connection.manager.insert(Character, request.payload as Character);
 }
+
+export async function deleteCharacter(
+  connection: Connection,
+  request: Request
+) {
+  return connection.manager.delete(Character, request.params.id);
+}
