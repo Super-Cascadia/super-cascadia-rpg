@@ -155,4 +155,5 @@ export const characterRoutes = (server: Server, connection: Connection) => {
   //  Equipment
   createCharacterEquipment(server, connection);
   getCharacterEquipment(server, connection);
+  updateCharacterEquipment(server, connection);
 };

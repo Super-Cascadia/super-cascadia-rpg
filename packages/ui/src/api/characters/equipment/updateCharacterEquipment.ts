@@ -1,5 +1,6 @@
 export default async function updateCharacterEquipment(
   characterId: number,
+  equipmentId: number,
   inventoryId: number,
   equipmentLocation: string
 ) {

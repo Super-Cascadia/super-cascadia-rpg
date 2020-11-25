@@ -1,20 +1,16 @@
 import {
   Entity,
   PrimaryGeneratedColumn,
-  Column,
   OneToOne,
-  OneToMany,
   JoinColumn,
   ManyToOne,
 } from "typeorm";
-import { CharacterClassId } from "../../model/characterClass/characterClassModel";
-import { CharacterAttributes } from "./CharacterAttributes";
 import { CharacterInventory } from "./CharacterInventory";
 import { Character } from "./Character";
-import { Item } from "./Item";
 
 @Entity()
 export class CharacterEquipment {
+  constructor() {}
   @PrimaryGeneratedColumn()
   id!: number;
 

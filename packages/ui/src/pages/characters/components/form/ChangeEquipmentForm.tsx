@@ -2,16 +2,21 @@ import React from "react";
 import { toNumber, find } from "lodash";
 import InventorySelectControl from "./controls/InventorySelectControl";
 import EquipmentLocation from "../EquipmentLocation";
-import { CharacterInventory } from "@super-cascadia-rpg/api";
+import {
+  CharacterInventory,
+  EQUIPMENT_LOCATIONS,
+} from "@super-cascadia-rpg/api";
 
 export function ChangeEquipmentForm({
   inventory,
   selectedInventoryId,
   handleChange,
+  equipmentLocation,
 }: {
   inventory: CharacterInventory[];
   selectedInventoryId: string;
   handleChange: (event: React.SyntheticEvent) => void;
+  equipmentLocation: EQUIPMENT_LOCATIONS;
 }) {
   const selectedInventoryItem = find(
     inventory,
@@ -29,6 +34,7 @@ export function ChangeEquipmentForm({
         <EquipmentLocation
           headerTitle="Left Hand"
           item={selectedInventoryItem}
+          equipmentLocation={equipmentLocation}
         />
       )}
     </>

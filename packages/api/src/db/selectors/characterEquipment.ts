@@ -25,23 +25,53 @@ export async function getCharacterEquipment(
   });
 }
 
+function prepareUpdatedEquipmentObject(
+  characterEquipment: CharacterEquipment,
+  inventoryItem: CharacterInventory,
+  equipmentLocation: EQUIPMENT_LOCATIONS
+) {
+  switch (equipmentLocation) {
+    case EQUIPMENT_LOCATIONS.LEFT_HAND:
+      characterEquipment.leftHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.RIGHT_HAND:
+      characterEquipment.rightHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.HEAD:
+      characterEquipment.rightHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.CHEST:
+      characterEquipment.rightHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.ARMS:
+      characterEquipment.rightHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.FEET:
+      characterEquipment.rightHand = inventoryItem;
+    case EQUIPMENT_LOCATIONS.LEGS:
+      characterEquipment.rightHand = inventoryItem;
+  }
+
+  return characterEquipment;
+}
+
 export async function updateEquipmentLocation(
   connection: Connection,
-  characterId: string,
+  equipmentId: string,
   inventoryId: string,
-  equipmentLocation: string
+  equipmentLocation: EQUIPMENT_LOCATIONS,
+  characterEquipment: CharacterEquipment,
+  inventoryItem: CharacterInventory
 ): Promise<UpdateResult> {
-  const data = {};
-  const equipmentId = "1";
+  const updatedCharacterEquipment = prepareUpdatedEquipmentObject(
+    characterEquipment,
+    inventoryItem,
+    equipmentLocation
+  );
 
   return connection.manager.update<CharacterEquipment>(
-    equipmentId,
     CharacterEquipment,
-    data
+    equipmentId,
+    updatedCharacterEquipment
   );
 }
 
-function prepareEquipmentObjectObject(
+function prepareNewCharacterEquipmentObject(
   character: Character,
   inventoryItem: CharacterInventory
 ) {
@@ -59,6 +89,6 @@ export async function createCharacterEquipment(
 ) {
   return connection.manager.save(
     CharacterEquipment,
-    prepareEquipmentObjectObject(character, inventoryItem)
+    prepareNewCharacterEquipmentObject(character, inventoryItem)
   );
 }

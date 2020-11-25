@@ -1,11 +1,15 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { updateEquipmentLocation } from "../../db/selectors/characterEquipment";
+import {
+  getCharacterEquipment,
+  updateEquipmentLocation,
+} from "../../db/selectors/characterEquipment";
+import { getCharacterInventoryById } from "../../db/selectors/characterInventory";
+import { EQUIPMENT_LOCATIONS } from "../../db/entity/constants";
 
 interface UpdateEquipmentRequestBody {
-  characterId: string;
   inventoryId: string;
-  equipmentLocation: string;
+  equipmentLocation: EQUIPMENT_LOCATIONS;
 }
 
 export const updateCharacterEquipmentHandler = async (
@@ -14,12 +18,26 @@ export const updateCharacterEquipmentHandler = async (
 ): Promise<any> => {
   try {
     const payload = request.payload as UpdateEquipmentRequestBody;
+    const characterId = request.params.id;
 
-    return updateEquipmentLocation(
+    let characterEquipment = getCharacterEquipment(connection, characterId);
+    let characterInventory = getCharacterInventoryById(
       connection,
-      payload.characterId,
-      payload.inventoryId,
-      payload.equipmentLocation
+      payload.inventoryId
+    );
+    return Promise.all([characterEquipment, characterInventory]).then(
+      ([characterEquipment, characterInventory]) => {
+        if (characterEquipment && characterInventory) {
+          return updateEquipmentLocation(
+            connection,
+            characterId,
+            payload.inventoryId,
+            payload.equipmentLocation,
+            characterEquipment,
+            characterInventory
+          );
+        }
+      }
     );
   } catch (e) {
     console.error("error", e);

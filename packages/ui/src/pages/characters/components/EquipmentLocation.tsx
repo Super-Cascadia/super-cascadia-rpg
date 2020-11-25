@@ -2,18 +2,26 @@ import React from "react";
 import { isNull, isUndefined } from "lodash";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { CharacterInventory } from "@super-cascadia-rpg/api";
+import {
+  CharacterInventory,
+  EQUIPMENT_LOCATIONS,
+} from "@super-cascadia-rpg/api";
 import CardImage from "./images/CardImage";
 
 export default function EquipmentLocation({
   headerTitle,
   item,
   changeItem,
+  equipmentLocation,
 }: {
   headerTitle: string;
   buttonLabel?: string;
   item: CharacterInventory | null;
-  changeItem?: (item: CharacterInventory, equipmentLocation: string) => void;
+  equipmentLocation: EQUIPMENT_LOCATIONS;
+  changeItem?: (
+    item: CharacterInventory,
+    equipmentLocation: EQUIPMENT_LOCATIONS
+  ) => void;
 }) {
   if (isNull(item) || isUndefined(item)) {
     return (
@@ -35,7 +43,7 @@ export default function EquipmentLocation({
         {changeItem && (
           <Button
             variant="primary"
-            onClick={() => changeItem(item, headerTitle)}
+            onClick={() => changeItem(item, equipmentLocation)}
           >
             Change Item
           </Button>

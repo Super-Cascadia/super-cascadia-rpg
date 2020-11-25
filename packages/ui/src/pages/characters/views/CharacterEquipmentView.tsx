@@ -1,6 +1,7 @@
 import {
   CharacterInventory,
   CharacterWithAttributes,
+  EQUIPMENT_LOCATIONS,
 } from "@super-cascadia-rpg/api";
 import Container from "react-bootstrap/Container";
 import React, { useEffect, useState } from "react";
@@ -12,7 +13,6 @@ import Col from "react-bootstrap/Col";
 import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
-import { getCharacter } from "../../../api/characters/getCharacter";
 import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
 
 interface Props {
@@ -28,7 +28,10 @@ export default function CharacterEquipmentView({ character }: Props) {
     selectedInventory,
     setSelectedInventory,
   ] = useState<CharacterInventory | null>(null);
-  const [equipmentLocation, setEquipmentLocation] = useState<string>("");
+  const [
+    selectedEquipmentLocation,
+    setSelectedEquipmentLocation,
+  ] = useState<EQUIPMENT_LOCATIONS | null>(null);
   const characterIdNumber = toNumber(character.id);
 
   useEffect(
@@ -43,15 +46,15 @@ export default function CharacterEquipmentView({ character }: Props) {
 
   const handleShowChangeItemModal = (
     item: CharacterInventory,
-    equipmentLocation: string
+    equipmentLocation: EQUIPMENT_LOCATIONS
   ) => {
-    setEquipmentLocation(equipmentLocation);
+    setSelectedEquipmentLocation(equipmentLocation);
     setSelectedInventory(item);
     setChangeItemModalViz(true);
   };
 
   const handleCloseEquipmentChangeModal = (item?: CharacterInventory) => {
-    setEquipmentLocation("");
+    setSelectedEquipmentLocation(null);
     setSelectedInventory(null);
     setChangeItemModalViz(false);
     reloadData();
@@ -65,6 +68,7 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Head"
             item={equipment.head}
+            equipmentLocation={EQUIPMENT_LOCATIONS.HEAD}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -74,6 +78,7 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Left Hand"
             item={equipment.leftHand}
+            equipmentLocation={EQUIPMENT_LOCATIONS.LEFT_HAND}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -81,11 +86,13 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Chest"
             item={equipment.chest}
+            equipmentLocation={EQUIPMENT_LOCATIONS.CHEST}
             changeItem={handleShowChangeItemModal}
           />
           <EquipmentLocation
             headerTitle="Arms"
             item={equipment.arms}
+            equipmentLocation={EQUIPMENT_LOCATIONS.ARMS}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -93,6 +100,7 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Right Hand"
             item={equipment.rightHand}
+            equipmentLocation={EQUIPMENT_LOCATIONS.RIGHT_HAND}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -102,6 +110,7 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Legs"
             item={equipment.legs}
+            equipmentLocation={EQUIPMENT_LOCATIONS.LEGS}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
@@ -111,19 +120,23 @@ export default function CharacterEquipmentView({ character }: Props) {
           <EquipmentLocation
             headerTitle="Feet"
             item={equipment.feet}
+            equipmentLocation={EQUIPMENT_LOCATIONS.FEET}
             changeItem={handleShowChangeItemModal}
           />
         </Col>
       </Row>
-      {showChangeItemModal && selectedInventory && (
-        <ChangeEquipmentModal
-          show={showChangeItemModal}
-          selectedItem={selectedInventory}
-          handleClose={handleCloseEquipmentChangeModal}
-          equipmentLocation={equipmentLocation}
-          characterId={character.id}
-        />
-      )}
+      {showChangeItemModal &&
+        selectedInventory &&
+        selectedEquipmentLocation && (
+          <ChangeEquipmentModal
+            equipment={equipment}
+            show={showChangeItemModal}
+            selectedItem={selectedInventory}
+            handleClose={handleCloseEquipmentChangeModal}
+            equipmentLocation={selectedEquipmentLocation}
+            characterId={character.id}
+          />
+        )}
     </Container>
   );
 }

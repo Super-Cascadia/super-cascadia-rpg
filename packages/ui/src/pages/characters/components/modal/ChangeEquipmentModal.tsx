@@ -1,7 +1,10 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
-import { CharacterInventory } from "@super-cascadia-rpg/api";
+import {
+  CharacterInventory,
+  EQUIPMENT_LOCATIONS,
+} from "@super-cascadia-rpg/api";
 import Row from "react-bootstrap/Row";
 import EquipmentLocation from "../EquipmentLocation";
 import Col from "react-bootstrap/Col";
@@ -17,17 +20,20 @@ import { toNumber } from "lodash";
 import { DEFAULT_OPTION_ID } from "../form/controls/constants";
 import Form from "react-bootstrap/Form";
 import updateCharacterEquipment from "../../../../api/characters/equipment/updateCharacterEquipment";
+import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 
 interface Props {
   show: boolean;
   handleClose: (item?: CharacterInventory) => void;
   selectedItem: CharacterInventory;
-  equipmentLocation: string;
+  equipmentLocation: EQUIPMENT_LOCATIONS;
   characterId: number;
+  equipment: CharacterEquipmentExpanded;
 }
 
 export default function ChangeEquipmentModal({
   show,
+  equipment,
   handleClose,
   selectedItem,
   equipmentLocation,
@@ -51,6 +57,7 @@ export default function ChangeEquipmentModal({
 
       updateCharacterEquipment(
         characterId,
+        equipment.id,
         values.inventoryId,
         equipmentLocation
       ).then((response) => {
@@ -99,6 +106,7 @@ export default function ChangeEquipmentModal({
                   <EquipmentLocation
                     headerTitle={equipmentLocation}
                     item={selectedItem}
+                    equipmentLocation={equipmentLocation}
                   />
                 </Col>
                 <Col sm={4}>
@@ -108,6 +116,7 @@ export default function ChangeEquipmentModal({
                       inventory={inventory}
                       selectedInventoryId={values.inventoryId}
                       handleChange={handleChange}
+                      equipmentLocation={equipmentLocation}
                     />
                   </Form>
                 </Col>
@@ -115,13 +124,10 @@ export default function ChangeEquipmentModal({
               </Row>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={() => handleClose()}>
+              <Button variant="secondary" onClick={() => handleSubmit()}>
                 Cancel
               </Button>
-              <Button
-                variant="success"
-                onClick={() => handleClose(selectedItem)}
-              >
+              <Button variant="success" onClick={() => handleSubmit()}>
                 Change Item
               </Button>
             </Modal.Footer>
