@@ -3,69 +3,10 @@ import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../api/items/createItem";
 import { useHistory } from "react-router-dom";
 import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
-import { TextInput } from "../../components/forms/TextInput";
-import { SelectInput } from "../../components/forms/SelectInput";
-import { itemTypeOptions } from "./constants";
-import {
-  Formik,
-  FormikErrors,
-  FormikHelpers,
-  FormikTouched,
-  FormikValues,
-} from "formik";
+import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
-
-interface Values {
-  name: string;
-  type: number;
-  description: string;
-}
-
-function ItemCreateForm({
-  handleFormChange,
-  values,
-  touched,
-  errors,
-}: {
-  handleFormChange: (event: React.SyntheticEvent) => void;
-  values: FormikValues;
-  touched: FormikTouched<Values>;
-  errors: FormikErrors<Values>;
-}) {
-  return (
-    <>
-      <TextInput
-        label="Name"
-        id="name"
-        inputDescription="The name of the item."
-        onChange={handleFormChange}
-        value={values.name}
-        touched={touched.name}
-        errors={errors.name}
-      />
-
-      <TextInput
-        label={"Description"}
-        id="description"
-        inputDescription="a description of the item"
-        onChange={handleFormChange}
-        value={values.description}
-        touched={touched.description}
-        errors={errors.description}
-      />
-
-      <SelectInput
-        onChange={handleFormChange}
-        label="Item Type"
-        id="type"
-        value={values.type}
-        options={itemTypeOptions}
-        inputDescription="The classification of the item."
-      />
-    </>
-  );
-}
+import ItemCreateForm from "./components/forms/ItemCreateForm";
 
 export default function ItemCreate() {
   const history = useHistory();
