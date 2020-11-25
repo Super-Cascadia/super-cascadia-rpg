@@ -1,4 +1,4 @@
-import { Connection, InsertResult, UpdateResult } from "typeorm";
+import { Connection, DeleteResult, InsertResult, UpdateResult } from "typeorm";
 import { Request, RequestQuery } from "@hapi/hapi";
 import { Item } from "../entity/Item";
 
@@ -31,4 +31,11 @@ export async function createNewItem(
   item: Item
 ): Promise<InsertResult> {
   return connection.manager.insert(Item, item);
+}
+
+export async function deleteItemById(
+  connection: Connection,
+  id: string
+): Promise<DeleteResult> {
+  return connection.manager.delete(Item, id);
 }

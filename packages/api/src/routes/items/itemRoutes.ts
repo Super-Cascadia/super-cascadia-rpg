@@ -1,17 +1,10 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
-import { Connection, DeleteResult } from "typeorm";
-import { Item } from "../../db/entity/Item";
+import { Connection } from "typeorm";
 import { getItemsHandler } from "../../handlers/items/getItemsHandler";
 import createItemHandler from "../../handlers/items/createItemHandler";
 import duplicateItemHandler from "../../handlers/items/duplicateItemHandler";
 import updateItemHandler from "../../handlers/items/updateItemHandler";
-
-async function deleteItemById(
-  connection: Connection,
-  id: string
-): Promise<DeleteResult> {
-  return connection.manager.delete(Item, id);
-}
+import { deleteItemHandler } from "../../handlers/items/deleteItemHandler";
 
 function getItems(server: Server, connection: Connection) {
   server.route({
@@ -35,15 +28,8 @@ function deleteItem(server: Server, connection: Connection) {
   server.route({
     method: "DELETE",
     path: "/items/{id}",
-    handler: async (request: Request, reply: ResponseToolkit): Promise<{}> => {
-      try {
-        console.info("request", request.payload);
-        return deleteItemById(connection, request.params.id);
-      } catch (e) {
-        console.error("error", e);
-        return Promise.resolve(e);
-      }
-    },
+    handler: async (request: Request, reply: ResponseToolkit): Promise<{}> =>
+      deleteItemHandler(request, connection),
   });
 }
 
