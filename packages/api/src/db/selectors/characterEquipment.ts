@@ -33,21 +33,28 @@ function prepareUpdatedEquipmentObject(
   switch (equipmentLocation) {
     case EQUIPMENT_LOCATIONS.LEFT_HAND:
       characterEquipment.leftHand = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.RIGHT_HAND:
       characterEquipment.rightHand = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.HEAD:
-      characterEquipment.rightHand = inventoryItem;
+      characterEquipment.head = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.CHEST:
-      characterEquipment.rightHand = inventoryItem;
+      characterEquipment.chest = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.ARMS:
-      characterEquipment.rightHand = inventoryItem;
+      characterEquipment.arms = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.FEET:
-      characterEquipment.rightHand = inventoryItem;
+      characterEquipment.feet = inventoryItem;
+      return characterEquipment;
     case EQUIPMENT_LOCATIONS.LEGS:
-      characterEquipment.rightHand = inventoryItem;
+      characterEquipment.legs = inventoryItem;
+      return characterEquipment;
+    default:
+      return characterEquipment;
   }
-
-  return characterEquipment;
 }
 
 export async function updateEquipmentLocation(
@@ -66,7 +73,7 @@ export async function updateEquipmentLocation(
 
   return connection.manager.update<CharacterEquipment>(
     CharacterEquipment,
-    equipmentId,
+    updatedCharacterEquipment.id,
     updatedCharacterEquipment
   );
 }
