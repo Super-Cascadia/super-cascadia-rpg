@@ -1,18 +1,7 @@
 import { Connection, UpdateResult } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
-
-async function updateAttributesById(
-  connection: Connection,
-  id: string,
-  data: CharacterAttributes
-): Promise<UpdateResult> {
-  return connection.manager.update<CharacterAttributes>(
-    CharacterAttributes,
-    id,
-    data
-  );
-}
+import { updateAttributesById } from "../../db/selectors/characterAttributes";
 
 export const updateCharacterAttributesHandler = async (
   connection: Connection,

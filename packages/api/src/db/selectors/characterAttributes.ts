@@ -1,4 +1,4 @@
-import { Connection } from "typeorm";
+import { Connection, UpdateResult } from "typeorm";
 import { CharacterAttributes } from "../entity/CharacterAttributes";
 import { Character } from "../entity/Character";
 
@@ -51,4 +51,16 @@ export async function saveCharacterAttributes(
   const attributes = prepareCharacterAttributesSaveObject(character, payload);
 
   return connection.manager.save(CharacterAttributes, attributes);
+}
+
+export async function updateAttributesById(
+  connection: Connection,
+  id: string,
+  data: CharacterAttributes
+): Promise<UpdateResult> {
+  return connection.manager.update<CharacterAttributes>(
+    CharacterAttributes,
+    id,
+    data
+  );
 }
