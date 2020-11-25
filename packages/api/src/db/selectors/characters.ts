@@ -1,4 +1,4 @@
-import { Connection, InsertResult } from "typeorm";
+import { Connection, InsertResult, UpdateResult } from "typeorm";
 import { Character } from "../entity/Character";
 import { Request, RequestQuery } from "@hapi/hapi";
 import { filter, includes, split } from "lodash";
@@ -50,4 +50,12 @@ export async function deleteCharacter(
   request: Request
 ) {
   return connection.manager.delete(Character, request.params.id);
+}
+
+export async function updateCharacterById(
+  connection: Connection,
+  id: string,
+  data: Character
+): Promise<UpdateResult> {
+  return connection.manager.update<Character>(Character, id, data);
 }
