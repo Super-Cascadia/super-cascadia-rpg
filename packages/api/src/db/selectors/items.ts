@@ -1,5 +1,5 @@
-import { Connection, UpdateResult } from "typeorm";
-import { RequestQuery } from "@hapi/hapi";
+import { Connection, InsertResult, UpdateResult } from "typeorm";
+import { Request, RequestQuery } from "@hapi/hapi";
 import { Item } from "../entity/Item";
 
 export async function findItems(connection: Connection, query: RequestQuery) {
@@ -24,4 +24,11 @@ export async function updateItemById(
   data: Item
 ): Promise<UpdateResult> {
   return connection.manager.update<Item>(Item, id, data);
+}
+
+export async function createNewItem(
+  connection: Connection,
+  request: Request
+): Promise<InsertResult> {
+  return connection.manager.insert(Item, request.payload as Item);
 }
