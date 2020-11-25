@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { ItemType } from "./interfaces/ItemType";
+import { ItemType } from "./constants";
 import { CharacterInventory } from "./CharacterInventory";
 
 @Entity()

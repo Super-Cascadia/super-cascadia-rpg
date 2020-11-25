@@ -22,7 +22,7 @@ function filterListToLegalRelations(details: string) {
 
 export async function getCharacterById(
   connection: Connection,
-  id: string,
+  characterId: string,
   query?: RequestQuery
 ): Promise<Character | undefined> {
   const details = query?.details as string;
@@ -30,10 +30,10 @@ export async function getCharacterById(
   if (details) {
     const filteredArray = filterListToLegalRelations(details);
 
-    return connection.manager.findOne<Character>(Character, id, {
+    return connection.manager.findOne<Character>(Character, characterId, {
       relations: filteredArray,
     });
   }
 
-  return connection.manager.findOne<Character>(Character, id);
+  return connection.manager.findOne<Character>(Character, characterId);
 }

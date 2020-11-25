@@ -1,14 +1,7 @@
 import { Item } from "../../db/entity/Item";
 import { Connection, UpdateResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
-
-async function updateItemById(
-  connection: Connection,
-  id: string,
-  data: Item
-): Promise<UpdateResult> {
-  return connection.manager.update<Item>(Item, id, data);
-}
+import { updateItemById } from "../../db/selectors/items";
 
 const updateItemHandler = async (
   connection: Connection,

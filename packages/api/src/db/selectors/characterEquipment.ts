@@ -1,15 +1,6 @@
-import { Connection } from "typeorm";
+import { Connection, UpdateResult } from "typeorm";
 import { CharacterEquipment } from "../entity/CharacterEquipment";
-
-export enum EQUIPMENT_LOCATIONS {
-  LEFT_HAND = "leftHand",
-  RIGHT_HAND = "rightHand",
-  HEAD = "head",
-  CHEST = "chest",
-  ARMS = "arms",
-  LEGS = "legs",
-  FEET = "feet",
-}
+import { EQUIPMENT_LOCATIONS } from "../entity/constants";
 
 export async function getCharacterEquipment(
   connection: Connection,
@@ -30,4 +21,20 @@ export async function getCharacterEquipment(
       "character",
     ],
   });
+}
+
+export async function updateEquipmentLocation(
+  connection: Connection,
+  characterId: string,
+  inventoryId: string,
+  equipmentLocation: string
+): Promise<UpdateResult> {
+  const data = {};
+  const equipmentId = "1";
+
+  return connection.manager.update<CharacterEquipment>(
+    equipmentId,
+    CharacterEquipment,
+    data
+  );
 }

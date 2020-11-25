@@ -1,4 +1,4 @@
-import { Connection } from "typeorm";
+import { Connection, UpdateResult } from "typeorm";
 import { RequestQuery } from "@hapi/hapi";
 import { Item } from "../entity/Item";
 
@@ -16,4 +16,12 @@ export async function getItemById(
   id: string
 ): Promise<Item | undefined> {
   return connection.manager.findOne(Item, id);
+}
+
+export async function updateItemById(
+  connection: Connection,
+  id: string,
+  data: Item
+): Promise<UpdateResult> {
+  return connection.manager.update<Item>(Item, id, data);
 }

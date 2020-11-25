@@ -3,43 +3,24 @@ import { Request } from "@hapi/hapi";
 import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
 import { getCharacterById } from "../../db/selectors/characters";
 import { Character } from "../../db/entity/Character";
-
-function prepareCharacterAttributesSaveObject(
-  response: Character,
-  payload: CharacterAttributes
-) {
-  const character = new Character();
-  character.id = response.id;
-
-  const attributes = new CharacterAttributes();
-  attributes.strength = payload.strength;
-  attributes.dexterity = payload.dexterity;
-  attributes.vitality = payload.vitality;
-  attributes.intelligence = payload.intelligence;
-  attributes.mind = payload.mind;
-  attributes.piety = payload.piety;
-  attributes.character = character as Character;
-  return attributes;
-}
+import { saveCharacterAttributes } from "../../db/selectors/characterAttributes";
 
 const createCharacterAttributesHandler = async (
   connection: Connection,
   request: Request
 ): Promise<any> => {
-  console.info("create character attributes handler");
   try {
-    const payload = request.payload as CharacterAttributes;
-    console.info("create new attributes for character", request.payload);
+    const characterAttributes = request.payload as CharacterAttributes;
+    const characterId = request.params.id;
 
-    return getCharacterById(connection, request.params.id).then(
+    return getCharacterById(connection, characterId).then(
       (response: Character | undefined) => {
         if (response) {
-          const attributes = prepareCharacterAttributesSaveObject(
+          return saveCharacterAttributes(
+            connection,
             response,
-            payload
+            characterAttributes
           );
-
-          return connection.manager.save(CharacterAttributes, attributes);
         }
 
         return Promise.resolve(undefined);

@@ -12,6 +12,7 @@ import { getCharacterInventoryHandler } from "../../handlers/characterInventory/
 import { deleteCharacterInventoryHandler } from "../../handlers/characterInventory/deleteCharacterInventoryHandler";
 import { createCharacterEquipmentHandler } from "../../handlers/characterEquipment/createCharacterEquipmentHandler";
 import { getCharacterEquipmentHandler } from "../../handlers/characterEquipment/getCharacterEquipmentHandler";
+import { updateCharacterEquipmentHandler } from "../../handlers/characterEquipment/updateCharacterEquipmentHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
@@ -116,6 +117,15 @@ function createCharacterEquipment(server: Server, connection: Connection) {
     path: "/characters/{id}/equipment",
     handler: async (request: Request, reply: ResponseToolkit) =>
       createCharacterEquipmentHandler(connection, request),
+  });
+}
+
+function updateCharacterEquipment(server: Server, connection: Connection) {
+  server.route({
+    method: "PUT",
+    path: "/characters/{id}/equipment",
+    handler: async (request: Request, reply: ResponseToolkit) =>
+      updateCharacterEquipmentHandler(connection, request),
   });
 }
 
