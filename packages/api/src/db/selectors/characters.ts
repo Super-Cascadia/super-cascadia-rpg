@@ -1,6 +1,6 @@
-import { Connection } from "typeorm";
+import { Connection, InsertResult } from "typeorm";
 import { Character } from "../entity/Character";
-import { RequestQuery } from "@hapi/hapi";
+import { Request, RequestQuery } from "@hapi/hapi";
 import { filter, includes, split } from "lodash";
 
 export async function findCharacters(connection: Connection) {
@@ -36,4 +36,11 @@ export async function getCharacterById(
   }
 
   return connection.manager.findOne<Character>(Character, characterId);
+}
+
+export async function createNewCharacter(
+  connection: Connection,
+  request: Request
+): Promise<InsertResult> {
+  return connection.manager.insert(Character, request.payload as Character);
 }

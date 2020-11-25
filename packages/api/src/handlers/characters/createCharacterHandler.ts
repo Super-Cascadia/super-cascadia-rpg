@@ -1,15 +1,6 @@
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import { Character } from "../../db/entity/Character";
-
-async function createNewCharacter(
-  connection: Connection,
-  request: Request
-): Promise<InsertResult> {
-  console.log("item", request.payload);
-
-  return connection.manager.insert(Character, request.payload as Character);
-}
+import { createNewCharacter } from "../../db/selectors/characters";
 
 const createCharacterHandler = async (
   connection: Connection,
