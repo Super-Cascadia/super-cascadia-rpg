@@ -8,6 +8,7 @@ export interface Values {
   name: string;
   type: number;
   description: string;
+  icon: string;
 }
 
 export default function ItemCreateForm({
@@ -41,6 +42,16 @@ export default function ItemCreateForm({
         value={values.description}
         touched={touched.description}
         errors={errors.description}
+      />
+
+      <TextInput
+        label={"Icon"}
+        id="icon"
+        inputDescription="the icon of the item"
+        onChange={handleFormChange}
+        value={values.icon}
+        touched={touched.icon}
+        errors={errors.icon}
       />
 
       <SelectInput

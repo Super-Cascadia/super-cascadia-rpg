@@ -25,12 +25,14 @@ export default function ItemCreate() {
     name: "",
     description: "",
     type: ItemType.FOOD,
+    icon: "",
   };
 
   const schema = yup.object({
     name: yup.string().min(1).required(),
     description: yup.string().min(1).required(),
     type: yup.string().required(),
+    icon: yup.string().min(1).required(),
   });
 
   return (
