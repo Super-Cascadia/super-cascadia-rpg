@@ -57,7 +57,6 @@ export default function ChangeEquipmentModal({
 
       updateCharacterEquipment(
         characterId,
-        equipment.id,
         values.inventoryId,
         equipmentLocation
       ).then((response) => {

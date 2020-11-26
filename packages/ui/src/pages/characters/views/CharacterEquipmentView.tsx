@@ -14,6 +14,7 @@ import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/ha
 import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
 import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
+import updateCharacterEquipment from "../../../api/characters/equipment/updateCharacterEquipment";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -60,6 +61,15 @@ export default function CharacterEquipmentView({ character }: Props) {
     reloadData();
   };
 
+  const handleUnequipItem = (
+    item: CharacterInventory,
+    equipmentLocation: EQUIPMENT_LOCATIONS
+  ) => {
+    updateCharacterEquipment(characterIdNumber, null, equipmentLocation).then(
+      reloadData
+    );
+  };
+
   return (
     <Container fluid>
       <br />
@@ -75,6 +85,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.leftHand}
             equipmentLocation={EQUIPMENT_LOCATIONS.LEFT_HAND}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
 
@@ -84,6 +95,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.rightHand}
             equipmentLocation={EQUIPMENT_LOCATIONS.RIGHT_HAND}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
       </Row>
@@ -99,6 +111,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.head}
             equipmentLocation={EQUIPMENT_LOCATIONS.HEAD}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
         <Col>
@@ -107,6 +120,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.chest}
             equipmentLocation={EQUIPMENT_LOCATIONS.CHEST}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
         <Col>
@@ -115,6 +129,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.arms}
             equipmentLocation={EQUIPMENT_LOCATIONS.ARMS}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
         <Col>
@@ -123,6 +138,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.legs}
             equipmentLocation={EQUIPMENT_LOCATIONS.LEGS}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
         <Col>
@@ -131,6 +147,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             item={equipment.feet}
             equipmentLocation={EQUIPMENT_LOCATIONS.FEET}
             changeItem={handleShowChangeItemModal}
+            unequipItem={handleUnequipItem}
           />
         </Col>
       </Row>

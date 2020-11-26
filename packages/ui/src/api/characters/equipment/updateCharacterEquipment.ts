@@ -1,7 +1,6 @@
 export default async function updateCharacterEquipment(
   characterId: number,
-  equipmentId: number,
-  inventoryId: number,
+  inventoryId: number | null,
   equipmentLocation: string
 ) {
   const body = JSON.stringify({

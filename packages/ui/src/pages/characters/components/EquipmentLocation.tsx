@@ -13,12 +13,17 @@ export default function EquipmentLocation({
   item,
   changeItem,
   equipmentLocation,
+  unequipItem,
 }: {
   headerTitle: string;
   buttonLabel?: string;
   item: CharacterInventory | null;
   equipmentLocation: EQUIPMENT_LOCATIONS;
   changeItem?: (
+    item: CharacterInventory,
+    equipmentLocation: EQUIPMENT_LOCATIONS
+  ) => void;
+  unequipItem?: (
     item: CharacterInventory,
     equipmentLocation: EQUIPMENT_LOCATIONS
   ) => void;
@@ -46,6 +51,14 @@ export default function EquipmentLocation({
             onClick={() => changeItem(item, equipmentLocation)}
           >
             Change Item
+          </Button>
+        )}
+        {unequipItem && (
+          <Button
+            variant="danger"
+            onClick={() => unequipItem(item, equipmentLocation)}
+          >
+            Unequip
           </Button>
         )}
       </Card.Body>
