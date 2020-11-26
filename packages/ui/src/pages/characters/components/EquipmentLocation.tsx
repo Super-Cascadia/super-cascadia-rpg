@@ -17,10 +17,7 @@ interface Props {
     item: CharacterInventory,
     equipmentLocation: EQUIPMENT_LOCATIONS
   ) => void;
-  unequipItem?: (
-    item: CharacterInventory,
-    equipmentLocation: EQUIPMENT_LOCATIONS
-  ) => void;
+  unequipItem?: (equipmentLocation: EQUIPMENT_LOCATIONS) => void;
 }
 
 interface NoEquipedItemParams {
@@ -66,7 +63,7 @@ export default function EquipmentLocation({
         {unequipItem && (
           <Button
             variant="danger"
-            onClick={() => unequipItem(item, equipmentLocation)}
+            onClick={() => unequipItem(equipmentLocation)}
           >
             Unequip
           </Button>

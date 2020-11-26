@@ -61,10 +61,7 @@ export default function CharacterEquipmentView({ character }: Props) {
     reloadData();
   };
 
-  const handleUnequipItem = (
-    item: CharacterInventory,
-    equipmentLocation: EQUIPMENT_LOCATIONS
-  ) => {
+  const handleUnequipItem = (equipmentLocation: EQUIPMENT_LOCATIONS) => {
     removeCharacterEquipment(characterIdNumber, equipmentLocation).then(
       reloadData
     );
