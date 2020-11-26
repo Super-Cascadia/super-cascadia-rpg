@@ -16,7 +16,7 @@ export function prepareNewCharacterEquipmentObject(
 
 export function prepareUpdatedEquipmentObject(
   characterEquipment: CharacterEquipment,
-  inventoryItem: CharacterInventory,
+  inventoryItem: CharacterInventory | null,
   equipmentLocation: EQUIPMENT_LOCATIONS
 ) {
   switch (equipmentLocation) {

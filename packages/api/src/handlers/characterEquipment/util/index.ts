@@ -31,10 +31,14 @@ export async function getCharacterEquipmentDetails(
   let requestedInventoryKeys: string[] = [];
 
   forEach(equipmentLocationsWithItems, (item, key) => {
-    const request = getCharacterInventoryById(connection, toString(item.id));
+    let inventoryId = toString(item?.id);
 
-    requestedInventoryKeys.push(key);
-    requests.push(request);
+    if (inventoryId) {
+      const request = getCharacterInventoryById(connection, inventoryId);
+
+      requestedInventoryKeys.push(key);
+      requests.push(request);
+    }
   });
 
   return Promise.all<any>(requests).then((response) => {

@@ -4,6 +4,7 @@ import {
   OneToOne,
   JoinColumn,
   ManyToOne,
+  Column,
 } from "typeorm";
 import { CharacterInventory } from "./CharacterInventory";
 import { Character } from "./Character";
@@ -15,36 +16,50 @@ export class CharacterEquipment {
   id!: number;
 
   @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
-    eager: true,
+    nullable: true,
   })
   // @ts-ignore
-  leftHand: CharacterInventory;
+  leftHand: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  rightHand: CharacterInventory;
+  rightHand: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  head: CharacterInventory;
+  head: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  chest: CharacterInventory;
+  chest: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  arms: CharacterInventory;
+  arms: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  legs: CharacterInventory;
+  legs: CharacterInventory | null;
 
-  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item)
+  @ManyToOne(() => CharacterInventory, (inventory) => inventory.item, {
+    nullable: true,
+  })
   // @ts-ignore
-  feet: CharacterInventory;
+  feet: CharacterInventory | null;
 
-  @OneToOne((type) => Character)
+  @OneToOne((type) => Character, {
+    nullable: false,
+  })
   @JoinColumn()
   // @ts-ignore
   character: Character;
