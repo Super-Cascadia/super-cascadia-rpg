@@ -15,6 +15,7 @@ import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
 import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
 import { removeCharacterEquipment } from "../../../api/characters/equipment/updateCharacterEquipment";
+import AddEquipmentModal from "../components/modal/AddEquipmentModal";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -25,6 +26,7 @@ export default function CharacterEquipmentView({ character }: Props) {
     {} as CharacterEquipmentExpanded
   );
   const [showChangeItemModal, setChangeItemModalViz] = useState<boolean>(false);
+  const [showEquipItemModal, setEquipItemModalViz] = useState<boolean>(false);
   const [
     selectedInventory,
     setSelectedInventory,
@@ -61,6 +63,17 @@ export default function CharacterEquipmentView({ character }: Props) {
     reloadData();
   };
 
+  const handleShowEquipItemModal = (equipmentLocation: EQUIPMENT_LOCATIONS) => {
+    setSelectedEquipmentLocation(equipmentLocation);
+    setEquipItemModalViz(true);
+  };
+
+  const handleCloseEquipItemModal = (item?: CharacterInventory) => {
+    setSelectedEquipmentLocation(null);
+    setEquipItemModalViz(false);
+    reloadData();
+  };
+
   const handleUnequipItem = (equipmentLocation: EQUIPMENT_LOCATIONS) => {
     removeCharacterEquipment(characterIdNumber, equipmentLocation).then(
       reloadData
@@ -83,6 +96,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.LEFT_HAND}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
 
@@ -93,6 +107,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.RIGHT_HAND}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
       </Row>
@@ -109,6 +124,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.HEAD}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
         <Col>
@@ -118,6 +134,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.CHEST}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
         <Col>
@@ -127,6 +144,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.ARMS}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
         <Col>
@@ -136,6 +154,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.LEGS}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
         <Col>
@@ -145,6 +164,7 @@ export default function CharacterEquipmentView({ character }: Props) {
             equipmentLocation={EQUIPMENT_LOCATIONS.FEET}
             changeItem={handleShowChangeItemModal}
             unequipItem={handleUnequipItem}
+            equipItem={handleShowEquipItemModal}
           />
         </Col>
       </Row>
@@ -152,7 +172,6 @@ export default function CharacterEquipmentView({ character }: Props) {
         selectedInventory &&
         selectedEquipmentLocation && (
           <ChangeEquipmentModal
-            equipment={equipment}
             show={showChangeItemModal}
             selectedItem={selectedInventory}
             handleClose={handleCloseEquipmentChangeModal}
@@ -160,6 +179,14 @@ export default function CharacterEquipmentView({ character }: Props) {
             characterId={character.id}
           />
         )}
+      {showEquipItemModal && selectedEquipmentLocation && (
+        <AddEquipmentModal
+          show={showEquipItemModal}
+          handleClose={handleCloseEquipItemModal}
+          equipmentLocation={selectedEquipmentLocation}
+          characterId={character.id}
+        />
+      )}
     </Container>
   );
 }

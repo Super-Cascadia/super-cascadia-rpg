@@ -7,32 +7,19 @@ import {
   EQUIPMENT_LOCATIONS,
 } from "@super-cascadia-rpg/api";
 import CardImage from "./images/CardImage";
+import UnequippedItemCard from "./cards/UnequippedItemCard";
 
 interface Props {
   headerTitle: string;
   buttonLabel?: string;
   item: CharacterInventory | null;
   equipmentLocation: EQUIPMENT_LOCATIONS;
-  changeItem?: (
+  changeItem: (
     item: CharacterInventory,
     equipmentLocation: EQUIPMENT_LOCATIONS
   ) => void;
-  unequipItem?: (equipmentLocation: EQUIPMENT_LOCATIONS) => void;
-}
-
-interface NoEquippedItemParams {
-  headerTitle: string;
-}
-
-function NoEquippedItem({ headerTitle }: NoEquippedItemParams) {
-  return (
-    <Card style={{ marginBottom: "20px" }} bg="light" text="dark">
-      <Card.Body>
-        <Button variant="primary">Equip Item</Button>
-      </Card.Body>
-      <Card.Footer>{headerTitle}</Card.Footer>
-    </Card>
-  );
+  unequipItem: (equipmentLocation: EQUIPMENT_LOCATIONS) => void;
+  equipItem: (equipmentLocation: EQUIPMENT_LOCATIONS) => void;
 }
 
 export default function EquipmentLocation({
@@ -41,9 +28,16 @@ export default function EquipmentLocation({
   changeItem,
   equipmentLocation,
   unequipItem,
+  equipItem,
 }: Props) {
   if (isNull(item) || isUndefined(item)) {
-    return <NoEquippedItem headerTitle={headerTitle} />;
+    return (
+      <UnequippedItemCard
+        headerTitle={headerTitle}
+        equipItem={equipItem}
+        equipmentLocation={equipmentLocation}
+      />
+    );
   }
 
   return (

@@ -25,15 +25,13 @@ import EquipmentCard from "../cards/EquipmentCard";
 interface Props {
   show: boolean;
   handleClose: (item?: CharacterInventory) => void;
-  selectedItem: CharacterInventory;
   equipmentLocation: EQUIPMENT_LOCATIONS;
   characterId: number;
 }
 
-export default function ChangeEquipmentModal({
+export default function AddEquipmentModal({
   show,
   handleClose,
-  selectedItem,
   equipmentLocation,
   characterId,
 }: Props) {
@@ -90,27 +88,13 @@ export default function ChangeEquipmentModal({
         console.log("values", values);
 
         return (
-          <Modal show={show} onHide={handleClose} size="lg">
+          <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Change Equipment</Modal.Title>
+              <Modal.Title>Equipment Item</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Row>
-                <Col>
-                  <p>Choose a new item.</p>
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={2} />
-                <Col sm={4}>
-                  <h3>Current Item</h3>
-                  <EquipmentCard
-                    headerTitle={equipmentLocation}
-                    item={selectedItem}
-                  />
-                </Col>
-                <Col sm={4}>
-                  <h3>New Item</h3>
+                <Col sm={12}>
                   <Form onSubmit={handleSubmit} noValidate>
                     <ChangeEquipmentForm
                       inventory={inventory}
@@ -119,7 +103,6 @@ export default function ChangeEquipmentModal({
                     />
                   </Form>
                 </Col>
-                <Col sm={2} />
               </Row>
             </Modal.Body>
             <Modal.Footer>
@@ -127,7 +110,7 @@ export default function ChangeEquipmentModal({
                 Cancel
               </Button>
               <Button variant="success" onClick={() => handleSubmit()}>
-                Change Item
+                Equip Item
               </Button>
             </Modal.Footer>
           </Modal>
