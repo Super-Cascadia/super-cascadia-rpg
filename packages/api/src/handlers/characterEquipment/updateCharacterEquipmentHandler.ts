@@ -6,10 +6,10 @@ import {
 } from "../../db/selectors/characterEquipment";
 import { getCharacterInventoryById } from "../../db/selectors/characterInventory";
 import { EQUIPMENT_LOCATIONS } from "../../db/entity/constants";
-import { isNull } from "lodash";
+import { isUndefined } from "lodash";
 
 interface UpdateEquipmentRequestBody {
-  inventoryId: string;
+  inventoryId?: string;
   equipmentLocation: EQUIPMENT_LOCATIONS;
 }
 
@@ -23,15 +23,14 @@ async function updateEquipmentLocationToNewInventory(
   const characterInventory = getCharacterInventoryById(connection, inventoryId);
 
   return Promise.all([characterEquipment, characterInventory]).then(
-    ([characterEquipment, characterInventory]) => {
-      if (characterEquipment && characterInventory) {
+    ([characterEquipment, inventoryItem]) => {
+      if (characterEquipment && inventoryItem) {
         return updateEquipmentLocation(
           connection,
           characterId,
-          inventoryId,
           equipmentLocation,
           characterEquipment,
-          characterInventory
+          inventoryItem
         );
       }
     }
@@ -43,9 +42,18 @@ async function removeInventoryFromEquipmentLocation(
   characterId: string,
   equipmentLocation: EQUIPMENT_LOCATIONS
 ) {
-  const characterEquipment = await getCharacterEquipment(
-    connection,
-    characterId
+  return getCharacterEquipment(connection, characterId).then(
+    (characterEquipment) => {
+      if (characterEquipment) {
+        return updateEquipmentLocation(
+          connection,
+          characterId,
+          equipmentLocation,
+          characterEquipment,
+          null
+        );
+      }
+    }
   );
 }
 
@@ -60,7 +68,7 @@ export const updateCharacterEquipmentHandler = async (
       equipmentLocation,
     } = request.payload as UpdateEquipmentRequestBody;
 
-    if (isNull(inventoryId)) {
+    if (isUndefined(inventoryId)) {
       return removeInventoryFromEquipmentLocation(
         connection,
         characterId,

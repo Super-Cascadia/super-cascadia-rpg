@@ -29,25 +29,12 @@ export async function getCharacterEquipment(
   });
 }
 
-// export async function removeEquipmentFromLocation(
-//   connection: Connection,
-//   characterEquipment: CharacterEquipment,
-//   equipmentLocation: EQUIPMENT_LOCATIONS
-// ): Promise<UpdateResult> {
-//   const updatedCharacterEquipment = prepareUpdatedEquipmentObject(
-//     characterEquipment,
-//     inventoryItem,
-//     equipmentLocation
-//   );
-// }
-
 export async function updateEquipmentLocation(
   connection: Connection,
   equipmentId: string,
-  inventoryId: string,
   equipmentLocation: EQUIPMENT_LOCATIONS,
   characterEquipment: CharacterEquipment,
-  inventoryItem: CharacterInventory
+  inventoryItem: CharacterInventory | null
 ): Promise<UpdateResult> {
   const updatedCharacterEquipment = prepareUpdatedEquipmentObject(
     characterEquipment,
