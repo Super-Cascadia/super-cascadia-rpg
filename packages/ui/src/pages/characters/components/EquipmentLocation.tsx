@@ -20,11 +20,11 @@ interface Props {
   unequipItem?: (equipmentLocation: EQUIPMENT_LOCATIONS) => void;
 }
 
-interface NoEquipedItemParams {
+interface NoEquippedItemParams {
   headerTitle: string;
 }
 
-function NoEquipedItem({ headerTitle }: NoEquipedItemParams) {
+function NoEquippedItem({ headerTitle }: NoEquippedItemParams) {
   return (
     <Card style={{ marginBottom: "20px" }} bg="light" text="dark">
       <Card.Body>
@@ -43,7 +43,7 @@ export default function EquipmentLocation({
   unequipItem,
 }: Props) {
   if (isNull(item) || isUndefined(item)) {
-    return <NoEquipedItem headerTitle={headerTitle} />;
+    return <NoEquippedItem headerTitle={headerTitle} />;
   }
 
   return (
