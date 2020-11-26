@@ -14,7 +14,7 @@ import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/ha
 import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
 import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
-import updateCharacterEquipment from "../../../api/characters/equipment/updateCharacterEquipment";
+import { removeCharacterEquipment } from "../../../api/characters/equipment/updateCharacterEquipment";
 
 interface Props {
   character: CharacterWithAttributes;
@@ -65,7 +65,7 @@ export default function CharacterEquipmentView({ character }: Props) {
     item: CharacterInventory,
     equipmentLocation: EQUIPMENT_LOCATIONS
   ) => {
-    updateCharacterEquipment(characterIdNumber, null, equipmentLocation).then(
+    removeCharacterEquipment(characterIdNumber, equipmentLocation).then(
       reloadData
     );
   };

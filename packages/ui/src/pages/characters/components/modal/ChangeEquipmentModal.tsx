@@ -19,8 +19,8 @@ import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fe
 import { toNumber } from "lodash";
 import { DEFAULT_OPTION_ID } from "../form/controls/constants";
 import Form from "react-bootstrap/Form";
-import updateCharacterEquipment from "../../../../api/characters/equipment/updateCharacterEquipment";
 import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
+import { updateCharacterEquipment } from "../../../../api/characters/equipment/updateCharacterEquipment";
 
 interface Props {
   show: boolean;
@@ -49,6 +49,17 @@ export default function ChangeEquipmentModal({
     {}
   );
 
+  function handleUpdateSuccess(actions: FormikHelpers<any>) {
+    return () => {
+      actions.resetForm({
+        values: {
+          inventoryId: "",
+        },
+      });
+      handleClose();
+    };
+  }
+
   const handleSubmit = (values: FormikValues, actions: FormikHelpers<any>) => {
     console.log(values);
 
@@ -59,14 +70,7 @@ export default function ChangeEquipmentModal({
         characterId,
         values.inventoryId,
         equipmentLocation
-      ).then((response) => {
-        actions.resetForm({
-          values: {
-            inventoryId: "",
-          },
-        });
-        handleClose();
-      });
+      ).then(handleUpdateSuccess(actions));
     }
   };
 
@@ -84,7 +88,7 @@ export default function ChangeEquipmentModal({
       onSubmit={handleSubmit}
       initialValues={initialFormState}
     >
-      {({ handleSubmit, dirty, handleChange, values, touched, errors }) => {
+      {({ handleSubmit, handleChange, values }) => {
         console.log("values", values);
 
         return (
