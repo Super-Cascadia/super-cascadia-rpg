@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import {
   CharacterInventory,
   EQUIPMENT_LOCATIONS,
+  ItemType,
 } from "@super-cascadia-rpg/api";
 import Row from "react-bootstrap/Row";
-import EquipmentLocation from "../EquipmentLocation";
 import Col from "react-bootstrap/Col";
 import { ChangeEquipmentForm } from "../form/ChangeEquipmentForm";
 import { Formik, FormikHelpers, FormikValues } from "formik";
@@ -16,11 +16,11 @@ import {
   CharacterInventoryStateHook,
 } from "../../../../hooks/store/characterStateHooks";
 import fetchCharacterInventoryDataHook from "../../../../hooks/api/characters/fetchCharacterInventoryDataHook";
-import { toNumber } from "lodash";
+import { filter, toNumber } from "lodash";
 import { DEFAULT_OPTION_ID } from "../form/controls/constants";
 import Form from "react-bootstrap/Form";
 import { updateCharacterEquipment } from "../../../../api/characters/equipment/updateCharacterEquipment";
-import EquipmentCard from "../cards/EquipmentCard";
+import { handleFetchInventorySuccess } from "./index";
 
 interface Props {
   show: boolean;
@@ -40,7 +40,10 @@ export default function AddEquipmentModal({
   );
 
   useEffect(
-    fetchCharacterInventoryDataHook(toNumber(characterId), setInventory),
+    fetchCharacterInventoryDataHook(
+      toNumber(characterId),
+      handleFetchInventorySuccess(setInventory, equipmentLocation)
+    ),
     // @ts-ignore
     {}
   );

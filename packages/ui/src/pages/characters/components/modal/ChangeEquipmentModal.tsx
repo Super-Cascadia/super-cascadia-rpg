@@ -21,6 +21,7 @@ import { DEFAULT_OPTION_ID } from "../form/controls/constants";
 import Form from "react-bootstrap/Form";
 import { updateCharacterEquipment } from "../../../../api/characters/equipment/updateCharacterEquipment";
 import EquipmentCard from "../cards/EquipmentCard";
+import { handleFetchInventorySuccess } from "./index";
 
 interface Props {
   show: boolean;
@@ -42,7 +43,10 @@ export default function ChangeEquipmentModal({
   );
 
   useEffect(
-    fetchCharacterInventoryDataHook(toNumber(characterId), setInventory),
+    fetchCharacterInventoryDataHook(
+      toNumber(characterId),
+      handleFetchInventorySuccess(setInventory, equipmentLocation)
+    ),
     // @ts-ignore
     {}
   );
