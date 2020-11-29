@@ -26,29 +26,34 @@ export async function getCharacterAttributes(
 }
 
 function prepareCharacterAttributesSaveObject(
-  response: Character,
-  payload: CharacterAttributes
+  character: Character,
+  characterAttributes: CharacterAttributes
 ) {
-  const character = new Character();
-  character.id = response.id;
-
+  const characterObject = new Character();
   const attributes = new CharacterAttributes();
-  attributes.strength = payload.strength;
-  attributes.dexterity = payload.dexterity;
-  attributes.vitality = payload.vitality;
-  attributes.intelligence = payload.intelligence;
-  attributes.mind = payload.mind;
-  attributes.piety = payload.piety;
-  attributes.character = character as Character;
+
+  characterObject.id = character.id;
+
+  attributes.strength = characterAttributes.strength;
+  attributes.dexterity = characterAttributes.dexterity;
+  attributes.vitality = characterAttributes.vitality;
+  attributes.intelligence = characterAttributes.intelligence;
+  attributes.mind = characterAttributes.mind;
+  attributes.piety = characterAttributes.piety;
+  attributes.character = characterObject as Character;
+
   return attributes;
 }
 
 export async function saveCharacterAttributes(
   connection: Connection,
   character: Character,
-  payload: CharacterAttributes
+  characterAttributes: CharacterAttributes
 ): Promise<CharacterAttributes | undefined> {
-  const attributes = prepareCharacterAttributesSaveObject(character, payload);
+  const attributes = prepareCharacterAttributesSaveObject(
+    character,
+    characterAttributes
+  );
 
   return connection.manager.save(CharacterAttributes, attributes);
 }
