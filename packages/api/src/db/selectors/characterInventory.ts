@@ -9,7 +9,9 @@ export async function getCharacterInventory(
 ): Promise<CharacterInventory[]> {
   return connection.manager.find<CharacterInventory>(CharacterInventory, {
     where: {
-      characterId: id,
+      character: {
+        id,
+      },
     },
     relations: ["item", "character"],
   });
