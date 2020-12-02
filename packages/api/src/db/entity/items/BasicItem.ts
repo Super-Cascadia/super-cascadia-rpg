@@ -1,10 +1,8 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ItemType } from "./constants";
-import { Item } from "./Item";
-import { CharacterInventory } from "./CharacterInventory";
+import { PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { ItemType } from "../constants";
+import { CharacterInventory } from "../CharacterInventory";
 
-@Entity()
-export class ConsumableItem extends Item {
+export abstract class BasicItem {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -18,7 +16,7 @@ export class ConsumableItem extends Item {
   icon!: string;
 
   @Column()
-  type!: ItemType.FOOD;
+  type!: ItemType;
 
   @OneToMany(
     () => CharacterInventory,
