@@ -19,9 +19,6 @@ export class Item {
   @Column()
   type!: ItemType;
 
-  @Column()
-  consumable!: boolean;
-
   @OneToMany(
     () => CharacterInventory,
     (characterInventory) => characterInventory.item
