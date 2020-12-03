@@ -23,15 +23,11 @@ export const createArmorItemHandler = async (
   request: Request,
   reply: ResponseToolkit
 ): Promise<InsertResult> => {
-  try {
-    return createNewArmorItem(
-      connection,
-      request.payload as BasicArmorItem
-    ).catch((e) => {
-      console.error(e);
-      throw e;
-    });
-  } catch (e) {
-    return Promise.resolve(e);
-  }
+  return createNewArmorItem(
+    connection,
+    request.payload as BasicArmorItem
+  ).catch((e) => {
+    console.error(e);
+    throw e;
+  });
 };

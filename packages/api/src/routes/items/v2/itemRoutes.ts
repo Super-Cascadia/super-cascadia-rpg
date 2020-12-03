@@ -3,7 +3,7 @@ import { Connection } from "typeorm";
 import {
   createArmorItemHandler,
   getArmorItemsHandler,
-} from "../../../handlers/items/v2/getArmorItemsHandler";
+} from "../../../handlers/items/v2/armorItemHandlers";
 
 export const itemRoutesV2 = (server: Server, connection: Connection) => {
   server.route({
