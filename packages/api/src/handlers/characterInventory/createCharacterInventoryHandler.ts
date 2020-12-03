@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { getCharacterById } from "../../db/selectors/characters";
-import { getItemById } from "../../db/selectors/items";
+import { getItemById } from "../../db/selectors/items/v1/items";
 import { createCharacterInventory } from "../../db/selectors/characterInventory";
 
 interface CreateInventoryRequestBody {

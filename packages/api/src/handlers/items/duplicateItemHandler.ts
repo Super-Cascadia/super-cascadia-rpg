@@ -3,7 +3,7 @@ import { Connection } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { ItemCreateModel, ItemModel } from "../../model/items/itemModel";
 import { omit } from "lodash";
-import { createNewItem, getItemById } from "../../db/selectors/items";
+import { createNewItem, getItemById } from "../../db/selectors/items/v1/items";
 
 async function duplicateItemById(
   connection: Connection,

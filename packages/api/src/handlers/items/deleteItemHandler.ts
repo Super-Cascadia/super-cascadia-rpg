@@ -1,6 +1,6 @@
 import { Request } from "@hapi/hapi";
 import { Connection } from "typeorm";
-import { deleteItemById } from "../../db/selectors/items";
+import { deleteItemById } from "../../db/selectors/items/v1/items";
 
 export async function deleteItemHandler(
   request: Request,

@@ -1,6 +1,6 @@
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import { createNewItem } from "../../db/selectors/items";
+import { createNewItem } from "../../db/selectors/items/v1/items";
 import { Item } from "../../db/entity/Item";
 
 const createItemHandler = async (

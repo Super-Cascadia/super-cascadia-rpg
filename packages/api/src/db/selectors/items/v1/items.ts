@@ -1,6 +1,6 @@
 import { Connection, DeleteResult, InsertResult, UpdateResult } from "typeorm";
 import { Request, RequestQuery } from "@hapi/hapi";
-import { Item } from "../entity/Item";
+import { Item } from "../../../entity/Item";
 
 export async function findItems(connection: Connection, query: RequestQuery) {
   if (query.type) {
