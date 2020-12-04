@@ -9,9 +9,7 @@ import {
   getWeaponItemsHandler,
 } from "../../../handlers/items/v2/weaponItemHandler";
 
-export const itemRoutesV2 = (server: Server, connection: Connection) => {
-  // Armor
-
+function armorItemRoutes(server: Server, connection: Connection) {
   server.route({
     method: "GET",
     path: "/items/v2/armor/{id?}",
@@ -25,9 +23,9 @@ export const itemRoutesV2 = (server: Server, connection: Connection) => {
     handler: (request: Request, reply: ResponseToolkit) =>
       createArmorItemHandler(connection, request, reply),
   });
+}
 
-  // Weapons
-
+function weaponItemRoutes(server: Server, connection: Connection) {
   server.route({
     method: "GET",
     path: "/items/v2/weapon/{id?}",
@@ -41,4 +39,9 @@ export const itemRoutesV2 = (server: Server, connection: Connection) => {
     handler: (request: Request, reply: ResponseToolkit) =>
       createWeaponItemHandler(connection, request, reply),
   });
+}
+
+export const itemRoutesV2 = (server: Server, connection: Connection) => {
+  armorItemRoutes(server, connection);
+  weaponItemRoutes(server, connection);
 };
