@@ -1,9 +1,9 @@
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import { ItemModel } from "../../model/items/itemModel";
-import { Item } from "../../db/entity/Item";
+import { ItemModel } from "../../../model/items/itemModel";
+import { Item } from "../../../db/entity/Item";
 import { Connection } from "typeorm/index";
-import { mapItemToItemModel } from "../../utils/mappings/items";
-import { findItems, getItemById } from "../../db/selectors/items/v1/items";
+import { mapItemToItemModel } from "../../../utils/mappings/items";
+import { findItems, getItemById } from "../../../db/selectors/items/v1/items";
 
 async function getAllItems(
   connection: Connection,

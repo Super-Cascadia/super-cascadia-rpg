@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { CharacterEquipment } from "../../../db/entity/CharacterEquipment";
 import { forEach, isNull, omit, omitBy, toString } from "lodash";
-import { getCharacterInventoryById } from "../../../db/selectors/characterInventory";
+import { getCharacterInventoryById } from "../../../db/selectors/characters/characterInventory";
 import { Character } from "../../../db/entity/Character";
 import { CharacterInventory } from "../../../db/entity/CharacterInventory";
 

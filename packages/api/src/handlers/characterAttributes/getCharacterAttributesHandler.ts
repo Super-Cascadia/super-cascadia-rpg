@@ -4,7 +4,7 @@ import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
 import {
   getCharacterAttributesById,
   getAllCharacterAttributes,
-} from "../../db/selectors/characterAttributes";
+} from "../../db/selectors/characters/characterAttributes";
 
 export const getCharacterAttributesHandler = async (
   connection: Connection,

@@ -3,8 +3,8 @@ import { Request } from "@hapi/hapi";
 import {
   getCharacterEquipment,
   updateEquipmentLocation,
-} from "../../db/selectors/characterEquipment";
-import { getCharacterInventoryById } from "../../db/selectors/characterInventory";
+} from "../../db/selectors/characters/characterEquipment";
+import { getCharacterInventoryById } from "../../db/selectors/characters/characterInventory";
 import { EQUIPMENT_LOCATIONS } from "../../db/entity/constants";
 import { isUndefined } from "lodash";
 

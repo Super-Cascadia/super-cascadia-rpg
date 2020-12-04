@@ -27,3 +27,16 @@ export async function createNewWeaponItem(
 ): Promise<InsertResult> {
   return connection.manager.insert(BasicWeaponItem, item);
 }
+
+// Weapon Items
+
+export async function findConsumableItems(connection: Connection) {
+  return connection.manager.find(BasicWeaponItem);
+}
+
+export async function createNewConsumableItem(
+  connection: Connection,
+  item: BasicWeaponItem
+): Promise<InsertResult> {
+  return connection.manager.insert(BasicWeaponItem, item);
+}

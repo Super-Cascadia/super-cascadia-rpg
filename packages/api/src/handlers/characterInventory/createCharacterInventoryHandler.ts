@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { getCharacterById } from "../../db/selectors/characters";
+import { getCharacterById } from "../../db/selectors/characters/characters";
 import { getItemById } from "../../db/selectors/items/v1/items";
-import { createCharacterInventory } from "../../db/selectors/characterInventory";
+import { createCharacterInventory } from "../../db/selectors/characters/characterInventory";
 
 interface CreateInventoryRequestBody {
   itemId: string;

@@ -1,7 +1,7 @@
 import { Connection, UpdateResult } from "typeorm";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { Character } from "../../db/entity/Character";
-import { updateCharacterById } from "../../db/selectors/characters";
+import { updateCharacterById } from "../../db/selectors/characters/characters";
 
 const updateCharacterHandler = async (
   connection: Connection,

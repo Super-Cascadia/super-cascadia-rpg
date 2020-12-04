@@ -1,10 +1,10 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 import { Connection } from "typeorm";
-import { getItemsHandler } from "../../handlers/items/getItemsHandler";
-import createItemHandler from "../../handlers/items/createItemHandler";
-import duplicateItemHandler from "../../handlers/items/duplicateItemHandler";
-import updateItemHandler from "../../handlers/items/updateItemHandler";
-import { deleteItemHandler } from "../../handlers/items/deleteItemHandler";
+import { getItemsHandler } from "../../handlers/items/v1/getItemsHandler";
+import createItemHandler from "../../handlers/items/v1/createItemHandler";
+import duplicateItemHandler from "../../handlers/items/v1/duplicateItemHandler";
+import updateItemHandler from "../../handlers/items/v1/updateItemHandler";
+import { deleteItemHandler } from "../../handlers/items/v1/deleteItemHandler";
 import createConsumableItemHandler from "../../handlers/consumableItems/createConsumableItemHandler";
 
 // Generic Items

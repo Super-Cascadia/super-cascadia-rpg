@@ -1,12 +1,12 @@
 import { Connection, UpdateResult } from "typeorm";
-import { CharacterEquipment } from "../entity/CharacterEquipment";
-import { EQUIPMENT_LOCATIONS } from "../entity/constants";
-import { Character } from "../entity/Character";
-import { CharacterInventory } from "../entity/CharacterInventory";
+import { CharacterEquipment } from "../../entity/CharacterEquipment";
+import { EQUIPMENT_LOCATIONS } from "../../entity/constants";
+import { Character } from "../../entity/Character";
+import { CharacterInventory } from "../../entity/CharacterInventory";
 import {
   prepareNewCharacterEquipmentObject,
   prepareUpdatedEquipmentObject,
-} from "../util/characterEquipment.util";
+} from "../../util/characterEquipment.util";
 
 export async function getCharacterEquipment(
   connection: Connection,

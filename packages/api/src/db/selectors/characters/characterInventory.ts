@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
-import { CharacterInventory } from "../entity/CharacterInventory";
-import { Character } from "../entity/Character";
-import { Item } from "../entity/Item";
+import { CharacterInventory } from "../../entity/CharacterInventory";
+import { Character } from "../../entity/Character";
+import { Item } from "../../entity/Item";
 
 export async function getCharacterInventory(
   connection: Connection,

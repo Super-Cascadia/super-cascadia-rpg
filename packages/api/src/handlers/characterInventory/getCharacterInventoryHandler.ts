@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
 import { CharacterInventory } from "../../db/entity/CharacterInventory";
-import { getCharacterInventory } from "../../db/selectors/characterInventory";
+import { getCharacterInventory } from "../../db/selectors/characters/characterInventory";
 
 export const getCharacterInventoryHandler = async (
   connection: Connection,

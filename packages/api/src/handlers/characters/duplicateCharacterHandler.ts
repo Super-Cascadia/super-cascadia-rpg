@@ -6,7 +6,7 @@ import { CharacterCreateModel, CharacterModel } from "src/interfaces";
 import {
   createNewCharacter,
   getCharacterById,
-} from "../../db/selectors/characters";
+} from "../../db/selectors/characters/characters";
 
 async function duplicateCharacterById(
   connection: Connection,

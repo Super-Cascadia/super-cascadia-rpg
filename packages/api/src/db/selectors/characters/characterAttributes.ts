@@ -1,6 +1,6 @@
 import { Connection, UpdateResult } from "typeorm";
-import { CharacterAttributes } from "../entity/CharacterAttributes";
-import { Character } from "../entity/Character";
+import { CharacterAttributes } from "../../entity/CharacterAttributes";
+import { Character } from "../../entity/Character";
 
 export async function getAllCharacterAttributes(connection: Connection) {
   return connection.manager.find(CharacterAttributes);

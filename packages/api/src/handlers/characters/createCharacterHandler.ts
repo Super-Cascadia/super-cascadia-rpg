@@ -1,8 +1,8 @@
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import { createNewCharacter } from "../../db/selectors/characters";
+import { createNewCharacter } from "../../db/selectors/characters/characters";
 import { Character } from "../../db/entity/Character";
-import { saveCharacterAttributes } from "../../db/selectors/characterAttributes";
+import { saveCharacterAttributes } from "../../db/selectors/characters/characterAttributes";
 import { CharacterAttributes } from "../../db/entity/CharacterAttributes";
 
 function buildCharacterAttributesObject() {

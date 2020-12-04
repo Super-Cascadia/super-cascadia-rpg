@@ -5,7 +5,7 @@ import { mapCharacterToCharacterModel } from "../../utils/mappings/characters";
 import {
   findCharacters,
   getCharacterById,
-} from "../../db/selectors/characters";
+} from "../../db/selectors/characters/characters";
 
 async function getAllCharacters(
   connection: Connection,
