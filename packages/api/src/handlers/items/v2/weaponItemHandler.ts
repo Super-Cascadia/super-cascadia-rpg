@@ -1,31 +1,31 @@
 import { Connection, InsertResult } from "typeorm";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import {
-  createNewArmorItem,
-  findArmorItems,
+  createNewWeaponItem,
+  findWeaponItems,
 } from "../../../db/selectors/items/v2/item";
-import { BasicArmorItem } from "../../../db/entity/items/equippables/BasicArmorItem";
+import { BasicWeaponItem } from "../../../db/entity/items/equippables/BasicWeaponItem";
 
-export const getArmorItemsHandler = async (
+export const getWeaponItemsHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
-): Promise<BasicArmorItem[]> => {
+): Promise<BasicWeaponItem[]> => {
   try {
-    return findArmorItems(connection);
+    return findWeaponItems(connection);
   } catch (e) {
     return Promise.resolve(e);
   }
 };
 
-export const createArmorItemHandler = async (
+export const createWeaponItemHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
 ): Promise<InsertResult> => {
-  return createNewArmorItem(
+  return createNewWeaponItem(
     connection,
-    request.payload as BasicArmorItem
+    request.payload as BasicWeaponItem
   ).catch((e) => {
     console.error(e);
     throw e;
