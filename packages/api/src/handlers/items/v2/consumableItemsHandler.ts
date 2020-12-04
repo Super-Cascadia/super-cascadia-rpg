@@ -1,8 +1,8 @@
 import { Connection, InsertResult } from "typeorm";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import {
-  createNewWeaponItem,
-  findWeaponItems,
+  findConsumableItems,
+  createNewConsumableItem,
 } from "../../../db/selectors/items/v2/item";
 import { BasicWeaponItem } from "../../../db/entity/items/equippables/BasicWeaponItem";
 
@@ -12,7 +12,7 @@ export const getConsumableItemsHandler = async (
   reply: ResponseToolkit
 ): Promise<BasicWeaponItem[]> => {
   try {
-    return findWeaponItems(connection);
+    return findConsumableItems(connection);
   } catch (e) {
     return Promise.resolve(e);
   }
@@ -23,7 +23,7 @@ export const createConsumableItemHandler = async (
   request: Request,
   reply: ResponseToolkit
 ): Promise<InsertResult> => {
-  return createNewWeaponItem(
+  return createNewConsumableItem(
     connection,
     request.payload as BasicWeaponItem
   ).catch((e) => {
