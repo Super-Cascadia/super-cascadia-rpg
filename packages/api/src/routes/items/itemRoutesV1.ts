@@ -65,7 +65,7 @@ function createConsumableItem(server: Server, connection: Connection) {
   });
 }
 
-export const itemRoutes = (server: Server, connection: Connection) => {
+export const itemRoutesV1 = (server: Server, connection: Connection) => {
   getItems(server, connection);
   createItem(server, connection);
   deleteItem(server, connection);
