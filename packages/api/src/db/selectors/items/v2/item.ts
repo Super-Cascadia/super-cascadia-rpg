@@ -1,6 +1,7 @@
 import { Connection, InsertResult } from "typeorm";
 import { BasicArmorItem } from "../../../entity/items/equippables/BasicArmorItem";
 import { BasicWeaponItem } from "../../../entity/items/equippables/BasicWeaponItem";
+import { BasicConsumableItem } from "../../../entity/items/consumables/BasicConsumableItem";
 
 // Armor Items
 
@@ -28,15 +29,15 @@ export async function createNewWeaponItem(
   return connection.manager.insert(BasicWeaponItem, item);
 }
 
-// Weapon Items
+// Consumable Items
 
 export async function findConsumableItems(connection: Connection) {
-  return connection.manager.find(BasicWeaponItem);
+  return connection.manager.find(BasicConsumableItem);
 }
 
 export async function createNewConsumableItem(
   connection: Connection,
-  item: BasicWeaponItem
+  item: BasicConsumableItem
 ): Promise<InsertResult> {
-  return connection.manager.insert(BasicWeaponItem, item);
+  return connection.manager.insert(BasicConsumableItem, item);
 }

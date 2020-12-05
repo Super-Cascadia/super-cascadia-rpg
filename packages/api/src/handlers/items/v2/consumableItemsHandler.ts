@@ -4,13 +4,13 @@ import {
   findConsumableItems,
   createNewConsumableItem,
 } from "../../../db/selectors/items/v2/item";
-import { BasicWeaponItem } from "../../../db/entity/items/equippables/BasicWeaponItem";
+import { BasicConsumableItem } from "../../../db/entity/items/consumables/BasicConsumableItem";
 
 export const getConsumableItemsHandler = async (
   connection: Connection,
   request: Request,
   reply: ResponseToolkit
-): Promise<BasicWeaponItem[]> => {
+): Promise<BasicConsumableItem[]> => {
   try {
     return findConsumableItems(connection);
   } catch (e) {
@@ -25,7 +25,7 @@ export const createConsumableItemHandler = async (
 ): Promise<InsertResult> => {
   return createNewConsumableItem(
     connection,
-    request.payload as BasicWeaponItem
+    request.payload as BasicConsumableItem
   ).catch((e) => {
     console.error(e);
     throw e;
