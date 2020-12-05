@@ -1,8 +1,8 @@
 import {
   CharacterAttributes,
   CharacterWithAttributes,
+  CharacterInventory,
 } from "@super-cascadia-rpg/api";
-import { CharacterInventory } from "@super-cascadia-rpg/api/build/src/db/entity/CharacterInventory";
 import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 
 export interface CharacterEditState {
