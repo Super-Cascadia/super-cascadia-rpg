@@ -1,7 +1,7 @@
 import { Connection, InsertResult } from "typeorm";
-import { BasicArmorItem } from "../../../entity/items/equippables/BasicArmorItem";
-import { BasicWeaponItem } from "../../../entity/items/equippables/BasicWeaponItem";
-import { BasicConsumableItem } from "../../../entity/items/consumables/BasicConsumableItem";
+import { BasicArmorItem } from "../../../entity/items/v2/equippables/BasicArmorItem";
+import { BasicWeaponItem } from "../../../entity/items/v2/equippables/BasicWeaponItem";
+import { BasicConsumableItem } from "../../../entity/items/v2/consumables/BasicConsumableItem";
 
 // Armor Items
 

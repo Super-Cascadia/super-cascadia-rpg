@@ -1,5 +1,5 @@
 import { Connection, InsertResult, UpdateResult } from "typeorm";
-import { Character } from "../../entity/Character";
+import { Character } from "../../entity/characters/Character";
 import { Request, RequestQuery } from "@hapi/hapi";
 import { filter, includes, split } from "lodash";
 

@@ -4,7 +4,7 @@ import {
   createNewWeaponItem,
   findWeaponItems,
 } from "../../../db/selectors/items/v2/item";
-import { BasicWeaponItem } from "../../../db/entity/items/equippables/BasicWeaponItem";
+import { BasicWeaponItem } from "../../../db/entity/items/v2/equippables/BasicWeaponItem";
 
 export const getWeaponItemsHandler = async (
   connection: Connection,

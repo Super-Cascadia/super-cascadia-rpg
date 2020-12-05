@@ -1,7 +1,9 @@
-import { PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { CharacterInventory } from "../CharacterInventory";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { ItemType } from "./constants";
+import { CharacterInventory } from "../../characters/CharacterInventory";
 
-export abstract class BasicItem {
+@Entity()
+export class Item {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -15,10 +17,7 @@ export abstract class BasicItem {
   icon!: string;
 
   @Column()
-  salvagable!: boolean;
-
-  @Column()
-  baseMonetaryValue!: number;
+  type!: ItemType;
 
   @OneToMany(
     () => CharacterInventory,

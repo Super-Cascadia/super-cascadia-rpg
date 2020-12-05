@@ -1,5 +1,5 @@
 import { Armor, ArmorType, ItemModel, Weapon, WeaponType } from "../itemModel";
-import { ItemType } from "../../../db/entity/constants";
+import { ItemType } from "../../../db/entity/items/v1/constants";
 
 // export const cheese: ItemModel = {
 //   id: 1,

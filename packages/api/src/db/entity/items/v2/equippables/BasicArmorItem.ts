@@ -1,5 +1,5 @@
 import { Column, Entity } from "typeorm";
-import { ArmorType } from "../../../../model/items/itemModel";
+import { ArmorType } from "../../../../../model/items/itemModel";
 import { BasicEquippableItem } from "./BasicEquippableItem";
 
 @Entity()

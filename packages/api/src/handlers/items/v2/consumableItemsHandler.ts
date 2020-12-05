@@ -4,7 +4,7 @@ import {
   findConsumableItems,
   createNewConsumableItem,
 } from "../../../db/selectors/items/v2/item";
-import { BasicConsumableItem } from "../../../db/entity/items/consumables/BasicConsumableItem";
+import { BasicConsumableItem } from "../../../db/entity/items/v2/consumables/BasicConsumableItem";
 
 export const getConsumableItemsHandler = async (
   connection: Connection,

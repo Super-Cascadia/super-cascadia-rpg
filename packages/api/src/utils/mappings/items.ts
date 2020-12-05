@@ -1,4 +1,4 @@
-import { Item } from "../../db/entity/Item";
+import { Item } from "../../db/entity/items/v1/Item";
 import { ItemModel } from "../../model/items/itemModel";
 import { map } from "lodash";
 

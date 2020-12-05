@@ -1,4 +1,4 @@
-import { Character } from "../../db/entity/Character";
+import { Character } from "../../db/entity/characters/Character";
 import { CharacterModel } from "../../model/characters/characterModel";
 import { map } from "lodash";
 

@@ -1,7 +1,7 @@
-import { CharacterEquipment } from "../entity/CharacterEquipment";
-import { CharacterInventory } from "../entity/CharacterInventory";
-import { EQUIPMENT_LOCATIONS } from "../entity/constants";
-import { Character } from "../entity/Character";
+import { CharacterEquipment } from "../entity/characters/CharacterEquipment";
+import { CharacterInventory } from "../entity/characters/CharacterInventory";
+import { EQUIPMENT_LOCATIONS } from "../entity/items/v1/constants";
+import { Character } from "../entity/characters/Character";
 
 export function prepareNewCharacterEquipmentObject(
   character: Character,

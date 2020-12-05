@@ -1,8 +1,8 @@
 import { Connection, UpdateResult } from "typeorm";
-import { CharacterEquipment } from "../../entity/CharacterEquipment";
-import { EQUIPMENT_LOCATIONS } from "../../entity/constants";
-import { Character } from "../../entity/Character";
-import { CharacterInventory } from "../../entity/CharacterInventory";
+import { CharacterEquipment } from "../../entity/characters/CharacterEquipment";
+import { EQUIPMENT_LOCATIONS } from "../../entity/items/v1/constants";
+import { Character } from "../../entity/characters/Character";
+import { CharacterInventory } from "../../entity/characters/CharacterInventory";
 import {
   prepareNewCharacterEquipmentObject,
   prepareUpdatedEquipmentObject,

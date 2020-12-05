@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Character } from "./Character";
-import { Item } from "./Item";
+import { Item } from "../items/v1/Item";
 
 @Entity()
 export class CharacterInventory {

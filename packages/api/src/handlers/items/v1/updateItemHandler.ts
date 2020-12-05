@@ -1,4 +1,4 @@
-import { Item } from "../../../db/entity/Item";
+import { Item } from "../../../db/entity/items/v1/Item";
 import { Connection, UpdateResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { updateItemById } from "../../../db/selectors/items/v1/items";

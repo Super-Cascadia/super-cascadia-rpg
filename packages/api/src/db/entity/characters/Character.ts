@@ -5,7 +5,7 @@ import {
   OneToOne,
   OneToMany,
 } from "typeorm";
-import { CharacterClassId } from "../../model/characterClass/characterClassModel";
+import { CharacterClassId } from "../../../model/characterClass/characterClassModel";
 import { CharacterAttributes } from "./CharacterAttributes";
 import { CharacterInventory } from "./CharacterInventory";
 import { CharacterEquipment } from "./CharacterEquipment";

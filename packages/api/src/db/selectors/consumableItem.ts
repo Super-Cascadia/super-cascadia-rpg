@@ -1,5 +1,5 @@
 import { Connection, InsertResult } from "typeorm";
-import { ConsumableItem } from "../entity/ConsumableItem";
+import { ConsumableItem } from "../entity/characters/ConsumableItem";
 
 export async function createNewConsumableItem(
   connection: Connection,

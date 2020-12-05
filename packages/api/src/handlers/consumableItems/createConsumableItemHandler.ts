@@ -1,6 +1,6 @@
 import { Connection, InsertResult } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
-import { ConsumableItem } from "../../db/entity/ConsumableItem";
+import { ConsumableItem } from "../../db/entity/characters/ConsumableItem";
 import { createNewConsumableItem } from "../../db/selectors/consumableItem";
 
 const createConsumableItemHandler = async (

@@ -1,6 +1,6 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { CharacterEquipment } from "../../db/entity/CharacterEquipment";
+import { CharacterEquipment } from "../../db/entity/characters/CharacterEquipment";
 import { getCharacterEquipment } from "../../db/selectors/characters/characterEquipment";
 import { getCharacterEquipmentDetails } from "./util";
 

@@ -1,7 +1,7 @@
 import { Connection } from "typeorm/index";
 import { Request, ResponseToolkit } from "@hapi/hapi";
 import { omit } from "lodash";
-import { Character } from "../../db/entity/Character";
+import { Character } from "../../db/entity/characters/Character";
 import { CharacterCreateModel, CharacterModel } from "src/interfaces";
 import {
   createNewCharacter,

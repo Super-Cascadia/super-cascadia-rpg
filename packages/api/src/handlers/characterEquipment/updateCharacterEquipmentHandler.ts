@@ -5,7 +5,7 @@ import {
   updateEquipmentLocation,
 } from "../../db/selectors/characters/characterEquipment";
 import { getCharacterInventoryById } from "../../db/selectors/characters/characterInventory";
-import { EQUIPMENT_LOCATIONS } from "../../db/entity/constants";
+import { EQUIPMENT_LOCATIONS } from "../../db/entity/items/v1/constants";
 import { isUndefined } from "lodash";
 
 interface UpdateEquipmentRequestBody {

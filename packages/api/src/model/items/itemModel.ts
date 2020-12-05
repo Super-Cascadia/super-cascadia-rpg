@@ -1,4 +1,4 @@
-import { ItemType } from "../../db/entity/constants";
+import { ItemType } from "../../db/entity/items/v1/constants";
 
 export interface ItemModel extends ItemCreateModel {
   id: number;
