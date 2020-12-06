@@ -1,4 +1,4 @@
-import { getIconAssets } from "../../../assets/icons/getIconAssets";
+import { getIconAssets } from "../../../api/assets/icons/getIconAssets";
 
 export default function getEffect(setData: (data: any) => void) {
   return () => {

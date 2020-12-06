@@ -14,3 +14,17 @@ export default function StandardIcon({ icon }: { icon: string }) {
 
   return <Image src={imagePath} />;
 }
+
+export function StandardIconV2({ icon }: { icon: string }) {
+  const [imagePath, setImage] = useState("");
+
+  if (!icon) {
+    return null;
+  }
+
+  import(`../../images/icons/items/${icon}`).then((module) =>
+    setImage(module.default)
+  );
+
+  return <Image src={imagePath} />;
+}
