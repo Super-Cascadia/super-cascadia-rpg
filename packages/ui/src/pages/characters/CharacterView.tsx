@@ -3,7 +3,7 @@ import ObjectDetailViewPageWrapper from "../../components/pageWrapper/ObjectDeta
 import { useParams, useRouteMatch, Switch, Route } from "react-router-dom";
 import { isEmpty, toNumber } from "lodash";
 import { CharacterWithAttributes } from "@super-cascadia-rpg/api";
-import Loading from "../../components/Loading";
+import Loading from "../../components/indicators/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { getCharacter } from "../../api/characters/getCharacter";
 import { CharacterStateHook } from "../../hooks/store/characterStateHooks";

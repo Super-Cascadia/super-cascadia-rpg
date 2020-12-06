@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toNumber, isEmpty } from "lodash";
-import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { CharacterWithAttributes } from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
@@ -12,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import { getCharacter } from "../../api/characters/getCharacter";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import CharacterEditForm from "./components/form/CharacterEditForm";
+import Loading from "../../components/indicators/Loading";
 
 export default function CharacterEdit() {
   const { id: characterId } = useParams<{ id: string }>();

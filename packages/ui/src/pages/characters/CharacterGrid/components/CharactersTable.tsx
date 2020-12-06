@@ -1,7 +1,7 @@
 import { isEmpty } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
-import Loading from "../../../../components/Loading";
+import Loading from "../../../../components/indicators/Loading";
 import Badge from "react-bootstrap/Badge";
 import { CharacterModel } from "@super-cascadia-rpg/api";
 import ButtonGroup from "react-bootstrap/ButtonGroup";

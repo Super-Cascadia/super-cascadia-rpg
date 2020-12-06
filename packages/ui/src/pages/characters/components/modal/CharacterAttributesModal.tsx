@@ -9,7 +9,7 @@ import updateCharacterAttributes from "../../../../api/characters/attributes/upd
 import { isEmpty, toNumber } from "lodash";
 import { CharacterAttributesStateHook } from "../../../../hooks/store/characterStateHooks";
 import fetchCharacterAttributesDataHook from "../../../../hooks/api/characters/fetchCharacterAttributesDataHook";
-import Loading from "../../../../components/Loading";
+import Loading from "../../../../components/indicators/Loading";
 import { getCharacterAttributes } from "../../../../api/characters/attributes/getCharacterAttributes";
 import { CharacterAttributesForm } from "../form/CharacterAttributesForm";
 

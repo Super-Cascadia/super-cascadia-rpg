@@ -6,7 +6,7 @@ import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
 import updateItem from "../../api/items/updateItem";
 import { Item } from "@super-cascadia-rpg/api";
-import Loading from "../../components/Loading";
+import Loading from "../../components/indicators/Loading";
 import { ObjectDetailEditPageWrapper } from "../../components/pageWrapper/ObjectDetailEditPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
