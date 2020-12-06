@@ -7,13 +7,16 @@ import {
 import {
   createWeaponItemHandler,
   getWeaponItemsHandler,
+  updateWeaponItemHandler,
 } from "../../../handlers/items/v2/weaponItemHandler";
 import {
   createConsumableItemHandler,
   getConsumableItemsHandler,
 } from "../../../handlers/items/v2/consumableItemsHandler";
 
-enum ITEM_API_BASE_PATH {
+const BASE_ITEM_API_PATH = "/items/v2";
+
+enum ITEM_TYPE {
   ARMOR = "armor",
   WEAPON = "weapon",
   CONSUMABLE = "consumable",
@@ -22,14 +25,14 @@ enum ITEM_API_BASE_PATH {
 function armorItemRoutes(server: Server, connection: Connection) {
   server.route({
     method: "GET",
-    path: `/items/v2/${ITEM_API_BASE_PATH.ARMOR}/{id?}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.ARMOR}/{id?}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       getArmorItemsHandler(connection, request, reply),
   });
 
   server.route({
     method: "POST",
-    path: `/items/v2/${ITEM_API_BASE_PATH.ARMOR}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.ARMOR}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       createArmorItemHandler(connection, request, reply),
   });
@@ -38,30 +41,37 @@ function armorItemRoutes(server: Server, connection: Connection) {
 function weaponItemRoutes(server: Server, connection: Connection) {
   server.route({
     method: "GET",
-    path: `/items/v2/${ITEM_API_BASE_PATH.WEAPON}/{id?}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.WEAPON}/{id?}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       getWeaponItemsHandler(connection, request, reply),
   });
 
   server.route({
     method: "POST",
-    path: `/items/v2/${ITEM_API_BASE_PATH.WEAPON}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.WEAPON}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       createWeaponItemHandler(connection, request, reply),
+  });
+
+  server.route({
+    method: "PUT",
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.WEAPON}/{id?}`,
+    handler: (request: Request, reply: ResponseToolkit) =>
+      updateWeaponItemHandler(connection, request, reply),
   });
 }
 
 function consumableItemRoutes(server: Server, connection: Connection) {
   server.route({
     method: "GET",
-    path: `/items/v2/${ITEM_API_BASE_PATH.CONSUMABLE}/{id?}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.CONSUMABLE}/{id?}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       getConsumableItemsHandler(connection, request, reply),
   });
 
   server.route({
     method: "POST",
-    path: `/items/v2/${ITEM_API_BASE_PATH.CONSUMABLE}`,
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.CONSUMABLE}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       createConsumableItemHandler(connection, request, reply),
   });

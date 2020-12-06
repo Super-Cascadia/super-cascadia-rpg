@@ -2,6 +2,7 @@ import { Connection, InsertResult } from "typeorm";
 import { BasicArmorItem } from "../../../entity/items/v2/equippables/BasicArmorItem";
 import { BasicWeaponItem } from "../../../entity/items/v2/equippables/BasicWeaponItem";
 import { BasicConsumableItem } from "../../../entity/items/v2/consumables/BasicConsumableItem";
+import { UpdateResult } from "typeorm/browser";
 
 // Armor Items
 
@@ -19,7 +20,7 @@ export async function createNewArmorItem(
 // Weapon Items
 
 export async function findWeaponItems(connection: Connection) {
-  return connection.manager.find(BasicWeaponItem);
+  return connection.manager.find(BasicWeaponItem, { relations: ["iconAsset"] });
 }
 
 export async function createNewWeaponItem(
@@ -27,6 +28,14 @@ export async function createNewWeaponItem(
   item: BasicWeaponItem
 ): Promise<InsertResult> {
   return connection.manager.insert(BasicWeaponItem, item);
+}
+
+export async function updateWeaponItem(
+  connection: Connection,
+  id: string,
+  item: BasicWeaponItem
+): Promise<UpdateResult> {
+  return connection.manager.update(BasicWeaponItem, id, item);
 }
 
 // Consumable Items

@@ -1,5 +1,5 @@
 import { Server } from "@hapi/hapi";
-import { itemRoutesV1 } from "./items/itemRoutesV1";
+import { itemRoutesV1 } from "./items/v1/itemRoutesV1";
 import { characterRoutes } from "./characters/characterRoutes";
 import { Connection } from "typeorm";
 import { characterAttributeRoutes } from "./characters/characterAttributeRoutes";
