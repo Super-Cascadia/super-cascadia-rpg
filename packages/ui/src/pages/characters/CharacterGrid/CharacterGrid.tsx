@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GridPageWrapper from "../../../components/GridPageWrapper";
+import GridPageWrapper from "../../../components/pageWrapper/GridPageWrapper";
 import { CharactersTable } from "./components/CharactersTable";
 import fetchCharactersDataHook from "../../../hooks/api/characters/fetchCharactersDataHook";
 import deleteCharacter from "../../../api/characters/deleteCharacter";

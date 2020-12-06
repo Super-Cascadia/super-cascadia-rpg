@@ -2,7 +2,7 @@ import React from "react";
 import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../api/items/createItem";
 import { useHistory } from "react-router-dom";
-import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
+import { ObjectCreatePageWrapper } from "../../components/pageWrapper/ObjectCreatePageWrapper";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";

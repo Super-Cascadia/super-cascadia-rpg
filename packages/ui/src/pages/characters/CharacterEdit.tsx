@@ -5,7 +5,7 @@ import Loading from "../../components/Loading";
 import fetchCharacterDataHook from "../../hooks/api/characters/fetchCharacterDataHook";
 import { CharacterWithAttributes } from "@super-cascadia-rpg/api";
 import updateCharacter from "../../api/characters/updateCharacter";
-import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
+import { ObjectDetailEditPageWrapper } from "../../components/pageWrapper/ObjectDetailEditPageWrapper";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";

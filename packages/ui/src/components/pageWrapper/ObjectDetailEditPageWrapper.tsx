@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import React, { ReactElement } from "react";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
-import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
+import { ObjectDetailBreadCrumb } from "../breadcrumb/ObjectDetailBreadCrumb";
 import Card from "react-bootstrap/Card";
 
 interface Props {

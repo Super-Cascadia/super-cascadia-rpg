@@ -1,5 +1,5 @@
 import React from "react";
-import GridPageWrapper from "../../components/GridPageWrapper";
+import GridPageWrapper from "../../components/pageWrapper/GridPageWrapper";
 
 export default function AssetsPage() {
   return (

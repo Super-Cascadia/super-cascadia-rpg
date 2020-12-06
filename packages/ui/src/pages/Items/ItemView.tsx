@@ -5,7 +5,7 @@ import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
 import { getItemTypeNameById } from "../../util/itemType";
 import { isEmpty, toNumber } from "lodash";
 import Loading from "../../components/Loading";
-import ObjectDetailViewPageWrapper from "../../components/ObjectDetailViewPageWrapper";
+import ObjectDetailViewPageWrapper from "../../components/pageWrapper/ObjectDetailViewPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";

@@ -2,10 +2,10 @@ import React, { ReactElement } from "react";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
-import { ObjectDetailBreadCrumb } from "./ObjectDetailBreadCrumb";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
+import { ObjectDetailBreadCrumb } from "../breadcrumb/ObjectDetailBreadCrumb";
 
 interface Props {
   objectId: number;

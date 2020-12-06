@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { CharacterClassId } from "@super-cascadia-rpg/api/build/src/model/characterClass/characterClassModel";
 import createCharacter from "../../api/characters/createCharacter";
-import { ObjectCreatePageWrapper } from "../../components/ObjectCreatePageWrapper";
+import { ObjectCreatePageWrapper } from "../../components/pageWrapper/ObjectCreatePageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
 import { SelectInput } from "../../components/forms/SelectInput";
 import { primaryClassOptions } from "./constants";

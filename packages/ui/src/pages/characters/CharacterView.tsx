@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ObjectDetailViewPageWrapper from "../../components/ObjectDetailViewPageWrapper";
+import ObjectDetailViewPageWrapper from "../../components/pageWrapper/ObjectDetailViewPageWrapper";
 import { useParams, useRouteMatch, Switch, Route } from "react-router-dom";
 import { isEmpty, toNumber } from "lodash";
 import { CharacterWithAttributes } from "@super-cascadia-rpg/api";

@@ -7,7 +7,7 @@ import { toString } from "lodash";
 import updateItem from "../../api/items/updateItem";
 import { Item } from "@super-cascadia-rpg/api";
 import Loading from "../../components/Loading";
-import { ObjectDetailEditPageWrapper } from "../../components/ObjectDetailEditPageWrapper";
+import { ObjectDetailEditPageWrapper } from "../../components/pageWrapper/ObjectDetailEditPageWrapper";
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";
