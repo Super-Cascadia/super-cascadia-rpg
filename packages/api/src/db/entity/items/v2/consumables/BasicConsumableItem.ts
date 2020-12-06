@@ -1,5 +1,6 @@
 import { BasicItem } from "../BasicItem";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, ManyToOne } from "typeorm";
+import { IconAsset } from "../../../assets/icons/IconAsset";
 
 @Entity()
 export class BasicConsumableItem extends BasicItem {
@@ -35,4 +36,10 @@ export class BasicConsumableItem extends BasicItem {
     nullable: true,
   })
   staminaRecoveryFactor!: string;
+
+  @ManyToOne(() => IconAsset, (iconAsset) => iconAsset.consumableItems, {
+    nullable: true,
+  })
+  // @ts-ignore
+  iconAsset: IconAsset;
 }
