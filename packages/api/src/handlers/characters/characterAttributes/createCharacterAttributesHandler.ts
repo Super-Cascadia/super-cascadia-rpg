@@ -1,9 +1,9 @@
 import { Connection, InsertResult } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { CharacterAttributes } from "../../db/entity/characters/CharacterAttributes";
-import { getCharacterById } from "../../db/selectors/characters/characters";
-import { Character } from "../../db/entity/characters/Character";
-import { saveCharacterAttributes } from "../../db/selectors/characters/characterAttributes";
+import { CharacterAttributes } from "../../../db/entity/characters/CharacterAttributes";
+import { getCharacterById } from "../../../db/selectors/characters/characters";
+import { Character } from "../../../db/entity/characters/Character";
+import { saveCharacterAttributes } from "../../../db/selectors/characters/characterAttributes";
 
 const createCharacterAttributesHandler = async (
   connection: Connection,

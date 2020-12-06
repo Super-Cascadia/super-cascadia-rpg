@@ -1,7 +1,7 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { CharacterEquipment } from "../../db/entity/characters/CharacterEquipment";
-import { getCharacterEquipment } from "../../db/selectors/characters/characterEquipment";
+import { CharacterEquipment } from "../../../db/entity/characters/CharacterEquipment";
+import { getCharacterEquipment } from "../../../db/selectors/characters/characterEquipment";
 import { getCharacterEquipmentDetails } from "./util";
 
 export const getCharacterEquipmentHandler = async (

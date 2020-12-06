@@ -1,7 +1,7 @@
 import { Request, ResponseToolkit, Server } from "@hapi/hapi";
 import { Connection } from "typeorm";
-import { getCharacterAttributesHandler } from "../../handlers/characterAttributes/getCharacterAttributesHandler";
-import { updateCharacterAttributesHandler } from "../../handlers/characterAttributes/updateCharacterAttributesHandler";
+import { getCharacterAttributesHandler } from "../../handlers/characters/characterAttributes/getCharacterAttributesHandler";
+import { updateCharacterAttributesHandler } from "../../handlers/characters/characterAttributes/updateCharacterAttributesHandler";
 
 function getCharacterAttributes(server: Server, connection: Connection) {
   server.route({

@@ -1,8 +1,8 @@
 import { Connection } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { getCharacterById } from "../../db/selectors/characters/characters";
-import { getCharacterInventoryById } from "../../db/selectors/characters/characterInventory";
-import { createCharacterEquipment } from "../../db/selectors/characters/characterEquipment";
+import { getCharacterById } from "../../../db/selectors/characters/characters";
+import { getCharacterInventoryById } from "../../../db/selectors/characters/characterInventory";
+import { createCharacterEquipment } from "../../../db/selectors/characters/characterEquipment";
 
 interface CreateEquipmentRequestBody {
   inventoryId: string;

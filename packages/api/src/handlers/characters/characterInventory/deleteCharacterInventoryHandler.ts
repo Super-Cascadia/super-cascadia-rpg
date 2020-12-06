@@ -1,6 +1,6 @@
 import { Connection, DeleteResult } from "typeorm";
 import { Request } from "@hapi/hapi";
-import { deleteCharacterInventory } from "../../db/selectors/characters/characterInventory";
+import { deleteCharacterInventory } from "../../../db/selectors/characters/characterInventory";
 
 export async function deleteCharacterInventoryHandler(
   connection: Connection,

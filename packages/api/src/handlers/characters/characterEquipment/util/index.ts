@@ -1,9 +1,9 @@
 import { Connection } from "typeorm";
-import { CharacterEquipment } from "../../../db/entity/characters/CharacterEquipment";
+import { CharacterEquipment } from "../../../../db/entity/characters/CharacterEquipment";
 import { forEach, isNull, omit, omitBy, toString } from "lodash";
-import { getCharacterInventoryById } from "../../../db/selectors/characters/characterInventory";
-import { Character } from "../../../db/entity/characters/Character";
-import { CharacterInventory } from "../../../db/entity/characters/CharacterInventory";
+import { getCharacterInventoryById } from "../../../../db/selectors/characters/characterInventory";
+import { Character } from "../../../../db/entity/characters/Character";
+import { CharacterInventory } from "../../../../db/entity/characters/CharacterInventory";
 
 export interface CharacterEquipmentExpanded {
   id: number;

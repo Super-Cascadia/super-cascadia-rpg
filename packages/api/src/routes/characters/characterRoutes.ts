@@ -5,14 +5,14 @@ import createCharacterHandler from "../../handlers/characters/createCharacterHan
 import updateCharacterHandler from "../../handlers/characters/updateCharacterHandler";
 import duplicateCharacterHandler from "../../handlers/characters/duplicateCharacterHandler";
 import { deleteCharacterHandler } from "../../handlers/characters/deleteCharacterHandler";
-import createCharacterAttributesHandler from "../../handlers/characterAttributes/createCharacterAttributesHandler";
+import createCharacterAttributesHandler from "../../handlers/characters/characterAttributes/createCharacterAttributesHandler";
 import { getAttributesForCharacterHandler } from "../../handlers/characters/getAttributesForCharacterHandler";
-import { createCharacterInventoryHandler } from "../../handlers/characterInventory/createCharacterInventoryHandler";
-import { getCharacterInventoryHandler } from "../../handlers/characterInventory/getCharacterInventoryHandler";
-import { deleteCharacterInventoryHandler } from "../../handlers/characterInventory/deleteCharacterInventoryHandler";
-import { createCharacterEquipmentHandler } from "../../handlers/characterEquipment/createCharacterEquipmentHandler";
-import { getCharacterEquipmentHandler } from "../../handlers/characterEquipment/getCharacterEquipmentHandler";
-import { updateCharacterEquipmentHandler } from "../../handlers/characterEquipment/updateCharacterEquipmentHandler";
+import { createCharacterInventoryHandler } from "../../handlers/characters/characterInventory/createCharacterInventoryHandler";
+import { getCharacterInventoryHandler } from "../../handlers/characters/characterInventory/getCharacterInventoryHandler";
+import { deleteCharacterInventoryHandler } from "../../handlers/characters/characterInventory/deleteCharacterInventoryHandler";
+import { createCharacterEquipmentHandler } from "../../handlers/characters/characterEquipment/createCharacterEquipmentHandler";
+import { getCharacterEquipmentHandler } from "../../handlers/characters/characterEquipment/getCharacterEquipmentHandler";
+import { updateCharacterEquipmentHandler } from "../../handlers/characters/characterEquipment/updateCharacterEquipmentHandler";
 
 function getCharacters(server: Server, connection: Connection) {
   server.route({
