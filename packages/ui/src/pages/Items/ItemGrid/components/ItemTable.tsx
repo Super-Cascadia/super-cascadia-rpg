@@ -8,7 +8,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Badge from "react-bootstrap/Badge";
 import { getItemTypeNameById } from "../../../../util/itemType";
 import Loading from "../../../../components/indicators/Loading";
-import StandardIcon from "../../../characters/components/images/StandardIcon";
+import StandardIcon from "../../../../components/icons/StandardIcon";
 
 function ItemRows(
   items: ItemModel[],

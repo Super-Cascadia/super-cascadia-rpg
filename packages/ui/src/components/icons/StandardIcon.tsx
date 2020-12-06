@@ -9,7 +9,7 @@ export default function StandardIcon({ icon }: { icon: string }) {
   }
 
   import(
-    `../../../../images/icons/items/rpg_icons/individual_32x32/${icon}.png`
+    `../../images/icons/items/rpg_icons/individual_32x32/${icon}.png`
   ).then((module) => setImage(module.default));
 
   return <Image src={imagePath} />;

@@ -9,7 +9,7 @@ import ObjectDetailViewPageWrapper from "../../components/pageWrapper/ObjectDeta
 import { TextInput } from "../../components/forms/TextInput";
 import { itemTypeOptions } from "./constants";
 import { SelectInput } from "../../components/forms/SelectInput";
-import StandardIcon from "../characters/components/images/StandardIcon";
+import StandardIcon from "../../components/icons/StandardIcon";
 
 function ItemViewForm({ item }: { item: ItemModel }) {
   const itemTypeName = getItemTypeNameById(item?.type);

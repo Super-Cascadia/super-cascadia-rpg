@@ -5,7 +5,7 @@ import { getItemTypeNameById } from "../../../../util/itemType";
 import Badge from "react-bootstrap/Badge";
 import { CharacterInventory } from "@super-cascadia-rpg/api";
 import Dropdown from "react-bootstrap/Dropdown";
-import StandardIcon from "../images/StandardIcon";
+import StandardIcon from "../../../../components/icons/StandardIcon";
 
 function getActionsDropdown(
   inventoryItem: CharacterInventory,

@@ -10,7 +10,7 @@ import CharacterGrid from "../pages/characters/CharacterGrid/CharacterGrid";
 import CharacterView from "../pages/characters/CharacterView";
 import CharacterEdit from "../pages/characters/CharacterEdit";
 import CharacterCreate from "../pages/characters/CharacterCreate";
-import IconAssetsPage from "../pages/assets/AssetsPage";
+import IconAssetsPage from "../pages/assets/IconAssetsPage";
 
 export default function Routes() {
   return (
