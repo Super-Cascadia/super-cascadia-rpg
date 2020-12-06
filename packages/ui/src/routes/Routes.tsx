@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import ItemGrid from "../pages/Items/ItemGrid/ItemGrid";
 import ItemEdit from "../pages/Items/ItemEdit";
-import TopNavigation from "../components/TopNavigation";
+import TopNavigation from "../components/navigation/TopNavigation";
 import ItemCreate from "../pages/Items/ItemCreate";
 import ItemView from "../pages/Items/ItemView";
 import CharacterGrid from "../pages/characters/CharacterGrid/CharacterGrid";
 import CharacterView from "../pages/characters/CharacterView";
 import CharacterEdit from "../pages/characters/CharacterEdit";
 import CharacterCreate from "../pages/characters/CharacterCreate";
+import IconAssetsPage from "../pages/assets/AssetsPage";
 
 export default function Routes() {
   return (
@@ -43,6 +44,9 @@ export default function Routes() {
           </Route>
           <Route path="/items">
             <ItemGrid />
+          </Route>
+          <Route path="/assets/icons">
+            <IconAssetsPage />
           </Route>
           <Route path="/">
             <Home />

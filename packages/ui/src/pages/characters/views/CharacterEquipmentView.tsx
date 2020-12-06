@@ -10,12 +10,12 @@ import { toNumber } from "lodash";
 import { CharacterEquipmentStateHook } from "../../../hooks/store/characterStateHooks";
 import fetchCharacterEquipmentDataHook from "../../../hooks/api/characters/fetchCharacterEquipmentDataHook";
 import Col from "react-bootstrap/Col";
-import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characterEquipment/util";
 import EquipmentLocation from "../components/EquipmentLocation";
 import ChangeEquipmentModal from "../components/modal/ChangeEquipmentModal";
 import { getCharacterEquipment } from "../../../api/characters/equipment/getCharacterEquipment";
 import { removeCharacterEquipment } from "../../../api/characters/equipment/updateCharacterEquipment";
 import AddEquipmentModal from "../components/modal/AddEquipmentModal";
+import { CharacterEquipmentExpanded } from "@super-cascadia-rpg/api/build/src/handlers/characters/characterEquipment/util";
 
 interface Props {
   character: CharacterWithAttributes;
