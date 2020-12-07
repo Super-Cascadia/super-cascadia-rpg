@@ -4,6 +4,7 @@ import React from "react";
 import Badge from "react-bootstrap/Badge";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 import { StandardIconV2 } from "../../../../components/icons/StandardIcon";
+import TableActionsDropdown from "../../../../components/table/TableActionsDropdown";
 
 function AssetTableRow({ assetItem }: { assetItem: IconAsset }) {
   return (
@@ -16,6 +17,9 @@ function AssetTableRow({ assetItem }: { assetItem: IconAsset }) {
       </td>
       <td>{assetItem.name}</td>
       <td>{assetItem.description}</td>
+      <td>
+        <TableActionsDropdown inventoryItem={assetItem} />
+      </td>
     </tr>
   );
 }
@@ -33,6 +37,7 @@ export default function AssetsTable({ assets }: Props) {
           <th>Icon</th>
           <th>Name</th>
           <th>Description</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
