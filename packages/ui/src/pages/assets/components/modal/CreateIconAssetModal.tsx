@@ -8,6 +8,25 @@ import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import { CreateIconAssetForm } from "../form/CreateIconAssetForm";
 import CharacterEditForm from "../../../characters/components/form/CharacterEditForm";
+import { createIconAsset } from "../../../../api/assets/icons/getIconAssets";
+import { icon } from "@fortawesome/fontawesome-svg-core";
+import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
+
+const initialFormState = {
+  name: "",
+  description: "",
+  assetPath: "",
+  height: "",
+  width: "",
+};
+
+const schema = yup.object({
+  name: yup.string(),
+  description: yup.string(),
+  assetPath: yup.string(),
+  height: yup.number(),
+  width: yup.number(),
+});
 
 interface Props {
   show: boolean;
@@ -15,7 +34,7 @@ interface Props {
 }
 
 export default function CreateIconAssetModal({ show, handleClose }: Props) {
-  function handleUpdateSuccess(actions: FormikHelpers<any>) {
+  function handleSubmitSuccess(actions: FormikHelpers<any>) {
     return () => {
       actions.resetForm({
         values: {},
@@ -29,28 +48,12 @@ export default function CreateIconAssetModal({ show, handleClose }: Props) {
 
     actions.setSubmitting(true);
 
-    // updateCharacterEquipment(
-    //   characterId,
-    //   values.inventoryId,
-    //   equipmentLocation
-    // ).then(handleUpdateSuccess(actions));
-  };
+    const iconAssetObject = {
+      ...values,
+    } as IconAsset;
 
-  const initialFormState = {
-    name: "",
-    description: "",
-    assetPath: "",
-    height: "",
-    width: "",
+    createIconAsset(iconAssetObject).then(handleSubmitSuccess(actions));
   };
-
-  const schema = yup.object({
-    name: yup.string(),
-    description: yup.string(),
-    assetPath: yup.string(),
-    height: yup.number(),
-    width: yup.number(),
-  });
 
   return (
     <Formik
