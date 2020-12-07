@@ -7,6 +7,7 @@ import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import { CreateIconAssetForm } from "../form/CreateIconAssetForm";
+import CharacterEditForm from "../../../characters/components/form/CharacterEditForm";
 
 interface Props {
   show: boolean;
@@ -37,10 +38,18 @@ export default function CreateIconAssetModal({ show, handleClose }: Props) {
 
   const initialFormState = {
     name: "",
+    description: "",
+    assetPath: "",
+    height: "",
+    width: "",
   };
 
   const schema = yup.object({
     name: yup.string(),
+    description: yup.string(),
+    assetPath: yup.string(),
+    height: yup.number(),
+    width: yup.number(),
   });
 
   return (
@@ -49,19 +58,24 @@ export default function CreateIconAssetModal({ show, handleClose }: Props) {
       onSubmit={handleSubmit}
       initialValues={initialFormState}
     >
-      {({ handleSubmit, handleChange, values }) => {
+      {({ handleSubmit, handleChange, values, touched, errors }) => {
         console.log("values", values);
 
         return (
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Equipment Item</Modal.Title>
+              <Modal.Title>Create New Icon</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Row>
                 <Col sm={12}>
                   <Form onSubmit={handleSubmit} noValidate>
-                    <CreateIconAssetForm handleChange={handleChange} />
+                    <CreateIconAssetForm
+                      handleChange={handleChange}
+                      values={values}
+                      touched={touched}
+                      errors={errors}
+                    />
                   </Form>
                 </Col>
               </Row>
