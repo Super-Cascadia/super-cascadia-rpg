@@ -60,7 +60,8 @@ export default function CreateIconAssetModal({ show, handleClose }: Props) {
 
         return (
           <BasicModal
-            title="Create New Icon"
+            title="Create Icon"
+            submitButtonLabel="Create Icon"
             show={show}
             handleClose={handleClose}
             handleSubmit={handleSubmit}
