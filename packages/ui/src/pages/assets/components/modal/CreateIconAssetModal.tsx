@@ -1,16 +1,10 @@
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
-import Form from "react-bootstrap/Form";
 import { CreateIconAssetForm } from "../form/CreateIconAssetForm";
-import CharacterEditForm from "../../../characters/components/form/CharacterEditForm";
 import { createIconAsset } from "../../../../api/assets/icons/getIconAssets";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
+import BasicModal from "../../../../components/modal/BasicModal";
 
 const initialFormState = {
   name: "",
@@ -65,33 +59,19 @@ export default function CreateIconAssetModal({ show, handleClose }: Props) {
         console.log("values", values);
 
         return (
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Create New Icon</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Row>
-                <Col sm={12}>
-                  <Form onSubmit={handleSubmit} noValidate>
-                    <CreateIconAssetForm
-                      handleChange={handleChange}
-                      values={values}
-                      touched={touched}
-                      errors={errors}
-                    />
-                  </Form>
-                </Col>
-              </Row>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={() => handleSubmit()}>
-                Cancel
-              </Button>
-              <Button variant="success" onClick={() => handleSubmit()}>
-                Create Icon
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <BasicModal
+            title="Create New Icon"
+            show={show}
+            handleClose={handleClose}
+            handleSubmit={handleSubmit}
+          >
+            <CreateIconAssetForm
+              handleChange={handleChange}
+              values={values}
+              touched={touched}
+              errors={errors}
+            />
+          </BasicModal>
         );
       }}
     </Formik>
