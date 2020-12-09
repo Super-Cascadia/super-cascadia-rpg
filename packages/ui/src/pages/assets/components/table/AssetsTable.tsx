@@ -4,9 +4,15 @@ import React from "react";
 import Badge from "react-bootstrap/Badge";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 import { StandardIconV2 } from "../../../../components/icons/StandardIcon";
-import TableActionsDropdown from "../../../../components/table/TableActionsDropdown";
+import IconAssetTableActions from "../../../../components/table/IconAssetTableActions";
 
-function AssetTableRow({ assetItem }: { assetItem: IconAsset }) {
+function AssetTableRow({
+  assetItem,
+  handleShowEditModal,
+}: {
+  assetItem: IconAsset;
+  handleShowEditModal: (iconAsset: IconAsset) => void;
+}) {
   return (
     <tr>
       <td>
@@ -18,7 +24,10 @@ function AssetTableRow({ assetItem }: { assetItem: IconAsset }) {
       <td>{assetItem.name}</td>
       <td>{assetItem.description}</td>
       <td>
-        <TableActionsDropdown inventoryItem={assetItem} />
+        <IconAssetTableActions
+          iconAsset={assetItem}
+          handleShowEditModal={handleShowEditModal}
+        />
       </td>
     </tr>
   );
@@ -26,9 +35,10 @@ function AssetTableRow({ assetItem }: { assetItem: IconAsset }) {
 
 interface Props {
   assets: IconAsset[];
+  handleShowEditModal: (iconAsset: IconAsset) => void;
 }
 
-export default function AssetsTable({ assets }: Props) {
+export default function AssetsTable({ assets, handleShowEditModal }: Props) {
   return (
     <Table striped bordered hover size="sm">
       <thead>
@@ -42,7 +52,10 @@ export default function AssetsTable({ assets }: Props) {
       </thead>
       <tbody>
         {map(assets, (item: IconAsset) => (
-          <AssetTableRow assetItem={item} />
+          <AssetTableRow
+            assetItem={item}
+            handleShowEditModal={handleShowEditModal}
+          />
         ))}
       </tbody>
     </Table>

@@ -3,6 +3,7 @@ import { Connection } from "typeorm";
 import {
   createIconAssetHandler,
   getIconAssetHandler,
+  updateIconAssetHandler,
 } from "../../handlers/assets/icons/iconAssetsHandler";
 
 enum ASSET_API_BASE_PATH {
@@ -22,6 +23,13 @@ function iconAssetRoutes(server: Server, connection: Connection) {
     path: `/assets/${ASSET_API_BASE_PATH.ICON}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       createIconAssetHandler(connection, request, reply),
+  });
+
+  server.route({
+    method: "PUT",
+    path: `/assets/${ASSET_API_BASE_PATH.ICON}`,
+    handler: (request: Request, reply: ResponseToolkit) =>
+      updateIconAssetHandler(connection, request, reply),
   });
 }
 

@@ -8,24 +8,35 @@ import CreateIconAssetModal from "./components/modal/CreateIconAssetModal";
 import { getIconAssets } from "../../api/assets/icons/getIconAssets";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import EditIconAssetModal from "./components/modal/EditIconAssetModal";
 
 export type IconAssetsStateHook = [IconAsset[], (data: any) => void];
 
 export default function IconAssetsPage() {
-  const [showCreateIconModal, setCreatIconModalViz] = useState<boolean>(false);
+  const [showCreateIconModal, setCreateIconModalViz] = useState<boolean>(false);
+  const [showEditIconModal, setEditIconModalViz] = useState<boolean>(false);
+  const [selectedIcon, setSelectedIcon] = useState<IconAsset | null>(null);
   const [data, setData]: IconAssetsStateHook = useState({} as IconAsset[]);
-  const fetchIcons = fetchIconAssetDataHook(setData);
-
   // @ts-ignore
-  useEffect(fetchIcons, []);
+  useEffect(fetchIconAssetDataHook(setData), []);
 
   const reloadData = () => {
     getIconAssets().then(setData);
   };
 
   const handleCloseCreateIconModal = () => {
-    setCreatIconModalViz(false);
+    setCreateIconModalViz(false);
     reloadData();
+  };
+
+  const handleCloseEditIconModal = () => {
+    setEditIconModalViz(false);
+    reloadData();
+  };
+
+  const handleOpenEditModal = (iconAsset: IconAsset) => {
+    setSelectedIcon(iconAsset);
+    setEditIconModalViz(true);
   };
 
   return (
@@ -40,7 +51,7 @@ export default function IconAssetsPage() {
             variant={"primary"}
             size={"lg"}
             block
-            onClick={() => setCreatIconModalViz(true)}
+            onClick={() => setCreateIconModalViz(true)}
           >
             New
           </Button>
@@ -48,13 +59,23 @@ export default function IconAssetsPage() {
       </Row>
       <Row>
         <Col>
-          <AssetsTable assets={data} />
+          <AssetsTable
+            assets={data}
+            handleShowEditModal={handleOpenEditModal}
+          />
         </Col>
       </Row>
       {showCreateIconModal && (
         <CreateIconAssetModal
           show={showCreateIconModal}
           handleClose={handleCloseCreateIconModal}
+        />
+      )}
+      {showEditIconModal && selectedIcon && (
+        <EditIconAssetModal
+          iconAsset={selectedIcon}
+          show={showEditIconModal}
+          handleClose={handleCloseEditIconModal}
         />
       )}
     </Container>

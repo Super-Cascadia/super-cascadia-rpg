@@ -21,3 +21,15 @@ export async function createIconAsset(data: IconAsset) {
     body: body,
   });
 }
+
+export async function updateIconAsset(data: IconAsset) {
+  const body = JSON.stringify(data);
+
+  return await fetch(getUrl(), {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body,
+  });
+}

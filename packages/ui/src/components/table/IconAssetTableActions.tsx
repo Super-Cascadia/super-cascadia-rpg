@@ -3,13 +3,15 @@ import React from "react";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 
 interface Props {
-  inventoryItem: IconAsset;
+  iconAsset: IconAsset;
   handleShowDeleteModal?: (item: IconAsset) => void;
+  handleShowEditModal?: (item: IconAsset) => void;
 }
 
-export default function TableActionsDropdown({
+export default function IconAssetTableActions({
   handleShowDeleteModal,
-  inventoryItem,
+  handleShowEditModal,
+  iconAsset,
 }: Props) {
   return (
     <Dropdown>
@@ -17,12 +19,18 @@ export default function TableActionsDropdown({
         Actions
       </Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">View</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Duplicate</Dropdown.Item>
+        {handleShowEditModal && (
+          <Dropdown.Item
+            href="#/action-3"
+            onClick={() => handleShowEditModal(iconAsset)}
+          >
+            Edit
+          </Dropdown.Item>
+        )}
         {handleShowDeleteModal && (
           <Dropdown.Item
             href="#/action-3"
-            onClick={() => handleShowDeleteModal(inventoryItem)}
+            onClick={() => handleShowDeleteModal(iconAsset)}
           >
             Delete
           </Dropdown.Item>
