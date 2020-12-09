@@ -22,9 +22,11 @@ export function StandardIconV2({ icon }: { icon: string }) {
     return null;
   }
 
-  import(`../../images/icons/items/${icon}`).then((module) =>
-    setImage(module.default)
-  );
+  import(`../../images/icons/items/${icon}`)
+    .then((module) => setImage(module.default))
+    .catch((e) => {
+      console.error("could not load icon", e);
+    });
 
   return <Image src={imagePath} />;
 }
