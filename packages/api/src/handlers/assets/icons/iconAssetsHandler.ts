@@ -37,10 +37,12 @@ export const updateIconAssetHandler = async (
   request: Request,
   reply: ResponseToolkit
 ): Promise<UpdateResult> => {
-  return updateIconAsset(connection, request.payload as IconAsset).catch(
-    (e) => {
-      console.error(e);
-      throw e;
-    }
-  );
+  return updateIconAsset(
+    connection,
+    request.params.id,
+    request.payload as IconAsset
+  ).catch((e) => {
+    console.error(e);
+    throw e;
+  });
 };

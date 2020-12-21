@@ -1,6 +1,10 @@
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 
-function getUrl() {
+function getUrl(id?: number) {
+  if (id) {
+    return `/assets/icon/${id}`;
+  }
+
   return `/assets/icon`;
 }
 
@@ -22,10 +26,10 @@ export async function createIconAsset(data: IconAsset) {
   });
 }
 
-export async function updateIconAsset(data: IconAsset) {
+export async function updateIconAsset(id: number, data: IconAsset) {
   const body = JSON.stringify(data);
 
-  return await fetch(getUrl(), {
+  return await fetch(getUrl(id), {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

@@ -41,7 +41,9 @@ export default function EditIconAssetModal({
       ...values,
     } as IconAsset;
 
-    updateIconAsset(iconAssetObject).then(handleSubmitSuccess(actions));
+    updateIconAsset(iconAsset.id, iconAssetObject).then(
+      handleSubmitSuccess(actions)
+    );
   };
 
   const initialFormState = {

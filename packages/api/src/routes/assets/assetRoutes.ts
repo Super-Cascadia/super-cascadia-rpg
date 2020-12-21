@@ -27,7 +27,7 @@ function iconAssetRoutes(server: Server, connection: Connection) {
 
   server.route({
     method: "PUT",
-    path: `/assets/${ASSET_API_BASE_PATH.ICON}`,
+    path: `/assets/${ASSET_API_BASE_PATH.ICON}/{id?}`,
     handler: (request: Request, reply: ResponseToolkit) =>
       updateIconAssetHandler(connection, request, reply),
   });

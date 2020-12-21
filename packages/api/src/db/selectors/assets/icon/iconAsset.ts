@@ -14,7 +14,8 @@ export async function createNewIconAsset(
 
 export async function updateIconAsset(
   connection: Connection,
+  id: string,
   item: IconAsset
 ): Promise<UpdateResult> {
-  return connection.manager.update(IconAsset, item.id, item);
+  return connection.manager.update(IconAsset, id, item);
 }
