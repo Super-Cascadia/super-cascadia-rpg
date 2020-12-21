@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 import AssetsTable from "./components/table/AssetsTable";
 import fetchIconAssetDataHook from "../../hooks/api/assets/fetchIconAssetDataHook";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import CreateIconAssetModal from "./components/modal/CreateIconAssetModal";
 import { getIconAssets } from "../../api/assets/icons/getIconAssets";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import EditIconAssetModal from "./components/modal/EditIconAssetModal";
 import GridPageWrapperV2 from "../../components/pageWrapper/GridPageWrapperV2";
 

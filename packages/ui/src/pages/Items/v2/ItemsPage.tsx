@@ -3,6 +3,7 @@ import GridPageWrapperV2 from "../../../components/pageWrapper/GridPageWrapperV2
 import Nav from "react-bootstrap/Nav";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import ConsumableItemsView from "./views/ConsumableItemsView";
 
 function ItemsPageRoutes() {
   let { path, url } = useRouteMatch();
@@ -12,7 +13,9 @@ function ItemsPageRoutes() {
       <Route exact path="/">
         Base path!
       </Route>
-      <Route path={`${path}/consumables`}>Consumables!</Route>
+      <Route path={`${path}/consumables`}>
+        <ConsumableItemsView />
+      </Route>
       <Route path={`${path}/armors`}>Armor!</Route>
       <Route path={`${path}/weapons`}>Weapons!</Route>
     </Switch>

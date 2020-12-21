@@ -1,4 +1,4 @@
-import { getItem } from "../../../api/items/getItem";
+import { getItem } from "../../../../api/items/getItem";
 
 export default function getEffect(id: number, setData: (data: any) => void) {
   return () => {

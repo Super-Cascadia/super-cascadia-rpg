@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
+import fetchItemsDataHook from "../../../hooks/api/items/v1/fetchItemsDataHook";
 import { Item } from "@super-cascadia-rpg/api";
 import { ITEM_GRID_TABS } from "../../Items/v1/ItemGrid/ItemGrid";
 import { Formik, FormikHelpers, FormikValues } from "formik";

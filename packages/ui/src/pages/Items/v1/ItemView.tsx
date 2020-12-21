@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ItemModel } from "@super-cascadia-rpg/api";
 import { useParams } from "react-router-dom";
-import fetchItemDataHook from "../../../hooks/api/items/fetchItemDataHook";
+import fetchItemDataHook from "../../../hooks/api/items/v1/fetchItemDataHook";
 import { getItemTypeNameById } from "../../../util/itemType";
 import { isEmpty, toNumber } from "lodash";
 import Loading from "../../../components/indicators/Loading";

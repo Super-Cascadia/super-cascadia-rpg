@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
-import fetchItemDataHook from "../../../hooks/api/items/fetchItemDataHook";
+import fetchItemDataHook from "../../../hooks/api/items/v1/fetchItemDataHook";
 import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
 import updateItem from "../../../api/items/updateItem";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ItemModel } from "@super-cascadia-rpg/api";
-import fetchItemsDataHook from "../../../../hooks/api/items/fetchItemsDataHook";
+import fetchItemsDataHook from "../../../../hooks/api/items/v1/fetchItemsDataHook";
 import { useLocation, useHistory } from "react-router-dom";
 import deleteItem from "../../../../api/items/deleteItem";
 import duplicateItem from "../../../../api/items/duplicateItem";
