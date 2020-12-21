@@ -1,4 +1,4 @@
-import { ITEM_GRID_TABS } from "../../pages/Items/ItemGrid/ItemGrid";
+import { ITEM_GRID_TABS } from "../../pages/Items/v1/ItemGrid/ItemGrid";
 import { getItemTypeIdByTabName } from "../../util/itemType";
 import { Item } from "@super-cascadia-rpg/api";
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/model/items/itemModel";
-import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
+import { ItemModel } from "@super-cascadia-rpg/api";
+import fetchItemsDataHook from "../../../../hooks/api/items/fetchItemsDataHook";
 import { useLocation, useHistory } from "react-router-dom";
-import deleteItem from "../../../api/items/deleteItem";
-import duplicateItem from "../../../api/items/duplicateItem";
+import deleteItem from "../../../../api/items/deleteItem";
+import duplicateItem from "../../../../api/items/duplicateItem";
 import { find } from "lodash";
 import ItemTabs from "./components/ItemTabs";
-import GridPageWrapper from "../../../components/pageWrapper/GridPageWrapper";
+import GridPageWrapper from "../../../../components/pageWrapper/GridPageWrapper";
 import ItemGridModals from "./components/modals/ItemGridModals";
 
 export enum ITEM_GRID_TABS {

@@ -1,5 +1,5 @@
 import { ItemType } from "@super-cascadia-rpg/api";
-import { ITEM_GRID_TABS } from "../pages/Items/ItemGrid/ItemGrid";
+import { ITEM_GRID_TABS } from "../pages/Items/v1/ItemGrid/ItemGrid";
 
 export const getItemTypeNameById = (id: number) => {
   switch (id) {

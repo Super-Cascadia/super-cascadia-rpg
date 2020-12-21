@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import fetchItemsDataHook from "../../../hooks/api/items/fetchItemsDataHook";
 import { Item } from "@super-cascadia-rpg/api";
-import { ITEM_GRID_TABS } from "../../Items/ItemGrid/ItemGrid";
+import { ITEM_GRID_TABS } from "../../Items/v1/ItemGrid/ItemGrid";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import { addCharacterInventory } from "../../../api/characters/inventory/addCharacterInventor";
