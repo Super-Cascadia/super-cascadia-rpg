@@ -12,9 +12,6 @@ export abstract class BasicItem {
   description!: string;
 
   @Column()
-  icon!: string;
-
-  @Column()
   salvagable!: boolean;
 
   @Column()
