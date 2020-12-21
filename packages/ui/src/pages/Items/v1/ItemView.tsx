@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ItemModel } from "@super-cascadia-rpg/api/build/src/interfaces";
+import { ItemModel } from "@super-cascadia-rpg/api";
 import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../../hooks/api/items/fetchItemDataHook";
 import { getItemTypeNameById } from "../../../util/itemType";
