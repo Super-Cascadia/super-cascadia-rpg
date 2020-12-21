@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
 import ItemGrid from "../pages/Items/v1/ItemGrid/ItemGrid";
 import ItemEdit from "../pages/Items/v1/ItemEdit";
 import TopNavigation from "../components/navigation/TopNavigation";
