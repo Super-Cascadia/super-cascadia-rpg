@@ -1,15 +1,13 @@
-import { getItem } from "../../../../api/items/v1/getItem";
+import { getAllConsumableItems } from "../../../../api/items/v2";
 
-export default function getEffect(id: number, setData: (data: any) => void) {
+export function fetchAllItemsHook(setData: (data: any) => void) {
   return () => {
-    async function fetchData(id: number) {
-      const item = await getItem(id);
+    async function fetchData() {
+      const items = await getAllConsumableItems();
 
-      setData({
-        item,
-      });
+      setData(items);
     }
 
-    return fetchData(id);
+    return fetchData();
   };
 }

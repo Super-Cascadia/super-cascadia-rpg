@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import fetchIconAssetDataHook from "../../../../hooks/api/assets/fetchIconAssetDataHook";
 import { BasicConsumableItem } from "@super-cascadia-rpg/api";
+import { fetchAllItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 
 export type ConsumableItemsStateHook = [
   BasicConsumableItem[],
@@ -12,7 +12,7 @@ export default function ConsumableItemsView() {
     {} as BasicConsumableItem[]
   );
   // @ts-ignore
-  useEffect(fetchIconAssetDataHook(setData), []);
+  useEffect(fetchAllItemsHook(setData), []);
 
   return <div></div>;
 }
