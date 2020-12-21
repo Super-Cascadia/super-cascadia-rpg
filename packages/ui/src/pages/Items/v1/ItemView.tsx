@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { ItemModel } from "@super-cascadia-rpg/api";
+import { ItemModel } from "@super-cascadia-rpg/api/build/src/interfaces";
 import { useParams } from "react-router-dom";
-import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
-import { getItemTypeNameById } from "../../util/itemType";
+import fetchItemDataHook from "../../../hooks/api/items/fetchItemDataHook";
+import { getItemTypeNameById } from "../../../util/itemType";
 import { isEmpty, toNumber } from "lodash";
-import Loading from "../../components/indicators/Loading";
-import ObjectDetailViewPageWrapper from "../../components/pageWrapper/ObjectDetailViewPageWrapper";
-import { TextInput } from "../../components/forms/TextInput";
-import { itemTypeOptions } from "./constants";
-import { SelectInput } from "../../components/forms/SelectInput";
-import StandardIcon from "../../components/icons/StandardIcon";
+import Loading from "../../../components/indicators/Loading";
+import ObjectDetailViewPageWrapper from "../../../components/pageWrapper/ObjectDetailViewPageWrapper";
+import { TextInput } from "../../../components/forms/TextInput";
+import { itemTypeOptions } from "../constants";
+import { SelectInput } from "../../../components/forms/SelectInput";
+import StandardIcon from "../../../components/icons/StandardIcon";
 
 function ItemViewForm({ item }: { item: ItemModel }) {
   const itemTypeName = getItemTypeNameById(item?.type);
