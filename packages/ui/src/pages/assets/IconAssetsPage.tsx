@@ -41,7 +41,10 @@ export default function IconAssetsPage() {
   };
 
   return (
-    <GridPageWrapperV2 handleNewButtonClick={() => setCreateIconModalViz(true)}>
+    <GridPageWrapperV2
+      handleNewButtonClick={() => setCreateIconModalViz(true)}
+      title="Icons"
+    >
       <>
         <AssetsTable assets={data} handleShowEditModal={handleOpenEditModal} />
         {showCreateIconModal && (

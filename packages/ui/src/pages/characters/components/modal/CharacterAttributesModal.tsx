@@ -1,7 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import React, { useEffect, useState } from "react";
-import { CharacterAttributes } from "@super-cascadia-rpg/api";
 import Form from "react-bootstrap/Form";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
@@ -12,6 +11,7 @@ import fetchCharacterAttributesDataHook from "../../../../hooks/api/characters/f
 import Loading from "../../../../components/indicators/Loading";
 import { getCharacterAttributes } from "../../../../api/characters/attributes/getCharacterAttributes";
 import { CharacterAttributesForm } from "../form/CharacterAttributesForm";
+import { CharacterAttributes } from "@super-cascadia-rpg/api/src/model/characters/characterModel";
 
 interface Props {
   show: boolean;

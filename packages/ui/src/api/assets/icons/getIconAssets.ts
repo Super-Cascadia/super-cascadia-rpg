@@ -1,4 +1,4 @@
-import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
+import { IconAsset } from "@super-cascadia-rpg/api/src/db/entity/assets/icons/IconAsset";
 
 function getUrl(id?: number) {
   if (id) {

@@ -5,12 +5,14 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 interface Props {
+  title: string;
   children: ReactElement;
   handleNewButtonClick: () => void;
 }
 
 export default function GridPageWrapperV2({
   children,
+  title,
   handleNewButtonClick,
 }: Props) {
   return (
@@ -18,7 +20,7 @@ export default function GridPageWrapperV2({
       <br />
       <Row>
         <Col md={10}>
-          <h1>Icons</h1>
+          <h1>{title}</h1>
         </Col>
         <Col md={2}>
           <Button

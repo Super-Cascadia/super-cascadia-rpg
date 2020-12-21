@@ -1,6 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import React from "react";
-import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
+import { IconAsset } from "@super-cascadia-rpg/api/src/db/entity/assets/icons/IconAsset";
 
 interface Props {
   iconAsset: IconAsset;

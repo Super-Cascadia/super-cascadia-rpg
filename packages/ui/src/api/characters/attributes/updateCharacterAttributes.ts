@@ -1,4 +1,4 @@
-import { CharacterAttributes } from "@super-cascadia-rpg/api";
+import { CharacterAttributes } from "@super-cascadia-rpg/api/src/model/characters/characterModel";
 
 export default async function updateCharacterAttributes(
   id: number,
