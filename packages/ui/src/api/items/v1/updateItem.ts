@@ -1,4 +1,4 @@
-import { Item } from "../../../../db/src";
+import { Item } from "../../../../../db/src";
 import { omit } from "lodash";
 
 export default async function updateItem(data: Item) {

@@ -1,4 +1,4 @@
-import { getItem } from "../../../../api/items/getItem";
+import { getItem } from "../../../../api/items/v1/getItem";
 
 export default function getEffect(id: number, setData: (data: any) => void) {
   return () => {
@@ -10,6 +10,6 @@ export default function getEffect(id: number, setData: (data: any) => void) {
       });
     }
 
-    fetchData(id);
+    return fetchData(id);
   };
 }

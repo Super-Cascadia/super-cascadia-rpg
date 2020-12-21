@@ -1,5 +1,5 @@
 import { ITEM_GRID_TABS } from "../../../../pages/Items/v1/ItemGrid/ItemGrid";
-import { getItems } from "../../../../api/items/getItems";
+import { getItems } from "../../../../api/items/v1/getItems";
 
 export default function getEffect(
   type: ITEM_GRID_TABS,

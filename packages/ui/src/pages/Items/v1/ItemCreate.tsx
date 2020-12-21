@@ -1,6 +1,6 @@
 import React from "react";
 import { ItemType } from "@super-cascadia-rpg/api";
-import createItem from "../../../api/items/createItem";
+import createItem from "../../../api/items/v1/createItem";
 import { useHistory } from "react-router-dom";
 import { ObjectCreatePageWrapper } from "../../../components/pageWrapper/ObjectCreatePageWrapper";
 import { Formik, FormikHelpers, FormikValues } from "formik";

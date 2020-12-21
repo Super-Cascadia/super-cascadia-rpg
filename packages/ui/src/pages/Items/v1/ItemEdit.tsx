@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import fetchItemDataHook from "../../../hooks/api/items/v1/fetchItemDataHook";
 import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
-import updateItem from "../../../api/items/updateItem";
+import updateItem from "../../../api/items/v1/updateItem";
 import { Item } from "@super-cascadia-rpg/api";
 import Loading from "../../../components/indicators/Loading";
 import { ObjectDetailEditPageWrapper } from "../../../components/pageWrapper/ObjectDetailEditPageWrapper";
@@ -19,7 +19,7 @@ import {
   FormikValues,
 } from "formik";
 import * as yup from "yup";
-import { getItem } from "../../../api/items/getItem";
+import { getItem } from "../../../api/items/v1/getItem";
 
 interface Values {
   id: number;
