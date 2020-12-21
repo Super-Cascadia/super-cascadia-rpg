@@ -2,37 +2,33 @@ import { map } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
 import Badge from "react-bootstrap/Badge";
-import { StandardIconV2 } from "../../../../../components/icons/StandardIcon";
-import { IconAsset } from "@super-cascadia-rpg/api/src/db/entity/assets/icons/IconAsset";
+import { BasicConsumableItem } from "@super-cascadia-rpg/api";
 
 function AssetTableRow({
-  assetItem,
-  handleShowEditModal,
+  item,
 }: {
-  assetItem: IconAsset;
-  handleShowEditModal: (iconAsset: IconAsset) => void;
+  item: BasicConsumableItem;
+  handleShowEditModal?: (item: BasicConsumableItem) => void;
 }) {
   return (
     <tr>
       <td>
-        <Badge variant="primary">{assetItem.id}</Badge>
+        <Badge variant="primary">{item.id}</Badge>
       </td>
-      <td>
-        <StandardIconV2 icon={assetItem.assetPath} />
-      </td>
-      <td>{assetItem.name}</td>
-      <td>{assetItem.description}</td>
+      <td>{/*<StandardIconV2 icon={undefined} />*/}</td>
+      <td>{item.name}</td>
+      <td>{item.description}</td>
       <td>Actions</td>
     </tr>
   );
 }
 
 interface Props {
-  assets: IconAsset[];
-  handleShowEditModal: (iconAsset: IconAsset) => void;
+  items: BasicConsumableItem[];
+  handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
 }
 
-export default function ItemsPageTable({ assets, handleShowEditModal }: Props) {
+export default function ItemsPageTable({ items, handleShowEditModal }: Props) {
   return (
     <Table striped bordered hover size="sm">
       <thead>
@@ -45,9 +41,9 @@ export default function ItemsPageTable({ assets, handleShowEditModal }: Props) {
         </tr>
       </thead>
       <tbody>
-        {map(assets, (item: IconAsset) => (
+        {map(items, (item: BasicConsumableItem) => (
           <AssetTableRow
-            assetItem={item}
+            item={item}
             handleShowEditModal={handleShowEditModal}
           />
         ))}
