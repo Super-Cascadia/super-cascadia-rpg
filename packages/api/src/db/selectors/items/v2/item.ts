@@ -4,7 +4,7 @@ import { BasicWeaponItem } from "../../../entity/items/v2/equippables/BasicWeapo
 import { BasicConsumableItem } from "../../../entity/items/v2/consumables/BasicConsumableItem";
 import { UpdateResult } from "typeorm/browser";
 
-// Armor Items
+// Armor ItemsPage
 
 export async function findArmorItems(connection: Connection) {
   return connection.manager.find(BasicArmorItem);
@@ -17,7 +17,7 @@ export async function createNewArmorItem(
   return connection.manager.insert(BasicArmorItem, item);
 }
 
-// Weapon Items
+// Weapon ItemsPage
 
 export async function findWeaponItems(connection: Connection) {
   return connection.manager.find(BasicWeaponItem, { relations: ["iconAsset"] });
@@ -38,7 +38,7 @@ export async function updateWeaponItem(
   return connection.manager.update(BasicWeaponItem, id, item);
 }
 
-// Consumable Items
+// Consumable ItemsPage
 
 export async function findConsumableItems(connection: Connection) {
   return connection.manager.find(BasicConsumableItem);

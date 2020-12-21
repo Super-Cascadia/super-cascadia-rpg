@@ -11,7 +11,7 @@ import CharacterView from "../pages/characters/CharacterView";
 import CharacterEdit from "../pages/characters/CharacterEdit";
 import CharacterCreate from "../pages/characters/CharacterCreate";
 import IconAssetsPage from "../pages/assets/IconAssetsPage";
-import Items from "../pages/Items/v2/Items";
+import ItemsPage from "../pages/Items/v2/ItemsPage";
 
 export default function Routes() {
   return (
@@ -32,7 +32,7 @@ export default function Routes() {
             <CharacterGrid />
           </Route>
           <Route path="/items/v2">
-            <Items />
+            <ItemsPage />
           </Route>
           <Route path="/items/create">
             <ItemCreate />

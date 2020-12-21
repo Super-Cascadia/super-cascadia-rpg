@@ -63,7 +63,7 @@ function ItemTabs({
           handleShowDuplicateModal
         )}
       </Tab>
-      <Tab eventKey={ITEM_GRID_TABS.KEY_ITEM} title="Key Items">
+      <Tab eventKey={ITEM_GRID_TABS.KEY_ITEM} title="Key ItemsPage">
         {getItemTable(
           isLoading,
           itemData,

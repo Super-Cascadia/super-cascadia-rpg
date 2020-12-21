@@ -99,7 +99,7 @@ export default function ItemGrid() {
   return (
     <div>
       <GridPageWrapper
-        title={"Items"}
+        title={"ItemsPage"}
         gridItemCount={itemData.length}
         createLink={`/items/create`}
       >

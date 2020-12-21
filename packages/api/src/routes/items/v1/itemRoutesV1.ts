@@ -7,7 +7,7 @@ import updateItemHandler from "../../../handlers/items/v1/updateItemHandler";
 import { deleteItemHandler } from "../../../handlers/items/v1/deleteItemHandler";
 import createConsumableItemHandler from "../../../handlers/consumableItems/createConsumableItemHandler";
 
-// Generic Items
+// Generic ItemsPage
 
 function getItems(server: Server, connection: Connection) {
   server.route({
@@ -54,7 +54,7 @@ function updateItem(server: Server, connection: Connection) {
   });
 }
 
-// Consumable Items
+// Consumable ItemsPage
 
 function createConsumableItem(server: Server, connection: Connection) {
   server.route({
