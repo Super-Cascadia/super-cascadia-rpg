@@ -1,26 +1,12 @@
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import React from "react";
+import React, { useState } from "react";
+import GridPageWrapperV2 from "../../../components/pageWrapper/GridPageWrapperV2";
 
 export default function ItemsPage() {
+  const [showCreateItemModal, setCreateItemModalViz] = useState<boolean>(false);
+
   return (
-    <Container>
-      <br />
-      <Row>
-        <Col md={10}>
-          <h1>Items</h1>
-        </Col>
-        <Col md={2}>
-          <Button variant={"primary"} size={"lg"} block onClick={() => {}}>
-            New
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col></Col>
-      </Row>
-    </Container>
+    <GridPageWrapperV2 handleNewButtonClick={() => setCreateItemModalViz(true)}>
+      <div>Table goes here</div>
+    </GridPageWrapperV2>
   );
 }

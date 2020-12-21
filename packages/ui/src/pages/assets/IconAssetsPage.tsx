@@ -9,6 +9,7 @@ import { getIconAssets } from "../../api/assets/icons/getIconAssets";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import EditIconAssetModal from "./components/modal/EditIconAssetModal";
+import GridPageWrapperV2 from "../../components/pageWrapper/GridPageWrapperV2";
 
 export type IconAssetsStateHook = [IconAsset[], (data: any) => void];
 
@@ -40,44 +41,23 @@ export default function IconAssetsPage() {
   };
 
   return (
-    <Container>
-      <br />
-      <Row>
-        <Col md={10}>
-          <h1>Icons</h1>
-        </Col>
-        <Col md={2}>
-          <Button
-            variant={"primary"}
-            size={"lg"}
-            block
-            onClick={() => setCreateIconModalViz(true)}
-          >
-            New
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <AssetsTable
-            assets={data}
-            handleShowEditModal={handleOpenEditModal}
+    <GridPageWrapperV2 handleNewButtonClick={() => setCreateIconModalViz(true)}>
+      <>
+        <AssetsTable assets={data} handleShowEditModal={handleOpenEditModal} />
+        {showCreateIconModal && (
+          <CreateIconAssetModal
+            show={showCreateIconModal}
+            handleClose={handleCloseCreateIconModal}
           />
-        </Col>
-      </Row>
-      {showCreateIconModal && (
-        <CreateIconAssetModal
-          show={showCreateIconModal}
-          handleClose={handleCloseCreateIconModal}
-        />
-      )}
-      {showEditIconModal && selectedIcon && (
-        <EditIconAssetModal
-          iconAsset={selectedIcon}
-          show={showEditIconModal}
-          handleClose={handleCloseEditIconModal}
-        />
-      )}
-    </Container>
+        )}
+        {showEditIconModal && selectedIcon && (
+          <EditIconAssetModal
+            iconAsset={selectedIcon}
+            show={showEditIconModal}
+            handleClose={handleCloseEditIconModal}
+          />
+        )}
+      </>
+    </GridPageWrapperV2>
   );
 }

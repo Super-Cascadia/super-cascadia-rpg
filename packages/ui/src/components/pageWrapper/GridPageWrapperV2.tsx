@@ -1,14 +1,18 @@
-import React, { ReactChildren } from "react";
+import React, { ReactChildren, ReactElement } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 interface Props {
-  children: ReactChildren;
+  children: ReactElement;
+  handleNewButtonClick: () => void;
 }
 
-export default function GridPageWrapperV2({ children }: Props) {
+export default function GridPageWrapperV2({
+  children,
+  handleNewButtonClick,
+}: Props) {
   return (
     <Container>
       <br />
@@ -17,7 +21,12 @@ export default function GridPageWrapperV2({ children }: Props) {
           <h1>Icons</h1>
         </Col>
         <Col md={2}>
-          <Button variant={"primary"} size={"lg"} block onClick={() => {}}>
+          <Button
+            variant={"primary"}
+            size={"lg"}
+            block
+            onClick={handleNewButtonClick}
+          >
             New
           </Button>
         </Col>
