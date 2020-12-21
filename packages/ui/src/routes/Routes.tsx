@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import ItemGrid from "../pages/Items/ItemGrid/ItemGrid";
-import ItemEdit from "../pages/Items/ItemEdit";
+import ItemEdit from "../pages/Items/v1/ItemEdit";
 import TopNavigation from "../components/navigation/TopNavigation";
 import ItemCreate from "../pages/Items/v1/ItemCreate";
 import ItemView from "../pages/Items/v1/ItemView";

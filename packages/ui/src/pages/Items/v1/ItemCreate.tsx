@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemType } from "@super-cascadia-rpg/api/build/src/interfaces";
+import { ItemType } from "@super-cascadia-rpg/api";
 import createItem from "../../../api/items/createItem";
 import { useHistory } from "react-router-dom";
 import { ObjectCreatePageWrapper } from "../../../components/pageWrapper/ObjectCreatePageWrapper";

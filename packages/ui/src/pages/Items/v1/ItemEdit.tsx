@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
-import fetchItemDataHook from "../../hooks/api/items/fetchItemDataHook";
+import fetchItemDataHook from "../../../hooks/api/items/fetchItemDataHook";
 import { toNumber, isEmpty } from "lodash";
 import { toString } from "lodash";
-import updateItem from "../../api/items/updateItem";
+import updateItem from "../../../api/items/updateItem";
 import { Item } from "@super-cascadia-rpg/api";
-import Loading from "../../components/indicators/Loading";
-import { ObjectDetailEditPageWrapper } from "../../components/pageWrapper/ObjectDetailEditPageWrapper";
-import { TextInput } from "../../components/forms/TextInput";
-import { itemTypeOptions } from "./constants";
-import { SelectInput } from "../../components/forms/SelectInput";
+import Loading from "../../../components/indicators/Loading";
+import { ObjectDetailEditPageWrapper } from "../../../components/pageWrapper/ObjectDetailEditPageWrapper";
+import { TextInput } from "../../../components/forms/TextInput";
+import { itemTypeOptions } from "../constants";
+import { SelectInput } from "../../../components/forms/SelectInput";
 import {
   Formik,
   FormikErrors,
@@ -19,7 +19,7 @@ import {
   FormikValues,
 } from "formik";
 import * as yup from "yup";
-import { getItem } from "../../api/items/getItem";
+import { getItem } from "../../../api/items/getItem";
 
 interface Values {
   id: number;
