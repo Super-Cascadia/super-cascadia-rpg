@@ -1,12 +1,12 @@
 import React from "react";
-import { ItemType } from "@super-cascadia-rpg/api";
-import createItem from "../../api/items/createItem";
+import { ItemType } from "@super-cascadia-rpg/api/build/src/interfaces";
+import createItem from "../../../api/items/createItem";
 import { useHistory } from "react-router-dom";
-import { ObjectCreatePageWrapper } from "../../components/pageWrapper/ObjectCreatePageWrapper";
+import { ObjectCreatePageWrapper } from "../../../components/pageWrapper/ObjectCreatePageWrapper";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import Form from "react-bootstrap/Form";
-import ItemCreateForm from "./components/forms/ItemCreateForm";
+import ItemCreateForm from "../components/forms/ItemCreateForm";
 
 export default function ItemCreate() {
   const history = useHistory();

@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import ItemGrid from "../pages/Items/ItemGrid/ItemGrid";
 import ItemEdit from "../pages/Items/ItemEdit";
 import TopNavigation from "../components/navigation/TopNavigation";
-import ItemCreate from "../pages/Items/ItemCreate";
+import ItemCreate from "../pages/Items/v1/ItemCreate";
 import ItemView from "../pages/Items/v1/ItemView";
 import CharacterGrid from "../pages/characters/CharacterGrid/CharacterGrid";
 import CharacterView from "../pages/characters/CharacterView";
