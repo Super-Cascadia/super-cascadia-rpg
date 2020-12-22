@@ -1,6 +1,10 @@
-import { getAllConsumableItems } from "../../../../api/items/v2";
+import {
+  getAllArmorItems,
+  getAllConsumableItems,
+  getAllWeaponItems,
+} from "../../../../api/items/v2";
 
-export function fetchAllItemsHook(setData: (data: any) => void) {
+export function fetchAllConsumableItemsHook(setData: (data: any) => void) {
   return () => {
     async function fetchData() {
       const items = await getAllConsumableItems();
@@ -8,6 +12,30 @@ export function fetchAllItemsHook(setData: (data: any) => void) {
       setData(items);
     }
 
-    return fetchData();
+    fetchData();
+  };
+}
+
+export function fetchAllWeaponItemsHook(setData: (data: any) => void) {
+  return () => {
+    async function fetchData() {
+      const items = await getAllWeaponItems();
+
+      setData(items);
+    }
+
+    fetchData();
+  };
+}
+
+export function fetchAllArmorItemsHook(setData: (data: any) => void) {
+  return () => {
+    async function fetchData() {
+      const items = await getAllArmorItems();
+
+      setData(items);
+    }
+
+    fetchData();
   };
 }

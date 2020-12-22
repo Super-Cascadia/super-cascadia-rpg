@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BasicConsumableItem } from "@super-cascadia-rpg/api";
-import { fetchAllConsumableItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
+import { fetchAllWeaponItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
 
@@ -9,12 +9,12 @@ export type ConsumableItemsStateHook = [
   (data: any) => void
 ];
 
-export default function ConsumableItemsView() {
+export default function WeaponItemsView() {
   const [data, setData]: ConsumableItemsStateHook = useState(
     {} as BasicConsumableItem[]
   );
   // @ts-ignore
-  useEffect(fetchAllConsumableItemsHook(setData), []);
+  useEffect(fetchAllWeaponItemsHook(setData), []);
 
   if (!data) {
     return <Loading />;

@@ -4,26 +4,32 @@ import Nav from "react-bootstrap/Nav";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import ConsumableItemsView from "./views/ConsumableItemsView";
+import ArmorItemsView from "./views/ArmorItemsView";
+import WeaponItemsView from "./views/WeaponItemsView";
 
 function ItemsPageRoutes() {
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
 
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path={path}>
         Base path!
       </Route>
-      <Route path={`${path}/consumables`}>
+      <Route exact path={`${path}/consumables`}>
         <ConsumableItemsView />
       </Route>
-      <Route path={`${path}/armors`}>Armor!</Route>
-      <Route path={`${path}/weapons`}>Weapons!</Route>
+      <Route exact path={`${path}/armors`}>
+        <ArmorItemsView />
+      </Route>
+      <Route exact path={`${path}/weapons`}>
+        <WeaponItemsView />
+      </Route>
     </Switch>
   );
 }
 
 function ItemsPageNav() {
-  let { path, url } = useRouteMatch();
+  let { url } = useRouteMatch();
 
   return (
     <Nav variant="tabs" defaultActiveKey="/home">
