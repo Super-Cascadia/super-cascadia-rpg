@@ -52,6 +52,12 @@ function ItemsPageNav() {
   );
 }
 
+export interface TableColumns {
+  fieldName: string;
+  title: string;
+  renderer?: (value?: any) => JSX.Element;
+}
+
 export default function ItemsPage() {
   const [showCreateItemModal, setCreateItemModalViz] = useState<boolean>(false);
 
@@ -62,6 +68,7 @@ export default function ItemsPage() {
     >
       <>
         <ItemsPageNav />
+        <br />
         <ItemsPageRoutes />
       </>
     </GridPageWrapperV2>

@@ -1,48 +1,73 @@
 import { map } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
-import Badge from "react-bootstrap/Badge";
-import { BasicConsumableItem } from "@super-cascadia-rpg/api";
+import { BasicConsumableItem } from "@super-cascadia-rpg/api/src/db/entity/items/v2/consumables/BasicConsumableItem";
+import { TableColumns } from "../../ItemsPage";
+import TableRowColumn from "./cells/TableRowColumn";
 
-function AssetTableRow({
+const ACTIONS_COLUMN = {
+  title: "Actions",
+  fieldName: "actions",
+};
+
+function TableRow({
   item,
+  columns,
 }: {
+  columns: TableColumns[];
   item: BasicConsumableItem;
   handleShowEditModal?: (item: BasicConsumableItem) => void;
 }) {
+  const displayColumns = [...columns, ACTIONS_COLUMN];
+
   return (
     <tr>
-      <td>
-        <Badge variant="primary">{item.id}</Badge>
-      </td>
-      <td>{/*<StandardIconV2 icon={undefined} />*/}</td>
-      <td>{item.name}</td>
-      <td>{item.description}</td>
-      <td>Actions</td>
+      {map(displayColumns, (column) => {
+        return <TableRowColumn column={column} item={item} />;
+      })}
+      {/*<td>*/}
+      {/*  <Badge variant="primary">{item.id}</Badge>*/}
+      {/*</td>*/}
+      {/*<td>/!*<StandardIconV2 icon={undefined} />*!/</td>*/}
+      {/*<td>{item.name}</td>*/}
+      {/*<td>{item.description}</td>*/}
+      {/*<td>Actions</td>*/}
     </tr>
   );
 }
 
 interface Props {
   items: BasicConsumableItem[];
+  columns: TableColumns[];
   handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
 }
 
-export default function ItemsPageTable({ items, handleShowEditModal }: Props) {
+function TableHeader({ columns }: { columns: TableColumns[] }) {
+  const headerColumns: TableColumns[] = [...columns, ACTIONS_COLUMN];
+
+  return (
+    <thead>
+      <tr>
+        {map(headerColumns, (column) => {
+          return <th>{column.title}</th>;
+        })}
+      </tr>
+    </thead>
+  );
+}
+
+export default function ItemsPageTable({
+  items,
+  columns,
+  handleShowEditModal,
+}: Props) {
   return (
     <Table striped bordered hover size="sm">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Icon</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <TableHeader columns={columns} />
       <tbody>
         {map(items, (item: BasicConsumableItem) => (
-          <AssetTableRow
+          <TableRow
+            columns={columns}
             item={item}
             handleShowEditModal={handleShowEditModal}
           />
