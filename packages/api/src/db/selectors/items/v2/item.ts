@@ -41,7 +41,9 @@ export async function updateWeaponItem(
 // Consumable ItemsPage
 
 export async function findConsumableItems(connection: Connection) {
-  return connection.manager.find(BasicConsumableItem);
+  return connection.manager.find(BasicConsumableItem, {
+    relations: ["iconAsset"],
+  });
 }
 
 export async function createNewConsumableItem(
