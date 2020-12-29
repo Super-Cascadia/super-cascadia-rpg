@@ -1,0 +1,15 @@
+export enum FIELDS {
+  NAME = "name",
+  ID = "id",
+  ICON = "iconAsset",
+  DESCRIPTION = "description",
+  CONSUMABLE = "consumable",
+  SALVAGABLE = "salvagable",
+  BASE_MONETARY_VALUE = "baseMonetaryValue",
+  RECOVERS_HEALTH = "recoversHealth",
+  HEALTH_RECOVERY_FACTOR = "healthRecoveryFactor",
+  RECOVERS_MANA = "recoversMana",
+  MANA_RECOVERY_FACTOR = "manaRecoveryFactor",
+  RECOVERS_STAMINA = "recoversStamina",
+  STAMINA_RECOVERY_FACTOR = "staminaRecoveryFactor",
+}
