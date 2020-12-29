@@ -2,7 +2,7 @@ import { map } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
 import { BasicConsumableItem } from "@super-cascadia-rpg/api/src/db/entity/items/v2/consumables/BasicConsumableItem";
-import { TableColumns } from "../../ItemsPage";
+import { TableColumn } from "../../ItemsPage";
 import TableRowColumn from "./cells/TableRowColumn";
 
 const ACTIONS_COLUMN = {
@@ -14,7 +14,7 @@ function TableRow({
   item,
   columns,
 }: {
-  columns: TableColumns[];
+  columns: TableColumn[];
   item: BasicConsumableItem;
   handleShowEditModal?: (item: BasicConsumableItem) => void;
 }) {
@@ -25,25 +25,18 @@ function TableRow({
       {map(displayColumns, (column) => {
         return <TableRowColumn column={column} item={item} />;
       })}
-      {/*<td>*/}
-      {/*  <Badge variant="primary">{item.id}</Badge>*/}
-      {/*</td>*/}
-      {/*<td>/!*<StandardIconV2 icon={undefined} />*!/</td>*/}
-      {/*<td>{item.name}</td>*/}
-      {/*<td>{item.description}</td>*/}
-      {/*<td>Actions</td>*/}
     </tr>
   );
 }
 
 interface Props {
   items: BasicConsumableItem[];
-  columns: TableColumns[];
+  columns: TableColumn[];
   handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
 }
 
-function TableHeader({ columns }: { columns: TableColumns[] }) {
-  const headerColumns: TableColumns[] = [...columns, ACTIONS_COLUMN];
+function TableHeader({ columns }: { columns: TableColumn[] }) {
+  const headerColumns: TableColumn[] = [...columns, ACTIONS_COLUMN];
 
   return (
     <thead>

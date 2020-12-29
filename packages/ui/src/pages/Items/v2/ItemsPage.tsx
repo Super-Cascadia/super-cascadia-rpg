@@ -52,7 +52,7 @@ function ItemsPageNav() {
   );
 }
 
-export interface TableColumns {
+export interface TableColumn {
   fieldName: string;
   title: string;
   renderer?: (value?: any) => JSX.Element;
