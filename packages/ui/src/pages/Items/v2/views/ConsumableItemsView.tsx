@@ -10,6 +10,7 @@ import {
   BooleanBadgeCell,
   EffectFactorBadgeCell,
   IconCell,
+  MonetaryValueCell,
 } from "../components/table/cells/badgeCells";
 
 export type ConsumableItemsStateHook = [
@@ -51,6 +52,16 @@ export default function ConsumableItemsView() {
       fieldName: FIELDS.CONSUMABLE,
       title: "Consumable",
       renderer: BooleanBadgeCell,
+    },
+    {
+      fieldName: FIELDS.SALVAGABLE,
+      title: "Salvagable",
+      renderer: BooleanBadgeCell,
+    },
+    {
+      fieldName: FIELDS.BASE_MONETARY_VALUE,
+      title: "Base Monetary Value",
+      renderer: MonetaryValueCell,
     },
     {
       fieldName: FIELDS.RECOVERS_HEALTH,

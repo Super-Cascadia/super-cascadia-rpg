@@ -8,6 +8,8 @@ export enum FIELDS {
   ICON = "iconAsset",
   DESCRIPTION = "description",
   CONSUMABLE = "consumable",
+  SALVAGABLE = "salvagable",
+  BASE_MONETARY_VALUE = "baseMonetaryValue",
   RECOVERS_HEALTH = "recoversHealth",
   HEALTH_RECOVERY_FACTOR = "healthRecoveryFactor",
   RECOVERS_MANA = "recoversMana",
@@ -26,6 +28,10 @@ function getColumnValueForRow(item: BasicConsumableItem, column: TableColumn) {
       return item.name;
     case FIELDS.DESCRIPTION:
       return item.description;
+    case FIELDS.SALVAGABLE:
+      return item.salvagable;
+    case FIELDS.BASE_MONETARY_VALUE:
+      return item.baseMonetaryValue;
     case FIELDS.RECOVERS_HEALTH:
       return item.recoversHealth;
     case FIELDS.RECOVERS_MANA:

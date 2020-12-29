@@ -17,6 +17,10 @@ export function BooleanBadgeCell(value: boolean) {
   return <Badge variant={variant}>{renderedValue}</Badge>;
 }
 
+export function MonetaryValueCell(value: string) {
+  return <span>${value}</span>;
+}
+
 export function EffectFactorBadgeCell(value: string) {
   if (!value) {
     return <Badge variant="light">--</Badge>;
