@@ -7,8 +7,5 @@
   "devDependencies": {
     "lerna": "^3.16.4",
     "prettier": "2.0.5"
-  },
-  "dependencies": {
-    "rimraf": "^2.7.1"
   }
 }
