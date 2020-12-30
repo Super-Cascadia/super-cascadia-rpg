@@ -5,6 +5,10 @@ export enum FIELDS {
   DESCRIPTION = "description",
   CONSUMABLE = "consumable",
   SALVAGABLE = "salvagable",
+  EQUIPPABLE = "equippable",
+  BREAKABLE = "breakable",
+  BASE_DURABILITY = "baseDurability",
+  CURRENT_DURABILITY = "currentDurability",
   BASE_MONETARY_VALUE = "baseMonetaryValue",
   RECOVERS_HEALTH = "recoversHealth",
   HEALTH_RECOVERY_FACTOR = "healthRecoveryFactor",
@@ -12,4 +16,6 @@ export enum FIELDS {
   MANA_RECOVERY_FACTOR = "manaRecoveryFactor",
   RECOVERS_STAMINA = "recoversStamina",
   STAMINA_RECOVERY_FACTOR = "staminaRecoveryFactor",
+  ARMOR_STRENGTH = "armorStrength",
+  ARMOR_LOCATION = "armorLocation",
 }
