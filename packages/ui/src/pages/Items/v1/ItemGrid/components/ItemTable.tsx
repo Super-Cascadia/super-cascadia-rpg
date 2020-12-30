@@ -86,7 +86,7 @@ export function ItemTable({
   }
 
   return (
-    <Table striped hover size="sm" responsive>
+    <Table striped hover size="sm" responsive variant="dark">
       <thead>
         <tr>
           <th>ID</th>

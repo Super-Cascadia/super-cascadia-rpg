@@ -40,7 +40,7 @@ interface Props {
 
 export default function AssetsTable({ assets, handleShowEditModal }: Props) {
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" variant="dark">
       <thead>
         <tr>
           <th>ID</th>
