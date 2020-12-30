@@ -55,7 +55,7 @@ export default function ItemsPageTable({
   handleShowEditModal,
 }: Props) {
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" variant="dark">
       <TableHeader columns={columns} />
       <tbody>
         {map(items, (item: BasicConsumableItem) => (

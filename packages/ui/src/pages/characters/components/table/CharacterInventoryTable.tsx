@@ -70,7 +70,7 @@ export default function CharacterInventoryTable({
   handleShowDeleteModal,
 }: Props) {
   return (
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" variant="dark">
       <thead>
         <tr>
           <th>ID</th>

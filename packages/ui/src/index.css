@@ -1,0 +1,35 @@
+body {
+    color: white !important;
+    background-color: #24292e !important;
+}
+
+.card-body {
+    background-color: #31363f !important;
+}
+
+.card {
+    border-color: #181a1f !important;
+}
+
+.card-header, .card-footer {
+    background-color: #24292e !important
+}
+
+.form-control {
+    background-color: #1b1d23 !important;
+    border-color: #181a1f !important;
+}
+
+.nav-tabs {
+    border-bottom: 1px #343a40 solid !important;
+}
+
+.nav-tabs .nav-link {
+    color: #495057 !important;
+}
+
+.nav-tabs .nav-link.active {
+    color: white !important;
+    background-color: #343a40 !important;
+    border-color: #343a40 !important;
+}
