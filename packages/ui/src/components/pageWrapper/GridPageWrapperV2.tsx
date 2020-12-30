@@ -16,7 +16,7 @@ export default function GridPageWrapperV2({
   handleNewButtonClick,
 }: Props) {
   return (
-    <Container>
+    <Container fluid>
       <br />
       <Row>
         <Col md={10}>
