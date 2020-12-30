@@ -1,0 +1,21 @@
+body {
+    color: white !important;
+    background-color: #24292e !important;
+}
+
+.card-body {
+    background-color: #31363f !important;
+}
+
+.card {
+    border-color: #181a1f !important;
+}
+
+.card-header, .card-footer {
+    background-color: #24292e !important
+}
+
+.form-control {
+    background-color: #1b1d23 !important;
+    border-color: #181a1f !important;
+}
