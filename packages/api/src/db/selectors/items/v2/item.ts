@@ -7,7 +7,9 @@ import { UpdateResult } from "typeorm/browser";
 // Armor ItemsPage
 
 export async function findArmorItems(connection: Connection) {
-  return connection.manager.find(BasicArmorItem);
+  return connection.manager.find(BasicArmorItem, {
+    relations: ["iconAsset"],
+  });
 }
 
 export async function createNewArmorItem(

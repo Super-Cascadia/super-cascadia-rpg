@@ -18,4 +18,7 @@ export enum FIELDS {
   STAMINA_RECOVERY_FACTOR = "staminaRecoveryFactor",
   ARMOR_STRENGTH = "armorStrength",
   ARMOR_LOCATION = "armorLocation",
+  WEAPON_STRENGTH = "weaponStrength",
+  WEAPON_TYPE = "armorLocation",
+  TWO_HANDED = "twoHanded",
 }

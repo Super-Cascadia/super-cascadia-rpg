@@ -3,14 +3,22 @@ import Badge from "react-bootstrap/Badge";
 import { StandardIconV2 } from "../../../../../../components/icons/StandardIcon";
 
 export function EmptyCell() {
-  return <span>--</span>;
+  return <Badge variant="light">--</Badge>;
 }
 
 export function BadgeCell(value: number) {
+  if (!value) {
+    return <EmptyCell />;
+  }
+
   return <Badge variant="primary">{value}</Badge>;
 }
 
 export function BooleanBadgeCell(value: boolean) {
+  if (!value) {
+    return <EmptyCell />;
+  }
+
   const renderedValue = value ? "Yes" : "No";
   const variant = value ? "success" : "light";
 
@@ -18,17 +26,25 @@ export function BooleanBadgeCell(value: boolean) {
 }
 
 export function MonetaryValueCell(value: string) {
+  if (!value) {
+    return <EmptyCell />;
+  }
+
   return <span>${value}</span>;
 }
 
 export function EffectFactorBadgeCell(value: string) {
   if (!value) {
-    return <Badge variant="light">--</Badge>;
+    return <EmptyCell />;
   }
 
   return <Badge variant="info">{value}</Badge>;
 }
 
 export function IconCell(value: string) {
+  if (!value) {
+    return <EmptyCell />;
+  }
+
   return <StandardIconV2 icon={value} />;
 }
