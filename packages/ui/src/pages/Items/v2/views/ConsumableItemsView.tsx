@@ -12,6 +12,26 @@ export type ConsumableItemsStateHook = [
   (data: any) => void
 ];
 
+function getRenderedFieldValues(
+  item: BasicConsumableItem,
+  tableColumnKeys: Dictionary<TableColumn>
+) {
+  return map(
+    item,
+    (value, key: string): TableColumnRendered => {
+      const tableColumnDefinition = tableColumnKeys[key];
+      const renderedValue = tableColumnDefinition?.renderer
+        ? tableColumnDefinition.renderer(value)
+        : null;
+
+      return {
+        key,
+        renderedValue,
+      };
+    }
+  );
+}
+
 function getItems(
   items: BasicConsumableItem[],
   columns: TableColumn[]
@@ -19,20 +39,7 @@ function getItems(
   const tableColumnKeys = mapKeys(columns, (column) => column.fieldName);
 
   return map(items, (item: BasicConsumableItem): TableColumnRendered[] => {
-    return map(
-      item,
-      (value, key): TableColumnRendered => {
-        const tableColumnDefinition = tableColumnKeys[key];
-        const renderedValue = tableColumnDefinition?.renderer
-          ? tableColumnDefinition.renderer(value)
-          : null;
-
-        return {
-          key,
-          renderedValue,
-        };
-      }
-    );
+    return getRenderedFieldValues(item, tableColumnKeys);
   });
 }
 
