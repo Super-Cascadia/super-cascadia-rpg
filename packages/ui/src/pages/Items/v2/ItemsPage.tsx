@@ -58,6 +58,11 @@ export interface TableColumn {
   renderer?: (value?: any) => JSX.Element;
 }
 
+export interface TableColumnRendered {
+  key: string;
+  renderedValue: JSX.Element | null;
+}
+
 export default function ItemsPage() {
   const [showCreateItemModal, setCreateItemModalViz] = useState<boolean>(false);
 
