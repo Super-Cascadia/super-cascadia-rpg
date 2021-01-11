@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { BasicConsumableItem } from "@super-cascadia-rpg/api";
+import { BasicArmorItem } from "@super-cascadia-rpg/api";
 import { fetchAllArmorItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
-import { armorItemsTableColumns } from "../config/armorItemsTableColumns.config";
+import { weaponItemsTableColumns } from "../config/armorItemsTableColumns.config";
+import { getItems } from "../components/util/items";
 
-export type ConsumableItemsStateHook = [
-  BasicConsumableItem[],
-  (data: any) => void
-];
+export type ArmorItemsStateHook = [BasicArmorItem[], (data: any) => void];
 
 export default function ArmorItemsView() {
-  const [data, setData]: ConsumableItemsStateHook = useState(
-    {} as BasicConsumableItem[]
+  const [items, setItems]: ArmorItemsStateHook = useState(
+    {} as BasicArmorItem[]
   );
   // @ts-ignore
-  useEffect(fetchAllArmorItemsHook(setData), []);
+  useEffect(fetchAllArmorItemsHook(setItems), []);
 
-  if (!data) {
+  if (!items) {
     return <Loading />;
   }
 
-  return <ItemsPageTable items={data} columns={armorItemsTableColumns} />;
+  const itemsWithRenderers = getItems<BasicArmorItem>(
+    items,
+    weaponItemsTableColumns
+  );
+
+  return (
+    <ItemsPageTable
+      columns={weaponItemsTableColumns}
+      itemsRendered={itemsWithRenderers}
+    />
+  );
 }

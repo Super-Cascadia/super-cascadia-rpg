@@ -24,7 +24,6 @@ function TableHeader({ columns }: { columns: TableColumn[] }) {
 }
 
 interface Props {
-  items: BasicConsumableItem[];
   columns: TableColumn[];
   handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
   itemsRendered?: TableColumnRendered[][];
@@ -48,7 +47,6 @@ function getTableRows(
 }
 
 export default function ItemsPageTable({
-  items,
   columns,
   handleShowEditModal,
   itemsRendered,

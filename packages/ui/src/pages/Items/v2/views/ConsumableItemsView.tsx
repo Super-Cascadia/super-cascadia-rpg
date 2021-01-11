@@ -29,7 +29,6 @@ export default function ConsumableItemsView() {
 
   return (
     <ItemsPageTable
-      items={items}
       columns={consumableItemsTableColumns}
       itemsRendered={itemsWithRenderers}
     />
