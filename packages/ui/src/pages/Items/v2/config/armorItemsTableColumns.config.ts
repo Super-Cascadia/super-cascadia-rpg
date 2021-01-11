@@ -15,7 +15,7 @@ import {
   SALVAGABLE_COLUMN,
 } from "./tableColumns.config";
 
-export const weaponItemsTableColumns: TableColumn[] = [
+export const armorItemsTableColumns: TableColumn[] = [
   ID_COLUMN,
   ICON_COLUMN,
   NAME_COLUMN,

@@ -3,6 +3,7 @@ import { FIELDS } from "./fields.config";
 import {
   BooleanBadgeCell,
   EffectFactorBadgeCell,
+  WeaponTypeCell,
 } from "../components/table/cells/badgeCells";
 import {
   BASE_DURABILITY_COLUMN,
@@ -38,6 +39,7 @@ export const weaponItemsTableColumns: TableColumn[] = [
   {
     fieldName: FIELDS.WEAPON_TYPE,
     title: "Weapon Type",
+    renderer: WeaponTypeCell,
   },
   {
     fieldName: FIELDS.TWO_HANDED,

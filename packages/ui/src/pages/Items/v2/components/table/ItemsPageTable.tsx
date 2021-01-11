@@ -23,12 +23,6 @@ function TableHeader({ columns }: { columns: TableColumn[] }) {
   );
 }
 
-interface Props {
-  columns: TableColumn[];
-  handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
-  itemsRendered?: TableColumnRendered[][];
-}
-
 function getTableRows(
   itemsRendered: TableColumnRendered[][] | undefined,
   columns: TableColumn[]
@@ -44,6 +38,12 @@ function getTableRows(
     });
     return <tr>{row}</tr>;
   });
+}
+
+interface Props {
+  columns: TableColumn[];
+  handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
+  itemsRendered?: TableColumnRendered[][];
 }
 
 export default function ItemsPageTable({

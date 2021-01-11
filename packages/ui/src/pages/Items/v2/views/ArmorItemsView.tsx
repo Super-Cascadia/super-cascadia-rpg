@@ -3,8 +3,8 @@ import { BasicArmorItem } from "@super-cascadia-rpg/api";
 import { fetchAllArmorItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
-import { weaponItemsTableColumns } from "../config/armorItemsTableColumns.config";
 import { getItems } from "../components/util/items";
+import { armorItemsTableColumns } from "../config/armorItemsTableColumns.config";
 
 export type ArmorItemsStateHook = [BasicArmorItem[], (data: any) => void];
 
@@ -21,12 +21,12 @@ export default function ArmorItemsView() {
 
   const itemsWithRenderers = getItems<BasicArmorItem>(
     items,
-    weaponItemsTableColumns
+    armorItemsTableColumns
   );
 
   return (
     <ItemsPageTable
-      columns={weaponItemsTableColumns}
+      columns={armorItemsTableColumns}
       itemsRendered={itemsWithRenderers}
     />
   );

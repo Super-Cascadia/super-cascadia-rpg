@@ -1,6 +1,7 @@
 import {
   BadgeCell,
   BooleanBadgeCell,
+  EffectFactorBadgeCell,
   IconCell,
   MonetaryValueCell,
   TextCell,
@@ -64,9 +65,11 @@ export const BREAKABLE_COLUMN = {
 export const BASE_DURABILITY_COLUMN = {
   fieldName: FIELDS.BASE_DURABILITY,
   title: "Base Durability",
+  renderer: EffectFactorBadgeCell,
 };
 
 export const CURRENT_DURABILITY_COLUMN = {
   fieldName: FIELDS.CURRENT_DURABILITY,
   title: "Base Durability",
+  renderer: EffectFactorBadgeCell,
 };

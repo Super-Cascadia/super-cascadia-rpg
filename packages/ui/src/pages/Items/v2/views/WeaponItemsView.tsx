@@ -4,7 +4,7 @@ import { fetchAllWeaponItemsHook } from "../../../../hooks/api/items/v2/fetchIte
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
 import { getItems } from "../components/util/items";
-import { weaponItemsTableColumns } from "../config/armorItemsTableColumns.config";
+import { weaponItemsTableColumns } from "../config/weaponItemsTableColumns.config";
 
 export type ConsumableItemsStateHook = [BasicWeaponItem[], (data: any) => void];
 
@@ -23,6 +23,8 @@ export default function WeaponItemsView() {
     items,
     weaponItemsTableColumns
   );
+
+  console.log("itemsWithRenders", itemsWithRenderers);
 
   return (
     <ItemsPageTable

@@ -57,3 +57,13 @@ export function IconCell(value: IconAsset) {
 
   return <StandardIconV2 icon={value.assetPath} />;
 }
+
+export function WeaponTypeCell(value: string) {
+  console.log("weapon type cell", value);
+
+  if (!value) {
+    return <EmptyCell />;
+  }
+
+  return <span>{value}</span>;
+}
