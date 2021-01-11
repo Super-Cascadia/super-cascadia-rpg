@@ -24,8 +24,6 @@ export default function WeaponItemsView() {
     weaponItemsTableColumns
   );
 
-  console.log("itemsWithRenders", itemsWithRenderers);
-
   return (
     <ItemsPageTable
       columns={weaponItemsTableColumns}

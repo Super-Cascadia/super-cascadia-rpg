@@ -60,8 +60,6 @@ export function IconCell(value: IconAsset) {
 }
 
 export function WeaponTypeCell(value: string) {
-  console.log("weapon type cell", value);
-
   const parsedValue = parseInt(value, 10);
 
   const weaponType = (weaponTypeValue: number) => {
@@ -80,8 +78,6 @@ export function WeaponTypeCell(value: string) {
   };
 
   const parsedWeaponType = weaponType(parsedValue);
-
-  console.log("parsedWeaponType", parsedWeaponType);
 
   if (!parsedWeaponType) {
     return <EmptyCell />;
