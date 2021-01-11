@@ -19,6 +19,6 @@ export enum FIELDS {
   ARMOR_STRENGTH = "armorStrength",
   ARMOR_LOCATION = "armorLocation",
   WEAPON_STRENGTH = "weaponStrength",
-  WEAPON_TYPE = "armorLocation",
+  WEAPON_TYPE = "weaponType",
   TWO_HANDED = "twoHanded",
 }

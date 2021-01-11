@@ -2,6 +2,7 @@ import React from "react";
 import Badge from "react-bootstrap/Badge";
 import { StandardIconV2 } from "../../../../../../components/icons/StandardIcon";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
+import { WeaponType } from "@super-cascadia-rpg/api";
 
 export function EmptyCell() {
   return <Badge variant="light">--</Badge>;
@@ -61,9 +62,30 @@ export function IconCell(value: IconAsset) {
 export function WeaponTypeCell(value: string) {
   console.log("weapon type cell", value);
 
-  if (!value) {
+  const parsedValue = parseInt(value, 10);
+
+  const weaponType = (weaponTypeValue: number) => {
+    switch (weaponTypeValue) {
+      case WeaponType.SWORD:
+        return "Sword";
+      case WeaponType.FIST:
+        return "Fist";
+      case WeaponType.CROSSBOW:
+        return "Crossbow";
+      case WeaponType.STAFF:
+        return "Staff";
+      case WeaponType.KNIFE:
+        return "Knife";
+    }
+  };
+
+  const parsedWeaponType = weaponType(parsedValue);
+
+  console.log("parsedWeaponType", parsedWeaponType);
+
+  if (!parsedWeaponType) {
     return <EmptyCell />;
   }
 
-  return <span>{value}</span>;
+  return <span>{parsedWeaponType}</span>;
 }
