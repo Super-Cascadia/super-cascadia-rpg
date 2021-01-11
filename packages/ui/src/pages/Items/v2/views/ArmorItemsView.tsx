@@ -3,7 +3,7 @@ import { BasicConsumableItem } from "@super-cascadia-rpg/api";
 import { fetchAllArmorItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
-import { armorItemsTableColumns } from "../config/tableColumns.config";
+import { armorItemsTableColumns } from "../config/armorItemsTableColumns.config";
 
 export type ConsumableItemsStateHook = [
   BasicConsumableItem[],

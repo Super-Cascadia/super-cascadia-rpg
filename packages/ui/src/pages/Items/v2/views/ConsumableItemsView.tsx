@@ -3,10 +3,8 @@ import { BasicConsumableItem } from "@super-cascadia-rpg/api";
 import { fetchAllConsumableItemsHook } from "../../../../hooks/api/items/v2/fetchItemHooks";
 import Loading from "../../../../components/indicators/Loading";
 import ItemsPageTable from "../components/table/ItemsPageTable";
-import { consumableItemsTableColumns } from "../config/tableColumns.config";
-import { map, mapKeys, Dictionary } from "lodash";
-import { TableColumn, TableColumnRendered } from "../ItemsPage";
 import { getItems } from "../components/util/items";
+import { consumableItemsTableColumns } from "../config/consumableTableColumns.config";
 
 export type ConsumableItemsStateHook = [
   BasicConsumableItem[],
@@ -24,7 +22,10 @@ export default function ConsumableItemsView() {
     return <Loading />;
   }
 
-  const itemsWithRenderers = getItems(items, consumableItemsTableColumns);
+  const itemsWithRenderers = getItems<BasicConsumableItem>(
+    items,
+    consumableItemsTableColumns
+  );
 
   return (
     <ItemsPageTable
