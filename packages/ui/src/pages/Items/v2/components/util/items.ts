@@ -1,14 +1,14 @@
 import { Dictionary, map, mapKeys } from "lodash";
 import { TableColumn, TableColumnRendered } from "../../ItemsPage";
 
-export function getRenderedFieldValues<T>(
+export function getItemsWithRenderedValues<T>(
   item: Dictionary<T>,
   tableColumnKeys: Dictionary<TableColumn>
 ) {
-  const mappedValues = map(
+  return map(
     item,
     (value, key: string): TableColumnRendered => {
-      const tableColumnDefinition = tableColumnKeys[key];
+      const tableColumnDefinition: TableColumn = tableColumnKeys[key];
       const renderedValue = tableColumnDefinition?.renderer
         ? tableColumnDefinition.renderer(value)
         : null;
@@ -19,8 +19,6 @@ export function getRenderedFieldValues<T>(
       };
     }
   );
-
-  return mappedValues;
 }
 
 export function getItems<T>(
@@ -30,6 +28,6 @@ export function getItems<T>(
   const tableColumnKeys = mapKeys(columns, (column) => column.fieldName);
 
   return map(items, (item: Dictionary<any>): TableColumnRendered[] => {
-    return getRenderedFieldValues<T>(item, tableColumnKeys);
+    return getItemsWithRenderedValues<T>(item, tableColumnKeys);
   });
 }
