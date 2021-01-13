@@ -23,19 +23,31 @@ function TableHeader({ columns }: { columns: TableColumn[] }) {
   );
 }
 
+function getTableColumns(
+  displayColumns: (TableColumn | { fieldName: string; title: string })[],
+  item: TableColumnRendered[]
+) {
+  return map(displayColumns, (column: TableColumn) => {
+    if (column.fieldName === ACTIONS_COLUMN.fieldName) {
+      return <td>Actions go here</td>;
+    } else {
+      const itemToRender = find(item, (itemField) => {
+        return itemField.key === column.fieldName;
+      });
+
+      return <td>{itemToRender?.renderedValue}</td>;
+    }
+  });
+}
+
 function getTableRows(
   itemsRendered: TableColumnRendered[][] | undefined,
   columns: TableColumn[]
 ) {
   return map(itemsRendered, (item: TableColumnRendered[]) => {
     const displayColumns = [...columns, ACTIONS_COLUMN];
+    const row = getTableColumns(displayColumns, item);
 
-    const row = map(displayColumns, (column: TableColumn) => {
-      const itemToRender = find(item, (itemField) => {
-        return itemField.key === column.fieldName;
-      });
-      return <td>{itemToRender?.renderedValue}</td>;
-    });
     return <tr>{row}</tr>;
   });
 }
