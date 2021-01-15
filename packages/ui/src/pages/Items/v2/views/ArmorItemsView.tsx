@@ -12,8 +12,21 @@ export default function ArmorItemsView() {
   const [items, setItems]: ArmorItemsStateHook = useState(
     {} as BasicArmorItem[]
   );
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [showEditItemModal, setEditItemModalViz] = useState<boolean>(false);
+  const [showDeleteItemModal, setDeleteItemModalViz] = useState<boolean>(false);
   // @ts-ignore
   useEffect(fetchAllArmorItemsHook(setItems), []);
+
+  const handleOpenEditModal = (id: number) => {
+    setSelectedItem(id);
+    setEditItemModalViz(true);
+  };
+
+  const handleOpenDeleteModal = (id: number) => {
+    setSelectedItem(id);
+    setDeleteItemModalViz(true);
+  };
 
   if (!items) {
     return <Loading />;
@@ -28,6 +41,8 @@ export default function ArmorItemsView() {
     <ItemsPageTable
       columns={armorItemsTableColumns}
       itemsRendered={itemsWithRenderers}
+      handleShowDeleteModal={handleOpenDeleteModal}
+      handleShowEditModal={handleOpenEditModal}
     />
   );
 }

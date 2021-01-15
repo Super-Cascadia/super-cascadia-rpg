@@ -15,8 +15,21 @@ export default function ConsumableItemsView() {
   const [items, setItems]: ConsumableItemsStateHook = useState(
     {} as BasicConsumableItem[]
   );
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [showEditItemModal, setEditItemModalViz] = useState<boolean>(false);
+  const [showDeleteItemModal, setDeleteItemModalViz] = useState<boolean>(false);
   // @ts-ignore
   useEffect(fetchAllConsumableItemsHook(setItems), []);
+
+  const handleOpenEditModal = (id: number) => {
+    setSelectedItem(id);
+    setEditItemModalViz(true);
+  };
+
+  const handleOpenDeleteModal = (id: number) => {
+    setSelectedItem(id);
+    setDeleteItemModalViz(true);
+  };
 
   if (!items) {
     return <Loading />;
@@ -31,6 +44,8 @@ export default function ConsumableItemsView() {
     <ItemsPageTable
       columns={consumableItemsTableColumns}
       itemsRendered={itemsWithRenderers}
+      handleShowDeleteModal={handleOpenDeleteModal}
+      handleShowEditModal={handleOpenEditModal}
     />
   );
 }

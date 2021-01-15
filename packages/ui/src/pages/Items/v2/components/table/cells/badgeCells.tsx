@@ -3,6 +3,7 @@ import Badge from "react-bootstrap/Badge";
 import { StandardIconV2 } from "../../../../../../components/icons/StandardIcon";
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 import { WeaponType } from "@super-cascadia-rpg/api";
+import ItemTableActions from "../../../../../../components/table/ItemTableActions";
 
 export function EmptyCell() {
   return <Badge variant="light">--</Badge>;
@@ -84,4 +85,24 @@ export function WeaponTypeCell(value: string) {
   }
 
   return <span>{parsedWeaponType}</span>;
+}
+
+interface ActionsCellProps {
+  id: number;
+  handleShowEditModal: (id: number) => void;
+  handleShowDeleteModal: (id: number) => void;
+}
+
+export function ActionsCell({
+  id,
+  handleShowEditModal,
+  handleShowDeleteModal,
+}: ActionsCellProps) {
+  return (
+    <ItemTableActions
+      id={id}
+      handleShowEditModal={handleShowEditModal}
+      handleShowDeleteModal={handleShowDeleteModal}
+    />
+  );
 }

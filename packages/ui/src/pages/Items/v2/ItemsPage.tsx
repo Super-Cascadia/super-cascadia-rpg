@@ -65,6 +65,9 @@ export interface TableColumnRendered {
 
 export default function ItemsPage() {
   const [showCreateItemModal, setCreateItemModalViz] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [showEditItemModal, setEditItemModalViz] = useState<boolean>(false);
+  const [showDeleteItemModal, setDeleteItemModalViz] = useState<boolean>(false);
 
   return (
     <GridPageWrapperV2

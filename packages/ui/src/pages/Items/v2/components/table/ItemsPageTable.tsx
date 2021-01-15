@@ -1,13 +1,11 @@
-import { map, find } from "lodash";
+import { map, find, toNumber } from "lodash";
 import Table from "react-bootstrap/Table";
 import React from "react";
-import { BasicConsumableItem } from "@super-cascadia-rpg/api/src/db/entity/items/v2/consumables/BasicConsumableItem";
 import { TableColumn, TableColumnRendered } from "../../ItemsPage";
-
-const ACTIONS_COLUMN = {
-  title: "Actions",
-  fieldName: "actions",
-};
+import { ACTIONS_COLUMN } from "../../config/tableColumns.config";
+import { ActionsCell } from "./cells/badgeCells";
+import { BasicItem } from "@super-cascadia-rpg/api";
+import { FIELDS } from "../../config/fields.config";
 
 function TableHeader({ columns }: { columns: TableColumn[] }) {
   const headerColumns: TableColumn[] = [...columns, ACTIONS_COLUMN];
@@ -25,11 +23,20 @@ function TableHeader({ columns }: { columns: TableColumn[] }) {
 
 function getTableColumns(
   displayColumns: (TableColumn | { fieldName: string; title: string })[],
-  item: TableColumnRendered[]
+  item: TableColumnRendered[],
+  id: number,
+  handleShowEditModal: (id: number) => void,
+  handleShowDeleteModal: (id: number) => void
 ) {
   return map(displayColumns, (column: TableColumn) => {
     if (column.fieldName === ACTIONS_COLUMN.fieldName) {
-      return <td>Actions go here</td>;
+      return (
+        <ActionsCell
+          id={id}
+          handleShowDeleteModal={handleShowDeleteModal}
+          handleShowEditModal={handleShowEditModal}
+        />
+      );
     } else {
       const itemToRender = find(item, (itemField) => {
         return itemField.key === column.fieldName;
@@ -42,11 +49,21 @@ function getTableColumns(
 
 function getTableRows(
   itemsRendered: TableColumnRendered[][] | undefined,
-  columns: TableColumn[]
+  columns: TableColumn[],
+  handleShowEditModal: (id: number) => void,
+  handleShowDeleteModal: (id: number) => void
 ) {
   return map(itemsRendered, (item: TableColumnRendered[]) => {
     const displayColumns = [...columns, ACTIONS_COLUMN];
-    const row = getTableColumns(displayColumns, item);
+    const id = toNumber(find(item, (column) => column.key === FIELDS.ID));
+
+    const row = getTableColumns(
+      displayColumns,
+      item,
+      id,
+      handleShowEditModal,
+      handleShowDeleteModal
+    );
 
     return <tr>{row}</tr>;
   });
@@ -54,19 +71,28 @@ function getTableRows(
 
 interface Props {
   columns: TableColumn[];
-  handleShowEditModal?: (iconAsset: BasicConsumableItem) => void;
-  itemsRendered?: TableColumnRendered[][];
+  handleShowEditModal: (id: number) => void;
+  handleShowDeleteModal: (id: number) => void;
+  itemsRendered: TableColumnRendered[][];
 }
 
 export default function ItemsPageTable({
   columns,
   handleShowEditModal,
+  handleShowDeleteModal,
   itemsRendered,
 }: Props) {
   return (
     <Table striped bordered hover size="sm" variant="dark" responsive>
       <TableHeader columns={columns} />
-      <tbody>{getTableRows(itemsRendered, columns)}</tbody>
+      <tbody>
+        {getTableRows(
+          itemsRendered,
+          columns,
+          handleShowEditModal,
+          handleShowDeleteModal
+        )}
+      </tbody>
     </Table>
   );
 }

@@ -1,10 +1,11 @@
 import {
+  ActionsCell,
   BadgeCell,
   BooleanBadgeCell,
   EffectFactorBadgeCell,
   IconCell,
-  MonetaryValueCell,
   TextCell,
+  MonetaryValueCell,
 } from "../components/table/cells/badgeCells";
 import { FIELDS } from "./fields.config";
 
@@ -72,4 +73,9 @@ export const CURRENT_DURABILITY_COLUMN = {
   fieldName: FIELDS.CURRENT_DURABILITY,
   title: "Base Durability",
   renderer: EffectFactorBadgeCell,
+};
+
+export const ACTIONS_COLUMN = {
+  title: "Actions",
+  fieldName: "actions",
 };

@@ -12,8 +12,21 @@ export default function WeaponItemsView() {
   const [items, setItems]: ConsumableItemsStateHook = useState(
     {} as BasicWeaponItem[]
   );
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [showEditItemModal, setEditItemModalViz] = useState<boolean>(false);
+  const [showDeleteItemModal, setDeleteItemModalViz] = useState<boolean>(false);
   // @ts-ignore
   useEffect(fetchAllWeaponItemsHook(setItems), []);
+
+  const handleOpenEditModal = (id: number) => {
+    setSelectedItem(id);
+    setEditItemModalViz(true);
+  };
+
+  const handleOpenDeleteModal = (id: number) => {
+    setSelectedItem(id);
+    setDeleteItemModalViz(true);
+  };
 
   if (!items) {
     return <Loading />;
@@ -28,6 +41,8 @@ export default function WeaponItemsView() {
     <ItemsPageTable
       columns={weaponItemsTableColumns}
       itemsRendered={itemsWithRenderers}
+      handleShowDeleteModal={handleOpenDeleteModal}
+      handleShowEditModal={handleOpenEditModal}
     />
   );
 }
