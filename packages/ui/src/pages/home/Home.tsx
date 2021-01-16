@@ -3,16 +3,21 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import background from "../../images/lukasz-szmigiel-jFCViYFYcus-unsplash.jpg";
 
 export default function Home() {
+  const style = {
+    backgroundImage: "url(" + background + ")",
+  };
+
   return (
     <>
-      <Jumbotron fluid>
+      <Jumbotron fluid style={style}>
         <Container>
-          <h1>Fluid jumbotron</h1>
+          <h1>Super Cascadia RPG Admin Homepage</h1>
           <p>
-            This is a modified jumbotron that occupies the entire horizontal
-            space of its parent.
+            This is the homepage for the Super Cascadia RPG administration
+            interface.
           </p>
         </Container>
       </Jumbotron>
