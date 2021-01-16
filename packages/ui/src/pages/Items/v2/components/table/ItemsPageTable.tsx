@@ -55,7 +55,8 @@ function getTableRows(
 ) {
   return map(itemsRendered, (item: TableColumnRendered[]) => {
     const displayColumns = [...columns, ACTIONS_COLUMN];
-    const id = toNumber(find(item, (column) => column.key === FIELDS.ID));
+    const idColumn = find(item, (column) => column.key === FIELDS.ID);
+    const id = toNumber(idColumn?.value as string);
 
     const row = getTableColumns(
       displayColumns,

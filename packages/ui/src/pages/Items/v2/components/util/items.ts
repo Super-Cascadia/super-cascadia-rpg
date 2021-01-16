@@ -15,6 +15,7 @@ export function getItemsWithRenderedValues<T>(
 
       return {
         key,
+        value,
         renderedValue,
       };
     }
