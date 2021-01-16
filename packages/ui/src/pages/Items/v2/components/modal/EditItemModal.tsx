@@ -8,6 +8,15 @@ import { EditItemForm } from "../form/EditItemForm";
 const schema = yup.object({
   name: yup.string(),
   description: yup.string(),
+  salvageable: yup.boolean(),
+  baseMonetaryValue: yup.number(),
+  consumable: yup.boolean(),
+  recoversHealth: yup.boolean(),
+  healthRecoveryFactor: yup.string(),
+  recoversMana: yup.boolean(),
+  manaRecoveryFactor: yup.string(),
+  recoversStamina: yup.boolean(),
+  staminaRecoveryFactor: yup.string(),
 });
 
 interface Props {
@@ -41,6 +50,15 @@ export default function EditItemModal({ item, show, handleClose }: Props) {
   const initialFormState = {
     name: item.name,
     description: item.description,
+    salvageable: item.salvagable,
+    baseMonetaryValue: item.baseMonetaryValue,
+    consumable: item.consumable,
+    recoversHealth: item.recoversHealth,
+    healthRecoveryFactor: item.healthRecoveryFactor,
+    recoversMana: item.recoversMana,
+    manaRecoveryFactor: item.manaRecoveryFactor,
+    recoversStamina: item.recoversStamina,
+    staminaRecoveryFactor: item.staminaRecoveryFactor,
   };
 
   return (
