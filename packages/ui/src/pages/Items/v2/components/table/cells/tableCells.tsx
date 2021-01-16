@@ -27,9 +27,7 @@ export function TextCell(value: string) {
 }
 
 export function BooleanBadgeCell(value: boolean) {
-  console.log("boolean badge cell", value);
   if (!isBoolean(value) && isEmpty(value)) {
-    console.log("empty");
     return <EmptyCell />;
   }
 
