@@ -1,6 +1,6 @@
 import { TableColumn } from "../ItemsPage";
 import { FIELDS } from "./fields.config";
-import { EffectFactorBadgeCell } from "../components/table/cells/badgeCells";
+import { EffectFactorBadgeCell } from "../components/table/cells/tableCells";
 import {
   BASE_DURABILITY_COLUMN,
   BASE_MONETARY_VALUE_COLUMN,

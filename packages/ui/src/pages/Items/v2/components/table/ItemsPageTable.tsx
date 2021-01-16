@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import React from "react";
 import { TableColumn, TableColumnRendered } from "../../ItemsPage";
 import { ACTIONS_COLUMN } from "../../config/tableColumns.config";
-import { ActionsCell } from "./cells/badgeCells";
+import { ActionsCell } from "./cells/tableCells";
 import { BasicItem } from "@super-cascadia-rpg/api";
 import { FIELDS } from "../../config/fields.config";
 

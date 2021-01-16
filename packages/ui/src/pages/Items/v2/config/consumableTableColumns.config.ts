@@ -3,7 +3,7 @@ import { FIELDS } from "./fields.config";
 import {
   BooleanBadgeCell,
   EffectFactorBadgeCell,
-} from "../components/table/cells/badgeCells";
+} from "../components/table/cells/tableCells";
 import {
   BASE_MONETARY_VALUE_COLUMN,
   CONSUMABLE_COLUMN,

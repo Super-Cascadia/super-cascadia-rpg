@@ -9,6 +9,7 @@ interface Values {
   description: string;
   salvageable: boolean;
   consumable: boolean;
+  baseMonetaryValue: number;
   recoversHealth: boolean;
   healthRecoveryFactor: string;
   recoversMana: boolean;
@@ -56,9 +57,9 @@ export function EditItemForm({
         <TextInput
           label="Base Monetary Value"
           id="baseMonetaryValue"
-          value={values.description}
-          touched={touched.description}
-          errors={errors.description}
+          value={values.baseMonetaryValue.toString()}
+          touched={touched.baseMonetaryValue}
+          errors={errors.baseMonetaryValue}
           onChange={(e: SyntheticEvent) => handleChange(e)}
         />
       </Form.Row>
@@ -68,6 +69,7 @@ export function EditItemForm({
           id="salvageable"
           label="Salvageable?"
           checked={values.salvageable}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
         />
       </Form.Row>
       <hr />
@@ -76,6 +78,7 @@ export function EditItemForm({
           id="consumable"
           label="Consumable?"
           checked={values.consumable}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
         />
       </Form.Row>
       <hr />
@@ -84,8 +87,16 @@ export function EditItemForm({
           id="recoversHealth"
           label="Recovers Health?"
           checked={values.recoversHealth}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
         />
-        {values.recoversHealth && <div>{values.healthRecoveryFactor}</div>}
+        {values.recoversHealth && (
+          <TextInput
+            label="Health Recovery Factor"
+            id="healthRecoverFactor"
+            value={values.healthRecoveryFactor}
+            onChange={(e: SyntheticEvent) => handleChange(e)}
+          />
+        )}
       </Form.Row>
       <hr />
       <Form.Row>
@@ -93,8 +104,16 @@ export function EditItemForm({
           id="recoversMana"
           label="Recovers Mana?"
           checked={values.recoversMana}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
         />
-        {values.recoversMana && <div>{values.manaRecoveryFactor}</div>}
+        {values.recoversMana && (
+          <TextInput
+            label="Mana Recovery Factor"
+            id="manaRecoverFactor"
+            value={values.manaRecoveryFactor}
+            onChange={(e: SyntheticEvent) => handleChange(e)}
+          />
+        )}
       </Form.Row>
       <hr />
       <Form.Row>
@@ -102,8 +121,16 @@ export function EditItemForm({
           id="recoversStamina"
           label="Recovers Stamina?"
           checked={values.recoversStamina}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
         />
-        {values.recoversStamina && <div>{values.staminaRecoveryFactor}</div>}
+        {values.recoversStamina && (
+          <TextInput
+            label="Stamina Recovery Factor"
+            id="staminaRecoveryFactor"
+            value={values.staminaRecoveryFactor}
+            onChange={(e: SyntheticEvent) => handleChange(e)}
+          />
+        )}
       </Form.Row>
     </div>
   );

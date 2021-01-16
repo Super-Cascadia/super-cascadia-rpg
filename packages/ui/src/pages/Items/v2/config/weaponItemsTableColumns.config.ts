@@ -4,7 +4,7 @@ import {
   BooleanBadgeCell,
   EffectFactorBadgeCell,
   WeaponTypeCell,
-} from "../components/table/cells/badgeCells";
+} from "../components/table/cells/tableCells";
 import {
   BASE_DURABILITY_COLUMN,
   BASE_MONETARY_VALUE_COLUMN,

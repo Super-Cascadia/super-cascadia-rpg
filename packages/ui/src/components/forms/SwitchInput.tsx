@@ -26,5 +26,15 @@ export function SwitchInput({
   errors,
   checked,
 }: Props) {
-  return <Form.Check type="switch" id={id} label={label} checked={checked} />;
+  return (
+    <Form.Group as={Col} controlId={id}>
+      <Form.Check
+        type="switch"
+        id={id}
+        label={label}
+        checked={checked}
+        onChange={onChange}
+      />
+    </Form.Group>
+  );
 }

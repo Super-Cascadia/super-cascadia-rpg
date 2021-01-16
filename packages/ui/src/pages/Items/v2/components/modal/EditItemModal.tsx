@@ -47,6 +47,10 @@ export default function EditItemModal({ item, show, handleClose }: Props) {
     // );
   };
 
+  const handleChange = (values: FormikValues, actions: FormikHelpers<any>) => {
+    console.log(values);
+  };
+
   const initialFormState = {
     name: item.name,
     description: item.description,

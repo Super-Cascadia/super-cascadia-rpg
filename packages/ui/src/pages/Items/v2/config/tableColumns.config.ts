@@ -6,7 +6,7 @@ import {
   IconCell,
   TextCell,
   MonetaryValueCell,
-} from "../components/table/cells/badgeCells";
+} from "../components/table/cells/tableCells";
 import { FIELDS } from "./fields.config";
 
 export const ID_COLUMN = {

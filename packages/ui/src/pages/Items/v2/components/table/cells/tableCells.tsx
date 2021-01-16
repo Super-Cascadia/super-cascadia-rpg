@@ -4,6 +4,7 @@ import { StandardIconV2 } from "../../../../../../components/icons/StandardIcon"
 import { IconAsset } from "@super-cascadia-rpg/api/build/src/db/entity/assets/icons/IconAsset";
 import { WeaponType } from "@super-cascadia-rpg/api";
 import ItemTableActions from "../../../../../../components/table/ItemTableActions";
+import { isEmpty, isBoolean } from "lodash";
 
 export function EmptyCell() {
   return <Badge variant="light">--</Badge>;
@@ -26,7 +27,9 @@ export function TextCell(value: string) {
 }
 
 export function BooleanBadgeCell(value: boolean) {
-  if (!value) {
+  console.log("boolean badge cell", value);
+  if (!isBoolean(value) && isEmpty(value)) {
+    console.log("empty");
     return <EmptyCell />;
   }
 
