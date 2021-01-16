@@ -75,6 +75,13 @@ function consumableItemRoutes(server: Server, connection: Connection) {
     handler: (request: Request, reply: ResponseToolkit) =>
       createConsumableItemHandler(connection, request, reply),
   });
+
+  server.route({
+    method: "PUT",
+    path: `${BASE_ITEM_API_PATH}/${ITEM_TYPE.CONSUMABLE}/{id?}`,
+    handler: (request: Request, reply: ResponseToolkit) =>
+      updateWeaponItemHandler(connection, request, reply),
+  });
 }
 
 export const itemRoutesV2 = (server: Server, connection: Connection) => {

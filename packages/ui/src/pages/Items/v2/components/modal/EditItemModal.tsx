@@ -4,6 +4,7 @@ import * as yup from "yup";
 import BasicModal from "../../../../../components/modal/BasicModal";
 import { BasicConsumableItem } from "@super-cascadia-rpg/api/src/db/entity/items/v2/consumables/BasicConsumableItem";
 import { EditItemForm } from "../form/EditItemForm";
+import { updateConsumableItem } from "../../../../../api/items/v2";
 
 const schema = yup.object({
   name: yup.string(),
@@ -38,13 +39,13 @@ export default function EditItemModal({ item, show, handleClose }: Props) {
 
     actions.setSubmitting(true);
 
-    // const iconAssetObject = {
-    //   ...values,
-    // } as IconAsset;
+    const itemObject = {
+      ...values,
+    } as BasicConsumableItem;
 
-    // updateIconAsset(iconAsset.id, iconAssetObject).then(
-    handleSubmitSuccess(actions);
-    // );
+    updateConsumableItem(itemObject.id, itemObject).then(
+      handleSubmitSuccess(actions)
+    );
   };
 
   const handleChange = (values: FormikValues, actions: FormikHelpers<any>) => {

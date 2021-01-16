@@ -54,3 +54,11 @@ export async function createNewConsumableItem(
 ): Promise<InsertResult> {
   return connection.manager.insert(BasicConsumableItem, item);
 }
+
+export async function updateConsumableItem(
+  connection: Connection,
+  id: string,
+  item: BasicConsumableItem
+): Promise<UpdateResult> {
+  return connection.manager.update(BasicConsumableItem, id, item);
+}
