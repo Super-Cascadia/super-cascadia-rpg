@@ -33,3 +33,18 @@ body {
     background-color: #343a40 !important;
     border-color: #343a40 !important;
 }
+
+.modal-dialog .modal-content {
+    background-color: #24292e !important;
+    color: white !important;
+}
+
+.modal-dialog .modal-header {
+    border-bottom: 1px #343a40 solid !important;
+}
+
+.modal-dialog .modal-footer {
+    border-top: 1px #343a40 solid !important;
+}
+
+

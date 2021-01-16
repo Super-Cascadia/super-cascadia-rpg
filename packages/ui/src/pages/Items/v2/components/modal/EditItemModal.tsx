@@ -3,13 +3,11 @@ import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import BasicModal from "../../../../../components/modal/BasicModal";
 import { BasicConsumableItem } from "@super-cascadia-rpg/api/src/db/entity/items/v2/consumables/BasicConsumableItem";
+import { EditItemForm } from "../form/EditItemForm";
 
 const schema = yup.object({
   name: yup.string(),
   description: yup.string(),
-  assetPath: yup.string(),
-  height: yup.number(),
-  width: yup.number(),
 });
 
 interface Props {
@@ -62,7 +60,12 @@ export default function EditItemModal({ item, show, handleClose }: Props) {
             handleClose={handleClose}
             handleSubmit={handleSubmit}
           >
-            <div></div>
+            <EditItemForm
+              handleChange={handleChange}
+              values={values}
+              touched={touched}
+              errors={errors}
+            />
           </BasicModal>
         );
       }}
