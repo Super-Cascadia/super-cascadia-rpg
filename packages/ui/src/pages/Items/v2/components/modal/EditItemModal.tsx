@@ -34,7 +34,7 @@ export default function EditItemModal({ item, show, handleClose }: Props) {
     // } as IconAsset;
 
     // updateIconAsset(iconAsset.id, iconAssetObject).then(
-    //   handleSubmitSuccess(actions)
+    handleSubmitSuccess(actions);
     // );
   };
 

@@ -37,7 +37,7 @@ export default function BasicModal({
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => handleSubmit()}>
+        <Button variant="secondary" onClick={() => handleClose()}>
           Cancel
         </Button>
         <Button variant="success" onClick={() => handleSubmit()}>

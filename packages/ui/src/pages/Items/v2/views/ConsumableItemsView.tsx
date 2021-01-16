@@ -29,7 +29,8 @@ export default function ConsumableItemsView() {
   };
 
   const handleCloseEditItemModal = () => {
-    setEditItemModalViz(true);
+    setSelectedItemId(null);
+    setEditItemModalViz(false);
   };
 
   const handleOpenDeleteModal = (id: number) => {
