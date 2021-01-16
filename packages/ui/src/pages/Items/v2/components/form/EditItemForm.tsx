@@ -24,7 +24,7 @@ export function EditItemForm({
   handleChange,
 }: {
   handleChange: (event: React.SyntheticEvent) => void;
-  values: FormikValues;
+  values: Values;
   touched: FormikTouched<Values>;
   errors: FormikErrors<Values>;
 }) {
@@ -85,6 +85,7 @@ export function EditItemForm({
           label="Recovers Health?"
           checked={values.recoversHealth}
         />
+        {values.recoversHealth && <div>{values.healthRecoveryFactor}</div>}
       </Form.Row>
       <hr />
       <Form.Row>
@@ -93,6 +94,7 @@ export function EditItemForm({
           label="Recovers Mana?"
           checked={values.recoversMana}
         />
+        {values.recoversMana && <div>{values.manaRecoveryFactor}</div>}
       </Form.Row>
       <hr />
       <Form.Row>
@@ -101,6 +103,7 @@ export function EditItemForm({
           label="Recovers Stamina?"
           checked={values.recoversStamina}
         />
+        {values.recoversStamina && <div>{values.staminaRecoveryFactor}</div>}
       </Form.Row>
     </div>
   );
