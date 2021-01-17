@@ -91,7 +91,7 @@ export function EditItemForm({
         />
         {values.recoversHealth && (
           <TextInput
-            label="Health Recovery Factor"
+            label="Recovery Factor"
             id="healthRecoverFactor"
             value={values.healthRecoveryFactor}
             onChange={(e: SyntheticEvent) => handleChange(e)}
@@ -108,7 +108,7 @@ export function EditItemForm({
         />
         {values.recoversMana && (
           <TextInput
-            label="Mana Recovery Factor"
+            label="Recovery Factor"
             id="manaRecoverFactor"
             value={values.manaRecoveryFactor}
             onChange={(e: SyntheticEvent) => handleChange(e)}
@@ -125,7 +125,7 @@ export function EditItemForm({
         />
         {values.recoversStamina && (
           <TextInput
-            label="Stamina Recovery Factor"
+            label="Recovery Factor"
             id="staminaRecoveryFactor"
             value={values.staminaRecoveryFactor}
             onChange={(e: SyntheticEvent) => handleChange(e)}
