@@ -3,6 +3,8 @@ import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import BasicModal from "../../../../../components/modal/BasicModal";
 import { CreateItemForm } from "../form/CreateItemForm";
+import { useLocation, useRouteMatch } from "react-router-dom";
+import { last } from "lodash";
 
 const schema = yup.object({
   name: yup.string(),
@@ -24,6 +26,10 @@ interface Props {
 }
 
 export default function CreateItemModal({ show, handleClose }: Props) {
+  let { pathname } = useLocation();
+  const itemType = last(pathname.split("/"));
+  console.log("useLocation", pathname, itemType);
+
   const handleSubmitSuccess = (actions: FormikHelpers<any>) => () => {
     actions.resetForm({
       values: {},
