@@ -2,22 +2,15 @@ import React from "react";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import BasicModal from "../../../../../components/modal/BasicModal";
-import { CreateConsumableItemForm } from "../form/CreateConsumableItemForm";
 import { useLocation } from "react-router-dom";
 import { last } from "lodash";
+import { CreateArmorItemForm } from "../form/CreateArmorItemForm";
 
 const schema = yup.object({
   name: yup.string(),
   description: yup.string(),
   salvageable: yup.boolean(),
   baseMonetaryValue: yup.number(),
-  consumable: yup.boolean(),
-  recoversHealth: yup.boolean(),
-  healthRecoveryFactor: yup.string(),
-  recoversMana: yup.boolean(),
-  manaRecoveryFactor: yup.string(),
-  recoversStamina: yup.boolean(),
-  staminaRecoveryFactor: yup.string(),
 });
 
 interface Props {
@@ -25,10 +18,7 @@ interface Props {
   handleClose: () => void;
 }
 
-export default function CreateConsumableItemModal({
-  show,
-  handleClose,
-}: Props) {
+export default function CreateArmorItemModal({ show, handleClose }: Props) {
   let { pathname } = useLocation();
   const itemType = last(pathname.split("/"));
   console.log("useLocation", pathname, itemType);
@@ -63,13 +53,6 @@ export default function CreateConsumableItemModal({
     description: "",
     salvageable: false,
     baseMonetaryValue: 0,
-    consumable: false,
-    recoversHealth: false,
-    healthRecoveryFactor: "",
-    recoversMana: false,
-    manaRecoveryFactor: "",
-    recoversStamina: false,
-    staminaRecoveryFactor: "",
   };
 
   return (
@@ -89,7 +72,7 @@ export default function CreateConsumableItemModal({
             handleClose={handleClose}
             handleSubmit={handleSubmit}
           >
-            <CreateConsumableItemForm
+            <CreateArmorItemForm
               handleChange={handleChange}
               values={values}
               touched={touched}

@@ -25,7 +25,7 @@ interface Props {
   errors: FormikErrors<Values>;
 }
 
-export function CreateItemForm({
+export function CreateConsumableItemForm({
   values,
   touched,
   errors,

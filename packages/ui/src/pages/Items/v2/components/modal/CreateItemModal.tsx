@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { last } from "lodash";
 import CreateConsumableItemModal from "./CreateConsumableItemModal";
+import CreateArmorItemModal from "./CreateArmorItemModal";
 
 interface Props {
   show: boolean;
@@ -25,9 +26,7 @@ export default function CreateItemModal({ show, handleClose }: Props) {
         <CreateConsumableItemModal show={show} handleClose={handleClose} />
       );
     case ITEM_TYPE.ARMORS:
-      return (
-        <CreateConsumableItemModal show={show} handleClose={handleClose} />
-      );
+      return <CreateArmorItemModal show={show} handleClose={handleClose} />;
     case ITEM_TYPE.WEAPONS:
       return (
         <CreateConsumableItemModal show={show} handleClose={handleClose} />
