@@ -83,7 +83,7 @@ export default function CreateConsumableItemModal({
 
         return (
           <BasicModal
-            title={"Create New Item"}
+            title={"Create New Consumable Item"}
             submitButtonLabel="Create"
             show={show}
             handleClose={handleClose}

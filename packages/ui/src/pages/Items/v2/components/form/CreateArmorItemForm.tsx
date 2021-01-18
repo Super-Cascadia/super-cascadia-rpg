@@ -9,6 +9,11 @@ interface Values {
   description: string;
   salvageable: boolean;
   baseMonetaryValue: number;
+  equippable: boolean;
+  baseDurability: number;
+  currentDurability: number;
+  armorStrength: number;
+  armorLocation: number;
 }
 
 interface Props {
@@ -64,6 +69,51 @@ export function CreateArmorItemForm({
           id="salvageable"
           label="Salvageable?"
           checked={values.salvageable}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+      </Form.Row>
+      <hr />
+      <Form.Row>
+        <SwitchInput
+          id="equippable"
+          label="Equippable?"
+          checked={values.equippable}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+        {values.equippable && (
+          <TextInput
+            label="Armor Location"
+            id="armorLocation"
+            value={values.armorLocation.toString()}
+            onChange={(e: SyntheticEvent) => handleChange(e)}
+          />
+        )}
+      </Form.Row>
+      <Form.Row>
+        <TextInput
+          label="Base Durability"
+          id="baseDurability"
+          value={values.baseDurability.toString()}
+          touched={touched.baseDurability}
+          errors={errors.baseDurability}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+        <TextInput
+          label="Current Durability"
+          id="currentDurability"
+          value={values.currentDurability.toString()}
+          touched={touched.currentDurability}
+          errors={errors.currentDurability}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+      </Form.Row>
+      <Form.Row>
+        <TextInput
+          label="Armor Strength"
+          id="armorStrength"
+          value={values.armorStrength.toString()}
+          touched={touched.armorStrength}
+          errors={errors.armorStrength}
           onChange={(e: SyntheticEvent) => handleChange(e)}
         />
       </Form.Row>

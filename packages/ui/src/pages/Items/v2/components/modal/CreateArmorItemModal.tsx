@@ -11,6 +11,11 @@ const schema = yup.object({
   description: yup.string(),
   salvageable: yup.boolean(),
   baseMonetaryValue: yup.number(),
+  equippable: yup.boolean(),
+  baseDurability: yup.number(),
+  currentDurability: yup.number(),
+  armorStrength: yup.number(),
+  armorLocation: yup.number(),
 });
 
 interface Props {
@@ -53,6 +58,11 @@ export default function CreateArmorItemModal({ show, handleClose }: Props) {
     description: "",
     salvageable: false,
     baseMonetaryValue: 0,
+    equippable: false,
+    baseDurability: 100,
+    currentDurability: 100,
+    armorStrength: 0,
+    armorLocation: 0,
   };
 
   return (
@@ -66,7 +76,7 @@ export default function CreateArmorItemModal({ show, handleClose }: Props) {
 
         return (
           <BasicModal
-            title={"Create New Item"}
+            title={"Create New Armor Item"}
             submitButtonLabel="Create"
             show={show}
             handleClose={handleClose}
