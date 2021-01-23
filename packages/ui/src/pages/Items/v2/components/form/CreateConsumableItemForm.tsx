@@ -3,6 +3,9 @@ import { FormikErrors, FormikTouched } from "formik";
 import Form from "react-bootstrap/Form";
 import { TextInput } from "../../../../../components/forms/TextInput";
 import { SwitchInput } from "../../../../../components/forms/SwitchInput";
+import { FIELDS } from "../../config/fields.config";
+import { map, isString } from "lodash";
+import { formControlMapping } from "./mapping/fieldControl.mapping";
 
 interface Values {
   name: string;
@@ -18,11 +21,36 @@ interface Values {
   staminaRecoveryFactor: string;
 }
 
+const formConfig = [
+  FIELDS.NAME,
+  FIELDS.DESCRIPTION,
+  FIELDS.BASE_MONETARY_VALUE,
+  FIELDS.SALVAGABLE,
+  FIELDS.CONSUMABLE,
+  {
+    fields: [FIELDS.RECOVERS_HEALTH, FIELDS.HEALTH_RECOVERY_FACTOR],
+  },
+];
+
 interface Props {
   handleChange: (event: React.SyntheticEvent) => void;
   values: Values;
   touched: FormikTouched<Values>;
   errors: FormikErrors<Values>;
+}
+
+const useMapping = true;
+
+function getMap() {
+  return map(formConfig, (config) => {
+    if (isString(config)) {
+      const fieldString: string = config as string;
+      const control = formControlMapping[fieldString];
+      return control();
+    } else {
+      return;
+    }
+  });
 }
 
 export function CreateConsumableItemForm({
@@ -32,6 +60,10 @@ export function CreateConsumableItemForm({
   handleChange,
 }: Props) {
   console.log("values", values);
+
+  if (useMapping) {
+    return <div>{getMap()}</div>;
+  }
 
   return (
     <div>
