@@ -1,13 +1,10 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { FormikErrors, FormikTouched } from "formik";
-import Form from "react-bootstrap/Form";
-import { TextInput } from "../../../../../components/forms/TextInput";
-import { SwitchInput } from "../../../../../components/forms/SwitchInput";
 import { FIELDS } from "../../config/fields.config";
-import { map, isString } from "lodash";
+import { map, isString, get } from "lodash";
 import { formControlMapping } from "./mapping/fieldControl.mapping";
 
-interface Values {
+export interface ConsumableItemFormValues {
   name: string;
   description: string;
   salvageable: boolean;
@@ -34,19 +31,35 @@ const formConfig = [
 
 interface Props {
   handleChange: (event: React.SyntheticEvent) => void;
-  values: Values;
-  touched: FormikTouched<Values>;
-  errors: FormikErrors<Values>;
+  values: ConsumableItemFormValues;
+  touched: FormikTouched<ConsumableItemFormValues>;
+  errors: FormikErrors<ConsumableItemFormValues>;
 }
 
 const useMapping = true;
 
-function getMap() {
+function getMap(
+  values: ConsumableItemFormValues,
+  touched: FormikTouched<ConsumableItemFormValues>,
+  errors: FormikErrors<ConsumableItemFormValues>,
+  handleChange: (event: React.SyntheticEvent) => void
+) {
   return map(formConfig, (config) => {
     if (isString(config)) {
-      const fieldString: string = config as string;
-      const control = formControlMapping[fieldString];
-      return control();
+      const fieldId: string = config as string;
+      const control = get(formControlMapping, fieldId);
+      const value = get(values, fieldId);
+      const touchedState: boolean = get(touched, fieldId, false);
+      const errorState: string = get(errors, fieldId);
+
+      return control(
+        fieldId,
+        "foo",
+        value,
+        touchedState,
+        errorState,
+        handleChange
+      );
     } else {
       return;
     }
@@ -61,111 +74,5 @@ export function CreateConsumableItemForm({
 }: Props) {
   console.log("values", values);
 
-  if (useMapping) {
-    return <div>{getMap()}</div>;
-  }
-
-  return (
-    <div>
-      <Form.Row>
-        <TextInput
-          label="Name"
-          id="name"
-          value={values.name}
-          touched={touched.name}
-          errors={errors.name}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-      </Form.Row>
-      <Form.Row>
-        <TextInput
-          label="Description"
-          id="description"
-          value={values.description}
-          touched={touched.description}
-          errors={errors.description}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-      </Form.Row>
-      <Form.Row>
-        <TextInput
-          label="Base Monetary Value"
-          id="baseMonetaryValue"
-          value={values.baseMonetaryValue.toString()}
-          touched={touched.baseMonetaryValue}
-          errors={errors.baseMonetaryValue}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-      </Form.Row>
-      <hr />
-      <Form.Row>
-        <SwitchInput
-          id="salvageable"
-          label="Salvageable?"
-          checked={values.salvageable}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-      </Form.Row>
-      <hr />
-      <Form.Row>
-        <SwitchInput
-          id="consumable"
-          label="Consumable?"
-          checked={values.consumable}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-      </Form.Row>
-      <hr />
-      <Form.Row>
-        <SwitchInput
-          id="recoversHealth"
-          label="Recovers Health?"
-          checked={values.recoversHealth}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-        {values.recoversHealth && (
-          <TextInput
-            label="Recovery Factor"
-            id="healthRecoverFactor"
-            value={values.healthRecoveryFactor}
-            onChange={(e: SyntheticEvent) => handleChange(e)}
-          />
-        )}
-      </Form.Row>
-      <hr />
-      <Form.Row>
-        <SwitchInput
-          id="recoversMana"
-          label="Recovers Mana?"
-          checked={values.recoversMana}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-        {values.recoversMana && (
-          <TextInput
-            label="Recovery Factor"
-            id="manaRecoverFactor"
-            value={values.manaRecoveryFactor}
-            onChange={(e: SyntheticEvent) => handleChange(e)}
-          />
-        )}
-      </Form.Row>
-      <hr />
-      <Form.Row>
-        <SwitchInput
-          id="recoversStamina"
-          label="Recovers Stamina?"
-          checked={values.recoversStamina}
-          onChange={(e: SyntheticEvent) => handleChange(e)}
-        />
-        {values.recoversStamina && (
-          <TextInput
-            label="Recovery Factor"
-            id="staminaRecoveryFactor"
-            value={values.staminaRecoveryFactor}
-            onChange={(e: SyntheticEvent) => handleChange(e)}
-          />
-        )}
-      </Form.Row>
-    </div>
-  );
+  return <div>{getMap(values, touched, errors, handleChange)}</div>;
 }

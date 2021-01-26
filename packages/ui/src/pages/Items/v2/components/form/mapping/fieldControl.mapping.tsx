@@ -2,9 +2,8 @@ import { FIELDS } from "../../../config/fields.config";
 import React, { SyntheticEvent } from "react";
 import { TextInput } from "../../../../../../components/forms/TextInput";
 import { SwitchInput } from "../../../../../../components/forms/SwitchInput";
-import { Dictionary } from "lodash";
 
-const standardTextInput = (
+const standardTextInput: IInput = (
   id: string,
   label: string,
   value: string,
@@ -24,7 +23,7 @@ const standardTextInput = (
   );
 };
 
-const standardSwitchInput = (
+const standardSwitchInput: IInput = (
   id: string,
   label: string,
   value: boolean,
@@ -42,27 +41,21 @@ const standardSwitchInput = (
   );
 };
 
-type ISwitchInput = (
+export type IInput = (
   id: string,
   label: string,
-  value: boolean,
+  value: any,
   touched: boolean,
   errors: string,
   handleChange: (event: React.SyntheticEvent) => void
 ) => JSX.Element;
 
-type ITextInput = (
-  id: string,
-  label: string,
-  value: string,
-  touched: boolean,
-  errors: string,
-  handleChange: (event: React.SyntheticEvent) => void
-) => JSX.Element;
+// export type FormControlMapping = Dictionary<ISwitchInput | ITextInput>;
+// export type Control = ISwitchInput | ITextInput;
 
-type FormControlMapping = Dictionary<ISwitchInput | ITextInput>;
-
-export const formControlMapping: FormControlMapping = {
+export const formControlMapping: {
+  [index: string]: IInput;
+} = {
   [FIELDS.NAME]: standardTextInput,
   [FIELDS.DESCRIPTION]: standardTextInput,
   [FIELDS.BASE_MONETARY_VALUE]: standardTextInput,

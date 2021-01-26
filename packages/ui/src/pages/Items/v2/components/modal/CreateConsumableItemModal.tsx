@@ -2,7 +2,10 @@ import React from "react";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import * as yup from "yup";
 import BasicModal from "../../../../../components/modal/BasicModal";
-import { CreateConsumableItemForm } from "../form/CreateConsumableItemForm";
+import {
+  ConsumableItemFormValues,
+  CreateConsumableItemForm,
+} from "../form/CreateConsumableItemForm";
 import { useLocation } from "react-router-dom";
 import { last } from "lodash";
 
@@ -58,7 +61,7 @@ export default function CreateConsumableItemModal({
     console.log(values);
   };
 
-  const initialFormState = {
+  const initialFormState: ConsumableItemFormValues = {
     name: "",
     description: "",
     salvageable: false,
