@@ -2,13 +2,20 @@ import { FIELDS } from "../../../config/fields.config";
 import React, { SyntheticEvent } from "react";
 import { TextInput } from "../../../../../../components/forms/TextInput";
 import { SwitchInput } from "../../../../../../components/forms/SwitchInput";
+import { Dictionary } from "lodash";
+import { FormikFieldState } from "../CreateConsumableItemForm";
 
-const standardTextInput: IInput = (
+export type IInput = (
   id: string,
   label: string,
-  value: string,
-  touched: boolean,
-  errors: string,
+  formikState: Dictionary<FormikFieldState>,
+  handleChange: (event: React.SyntheticEvent) => void
+) => JSX.Element;
+
+const StandardTextInput: IInput = (
+  id: string,
+  label: string,
+  formikState: Dictionary<FormikFieldState>,
   handleChange: (event: React.SyntheticEvent) => void
 ) => {
   return (
@@ -23,7 +30,7 @@ const standardTextInput: IInput = (
   );
 };
 
-const standardSwitchInput: IInput = (
+const StandardSwitchInput: IInput = (
   id: string,
   label: string,
   value: boolean,
@@ -41,30 +48,20 @@ const standardSwitchInput: IInput = (
   );
 };
 
-export type IInput = (
-  id: string,
-  label: string,
-  value: any,
-  touched: boolean,
-  errors: string,
-  handleChange: (event: React.SyntheticEvent) => void
-) => JSX.Element;
-
-// export type FormControlMapping = Dictionary<ISwitchInput | ITextInput>;
-// export type Control = ISwitchInput | ITextInput;
-
-export const FORM_CONTROL_MAPPING: {
+interface IFormControlMapping {
   [index: string]: IInput;
-} = {
-  [FIELDS.NAME]: standardTextInput,
-  [FIELDS.DESCRIPTION]: standardTextInput,
-  [FIELDS.BASE_MONETARY_VALUE]: standardTextInput,
-  [FIELDS.SALVAGABLE]: standardSwitchInput,
-  [FIELDS.CONSUMABLE]: standardSwitchInput,
-  [FIELDS.RECOVERS_HEALTH]: standardSwitchInput,
-  [FIELDS.HEALTH_RECOVERY_FACTOR]: standardTextInput,
-  [FIELDS.RECOVERS_MANA]: standardSwitchInput,
-  [FIELDS.MANA_RECOVERY_FACTOR]: standardTextInput,
-  [FIELDS.RECOVERS_STAMINA]: standardSwitchInput,
-  [FIELDS.STAMINA_RECOVERY_FACTOR]: standardTextInput,
+}
+
+export const FORM_CONTROL_MAPPING: IFormControlMapping = {
+  [FIELDS.NAME]: StandardTextInput,
+  [FIELDS.DESCRIPTION]: StandardTextInput,
+  [FIELDS.BASE_MONETARY_VALUE]: StandardTextInput,
+  [FIELDS.SALVAGABLE]: StandardSwitchInput,
+  [FIELDS.CONSUMABLE]: StandardSwitchInput,
+  [FIELDS.RECOVERS_HEALTH]: StandardSwitchInput,
+  [FIELDS.HEALTH_RECOVERY_FACTOR]: StandardTextInput,
+  [FIELDS.RECOVERS_MANA]: StandardSwitchInput,
+  [FIELDS.MANA_RECOVERY_FACTOR]: StandardTextInput,
+  [FIELDS.RECOVERS_STAMINA]: StandardSwitchInput,
+  [FIELDS.STAMINA_RECOVERY_FACTOR]: StandardTextInput,
 };
