@@ -25,7 +25,20 @@ interface Props {
   errors: FormikErrors<ConsumableItemFormValues>;
 }
 
-function getMap(
+function getFormikState(
+  id: string,
+  values: ConsumableItemFormValues,
+  touched: FormikTouched<ConsumableItemFormValues>,
+  errors: FormikErrors<ConsumableItemFormValues>
+) {
+  const value = get(values, id);
+  const touchedState: boolean = get(touched, id, false);
+  const errorState: string = get(errors, id);
+
+  return { value, touchedState, errorState };
+}
+
+function getFormControls(
   values: ConsumableItemFormValues,
   touched: FormikTouched<ConsumableItemFormValues>,
   errors: FormikErrors<ConsumableItemFormValues>,
@@ -34,9 +47,12 @@ function getMap(
   return map(CONSUMABLE_ITEM_FORM_CONFIG, (config) => {
     const { id, label } = config;
     const Control = get(FORM_CONTROL_MAPPING, id);
-    const value = get(values, id);
-    const touchedState: boolean = get(touched, id, false);
-    const errorState: string = get(errors, id);
+    const { value, touchedState, errorState } = getFormikState(
+      id,
+      values,
+      touched,
+      errors
+    );
 
     return Control(id, label, value, touchedState, errorState, handleChange);
   });
@@ -50,5 +66,5 @@ export function CreateConsumableItemForm({
 }: Props) {
   console.log("values", values);
 
-  return <div>{getMap(values, touched, errors, handleChange)}</div>;
+  return <div>{getFormControls(values, touched, errors, handleChange)}</div>;
 }
