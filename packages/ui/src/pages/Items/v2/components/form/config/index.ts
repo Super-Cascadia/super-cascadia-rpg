@@ -1,5 +1,9 @@
 import { FIELDS } from "../../../config/fields.config";
 
+// the id should probably represent the control type we want to use here,
+// instead of the field, since we now have multiple possible fields for a
+// given control
+
 export const CONSUMABLE_ITEM_FORM_CONFIG = [
   { id: FIELDS.NAME, label: "Name", fields: [FIELDS.NAME] },
   {
