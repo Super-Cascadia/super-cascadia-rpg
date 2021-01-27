@@ -1,8 +1,8 @@
 import React from "react";
 import { FormikErrors, FormikTouched } from "formik";
-import { FIELDS } from "../../config/fields.config";
 import { map, isString, get } from "lodash";
-import { formControlMapping } from "./mapping/fieldControl.mapping";
+import { FORM_CONTROL_MAPPING } from "./mapping/fieldControl.mapping";
+import { CONSUMABLE_ITEM_FORM_CONFIG } from "./config";
 
 export interface ConsumableItemFormValues {
   name: string;
@@ -18,17 +18,6 @@ export interface ConsumableItemFormValues {
   staminaRecoveryFactor: string;
 }
 
-const formConfig = [
-  FIELDS.NAME,
-  FIELDS.DESCRIPTION,
-  FIELDS.BASE_MONETARY_VALUE,
-  FIELDS.SALVAGABLE,
-  FIELDS.CONSUMABLE,
-  {
-    fields: [FIELDS.RECOVERS_HEALTH, FIELDS.HEALTH_RECOVERY_FACTOR],
-  },
-];
-
 interface Props {
   handleChange: (event: React.SyntheticEvent) => void;
   values: ConsumableItemFormValues;
@@ -36,33 +25,20 @@ interface Props {
   errors: FormikErrors<ConsumableItemFormValues>;
 }
 
-const useMapping = true;
-
 function getMap(
   values: ConsumableItemFormValues,
   touched: FormikTouched<ConsumableItemFormValues>,
   errors: FormikErrors<ConsumableItemFormValues>,
   handleChange: (event: React.SyntheticEvent) => void
 ) {
-  return map(formConfig, (config) => {
-    if (isString(config)) {
-      const fieldId: string = config as string;
-      const control = get(formControlMapping, fieldId);
-      const value = get(values, fieldId);
-      const touchedState: boolean = get(touched, fieldId, false);
-      const errorState: string = get(errors, fieldId);
+  return map(CONSUMABLE_ITEM_FORM_CONFIG, (config) => {
+    const { id, label } = config;
+    const Control = get(FORM_CONTROL_MAPPING, id);
+    const value = get(values, id);
+    const touchedState: boolean = get(touched, id, false);
+    const errorState: string = get(errors, id);
 
-      return control(
-        fieldId,
-        "foo",
-        value,
-        touchedState,
-        errorState,
-        handleChange
-      );
-    } else {
-      return;
-    }
+    return Control(id, label, value, touchedState, errorState, handleChange);
   });
 }
 

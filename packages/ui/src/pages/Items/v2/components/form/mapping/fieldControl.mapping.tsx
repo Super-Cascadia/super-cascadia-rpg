@@ -13,8 +13,8 @@ const standardTextInput: IInput = (
 ) => {
   return (
     <TextInput
-      label="Name"
-      id="name"
+      label={label}
+      id={id}
       value={value}
       touched={touched}
       errors={errors}
@@ -53,7 +53,7 @@ export type IInput = (
 // export type FormControlMapping = Dictionary<ISwitchInput | ITextInput>;
 // export type Control = ISwitchInput | ITextInput;
 
-export const formControlMapping: {
+export const FORM_CONTROL_MAPPING: {
   [index: string]: IInput;
 } = {
   [FIELDS.NAME]: standardTextInput,
