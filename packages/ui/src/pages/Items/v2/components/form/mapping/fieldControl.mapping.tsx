@@ -3,6 +3,7 @@ import { FormikFieldState } from "../CreateConsumableItemForm";
 import { Dictionary } from "lodash";
 import { TextInput } from "../../../../../../components/forms/TextInput";
 import { SwitchInput } from "../../../../../../components/forms/SwitchInput";
+import { FIELDS } from "../../../config/fields.config";
 
 export type IInput = (
   id: string,
@@ -123,7 +124,7 @@ export const RecoversHealthInput: IInput = (
     <div>
       <SwitchInput
         label={label}
-        id={id}
+        id={FIELDS.RECOVERS_HEALTH}
         value={recoversHealth.value}
         touched={recoversHealth.touched}
         errors={recoversHealth.errors}
@@ -132,7 +133,7 @@ export const RecoversHealthInput: IInput = (
       {recoversHealth.value === true && (
         <TextInput
           label={"Factor"}
-          id={id}
+          id={FIELDS.HEALTH_RECOVERY_FACTOR}
           value={healthRecoveryFactor.value}
           touched={healthRecoveryFactor.touched}
           errors={healthRecoveryFactor.errors}
@@ -155,7 +156,7 @@ export const RecoversManaInput: IInput = (
     <div>
       <SwitchInput
         label={label}
-        id={id}
+        id={FIELDS.RECOVERS_MANA}
         value={recoversMana.value}
         touched={recoversMana.touched}
         errors={recoversMana.errors}
@@ -164,7 +165,7 @@ export const RecoversManaInput: IInput = (
       {recoversMana.value === true && (
         <TextInput
           label={"Factor"}
-          id={id}
+          id={FIELDS.MANA_RECOVERY_FACTOR}
           value={manaRecoveryFactor.value}
           touched={manaRecoveryFactor.touched}
           errors={manaRecoveryFactor.errors}
@@ -187,7 +188,7 @@ export const RecoversStaminaInput: IInput = (
     <div>
       <SwitchInput
         label={label}
-        id={id}
+        id={FIELDS.RECOVERS_STAMINA}
         value={recoversStamina.value}
         touched={recoversStamina.touched}
         errors={recoversStamina.errors}
@@ -196,7 +197,7 @@ export const RecoversStaminaInput: IInput = (
       {recoversStamina.value === true && (
         <TextInput
           label={"Factor"}
-          id={id}
+          id={FIELDS.STAMINA_RECOVERY_FACTOR}
           value={staminaRecoveryFactor.value}
           touched={staminaRecoveryFactor.touched}
           errors={staminaRecoveryFactor.errors}

@@ -18,13 +18,6 @@ export interface ConsumableItemFormValues {
   staminaRecoveryFactor: string;
 }
 
-interface Props {
-  handleChange: (event: React.SyntheticEvent) => void;
-  values: ConsumableItemFormValues;
-  touched: FormikTouched<ConsumableItemFormValues>;
-  errors: FormikErrors<ConsumableItemFormValues>;
-}
-
 function getFormikState(id: string, formikState: FormikState) {
   const value = get(formikState.values, id);
   const touched: boolean = get(formikState.touched, id, false);
@@ -33,7 +26,7 @@ function getFormikState(id: string, formikState: FormikState) {
   return { value, touched, errors };
 }
 
-interface FormikState {
+export interface FormikState {
   values: ConsumableItemFormValues;
   touched: FormikTouched<ConsumableItemFormValues>;
   errors: FormikErrors<ConsumableItemFormValues>;
@@ -46,14 +39,7 @@ export interface FormikFieldState {
   errors: string;
 }
 
-function getFieldState(
-  fields: FIELDS[],
-  formikState: {
-    touched: FormikTouched<ConsumableItemFormValues>;
-    values: ConsumableItemFormValues;
-    errors: FormikErrors<ConsumableItemFormValues>;
-  }
-) {
+function getFieldState(fields: FIELDS[], formikState: FormikState) {
   const fieldsWithFormState: FormikFieldState[] = map(fields, (field) => {
     return {
       id: field,
@@ -87,6 +73,13 @@ function getFormControls(
 
     return component(id, label, fieldState, handleChange);
   });
+}
+
+export interface Props {
+  handleChange: (event: React.SyntheticEvent) => void;
+  values: ConsumableItemFormValues;
+  touched: FormikTouched<ConsumableItemFormValues>;
+  errors: FormikErrors<ConsumableItemFormValues>;
 }
 
 export function CreateConsumableItemForm({
