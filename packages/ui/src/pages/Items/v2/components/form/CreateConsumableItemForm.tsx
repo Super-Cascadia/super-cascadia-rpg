@@ -1,7 +1,6 @@
 import React from "react";
 import { FormikErrors, FormikTouched } from "formik";
 import { map, get, mapKeys, Dictionary } from "lodash";
-import { FORM_CONTROL_MAPPING } from "./mapping/fieldControl.mapping";
 import { CONSUMABLE_ITEM_FORM_CONFIG } from "./config";
 import { FIELDS } from "../../config/fields.config";
 
@@ -47,15 +46,14 @@ export interface FormikFieldState {
   errors: string;
 }
 
-function getFormControlState(
-  id: string,
-  label: string,
+function getFieldState(
   fields: FIELDS[],
-  formikState: FormikState,
-  handleChange: (event: React.SyntheticEvent) => void
+  formikState: {
+    touched: FormikTouched<ConsumableItemFormValues>;
+    values: ConsumableItemFormValues;
+    errors: FormikErrors<ConsumableItemFormValues>;
+  }
 ) {
-  const Control = get(FORM_CONTROL_MAPPING, id);
-
   const fieldsWithFormState: FormikFieldState[] = map(fields, (field) => {
     return {
       id: field,
@@ -63,12 +61,12 @@ function getFormControlState(
     };
   });
 
-  const fieldsWithFormStateDictionary: Dictionary<FormikFieldState> = mapKeys(
+  const fieldState: Dictionary<FormikFieldState> = mapKeys(
     fieldsWithFormState,
     (field) => field.id
   );
 
-  return Control(id, label, fieldsWithFormStateDictionary, handleChange);
+  return fieldState;
 }
 
 function getFormControls(
@@ -78,22 +76,16 @@ function getFormControls(
   handleChange: (event: React.SyntheticEvent) => void
 ) {
   return map(CONSUMABLE_ITEM_FORM_CONFIG, (config) => {
-    const { id, label, fields } = config;
+    const { id, label, fields, component } = config;
     const formikState = {
       values,
       touched,
       errors,
     };
 
-    const Control = getFormControlState(
-      id,
-      label,
-      fields,
-      formikState,
-      handleChange
-    );
+    const fieldState = getFieldState(fields, formikState);
 
-    return Control();
+    return component(id, label, fieldState, handleChange);
   });
 }
 
