@@ -110,3 +110,35 @@ export const ConsumableInput: IInput = (
     />
   );
 };
+
+export const RecoversHealthInput: IInput = (
+  id: string,
+  label: string,
+  formikState: Dictionary<FormikFieldState>,
+  handleChange: (event: React.SyntheticEvent) => void
+) => {
+  const { recoversHealth, healthRecoveryFactor } = formikState;
+
+  return (
+    <div>
+      <SwitchInput
+        label={label}
+        id={id}
+        value={recoversHealth.value}
+        touched={recoversHealth.touched}
+        errors={recoversHealth.errors}
+        onChange={(e: SyntheticEvent) => handleChange(e)}
+      />
+      {recoversHealth.value === true && (
+        <TextInput
+          label={label}
+          id={id}
+          value={healthRecoveryFactor.value}
+          touched={healthRecoveryFactor.touched}
+          errors={healthRecoveryFactor.errors}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+      )}
+    </div>
+  );
+};

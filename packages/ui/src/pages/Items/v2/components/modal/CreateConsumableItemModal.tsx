@@ -66,7 +66,7 @@ export default function CreateConsumableItemModal({
     description: "",
     salvageable: false,
     baseMonetaryValue: 0,
-    consumable: false,
+    consumable: true,
     recoversHealth: false,
     healthRecoveryFactor: "",
     recoversMana: false,

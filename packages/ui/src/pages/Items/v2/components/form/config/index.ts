@@ -5,6 +5,7 @@ import {
   BaseMonetaryValueInput,
   SalvageableInput,
   ConsumableInput,
+  RecoversHealthInput,
 } from "../mapping/fieldControl.mapping";
 
 export const CONSUMABLE_ITEM_FORM_CONFIG = [
@@ -38,7 +39,10 @@ export const CONSUMABLE_ITEM_FORM_CONFIG = [
     fields: [FIELDS.CONSUMABLE],
     component: ConsumableInput,
   },
-  // {
-  //   fields: [FIELDS.RECOVERS_HEALTH, FIELDS.HEALTH_RECOVERY_FACTOR],
-  // },
+  {
+    id: FIELDS.RECOVERS_HEALTH,
+    label: "Recovers Health",
+    fields: [FIELDS.RECOVERS_HEALTH, FIELDS.HEALTH_RECOVERY_FACTOR],
+    component: RecoversHealthInput,
+  },
 ];
