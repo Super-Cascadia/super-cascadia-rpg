@@ -131,11 +131,75 @@ export const RecoversHealthInput: IInput = (
       />
       {recoversHealth.value === true && (
         <TextInput
-          label={label}
+          label={"Factor"}
           id={id}
           value={healthRecoveryFactor.value}
           touched={healthRecoveryFactor.touched}
           errors={healthRecoveryFactor.errors}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+      )}
+    </div>
+  );
+};
+
+export const RecoversManaInput: IInput = (
+  id: string,
+  label: string,
+  formikState: Dictionary<FormikFieldState>,
+  handleChange: (event: React.SyntheticEvent) => void
+) => {
+  const { recoversMana, manaRecoveryFactor } = formikState;
+
+  return (
+    <div>
+      <SwitchInput
+        label={label}
+        id={id}
+        value={recoversMana.value}
+        touched={recoversMana.touched}
+        errors={recoversMana.errors}
+        onChange={(e: SyntheticEvent) => handleChange(e)}
+      />
+      {recoversMana.value === true && (
+        <TextInput
+          label={"Factor"}
+          id={id}
+          value={manaRecoveryFactor.value}
+          touched={manaRecoveryFactor.touched}
+          errors={manaRecoveryFactor.errors}
+          onChange={(e: SyntheticEvent) => handleChange(e)}
+        />
+      )}
+    </div>
+  );
+};
+
+export const RecoversStaminaInput: IInput = (
+  id: string,
+  label: string,
+  formikState: Dictionary<FormikFieldState>,
+  handleChange: (event: React.SyntheticEvent) => void
+) => {
+  const { recoversStamina, staminaRecoveryFactor } = formikState;
+
+  return (
+    <div>
+      <SwitchInput
+        label={label}
+        id={id}
+        value={recoversStamina.value}
+        touched={recoversStamina.touched}
+        errors={recoversStamina.errors}
+        onChange={(e: SyntheticEvent) => handleChange(e)}
+      />
+      {recoversStamina.value === true && (
+        <TextInput
+          label={"Factor"}
+          id={id}
+          value={staminaRecoveryFactor.value}
+          touched={staminaRecoveryFactor.touched}
+          errors={staminaRecoveryFactor.errors}
           onChange={(e: SyntheticEvent) => handleChange(e)}
         />
       )}
