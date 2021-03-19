@@ -5,7 +5,7 @@
    "main": "build/src/index.js",
    "types": "build/src/index.d.ts",
    "devDependencies": {
-      "ts-node": "3.3.0",
+      "ts-node": "9.1.1",
       "@types/node": "^8.0.29",
       "typescript": "3.3.3333"
    },
